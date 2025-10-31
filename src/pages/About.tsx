@@ -7,7 +7,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900">
       <Navigation />
       <main className="pt-24 pb-16 px-6 md:px-12">
-        <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl p-8 md:p-12 border border-slate-100">
+        <div className="max-w-5xl mx-auto p-8 md:p-12">
           <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-slate-900">
