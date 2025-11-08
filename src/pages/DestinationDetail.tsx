@@ -28,7 +28,7 @@ import {
   Clock,
   Compass,
   MapPin,
-  Phone,
+  Phone as PhoneIcon,
   ShieldCheck,
   Star,
   Users,
