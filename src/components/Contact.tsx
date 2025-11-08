@@ -1,5 +1,5 @@
 import { Mail, Phone } from "lucide-react";
-import { Mail as MailIcon, Phone } from "lucide-react";
+import { Mail as MailIcon, Phone as PhoneIcon } from "lucide-react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
@@ -85,13 +85,13 @@ const Contact = () => {
 
             <div className="space-y-3">
               <a href="tel:+916205129118" className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-white/5 to-white/3 border border-white/5 hover:shadow-lg transition">
-                <Phone className="h-5 w-5 text-primary" />
+                <PhoneIcon className="h-5 w-5 text-primary" />
                 <span className="font-medium">+91 62051 29118</span>
                 <span className="ml-auto text-sm text-muted-foreground">Call</span>
               </a>
 
               <a href="tel:+916283620764" className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-white/5 to-white/3 border border-white/5 hover:shadow-lg transition">
-                <Phone className="h-5 w-5 text-primary" />
+                <PhoneIcon className="h-5 w-5 text-primary" />
                 <span className="font-medium">+91 62836 20764</span>
                 <span className="ml-auto text-sm text-muted-foreground">Call</span>
               </a>
