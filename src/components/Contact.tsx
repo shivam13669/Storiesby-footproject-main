@@ -30,10 +30,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-muted/30 scroll-mt-24">
+    <section id="contact" className="py-20 relative overflow-hidden bg-gradient-to-br from-sky-50 via-white to-emerald-50 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Contact Us</h2>
+          <h2 className="relative text-center mb-4">
+            <span className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-sky-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent drop-shadow-sm">
+              Contact Us
+            </span>
+            <span className="block mx-auto mt-3 h-1 w-28 rounded-full bg-gradient-to-r from-sky-400 via-teal-400 to-emerald-300"></span>
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Have questions or want to plan your next adventure? Send us a message and we’ll reach out.
           </p>
