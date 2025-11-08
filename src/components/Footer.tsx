@@ -1,11 +1,10 @@
 import { Mail, Phone, Facebook, Instagram, Youtube } from "lucide-react";
-import { Mail, Phone, Facebook, Instagram, Youtube } from "lucide-react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import { Button } from "./ui/button";
 
 const Footer = () => {
   return (
-    <footer className="relative z-20 gradient-nature text-white">
+    <footer className="gradient-nature text-white">
       <div className="container mx-auto px-4">
         {/* Main Footer */}
         <div className="py-16">
