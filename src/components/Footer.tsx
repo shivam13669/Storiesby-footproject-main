@@ -84,12 +84,12 @@ const Footer = () => {
                 </span>
 
                 <span className="inline-flex items-center mr-4">
-                  <Mail className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
+                  <MailIcon className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
                   <a href="mailto:contact@storiesbyfoot.com" className="hover:underline" aria-label="Email contact@storiesbyfoot.com">contact@storiesbyfoot.com</a>
                 </span>
 
                 <span className="inline-flex items-center">
-                  <Mail className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
+                  <MailIcon className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
                   <a href="mailto:storiesbyfoot@gmail.com" className="hover:underline" aria-label="Email storiesbyfoot@gmail.com">storiesbyfoot@gmail.com</a>
                 </span>
               </div>
