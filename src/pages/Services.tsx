@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 const services = [
   {
@@ -160,9 +161,10 @@ const ServicesPage = () => {
             <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 relative animate-fade-in">
               <button
                 onClick={() => setSelectedService(null)}
-                className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl"
+                className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:pointer-events-none"
               >
-                ✕
+                <X className="h-4 w-4 text-gray-500" />
+                <span className="sr-only">Close</span>
               </button>
 
               {selectedService.img && (
