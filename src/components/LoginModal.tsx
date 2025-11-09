@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Eye, EyeOff, Mail, Lock, ArrowRight, CheckCircle, User, Phone, Search, ChevronDown } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight, CheckCircle, User, Phone, Search, ChevronDown, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -683,7 +683,11 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
           </div>
         </div>
 
-        <DialogClose className="hidden" />
+        <DialogClose asChild>
+          <button aria-label="Close" className="absolute right-3 top-3 text-gray-500 hover:text-gray-700 bg-white/0 hover:bg-gray-50 rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-orange-500">
+            <X className="h-5 w-5" />
+          </button>
+        </DialogClose>
       </DialogContent>
     </Dialog>
   );
