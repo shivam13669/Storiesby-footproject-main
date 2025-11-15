@@ -19,7 +19,7 @@ export default function TermsAndConditionPage() {
           <article className="prose prose-slate max-w-none space-y-6">
             <section className="space-y-4">
               <p className="text-slate-700 leading-relaxed">
-                Welcome to StoriesByFoot ("we," "our," or "us"). These Terms and Conditions ("Terms") govern your access to and use of our website https://storiesbyfoot.com (the "Website") and all related features, services, and content provided by StoriesByFoot (collectively, the "Services").
+                Welcome to StoriesByFoot ("we," "our," or "us"). These Terms and Conditions ("Terms") govern your access to and use of our website <a href="https://storiesbyfoot.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">https://storiesbyfoot.com</a> (the "Website") and all related features, services, and content provided by StoriesByFoot (collectively, the "Services").
               </p>
               <p className="text-slate-700 leading-relaxed">
                 By accessing or using our Website, you agree to comply with and be bound by these Terms. If you do not agree, please refrain from using our Website or Services.
@@ -304,10 +304,10 @@ export default function TermsAndConditionPage() {
             <section className="space-y-4">
               <h2 className="text-2xl font-semibold text-slate-800">19. Contact Information</h2>
               <div className="text-slate-700 leading-relaxed space-y-2">
-                <p>📧 Email: contact@storiesbyfoot.com, storiesbyfoot@gmail.com</p>
-                <p>🌐 Website: https://storiesbyfoot.com</p>
+                <p>📧 Email: <a href="mailto:contact@storiesbyfoot.com" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">contact@storiesbyfoot.com</a>, <a href="mailto:storiesbyfoot@gmail.com" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">storiesbyfoot@gmail.com</a></p>
+                <p>🌐 Website: <a href="https://storiesbyfoot.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">https://storiesbyfoot.com</a></p>
                 <p>📍 Registered Office: [Insert Company Address]</p>
-                <p>📞 Customer Support: +916205129118, +916283620764</p>
+                <p>📞 Customer Support: <a href="tel:+916205129118" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">+916205129118</a>, <a href="tel:+916283620764" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">+916283620764</a></p>
               </div>
             </section>
 
