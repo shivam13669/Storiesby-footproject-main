@@ -167,7 +167,7 @@ export default function CookiePolicyPage() {
               <div className="text-slate-700 leading-relaxed space-y-2">
                 <p>📧 Email: <a href="mailto:contact@storiesbyfoot.com" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">contact@storiesbyfoot.com</a>, <a href="mailto:storiesbyfoot@gmail.com" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">storiesbyfoot@gmail.com</a></p>
                 <p>🌐 Website: <a href="https://storiesbyfoot.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">https://storiesbyfoot.com</a></p>
-                <p>📍 Registered Office: [Insert Company Address]</p>
+                <p>📍 Registered Office: 91, GK Crystal Home, KL Highway, SAS Nagar, Punjab - 140307</p>
                 <p>📞 Customer Support: <a href="tel:+916205129118" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">+916205129118</a>, <a href="tel:+916283620764" className="text-blue-600 hover:text-blue-800 hover:underline transition-colors">+916283620764</a></p>
               </div>
             </section>
