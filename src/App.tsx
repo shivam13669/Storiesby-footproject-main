@@ -10,6 +10,7 @@ import ContactPage from "./pages/Contact";
 import ServicesPage from "./pages/Services";
 import TestimonialsPage from "./pages/Testimonials";
 import AboutPage from "./pages/About";
+import TermsAndConditionPage from "./pages/TermsAndCondition";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
