@@ -11,6 +11,8 @@ import ServicesPage from "./pages/Services";
 import TestimonialsPage from "./pages/Testimonials";
 import AboutPage from "./pages/About";
 import TermsAndConditionPage from "./pages/TermsAndCondition";
+import PrivacyPolicyPage from "./pages/PrivacyPolicy";
+import CookiePolicyPage from "./pages/CookiePolicy";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -36,6 +38,8 @@ const App = () => (
             <Route path="/testimonials" element={<TestimonialsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/terms-and-condition" element={<TermsAndConditionPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/cookie-policy" element={<CookiePolicyPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
