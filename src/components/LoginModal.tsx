@@ -116,11 +116,11 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
         <DialogTitle className="sr-only">Login or Sign Up</DialogTitle>
         <div className="flex h-full min-h-[600px]">
           {/* Left Side - Premium Hero Image */}
-          <div className="hidden md:flex md:w-[55%] relative overflow-hidden bg-gray-900">
+          <div className="hidden md:flex md:w-[55%] relative overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1762700048621-76849cb2c75e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Adventure experience"
-              className={`w-full h-full object-cover transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className="w-full h-full object-cover"
               onLoad={() => setImageLoaded(true)}
               loading="eager"
             />
