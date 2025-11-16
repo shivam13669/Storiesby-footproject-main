@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto leading-relaxed font-light">
-              Discover breathtaking landscapes and unforgettable journeys. Your adventure awaits.
+              Discover breathtaking landscapes, thrilling expeditions, and unforgettable journeys designed to inspire your spirit of exploration and adventure.
             </p>
           </div>
 
