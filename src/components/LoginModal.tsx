@@ -359,7 +359,7 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                       <label className="block text-sm font-semibold text-gray-900">
                         Full Name
                       </label>
-                      <div className="relative group">
+                      <div className="relative group" onMouseDown={() => setIsPasswordFieldFocused(false)}>
                         <User className="absolute left-3.5 top-3.5 h-5 w-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
                         <Input
                           type="text"
