@@ -115,7 +115,7 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
           {/* Left Side - Premium Hero Image */}
           <div className="hidden md:flex md:w-[55%] relative overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1762700048621-76849cb2c75e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://cdn.builder.io/api/v1/image/assets%2F2ff2ba5fbddf4a3fa883fab429f80a85%2F6fd98a818ae14adaa2b55f761fd41f39?format=webp&width=800"
               alt="Adventure experience"
               className="w-full h-full object-cover"
               loading="eager"
