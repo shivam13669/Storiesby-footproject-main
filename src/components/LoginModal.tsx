@@ -33,8 +33,6 @@ const COUNTRIES = [
   { code: "TH", name: "Thailand", dial: "+66" },
   { code: "PH", name: "Philippines", dial: "+63" },
   { code: "ID", name: "Indonesia", dial: "+62" },
-  { code: "BD", name: "Bangladesh", dial: "+880" },
-  { code: "PK", name: "Pakistan", dial: "+92" },
   { code: "SL", name: "Sri Lanka", dial: "+94" },
   { code: "NP", name: "Nepal", dial: "+977" },
 ];
@@ -408,32 +406,19 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                               <ChevronDown className="h-4 w-4 text-gray-400" />
                             </button>
                           </PopoverTrigger>
-                          <PopoverContent className="w-64 p-0" align="start">
-                            <div className="p-3 border-b border-gray-200">
-                              <div className="relative">
-                                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
-                                <Input
-                                  type="text"
-                                  placeholder="Search country..."
-                                  value={countrySearch}
-                                  onChange={(e) => setCountrySearch(e.target.value)}
-                                  className="w-full pl-8 pr-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500/20"
-                                />
-                              </div>
-                            </div>
-                            <div className="max-h-64 overflow-y-auto">
-                              {filteredCountries.length > 0 ? (
-                                filteredCountries.map((country) => (
+                          <PopoverContent className="w-48 p-0" align="start">
+                            <div className="max-h-64 overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
+                              {COUNTRIES.length > 0 ? (
+                                COUNTRIES.map((country) => (
                                   <button
                                     key={country.code}
                                     type="button"
                                     onClick={() => handleCountrySelect(country)}
-                                    className={`w-full text-left px-3 py-2.5 text-sm hover:bg-orange-50 transition-colors flex justify-between items-center ${
+                                    className={`w-full text-left px-3 py-2.5 text-sm hover:bg-orange-50 transition-colors ${
                                       selectedCountry.code === country.code ? "bg-orange-100 font-semibold" : ""
                                     }`}
                                   >
-                                    <span>{country.name}</span>
-                                    <span className="text-gray-500">{country.dial}</span>
+                                    {country.dial}
                                   </button>
                                 ))
                               ) : (
