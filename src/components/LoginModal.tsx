@@ -496,7 +496,12 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                         </label>
                         <div className="flex gap-2" onMouseDown={() => setIsPasswordFieldFocused(false)}>
                           {/* Country Code Selector */}
-                          <Popover open={openCountryPopover} onOpenChange={setOpenCountryPopover}>
+                          <Popover open={openCountryPopover} onOpenChange={(open) => {
+                            setOpenCountryPopover(open);
+                            if (!open) {
+                              setCountrySearch("");
+                            }
+                          }}>
                             <PopoverTrigger asChild>
                               <button
                                 type="button"
@@ -506,26 +511,52 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                                 <ChevronDown className="h-4 w-4 text-gray-400" />
                               </button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-48 p-0" align="start">
-                              <div className="max-h-64 overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
-                                {COUNTRIES.length > 0 ? (
-                                  COUNTRIES.map((country) => (
-                                    <button
-                                      key={country.code}
-                                      type="button"
-                                      onClick={() => handleCountrySelect(country)}
-                                      className={`w-full text-left px-3 py-2.5 text-sm hover:bg-orange-50 transition-colors ${
-                                        selectedCountry.code === country.code ? "bg-orange-100 font-semibold" : ""
-                                      }`}
-                                    >
-                                      {country.dial}
-                                    </button>
-                                  ))
-                                ) : (
-                                  <div className="px-3 py-4 text-sm text-gray-500 text-center">
-                                    No countries found
+                            <PopoverContent className="w-56 p-0" align="start">
+                              <div className="flex flex-col">
+                                {/* Search Input */}
+                                <div className="sticky top-0 z-10 p-3 border-b border-gray-200 bg-white">
+                                  <div className="relative">
+                                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                    <input
+                                      type="text"
+                                      placeholder="Search country..."
+                                      value={countrySearch}
+                                      onChange={(e) => setCountrySearch(e.target.value)}
+                                      className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 bg-gray-50"
+                                      autoFocus
+                                    />
                                   </div>
-                                )}
+                                </div>
+
+                                {/* Countries List */}
+                                <div className="max-h-64 overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
+                                  {filteredCountries.length > 0 ? (
+                                    filteredCountries.map((country) => (
+                                      <button
+                                        key={country.code}
+                                        type="button"
+                                        onClick={() => handleCountrySelect(country)}
+                                        className={`w-full text-left px-3 py-2.5 text-sm hover:bg-orange-50 transition-colors flex items-center justify-between ${
+                                          selectedCountry.code === country.code ? "bg-orange-100 font-semibold" : ""
+                                        }`}
+                                      >
+                                        <span>
+                                          <span className="font-medium">{country.dial}</span>
+                                          <span className="text-gray-600 ml-2">
+                                            {country.name}
+                                          </span>
+                                        </span>
+                                        {selectedCountry.code === country.code && (
+                                          <span className="text-orange-600">✓</span>
+                                        )}
+                                      </button>
+                                    ))
+                                  ) : (
+                                    <div className="px-3 py-8 text-sm text-gray-500 text-center">
+                                      No countries found
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             </PopoverContent>
                           </Popover>
