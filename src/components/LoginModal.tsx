@@ -43,7 +43,39 @@ const validateEmail = (email: string) => {
   return emailRegex.test(email);
 };
 
+const COUNTRY_DIGIT_REQUIREMENTS: Record<string, { min: number; max: number }> = {
+  IN: { min: 10, max: 10 },
+  US: { min: 10, max: 10 },
+  GB: { min: 10, max: 11 },
+  CA: { min: 10, max: 10 },
+  AU: { min: 9, max: 9 },
+  DE: { min: 10, max: 11 },
+  FR: { min: 9, max: 9 },
+  IT: { min: 10, max: 10 },
+  ES: { min: 9, max: 9 },
+  JP: { min: 10, max: 11 },
+  CN: { min: 11, max: 11 },
+  SG: { min: 8, max: 8 },
+  MY: { min: 9, max: 10 },
+  TH: { min: 9, max: 10 },
+  PH: { min: 10, max: 10 },
+  ID: { min: 9, max: 12 },
+  SL: { min: 9, max: 9 },
+  NP: { min: 10, max: 10 },
+};
+
 const validateInternationalMobile = (mobile: string, countryCode: string): boolean => {
+  const digitCount = mobile.replace(/\D/g, '').length;
+  const requirements = COUNTRY_DIGIT_REQUIREMENTS[countryCode];
+
+  if (!requirements) {
+    return false;
+  }
+
+  if (digitCount < requirements.min || digitCount > requirements.max) {
+    return false;
+  }
+
   try {
     const phoneNumber = parsePhoneNumberFromString(mobile, countryCode as any);
     return phoneNumber ? phoneNumber.isValid() : false;
