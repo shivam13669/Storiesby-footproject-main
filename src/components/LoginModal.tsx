@@ -111,6 +111,11 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       setSignupEmailError("Please enter a valid email address (e.g., you@example.com)");
       return;
     }
+    if (!validateInternationalMobile(mobileNumber, selectedCountry.code)) {
+      setMobileNumberError("Please enter a valid mobile number for the selected country");
+      alert("Please enter a valid mobile number for the selected country");
+      return;
+    }
     if (!isPasswordValid) {
       alert("Password does not meet requirements");
       return;
