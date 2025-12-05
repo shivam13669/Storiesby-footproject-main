@@ -163,9 +163,65 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
 
           {/* Right Side - Premium Form */}
           <div className="w-full md:w-[45%] flex flex-col bg-white overflow-y-auto">
-            <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'login' | 'signup')} className="w-full flex flex-col h-full">
-              {/* Premium Tab Headers */}
-              <div className="sticky top-0 z-10 bg-white border-b border-gray-100">
+            {showForgotPassword ? (
+              // Forgot Password Form
+              <div className="flex flex-col h-full">
+                <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-7 py-5">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-1">
+                    Forgotten Your Password?
+                  </h2>
+                  <p className="text-sm text-gray-600">
+                    Don't worry, we'll send you a message to help you reset your password.
+                  </p>
+                </div>
+                <div className="flex-1 overflow-y-auto p-7">
+                  <form onSubmit={handleForgotPassword} className="space-y-4">
+                    {/* Email Field */}
+                    <div className="space-y-2">
+                      <label className="block text-sm font-semibold text-gray-900">
+                        Email Address
+                      </label>
+                      <div className="relative group">
+                        <Mail className="absolute left-3.5 top-3.5 h-5 w-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                        <Input
+                          type="email"
+                          placeholder="you@example.com"
+                          value={forgotEmail}
+                          onChange={(e) => setForgotEmail(e.target.value)}
+                          className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 bg-gray-50/50 transition-all"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Continue Button */}
+                    <button
+                      type="submit"
+                      className="w-full mt-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    >
+                      Continue
+                    </button>
+
+                    {/* Back to Login */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowForgotPassword(false);
+                        setForgotEmail("");
+                      }}
+                      className="w-full text-center text-sm text-orange-600 hover:text-orange-700 font-semibold transition-colors py-2"
+                    >
+                      Return to login
+                    </button>
+                  </form>
+                </div>
+              </div>
+            ) : (
+              // Login and Signup Tabs
+              <>
+                <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'login' | 'signup')} className="w-full flex flex-col h-full">
+                  {/* Premium Tab Headers */}
+                  <div className="sticky top-0 z-10 bg-white border-b border-gray-100">
                 <TabsList className="w-full rounded-none bg-white p-0 h-auto flex justify-start gap-0">
                   <TabsTrigger
                     value="login"
@@ -683,6 +739,8 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                 </div>
               </TabsContent>
             </Tabs>
+              </>
+            )}
           </div>
         </div>
 
