@@ -166,24 +166,25 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  const [region, setRegion] = useState<string>("");
+  const [detectedRegion, setDetectedRegion] = useState<string>("");
   const [isRegionLoaded, setIsRegionLoaded] = useState(false);
 
   // Detect region on mount
   useEffect(() => {
-    detectUserRegion().then((detectedRegion) => {
-      setRegion(detectedRegion);
+    detectUserRegion().then((detected) => {
+      setDetectedRegion(detected);
       setIsRegionLoaded(true);
 
       // Set default currency to region's base currency if not already set
       if (!currency) {
-        const regionPricing = getRegionPricing(detectedRegion);
+        const regionPricing = getRegionPricing(detected);
         setCurrencyState(regionPricing.baseCurrency);
       }
     });
   }, []);
 
-  const regionPricing = useMemo(() => getRegionPricing(region), [region]);
+  const isIndianUser = detectedRegion === "IN";
+  const regionPricing = useMemo(() => getRegionPricing(detectedRegion), [detectedRegion]);
 
   // Use region's base currency for exchange rate fetching
   const { data, isLoading } = useQuery({
