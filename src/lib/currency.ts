@@ -85,6 +85,8 @@ export function parseINRStringToNumber(value: string): number | undefined {
 }
 
 export function formatNumberAsCurrency(value: number, code: string, maximumFractionDigits = 0) {
+  const roundedValue = Math.round(value);
+
   // Keep INR exactly as native currency formatting
   if (code === INR_BASE_CODE) {
     try {
@@ -92,9 +94,9 @@ export function formatNumberAsCurrency(value: number, code: string, maximumFract
         style: "currency",
         currency: code,
         maximumFractionDigits,
-      }).format(value);
+      }).format(roundedValue);
     } catch {
-      return `${value.toLocaleString(undefined, { maximumFractionDigits })} ${getCurrencyByCode(code).symbol || ""}`.trim();
+      return `${roundedValue.toLocaleString(undefined, { maximumFractionDigits })} ${getCurrencyByCode(code).symbol || ""}`.trim();
     }
   }
 
@@ -102,6 +104,6 @@ export function formatNumberAsCurrency(value: number, code: string, maximumFract
   const formattedNumber = new Intl.NumberFormat(undefined, {
     maximumFractionDigits,
     minimumFractionDigits: 0,
-  }).format(value);
+  }).format(roundedValue);
   return `${code} ${formattedNumber}`;
 }
