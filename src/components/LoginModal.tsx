@@ -779,14 +779,30 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                         </span>
                       </label>
 
+                      {/* Error Message */}
+                      {generalError && (
+                        <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                          <p className="text-sm text-red-700 font-medium">{generalError}</p>
+                        </div>
+                      )}
+
                       {/* Sign Up Button */}
                       <button
                         type="submit"
-                        disabled={!isPasswordValid || !fullName || !signupEmail || !validateEmail(signupEmail) || !mobileNumber || !validateInternationalMobile(mobileNumber, selectedCountry.code) || !agreeTerms}
+                        disabled={isLoading || !isPasswordValid || !fullName || !signupEmail || !validateEmail(signupEmail) || !mobileNumber || !validateInternationalMobile(mobileNumber, selectedCountry.code) || !agreeTerms}
                         className="w-full mt-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
                       >
-                        Create Account
-                        <ArrowRight className="h-5 w-5" />
+                        {isLoading ? (
+                          <>
+                            <Loader className="h-5 w-5 animate-spin" />
+                            Creating Account...
+                          </>
+                        ) : (
+                          <>
+                            Create Account
+                            <ArrowRight className="h-5 w-5" />
+                          </>
+                        )}
                       </button>
                     </form>
 
