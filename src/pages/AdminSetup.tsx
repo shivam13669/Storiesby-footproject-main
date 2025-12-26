@@ -206,7 +206,7 @@ export default function AdminSetup() {
                   UPDATE public.users SET role = 'admin', canWriteTestimonial = true WHERE id = '{session.user.id}';
                 </code>
                 <button
-                  onClick={handleCopySSQL}
+                  onClick={handleCopySQL}
                   className="flex-shrink-0 p-1 hover:bg-gray-200 rounded transition-colors"
                   title="Copy SQL"
                 >
