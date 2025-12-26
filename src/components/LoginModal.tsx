@@ -134,13 +134,24 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   const passwordsMatch = signupPassword && confirmPassword && signupPassword === confirmPassword;
   const isPasswordValid = passwordValidation.isValid && passwordsMatch;
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setGeneralError("");
+
     if (!validateEmail(email)) {
       setEmailError("Please enter a valid email address (e.g., you@example.com)");
       return;
     }
-    console.log("Login:", { email, password });
+
+    setIsLoading(true);
+    try {
+      await loginWithEmail({ email, password });
+      onClose();
+    } catch (error) {
+      setGeneralError(error instanceof Error ? error.message : "Login failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSignup = (e: React.FormEvent) => {
