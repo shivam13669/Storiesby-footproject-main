@@ -79,6 +79,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) return { error: error.message }
 
+      // Wait a moment for the auth state to update, then refresh the user profile
+      setTimeout(() => {
+        const { data } = supabase.auth.getSession().then(({ data }) => {
+          if (data.session?.user) {
+            fetchUserProfile(data.session.user.id)
+          }
+        })
+      }, 100)
+
       return { error: null }
     } catch (error) {
       return { error: 'An unexpected error occurred' }
