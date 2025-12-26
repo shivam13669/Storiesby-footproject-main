@@ -377,13 +377,30 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                         </button>
                       </div>
 
+                      {/* Error Message */}
+                      {generalError && (
+                        <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                          <p className="text-sm text-red-700 font-medium">{generalError}</p>
+                        </div>
+                      )}
+
                       {/* Login Button */}
                       <button
                         type="submit"
-                        className="w-full mt-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        disabled={isLoading}
+                        className="w-full mt-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
                       >
-                        Login & Explore
-                        <ArrowRight className="h-5 w-5" />
+                        {isLoading ? (
+                          <>
+                            <Loader className="h-5 w-5 animate-spin" />
+                            Logging in...
+                          </>
+                        ) : (
+                          <>
+                            Login & Explore
+                            <ArrowRight className="h-5 w-5" />
+                          </>
+                        )}
                       </button>
                     </form>
 
