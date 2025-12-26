@@ -10,6 +10,7 @@ import ContactPage from "./pages/Contact";
 import ServicesPage from "./pages/Services";
 import TestimonialsPage from "./pages/Testimonials";
 import AboutPage from "./pages/About";
+import AccountPage from "./pages/Account";
 import TermsAndConditionPage from "./pages/TermsAndCondition";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 import CookiePolicyPage from "./pages/CookiePolicy";
