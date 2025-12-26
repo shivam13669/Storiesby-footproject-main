@@ -91,6 +91,24 @@ const Navigation = () => {
                         Admin Dashboard
                       </Link>
                     </DropdownMenuItem>
+                  ) : user ? (
+                    <>
+                      <DropdownMenuItem asChild>
+                        <Link to="/user-dashboard" className="flex items-center gap-2 cursor-pointer">
+                          <UserIcon className="w-4 h-4" />
+                          My Dashboard
+                        </Link>
+                      </DropdownMenuItem>
+                      {/* Show setup option if user is logged in but no profile found */}
+                      {!user.role && (
+                        <DropdownMenuItem asChild>
+                          <Link to="/admin-setup" className="flex items-center gap-2 cursor-pointer text-orange-600">
+                            <span className="text-sm">⚙️</span>
+                            Admin Setup
+                          </Link>
+                        </DropdownMenuItem>
+                      )}
+                    </>
                   ) : (
                     <DropdownMenuItem asChild>
                       <Link to="/user-dashboard" className="flex items-center gap-2 cursor-pointer">
