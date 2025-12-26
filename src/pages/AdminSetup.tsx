@@ -8,7 +8,7 @@ import { AlertCircle, Copy, CheckCircle, Loader } from 'lucide-react'
 import { toast } from 'sonner'
 
 export default function AdminSetup() {
-  const { user, session, isAuthenticated, refreshUser } = useAuth()
+  const { user, session, isAuthenticated, refreshUser, isLoading: isAuthLoading } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
   const [copied, setCopied] = useState(false)
   const [fullName, setFullName] = useState(user?.fullName || '')
@@ -16,10 +16,10 @@ export default function AdminSetup() {
 
   // If user is already admin, redirect
   useEffect(() => {
-    if (user?.role === 'admin') {
+    if (!isAuthLoading && user?.role === 'admin') {
       window.location.href = '/admin-dashboard'
     }
-  }, [user])
+  }, [user, isAuthLoading])
 
   const handleCopySQL = () => {
     if (!session?.user?.id) return
