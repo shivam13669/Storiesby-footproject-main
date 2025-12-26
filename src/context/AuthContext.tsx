@@ -173,11 +173,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     try {
+      console.log('[Auth] Logging out')
+
       await supabase.auth.signOut()
+
+      // Clear auth state explicitly
       setUser(null)
       setSession(null)
+      setIsLoading(false)
+
+      console.log('[Auth] Logout successful')
     } catch (error) {
-      console.error('Error logging out:', error)
+      console.error('[Auth] Error logging out:', error)
+      // Even if logout fails, clear the state
+      setUser(null)
+      setSession(null)
+      setIsLoading(false)
     }
   }
 
