@@ -139,30 +139,36 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('[LoginModal] Login attempt started')
+
     if (!validateEmail(email)) {
+      console.log('[LoginModal] Email validation failed')
       setEmailError("Please enter a valid email address (e.g., you@example.com)");
       return;
     }
 
     setIsLoading(true);
+    console.log('[LoginModal] Calling login function...')
+
     const { error } = await login(email, password);
+
+    console.log('[LoginModal] Login function returned:', { error })
     setIsLoading(false);
 
     if (error) {
+      console.log('[LoginModal] Login error:', error)
       setEmailError(error);
       toast.error(error);
     } else {
+      console.log('[LoginModal] Login successful! Closing modal and waiting for profile to load...')
       toast.success("Logged in successfully!");
       setEmail("");
       setPassword("");
       onClose();
 
-      // Wait a moment for auth state to update, then check if redirect is needed
-      setTimeout(() => {
-        // The ProtectedRoute will handle redirects, so just close the modal
-        // If user is admin, they'll be redirected to dashboard
-        // If user needs setup, Navigation will show the setup option
-      }, 500);
+      // Wait longer for auth state + profile fetch to complete
+      // The onAuthStateChange listener will fetch the profile and set isLoading(false)
+      console.log('[LoginModal] Modal closed, auth context will handle profile loading')
     }
   };
 
