@@ -67,7 +67,13 @@ const Navigation = () => {
           {/* Currency + Login/User Menu */}
           <div className="hidden md:flex items-center gap-3">
             <CurrencyPicker value={currency} onChange={setCurrency} />
-            {isAuthenticated && user ? (
+            {isLoading && isAuthenticated ? (
+              // Show loading state while profile is being fetched
+              <div className="flex items-center gap-2 px-3 py-2">
+                <div className="w-8 h-8 rounded-full bg-orange-500/50 animate-pulse"></div>
+                <span className="text-white/60 text-sm font-medium">Loading...</span>
+              </div>
+            ) : isAuthenticated && user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors">
