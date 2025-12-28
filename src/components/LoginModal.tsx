@@ -129,7 +129,7 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   const [waitingForUserProfile, setWaitingForUserProfile] = useState(false);
 
   // Auto-close modal when user profile is loaded after login
-  useState(() => {
+  useEffect(() => {
     if (waitingForUserProfile && user) {
       console.log('[LoginModal] User profile loaded, closing modal');
       setWaitingForUserProfile(false);
