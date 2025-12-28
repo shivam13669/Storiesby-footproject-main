@@ -153,6 +153,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     try {
       console.log('[Auth] Login attempt for:', email)
+      console.log('[Auth] Supabase URL:', SUPABASE_URL)
+      console.log('[Auth] Supabase Key available:', !!SUPABASE_ANON_KEY)
 
       const { data, error } = await supabase.auth.signInWithPassword({ email, password })
 
@@ -162,6 +164,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           message: errorMessage,
           code: (error as any)?.code,
           status: (error as any)?.status,
+          fullError: error,
         })
         return { error: errorMessage }
       }
@@ -178,11 +181,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return { error: null }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error)
-      console.error('[Auth] Unexpected error during login:', {
+      const errorDetails = {
         message: errorMessage,
-        fullError: error,
-      })
-      return { error: 'An unexpected error occurred' }
+        code: (error as any)?.code,
+        status: (error as any)?.status,
+        name: (error as any)?.name,
+        type: typeof error,
+        keys: Object.keys(error || {}),
+        fullError: JSON.stringify(error, null, 2),
+      }
+      console.error('[Auth] Unexpected error during login:', errorDetails)
+      return { error: errorMessage || 'An unexpected error occurred. Check browser console for details.' }
     }
   }
 
