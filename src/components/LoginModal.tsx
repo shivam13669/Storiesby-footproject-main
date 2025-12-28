@@ -126,6 +126,7 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   const [forgotPasswordEmailError, setForgotPasswordEmailError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
+  const [waitingForUserProfile, setWaitingForUserProfile] = useState(false);
 
   const filteredCountries = COUNTRIES.filter(country =>
     country.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
