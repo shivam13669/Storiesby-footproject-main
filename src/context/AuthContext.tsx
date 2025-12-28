@@ -195,17 +195,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signup = async (email: string, password: string, fullName: string) => {
     try {
+      console.log('[Auth] Signup attempt for:', email)
+
       // Create auth user
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
       })
 
-      if (authError) return { error: authError.message }
+      if (authError) {
+        console.error('[Auth] Signup auth error:', authError)
+        return { error: authError.message }
+      }
 
-      if (!authData.user) return { error: 'Failed to create user' }
+      if (!authData.user) {
+        console.error('[Auth] Signup succeeded but no user returned')
+        return { error: 'Failed to create user' }
+      }
 
-      // Create user profile
+      console.log('[Auth] Auth user created:', authData.user.id)
+
+      // Create user profile - must be done with ADMIN privileges (use service role key)
+      // For now, we'll do this as the new user after they're authenticated
       const { error: profileError } = await supabase.from('users').insert({
         id: authData.user.id,
         email,
@@ -213,13 +224,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         role: 'user',
         isActive: true,
         canWriteTestimonial: false, // Admin must enable
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       })
 
-      if (profileError) return { error: profileError.message }
+      if (profileError) {
+        console.error('[Auth] Profile creation error:', {
+          code: profileError.code,
+          message: profileError.message,
+          details: profileError.details,
+        })
+        return { error: `Failed to create profile: ${profileError.message}` }
+      }
 
+      console.log('[Auth] User profile created successfully')
       return { error: null }
     } catch (error) {
-      return { error: 'An unexpected error occurred' }
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      console.error('[Auth] Unexpected error during signup:', errorMessage)
+      return { error: errorMessage || 'An unexpected error occurred' }
     }
   }
 
