@@ -228,20 +228,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       console.log('[Auth] Logging out')
 
-      await supabase.auth.signOut()
-
-      // Clear auth state explicitly
+      // Immediately clear state to ensure UI updates instantly
       setUser(null)
       setSession(null)
       setIsLoading(false)
+
+      // Then sign out from Supabase
+      const { error } = await supabase.auth.signOut()
+
+      if (error) {
+        console.error('[Auth] Error during Supabase signOut:', error)
+      }
 
       console.log('[Auth] Logout successful')
+
+      // Redirect to home page after logout completes
+      window.location.href = '/'
     } catch (error) {
       console.error('[Auth] Error logging out:', error)
-      // Even if logout fails, clear the state
+      // Even if logout fails, clear the state and redirect
       setUser(null)
       setSession(null)
       setIsLoading(false)
+      window.location.href = '/'
     }
   }
 
