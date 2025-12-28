@@ -11,8 +11,13 @@ export function useAuthRedirect() {
   const { user, isAdmin, isLoading, isAuthenticated } = useAuth()
 
   useEffect(() => {
-    // If user has a valid session and profile has loaded, redirect to dashboard
-    if (!isLoading && isAuthenticated && user) {
+    // Don't do anything while loading
+    if (isLoading) {
+      return
+    }
+
+    // If user is authenticated, redirect to appropriate dashboard
+    if (isAuthenticated) {
       if (isAdmin) {
         console.log('[useAuthRedirect] Redirecting admin to admin dashboard')
         navigate('/admin-dashboard', { replace: true })
@@ -21,5 +26,5 @@ export function useAuthRedirect() {
         navigate('/user-dashboard', { replace: true })
       }
     }
-  }, [user, isAdmin, isLoading, isAuthenticated, navigate])
+  }, [isLoading, isAuthenticated, isAdmin, navigate])
 }
