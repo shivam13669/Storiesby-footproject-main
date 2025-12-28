@@ -320,3 +320,22 @@ export function useAuth() {
   }
   return context
 }
+
+/**
+ * Get session user data - useful for cases where profile is still loading
+ */
+export function getSessionUser(session: SupabaseSession | null) {
+  if (!session?.user?.email) return null
+
+  // Extract name from email or use email as fallback
+  const emailParts = session.user.email.split('@')[0].split('.')
+  const firstName = emailParts[0]?.charAt(0).toUpperCase() + emailParts[0]?.slice(1) || ''
+  const lastName = emailParts[1]?.charAt(0).toUpperCase() + emailParts[1]?.slice(1) || ''
+  const fullName = (firstName + ' ' + lastName).trim() || session.user.email
+
+  return {
+    id: session.user.id,
+    email: session.user.email,
+    fullName: fullName,
+  }
+}
