@@ -144,12 +144,19 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       console.log('[LoginModal] User loaded after login, closing modal')
       // Give a small delay for state updates
       const timer = setTimeout(() => {
-        onClose()
         setLoginPending(false)
+        onClose()
       }, 200)
       return () => clearTimeout(timer)
     }
   }, [loginPending, user, isAuthLoading, onClose])
+
+  // Reset login pending flag when modal is closed externally
+  useEffect(() => {
+    if (!isOpen) {
+      setLoginPending(false)
+    }
+  }, [isOpen])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
