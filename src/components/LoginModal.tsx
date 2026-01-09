@@ -163,13 +163,19 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       console.log('[LoginModal] Login successful!')
       toast.success("Logged in successfully! Click your profile name to access your dashboard.");
 
+      // Wait a moment for auth state to update
+      await new Promise(resolve => setTimeout(resolve, 500));
+
       // Clear form fields
       setEmail("");
       setPassword("");
+      setEmailError("");
+
+      // Close modal after state is updated
       onClose();
       setIsLoading(false);
 
-      console.log('[LoginModal] Login complete. User can now access profile menu.')
+      console.log('[LoginModal] Login complete. Modal closed.')
     }
   };
 
