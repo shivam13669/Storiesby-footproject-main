@@ -160,18 +160,16 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       setEmailError(error);
       toast.error(error);
     } else {
-      console.log('[LoginModal] Login successful! Waiting for profile to load...')
-      toast.success("Logged in successfully! Redirecting to your dashboard...");
+      console.log('[LoginModal] Login successful!')
+      toast.success("Logged in successfully! Click your profile name to access your dashboard.");
 
-      // Wait for auth context to load the user profile
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
+      // Clear form fields
       setEmail("");
       setPassword("");
       onClose();
       setIsLoading(false);
 
-      console.log('[LoginModal] Modal closed, useAuthRedirect hook will handle dashboard redirect')
+      console.log('[LoginModal] Login complete. User can now access profile menu.')
     }
   };
 
