@@ -138,6 +138,19 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   const passwordsMatch = signupPassword && confirmPassword && signupPassword === confirmPassword;
   const isPasswordValid = passwordValidation.isValid && passwordsMatch;
 
+  // Watch for login success and close modal when user is loaded
+  useEffect(() => {
+    if (loginPending && user && !isAuthLoading) {
+      console.log('[LoginModal] User loaded after login, closing modal')
+      // Give a small delay for state updates
+      const timer = setTimeout(() => {
+        onClose()
+        setLoginPending(false)
+      }, 200)
+      return () => clearTimeout(timer)
+    }
+  }, [loginPending, user, isAuthLoading, onClose])
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('[LoginModal] Login attempt started')
