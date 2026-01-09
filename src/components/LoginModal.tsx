@@ -183,13 +183,10 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       setEmailError("");
       setIsLoading(false);
 
-      // Wait a moment for modal animation, then close
-      await new Promise(resolve => setTimeout(resolve, 300));
+      // Set flag so useEffect can close modal when user is loaded
+      setLoginPending(true);
 
-      // Close modal
-      onClose();
-
-      console.log('[LoginModal] Login complete. Modal closed.')
+      console.log('[LoginModal] Login complete. Waiting for user to load...')
     }
   };
 
