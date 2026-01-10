@@ -24,7 +24,7 @@ const DestinationsPage = () => {
   const destParam = searchParams.get("dest");
   const initialSlug = destParam && destinations.some((d) => d.slug === destParam)
     ? destParam
-    : destinations[0]?.slug ?? "";
+    : "all";
 
   const [activeSlug, setActiveSlug] = useState(initialSlug);
 
