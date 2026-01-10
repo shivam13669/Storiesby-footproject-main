@@ -142,10 +142,16 @@ const DestinationsPage = () => {
           </div>
         </section>
 
-        {/* Packages grid */}
+        {/* Filters and Packages Container */}
         <section className="container mx-auto px-4 mt-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {displayPackages.map((pkg) => (
+          <div className="flex gap-6">
+            {/* Sidebar */}
+            <FilterSidebar filters={filters} onFiltersChange={setFilters} />
+
+            {/* Packages grid */}
+            <div className="flex-1 min-w-0">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {displayPackages.map((pkg) => (
               <Card
                 key={`${pkg.destinationSlug}-${pkg.slug}`}
                 role="link"
@@ -236,7 +242,9 @@ const DestinationsPage = () => {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       </main>
