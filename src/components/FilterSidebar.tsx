@@ -1,9 +1,12 @@
 import { Search, Filter } from "lucide-react";
+import { Slider } from "./ui/slider";
 
 export type FilterState = {
   search: string;
   category: string;
   priceRange: string;
+  minPrice: number;
+  maxPrice: number;
   rating: string;
 };
 
@@ -12,9 +15,11 @@ interface FilterSidebarProps {
   onFiltersChange: (filters: FilterState) => void;
 }
 
-const CATEGORIES = ["All", "Beach", "Mountain", "City", "Luxury", "Adventure"];
+const CATEGORIES = ["All", "Beach", "Mountain", "City", "Bike", "Car", "Luxury", "Adventure"];
 const PRICE_RANGES = ["All", "₹0 - ₹25,000", "₹25,000 - ₹40,000", "₹40,000+"];
 const RATINGS = ["All", "4.5+", "4.7+", "4.8+"];
+const MIN_PRICE = 0;
+const MAX_PRICE = 100000;
 
 export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +48,16 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
       ...filters,
       rating: e.target.value,
     });
+  };
+
+  const handlePriceSliderChange = (values: number[]) => {
+    if (values.length === 2) {
+      onFiltersChange({
+        ...filters,
+        minPrice: values[0],
+        maxPrice: values[1],
+      });
+    }
   };
 
   return (
@@ -103,7 +118,7 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
           <select
             value={filters.priceRange}
             onChange={handlePriceRangeChange}
-            className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm"
+            className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm mb-4"
           >
             {PRICE_RANGES.map((price) => (
               <option key={price} value={price}>
@@ -111,6 +126,20 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
               </option>
             ))}
           </select>
+
+          <div className="mt-4">
+            <label className="block text-xs font-medium text-muted-foreground mb-3">
+              Custom Range: ₹{filters.minPrice.toLocaleString()} - ₹{filters.maxPrice.toLocaleString()}
+            </label>
+            <Slider
+              min={MIN_PRICE}
+              max={MAX_PRICE}
+              step={1000}
+              value={[filters.minPrice, filters.maxPrice]}
+              onValueChange={handlePriceSliderChange}
+              className="w-full"
+            />
+          </div>
         </div>
 
         {/* Rating Filter */}
