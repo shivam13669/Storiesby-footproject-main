@@ -72,7 +72,7 @@ const DestinationsPage = () => {
         }
       }
 
-      // Price range filter
+      // Price range filter (dropdown)
       if (filters.priceRange !== "All") {
         const priceStr = pkg.price.replace(/[₹,]/g, "");
         const price = parseInt(priceStr);
@@ -84,6 +84,13 @@ const DestinationsPage = () => {
         } else if (filters.priceRange === "₹40,000+") {
           if (price < 40000) return false;
         }
+      }
+
+      // Slider price range filter
+      const priceStr = pkg.price.replace(/[₹,]/g, "");
+      const price = parseInt(priceStr);
+      if (price < filters.minPrice || price > filters.maxPrice) {
+        return false;
       }
 
       // Rating filter
