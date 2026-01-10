@@ -59,13 +59,13 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
             Search
           </label>
           <div className="relative">
-            <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
               placeholder="Search..."
               value={filters.search}
               onChange={handleSearchChange}
-              className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm"
+              className="w-full h-10 pl-9 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm"
             />
           </div>
         </div>
@@ -87,7 +87,7 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
                   value={cat}
                   checked={filters.category === cat}
                   onChange={handleCategoryChange}
-                  className="w-4 h-4"
+                  className="w-4 h-4 cursor-pointer"
                 />
                 <span className="text-sm text-gray-700">{cat}</span>
               </label>
@@ -103,7 +103,7 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
           <select
             value={filters.priceRange}
             onChange={handlePriceRangeChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm"
+            className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm"
           >
             {PRICE_RANGES.map((price) => (
               <option key={price} value={price}>
@@ -114,14 +114,14 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
         </div>
 
         {/* Rating Filter */}
-        <div>
+        <div className="mb-6">
           <label className="block text-sm font-semibold text-foreground mb-3">
             Rating
           </label>
           <select
             value={filters.rating}
             onChange={handleRatingChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm"
+            className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-sm"
           >
             {RATINGS.map((rating) => (
               <option key={rating} value={rating}>
