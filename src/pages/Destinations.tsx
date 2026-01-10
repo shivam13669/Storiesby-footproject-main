@@ -20,7 +20,16 @@ const DestinationsPage = () => {
     }
   }, [location.key, location.pathname]);
 
-  const [activeSlug, setActiveSlug] = useState(destinations[0]?.slug ?? "");
+  // Extract destination from query parameter
+  const searchParams = new URLSearchParams(location.search);
+  const destinationFromQuery = searchParams.get("destination");
+
+  const [activeSlug, setActiveSlug] = useState(
+    destinationFromQuery && destinations.some((d) => d.slug === destinationFromQuery)
+      ? destinationFromQuery
+      : destinations[0]?.slug ?? ""
+  );
+
   const activeDestination = useMemo(
     () => destinations.find((d) => d.slug === activeSlug) ?? destinations[0],
     [activeSlug]
