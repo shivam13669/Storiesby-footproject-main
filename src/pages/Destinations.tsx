@@ -71,20 +71,21 @@ const DestinationsPage = () => {
       }
 
       // Price range filter
-      if (filters.priceRange !== "all") {
+      if (filters.priceRange !== "All") {
         const priceStr = pkg.price.replace(/[₹,]/g, "");
         const price = parseInt(priceStr);
-        const [min, max] = filters.priceRange.split("-");
-        const minPrice = parseInt(min);
-        const maxPrice = max === "+" ? Infinity : parseInt(max);
 
-        if (price < minPrice || price > maxPrice) {
-          return false;
+        if (filters.priceRange === "₹0 - ₹25,000") {
+          if (price > 25000) return false;
+        } else if (filters.priceRange === "₹25,000 - ₹40,000") {
+          if (price < 25000 || price > 40000) return false;
+        } else if (filters.priceRange === "₹40,000+") {
+          if (price < 40000) return false;
         }
       }
 
       // Rating filter
-      if (filters.rating !== "all") {
+      if (filters.rating !== "All") {
         const minRating = parseFloat(filters.rating);
         if (pkg.rating < minRating) {
           return false;
