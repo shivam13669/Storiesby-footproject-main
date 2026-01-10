@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { destinationIconMap, destinations } from "@/data/destinations";
 import { ArrowRight, Bike, Calendar, MapPin, MapPinned, Star } from "lucide-react";
 import { useCurrency, parsePrice } from "@/context/CurrencyContext";
+import { FilterSidebar, type FilterState } from "@/components/FilterSidebar";
 
 const DestinationsPage = () => {
   const location = useLocation();
