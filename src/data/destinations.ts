@@ -116,7 +116,7 @@ export const destinations: Destination[] = [
           "Leh heritage walking tour",
         ],
         image:
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=800",
         categories: ["Mountain", "Luxury"],
       },
       {
