@@ -115,8 +115,8 @@ const DestinationsPage = () => {
 
       <main className="pt-24 pb-20">
         {/* Destination Selector */}
-        <section className="container mx-auto px-4 mb-12">
-          <div className="flex flex-nowrap gap-3 overflow-x-auto pb-2 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0">
+        <section className="container mx-auto px-4 mb-12 overflow-visible">
+          <div className="flex flex-nowrap gap-3 overflow-visible pb-2 py-2 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:py-0">
             <button
               onClick={() => setActiveSlug("all")}
               aria-pressed={activeSlug === "all"}
