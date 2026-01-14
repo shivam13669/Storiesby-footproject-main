@@ -76,7 +76,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&id=1kmpsxL3OHHMqjEt8uQaLxvLXkkkXCw0H",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F3005cb3e673a454989d4f95fc852f4e9%2Fca630b4ecd9944bd918e837375aa1c3a?format=webp&width=800",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F677a8672f5074d078c0775a63e74de1f?format=webp&width=800",
         categories: ["Mountain", "Adventure"],
       },
       {
@@ -97,7 +97,7 @@ export const destinations: Destination[] = [
           "Pangong Tso sunrise drive",
         ],
         image:
-          "https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=1600&q=80",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=800",
         categories: ["Mountain", "Adventure"],
       },
       {
@@ -116,12 +116,12 @@ export const destinations: Destination[] = [
           "Leh heritage walking tour",
         ],
         image:
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=800",
         categories: ["Mountain", "Luxury"],
       },
       {
         slug: "ultimate-ulingla",
-        name: "Ultimate UlingLa",
+        name: "Ultimate UmlingLa",
         duration: "8 days · 7 nights",
         description:
           "The ultimate high-altitude adventure conquering Ulingla Pass, crossing pristine valleys, and experiencing Ladakh's most remote landscapes.",
@@ -137,7 +137,7 @@ export const destinations: Destination[] = [
           "Expert mountaineer guides",
         ],
         image:
-          "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1600&q=80",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F7dcb39e48c924358b1c8822906e58ffc?format=webp&width=800",
         categories: ["Mountain", "Adventure"],
       },
     ],
