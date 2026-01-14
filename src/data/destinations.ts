@@ -97,7 +97,7 @@ export const destinations: Destination[] = [
           "Pangong Tso sunrise drive",
         ],
         image:
-          "https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=1600&q=80",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=800",
         categories: ["Mountain", "Adventure"],
       },
       {
