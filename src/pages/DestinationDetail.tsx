@@ -15,53 +15,27 @@ import Footer from "@/components/Footer";
 const DestinationDetail = () => {
   const [activeTab, setActiveTab] = useState("itinerary");
 
-  // Sample data
-  const galleryImages = [
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80",
-    "https://images.unsplash.com/photo-1559112094-4137e19ff3a5?auto=format&fit=crop&w=1600&q=80",
-    "https://images.unsplash.com/photo-1494475673543-6a6a27143b22?auto=format&fit=crop&w=1600&q=80",
-    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80",
-    "https://images.unsplash.com/photo-1464207687429-7505649dae38?auto=format&fit=crop&w=1600&q=80",
-  ];
-
-  const highlights = [
-    "Visit iconic tiger's nest monastery perched on cliff",
-    "Explore pristine valleys and traditional villages",
-    "Experience authentic local culture and traditions",
-    "Trek through scenic mountain landscapes",
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
       <main className="container mx-auto px-4 py-6">
-        <ImageGallery images={galleryImages} destinationName="Iceland" />
+        <ImageGallery />
 
         {/* Two Column Layout - Only until End of Trip */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Content */}
           <div className="lg:col-span-2">
-            <PackageInfo title="Iceland Exploration Tour" duration="5N/6D" />
-            <TripHighlights highlights={highlights} />
+            <PackageInfo />
+            <TripHighlights />
             <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
-            {activeTab === "itinerary" && (
-              <ItinerarySection images={galleryImages} days={6} />
-            )}
+            {activeTab === "itinerary" && <ItinerarySection />}
           </div>
 
           {/* Right Sidebar - Pricing Card (sticky, ends at End of Trip) */}
           <div className="lg:col-span-1">
-            <PricingCard 
-              showForm={true}
-              title="Iceland Exploration Tour"
-              price="₹49,999"
-              oldPrice="₹69,999"
-              saving="28% OFF"
-              rating={4.8}
-              reviews={324}
-            />
+            <PricingCard showForm={true} />
           </div>
         </div>
 
