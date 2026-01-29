@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Bus, MapPin, Building2, Star } from "lucide-react";
+import { ChevronDown, ChevronUp, Bus, MapPin, Building2, Star, Download } from "lucide-react";
+import icelandStays from "@/assets/iceland-stays.jpg";
+import icelandActivity from "@/assets/iceland-activity.jpg";
+import reykjavikImg from "@/assets/reykjavik-itinerary.jpg";
 
 interface TransferInfo {
   type: string;
@@ -126,42 +129,57 @@ const ItineraryDay = ({ day, title, description, transfer, stay, experiences }: 
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2">
-                {stay.images.slice(0, 3).map((img, idx) => (
-                  <div key={idx} className="relative rounded-lg overflow-hidden h-24">
-                    <img src={img} alt="Stay" className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              {/* Check in/out timeline */}
+              <div className="flex items-center justify-between bg-muted/30 rounded-lg p-3">
                 <div>
-                  <span className="text-muted-foreground">Check-in</span>
+                  <span className="text-xs text-muted-foreground">Check In</span>
                   <p className="font-medium text-foreground">{stay.checkIn}</p>
                 </div>
-                <div>
-                  <span className="text-muted-foreground">Check-out</span>
+                <div className="flex-1 flex items-center justify-center gap-2 px-4">
+                  <div className="flex-1 border-t border-dashed border-muted-foreground/40" />
+                  <span className="text-sm text-muted-foreground bg-background px-2 flex items-center gap-1">
+                    {stay.nights}N 🌙
+                  </span>
+                  <div className="flex-1 border-t border-dashed border-muted-foreground/40" />
+                </div>
+                <div className="text-right">
+                  <span className="text-xs text-muted-foreground">Check Out</span>
                   <p className="font-medium text-foreground">{stay.checkOut}</p>
                 </div>
-                <div>
-                  <span className="text-muted-foreground">Duration</span>
-                  <p className="font-medium text-foreground">{stay.nights} night{stay.nights > 1 ? 's' : ''}</p>
-                </div>
+              </div>
+
+              {/* Hotel images */}
+              <div className="flex gap-2 relative">
+                {stay.images.slice(0, 3).map((img, idx) => (
+                  <div key={idx} className={`rounded-lg overflow-hidden ${idx === 0 ? 'flex-[2]' : 'flex-1'}`}>
+                    <img src={img} alt="Hotel" className="w-full h-32 object-cover" />
+                  </div>
+                ))}
+                {/* Download button */}
+                <button className="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-background shadow-lg flex items-center justify-center hover:bg-muted transition-colors">
+                  <Download className="w-5 h-5 text-primary" />
+                </button>
               </div>
             </div>
           )}
 
           {/* Experiences Section */}
           {experiences && experiences.length > 0 && (
-            <div className="space-y-3">
-              <h4 className="font-semibold text-foreground">Experiences</h4>
-              <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-3 bg-gradient-to-r from-primary/5 to-primary/10 -mx-5 px-5 py-4">
+              <div className="flex items-center gap-2">
+                <h4 className="text-xl font-semibold text-foreground">Enrich Your Day With Experiences</h4>
+                <span className="text-primary">✓</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Fill up your day with some of the <span className="text-primary font-medium">highly recommended</span> experiences.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
                 {experiences.map((exp, idx) => (
-                  <div key={idx} className="relative rounded-lg overflow-hidden h-32">
-                    <img src={exp.image} alt={exp.title} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                      <p className="text-primary-foreground text-sm font-medium p-2">{exp.title}</p>
+                  <div key={idx} className="space-y-2">
+                    <div className="rounded-lg overflow-hidden">
+                      <img src={exp.image} alt={exp.title} className="w-full h-32 object-cover" />
                     </div>
+                    <p className="font-medium text-foreground text-sm">{exp.title}</p>
                   </div>
                 ))}
               </div>
