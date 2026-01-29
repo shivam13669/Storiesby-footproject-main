@@ -1,11 +1,31 @@
 import { Check, X } from "lucide-react";
 
-interface PackageInclusionsProps {
-  inclusions: string[];
-  exclusions: string[];
-}
+const inclusions = [
+  "Transfer from Keflavik International Airport to Hotel Reykjavik Grand",
+  "3 nights stay in Reykjavik with breakfast",
+  "Golden Circle Tour on a Shared basis",
+  "Reykjavik Whale Watching Tour",
+  "Transfer from Hotel Reykjavik Grand to Reykjavik Airport",
+  "Flights included from Iceland to Akureyri",
+  "Transfer from Akureyri Airport to Hotel Kjarnalundur, Akureyri",
+  "3 nights stay in Akureyri with breakfast",
+  "Diamond Circle Day Trip from Akureyri on a Shared basis",
+  "Transfer from Hotel Kjarnalundur, Akureyri to Akureyri Airport",
+  "Internal Flights",
+  "Daily Breakfast",
+  "Visa assistance",
+];
 
-const PackageInclusions = ({ inclusions, exclusions }: PackageInclusionsProps) => {
+const exclusions = [
+  "Expenses of a personal nature.",
+  "Meals not mentioned in the itinerary or inclusions",
+  "International flight tickets",
+  "Lunch",
+  "Dinner",
+  "Travel Insurance",
+];
+
+const PackageInclusions = () => {
   return (
     <div className="border border-border rounded-lg p-6 mb-6">
       <h2 className="text-xl font-semibold text-foreground mb-6 pb-4 border-b border-border">
