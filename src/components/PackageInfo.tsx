@@ -1,22 +1,19 @@
 import { Car, Building2, Coffee, MapPin } from "lucide-react";
-import type { DestinationPackage, Destination } from "@/data/destinations";
 
 interface PackageInfoProps {
-  travelPackage: DestinationPackage;
-  destination: Destination;
+  duration: string;
+  title: string;
 }
 
-const PackageInfo = ({ travelPackage, destination }: PackageInfoProps) => {
+const PackageInfo = ({ duration, title }: PackageInfoProps) => {
   return (
     <div className="mb-8">
       <h1 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
-        {travelPackage.name}
+        {title}
       </h1>
 
       <div className="flex flex-wrap items-center gap-4 mb-6">
-        <span className="badge-duration inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold">
-          {travelPackage.duration}
-        </span>
+        <span className="badge-duration">{duration}</span>
       </div>
 
       <div className="border-t border-border pt-4">
@@ -31,11 +28,11 @@ const PackageInfo = ({ travelPackage, destination }: PackageInfoProps) => {
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <Coffee className="w-5 h-5" />
-            <span className="text-sm font-medium">Meals Included</span>
+            <span className="text-sm font-medium">Breakfast Included</span>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <MapPin className="w-5 h-5" />
-            <span className="text-sm font-medium">{destination.region}</span>
+            <span className="text-sm font-medium">Sightseeing Included</span>
           </div>
         </div>
       </div>
