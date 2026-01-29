@@ -1,128 +1,111 @@
-import { Mail as MailIcon, Phone as PhoneIcon, Facebook, Instagram, Youtube } from "lucide-react";
-import { Link } from "react-router-dom";
-import WhatsAppIcon from "./icons/WhatsAppIcon";
-import { Button } from "./ui/button";
+import { Mail, AlertTriangle, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+
+const indiaPackages = [
+  "Ladakh Tour Packages", "Spiti Tour Packages", "Kashmir Tour Packages",
+  "Rajasthan Tour Packages", "Kerala Tour Packages", "Andaman Tour Packages",
+  "Sikkim Tour Packages", "Darjeeling Tour Packages", "Meghalaya Tour Packages",
+  "North East Tour Packages", "Arunachal Tour Packages", "Assam Tour Packages",
+  "Himachal Tour Packages", "Uttarakhand Tour Packages", "Manali Tour Packages",
+  "Jaisalmer Tour Packages", "Golden Triangle Tour Packages", "Udaipur Tour Packages",
+  "Wayanad Tour Packages", "Munnar Tour Packages", "Shimla Tour Packages",
+  "Mussoorie Tour Packages", "Jim Corbett Tour Packages", "Srinagar Tour Packages",
+  "Alleppey Tour Packages",
+];
+
+const internationalPackages = [
+  "Bali Tour Packages", "Thailand Tour Packages", "Singapore Tour Packages",
+  "Vietnam Tour Packages", "Malaysia Tour Packages", "Maldives Tour Packages",
+];
+
+const honeymoonPackages = [
+  "Bali Honeymoon Packages", "Maldives Honeymoon Packages", "Thailand Honeymoon Packages",
+];
 
 const Footer = () => {
   return (
-    <footer className="gradient-nature text-white">
-      <div className="container mx-auto px-4">
-        {/* Main Footer */}
-        <div className="py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Brand */}
-            <div className="lg:col-span-1">
-              <div className="flex items-center space-x-2 mb-6">
-                <img src="https://cdn.builder.io/api/v1/image/assets%2Fde743b16560c4ea5a4a46e65a2543876%2F4be0568d99d2469baa7ef6c274a8a1b2?format=webp&width=800" alt="StoriesByFoot logo" className="h-12 w-auto" />
-                <span className="text-2xl font-bold text-white">StoriesBy<span className="text-secondary">Foot</span></span>
-              </div>
-              <p className="text-white/80 mb-6 leading-relaxed">
-                Your gateway to extraordinary adventures. We create unforgettable experiences that connect you with nature and push your boundaries.
-              </p>
-              <div className="flex space-x-4">
-                <Button asChild variant="ghost" size="icon" className="text-white hover:text-adventure-gold hover:bg-white/10">
-                  <a href="https://www.facebook.com/share/1JwPjtgkdq/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <Facebook className="h-5 w-5" />
-                  </a>
-                </Button>
-                <Button asChild variant="ghost" size="icon" className="text-white hover:text-adventure-gold hover:bg-white/10">
-                  <a href="https://www.instagram.com/storiesbyfoot/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <Instagram className="h-5 w-5" />
-                  </a>
-                </Button>
-                <Button asChild variant="ghost" size="icon" className="text-white hover:text-adventure-gold hover:bg-white/10">
-                  <a href="https://wa.me/916205129118" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                    <WhatsAppIcon className="h-5 w-5 scale-90" />
-                  </a>
-                </Button>
-                <Button variant="ghost" size="icon" className="text-white hover:text-adventure-gold hover:bg-white/10">
-                  <Youtube className="h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-              <ul className="space-y-3">
-                {["About Us", "Destinations", "Services", "Gallery", "Blog", "Careers"].map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-white/80 hover:text-adventure-gold transition-colors">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Adventures */}
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Adventures</h3>
-              <ul className="space-y-3">
-                {["Mountain Trekking", "Bike Expeditions", "Wildlife Safaris", "Beach Escapes", "Cultural Tours", "Photography Tours"].map((adventure) => (
-                  <li key={adventure}>
-                    <a href="#" className="text-white/80 hover:text-adventure-gold transition-colors">
-                      {adventure}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Get In Touch</h3>
-              <div className="text-white/80">
-                <span className="inline-flex items-center mr-4">
-                  <PhoneIcon className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
-                  <a href="tel:+916205129118" className="hover:underline" aria-label="Call +916205129118">+916205129118</a>
-                </span>
-
-                <span className="inline-flex items-center mr-4">
-                  <PhoneIcon className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
-                  <a href="tel:+916283620764" className="hover:underline" aria-label="Call +916283620764">+916283620764</a>
-                </span>
-
-                <span className="inline-flex items-center mr-4">
-                  <MailIcon className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
-                  <a href="mailto:contact@storiesbyfoot.com" className="hover:underline" aria-label="Email contact@storiesbyfoot.com">contact@storiesbyfoot.com</a>
-                </span>
-
-                <span className="inline-flex items-center">
-                  <MailIcon className="h-5 w-5 text-adventure-gold flex-shrink-0 mr-2" />
-                  <a href="mailto:storiesbyfoot@gmail.com" className="hover:underline" aria-label="Email storiesbyfoot@gmail.com">storiesbyfoot@gmail.com</a>
-                </span>
-              </div>
-
-              <div className="mt-6">
-                <h4 className="font-semibold mb-3">Subscribe to Newsletter</h4>
-                <div className="flex">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="flex-1 px-4 py-2 rounded-l-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-adventure-gold"
-                  />
-                  <Button variant="secondary" className="rounded-l-none">
-                    Subscribe
-                  </Button>
-                </div>
-              </div>
-            </div>
+    <footer className="bg-footer text-primary-foreground">
+      {/* Package Links */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="mb-8">
+          <div className="flex gap-8 mb-6 border-b border-primary-foreground/20 pb-4">
+            <button className="font-medium border-b-2 border-primary-foreground pb-2">India Packages</button>
+            <button className="font-medium text-primary-foreground/60 hover:text-primary-foreground transition-colors">International Packages</button>
+            <button className="font-medium text-primary-foreground/60 hover:text-primary-foreground transition-colors">Honeymoon Packages</button>
+          </div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {indiaPackages.map((pkg, idx) => (
+              <a key={idx} href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                {pkg}
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Bottom Footer */}
-        <div className="border-t border-white/20 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-white/60 text-sm">
-              © 2025 StoriesByFoot. All rights reserved.
-            </div>
-            <div className="flex space-x-6 text-sm">
-              <Link to="/privacy-policy" className="text-white/60 hover:text-adventure-gold transition-colors">Privacy Policy</Link>
-              <Link to="/terms-and-condition" className="text-white/60 hover:text-adventure-gold transition-colors">Terms and Condition</Link>
-              <Link to="/cookie-policy" className="text-white/60 hover:text-adventure-gold transition-colors">Cookie Policy</Link>
-            </div>
+        {/* Footer Links Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-primary-foreground/20">
+          <div>
+            <h4 className="font-semibold mb-4">About Thrillophilia</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">About Us</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Careers</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Thrillophilia Reviews</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">News</a></li>
+              <li className="flex items-center gap-1 text-destructive text-sm">
+                <AlertTriangle className="w-4 h-4" />
+                Beware Of Frauds
+              </li>
+            </ul>
           </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Policies</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Terms & Conditions</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Privacy Policies</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Copyright Policies</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Contact Us</h4>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2 text-sm text-primary-foreground/70">
+                <Mail className="w-4 h-4" />
+                support@thrillophilia.com
+              </li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Support</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Blog</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Sitemap</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Partner With Thrillophilia</a></li>
+              <li><a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Destination Marketing</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Social</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"><Facebook className="w-4 h-4" /> Facebook</a></li>
+              <li><a href="#" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"><Instagram className="w-4 h-4" /> Instagram</a></li>
+              <li><a href="#" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">𝕏 X.com</a></li>
+              <li><a href="#" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"><Linkedin className="w-4 h-4" /> Linkedin</a></li>
+              <li><a href="#" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"><Youtube className="w-4 h-4" /> Youtube</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="border-t border-primary-foreground/10 py-6">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+          <div className="flex items-center gap-2 mb-4 md:mb-0">
+            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">✈</span>
+            </div>
+            <span className="text-xl font-bold text-primary">thrillophilia</span>
+          </div>
+          <p className="text-sm text-primary-foreground/60">
+            © 2026 Thrillophilia.com All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
