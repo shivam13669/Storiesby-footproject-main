@@ -2,39 +2,31 @@ import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useCurrency, parsePrice } from "@/context/CurrencyContext";
-import { Link } from "react-router-dom";
-import type { DestinationPackage } from "@/data/destinations";
 
 interface PricingCardProps {
-  travelPackage: DestinationPackage;
   showForm?: boolean;
+  title: string;
+  price: string;
+  oldPrice?: string;
+  saving?: string;
+  rating: number;
+  reviews: number;
 }
 
-const PricingCard = ({ travelPackage, showForm = false }: PricingCardProps) => {
-  const { formatPrice } = useCurrency();
-
-  const currentPrice = parsePrice(travelPackage.price) ?? 0;
-  const oldPrice = travelPackage.oldPrice ? parsePrice(travelPackage.oldPrice) ?? 0 : null;
-  const savings = oldPrice && oldPrice > currentPrice ? oldPrice - currentPrice : null;
-
+const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating, reviews }: PricingCardProps) => {
   return (
     <div className="card-shadow bg-card p-6 sticky top-20 rounded-xl">
       {/* Package Title */}
       <div className="mb-4">
-        <h3 className="text-base font-medium text-foreground">{travelPackage.name}</h3>
-        <div className="flex items-baseline gap-2 mt-2 flex-wrap">
-          <span className="text-2xl font-bold text-foreground">
-            {formatPrice(currentPrice, { fromCurrency: "INR" })}
-          </span>
+        <h3 className="text-base font-medium text-foreground">{title}</h3>
+        <div className="flex items-baseline gap-2 mt-2">
+          <span className="text-2xl font-bold text-foreground">{price}</span>
           {oldPrice && (
-            <span className="text-sm text-muted-foreground line-through">
-              {formatPrice(oldPrice, { fromCurrency: "INR" })}
-            </span>
+            <span className="text-sm text-muted-foreground line-through">{oldPrice}</span>
           )}
-          {savings && (
+          {saving && (
             <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
-              SAVE {formatPrice(savings, { fromCurrency: "INR" })}
+              {saving}
             </span>
           )}
         </div>
@@ -43,7 +35,7 @@ const PricingCard = ({ travelPackage, showForm = false }: PricingCardProps) => {
       {/* Rating */}
       <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-6">
         <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-        <span>{travelPackage.rating?.toFixed(1) ?? "4.8"} · {travelPackage.reviews ?? 0} reviews</span>
+        <span>{rating} · {reviews} reviews</span>
       </div>
 
       {showForm ? (
@@ -71,6 +63,9 @@ const PricingCard = ({ travelPackage, showForm = false }: PricingCardProps) => {
           <div className="flex gap-2">
             <div className="flex items-center border border-border rounded-md px-3 bg-background h-12 min-w-[70px]">
               <span className="text-muted-foreground text-sm">+91</span>
+              <svg className="w-4 h-4 ml-1 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </div>
             <div className="relative flex-1">
               <Input 
@@ -107,8 +102,8 @@ const PricingCard = ({ travelPackage, showForm = false }: PricingCardProps) => {
         </div>
       ) : null}
 
-      <Button asChild className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
-        <Link to="/contact">Send Enquiry</Link>
+      <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
+        Send Enquiry
       </Button>
     </div>
   );
