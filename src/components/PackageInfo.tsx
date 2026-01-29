@@ -1,19 +1,28 @@
 import { Car, Building2, Coffee, MapPin } from "lucide-react";
 
-interface PackageInfoProps {
-  duration: string;
-  title: string;
-}
-
-const PackageInfo = ({ duration, title }: PackageInfoProps) => {
+const PackageInfo = () => {
   return (
     <div className="mb-8">
       <h1 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
-        {title}
+        Scenic Iceland with Diamond Circle
       </h1>
 
       <div className="flex flex-wrap items-center gap-4 mb-6">
-        <span className="badge-duration">{duration}</span>
+        <span className="badge-duration">7D/6N</span>
+        <div className="flex items-center gap-1">
+          <span className="text-3xl font-bold text-foreground">3</span>
+          <div className="text-sm">
+            <span className="text-muted-foreground">Days in</span>
+            <p className="font-semibold text-foreground">Reykjavik</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-3xl font-bold text-foreground">4</span>
+          <div className="text-sm">
+            <span className="text-muted-foreground">Days in</span>
+            <p className="font-semibold text-foreground">Akureyri</p>
+          </div>
+        </div>
       </div>
 
       <div className="border-t border-border pt-4">
