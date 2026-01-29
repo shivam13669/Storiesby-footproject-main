@@ -1,32 +1,28 @@
 import { Images } from "lucide-react";
+import icelandMain from "@/assets/iceland-main.jpg";
+import icelandDestinations from "@/assets/iceland-destinations.jpg";
+import icelandStays from "@/assets/iceland-stays.jpg";
+import icelandActivity from "@/assets/iceland-activity.jpg";
+import icelandWaterfall from "@/assets/iceland-waterfall.jpg";
 
-interface ImageGalleryProps {
-  images: string[];
-  destinationName: string;
-}
-
-const ImageGallery = ({ images, destinationName }: ImageGalleryProps) => {
-  if (!images.length) return null;
-
-  const [primary, ...rest] = images;
-
+const ImageGallery = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-6">
       {/* Main Image */}
       <div className="lg:col-span-2 relative rounded-lg overflow-hidden h-[300px] md:h-[450px]">
         <img
-          src={primary}
-          alt="Scenic view"
+          src={icelandMain}
+          alt="Scenic Iceland"
           className="w-full h-full object-cover"
         />
       </div>
 
       {/* Side Grid */}
       <div className="grid grid-cols-2 gap-2">
-        {/* Image 1 */}
+        {/* Destinations */}
         <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
-            src={rest[0]}
+            src={icelandDestinations}
             alt="Destinations"
             className="w-full h-full object-cover"
           />
@@ -36,10 +32,10 @@ const ImageGallery = ({ images, destinationName }: ImageGalleryProps) => {
           </span>
         </div>
 
-        {/* Image 2 */}
+        {/* Stays */}
         <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
-            src={rest[1]}
+            src={icelandStays}
             alt="Stays"
             className="w-full h-full object-cover"
           />
@@ -49,10 +45,10 @@ const ImageGallery = ({ images, destinationName }: ImageGalleryProps) => {
           </span>
         </div>
 
-        {/* Image 3 */}
+        {/* Activity & Sightseeing */}
         <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
-            src={rest[2]}
+            src={icelandActivity}
             alt="Activity & Sightseeing"
             className="w-full h-full object-cover"
           />
@@ -65,7 +61,7 @@ const ImageGallery = ({ images, destinationName }: ImageGalleryProps) => {
         {/* View All Images */}
         <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
-            src={rest[3]}
+            src={icelandWaterfall}
             alt="View All"
             className="w-full h-full object-cover"
           />
