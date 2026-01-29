@@ -7,6 +7,7 @@ import PackageInfo from "@/components/PackageInfo";
 import PricingCard from "@/components/PricingCard";
 import TripHighlights from "@/components/TripHighlights";
 import TabNavigation from "@/components/TabNavigation";
+import ItinerarySection from "@/components/ItinerarySection";
 import PackageInclusions from "@/components/PackageInclusions";
 import PolicyAccordion from "@/components/PolicyAccordion";
 import PromoBanners from "@/components/PromoBanners";
@@ -46,53 +47,53 @@ const DestinationDetail = () => {
   }
 
   const galleryImages = buildGalleryImages(destination, travelPackage);
-  const inclusions = createInclusions(destination, travelPackage);
-  const exclusions = createExclusions(destination);
-  const knowBefore = createKnowBefore(destination);
-  const cancellationPolicy = createCancellationPolicy();
+  const dayCount = getDayCount(travelPackage);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main className="container mx-auto px-4 py-6 pb-24">
-        {/* Image Gallery */}
+      <main className="container mx-auto px-4 py-6">
         <ImageGallery images={galleryImages} destinationName={destination.name} />
 
-        {/* Two Column Layout */}
+        {/* Two Column Layout - Only until End of Trip */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Content */}
           <div className="lg:col-span-2">
-            <PackageInfo travelPackage={travelPackage} destination={destination} />
+            <PackageInfo duration={travelPackage.duration} title={travelPackage.name} />
             <TripHighlights highlights={travelPackage.highlights} />
             <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
-            {/* Tab Content - Itinerary (simplified) */}
             {activeTab === "itinerary" && (
-              <div className="space-y-4 mb-8">
-                <p className="text-muted-foreground">
-                  {travelPackage.description}
-                </p>
-              </div>
+              <ItinerarySection images={galleryImages} days={dayCount} />
             )}
           </div>
 
-          {/* Right Sidebar - Pricing Card (sticky) */}
+          {/* Right Sidebar - Pricing Card (sticky, ends at End of Trip) */}
           <div className="lg:col-span-1">
-            <PricingCard travelPackage={travelPackage} showForm={false} />
+            <PricingCard
+              showForm={true}
+              title={travelPackage.name}
+              price={travelPackage.price}
+              oldPrice={travelPackage.oldPrice}
+              rating={travelPackage.rating}
+              reviews={travelPackage.reviews}
+            />
           </div>
         </div>
 
-        {/* Full Width Content */}
+        {/* Full Width Content - After End of Trip */}
         <div className="mt-8">
-          <PackageInclusions inclusions={inclusions} exclusions={exclusions} />
+          <PackageInclusions />
 
           {/* Policy Sections */}
           <PolicyAccordion title="Know Before You Go" defaultOpen={true}>
             <ul className="space-y-2 list-disc pl-5">
-              {knowBefore.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
+              <li>All Indian nationals are required to carry a valid Government ID proof.</li>
+              <li>All foreign nationals are requested to carry their passports with them during the tours.</li>
+              <li>All hotels rooms will be standard by default unless the customer specifies to receive a different category of rooms before booking.</li>
+              <li>All expenses of a personal nature will be borne by the tourists themselves.</li>
+              <li>International flights are not included as a part of the package.</li>
             </ul>
           </PolicyAccordion>
 
@@ -100,21 +101,33 @@ const DestinationDetail = () => {
 
           <TrustBadges />
 
-          <PolicyAccordion title="Cancellation Policy" defaultOpen={true}>
-            <ul className="space-y-2 list-disc pl-5">
-              {cancellationPolicy.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+          <PolicyAccordion title="More About This Destination" defaultOpen={true}>
+            <div className="flex flex-wrap gap-4">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Tour Packages</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Places to visit</a>
+            </div>
+          </PolicyAccordion>
+
+          <PolicyAccordion title="Confirmation Policy">
+            <p>The booking confirmation will be sent within 24 hours of receiving full payment.</p>
           </PolicyAccordion>
 
           <PolicyAccordion title="Refund Policy">
             <p>Refund will be processed within 7-10 business days after cancellation approval.</p>
           </PolicyAccordion>
 
+          <PolicyAccordion title="Cancellation Policy" defaultOpen={true}>
+            <ul className="space-y-2 list-disc pl-5">
+              <li>If cancellation is made 30 days or more before the date of travel, 30.0% of total booking cost will be charged as cancellation fees.</li>
+              <li>If cancellation is made within 30 days before the date of travel, total booking cost will be charged as cancellation fees.</li>
+              <li>In the event of unforeseen weather conditions, union issues, government restrictions, or any other circumstances beyond human control, certain trips or activities may be cancelled. In such cases, alternate feasible options will be provided. However, a cash refund will not be available.</li>
+            </ul>
+          </PolicyAccordion>
+
           <PolicyAccordion title="Payment Policy" defaultOpen={true}>
             <ul className="space-y-2 list-disc pl-5">
-              <li>100% of total tour cost will have to be paid before the date of booking</li>
+              <li>100.0% of total tour cost will have to be paid 0 days before the date of booking</li>
             </ul>
           </PolicyAccordion>
         </div>
@@ -178,36 +191,33 @@ const buildGalleryImages = (destination: Destination, travelPackage: Destination
   return Array.from(new Set(baseImages));
 };
 
-const createInclusions = (destination: Destination, travelPackage: DestinationPackage) => [
-  `Accommodation on twin-sharing basis for ${travelPackage.duration.toLowerCase()}.`,
-  "Daily breakfast and chef-curated dinners on travel days, with picnic lunches on highland drives.",
-  `All surface transfers in private vehicles from ${destination.quickFacts.startPoint}.`,
-  "Expedition leader, local cultural specialist, and dedicated support crew throughout.",
-  `All permits, restricted area permissions, and monastery entry passes within ${destination.region}.`,
-  "Emergency oxygen support, medical kit, and satellite communication backup where required.",
-];
+const getDayCount = (travelPackage: DestinationPackage) => {
+  const duration = (travelPackage.duration || "").toUpperCase();
 
-const createExclusions = (destination: Destination) => [
-  `Flights or trains to and from ${destination.quickFacts.startPoint}.`,
-  "Lunches on travel days unless specified, and personal beverages.",
-  "Travel insurance, medical expenses, or evacuation beyond inclusions.",
-  "Camera fees, tips, and personal purchases such as souvenirs.",
-  "Optional adventure activities not mentioned in the inclusions.",
-];
+  // Pattern like "5N/6D" -> return days (6)
+  const nd = duration.match(/(\d+)\s*N\s*\/?\s*(\d+)\s*D/);
+  if (nd) {
+    const days = Number(nd[2]);
+    if (!Number.isNaN(days) && days > 0) return days;
+  }
 
-const createKnowBefore = (destination: Destination) => [
-  `${destination.quickFacts.travelStyle} journeys demand good fitness; begin light cardio and breathing exercises at least three weeks prior.`,
-  `${destination.name} weather can swing rapidly—layered clothing, gloves, and rain protection are essential.`,
-  "Carry original government-issued photo ID for each traveller for permits and hotel check-ins.",
-  "Network connectivity is limited outside major towns; inform family about low-connectivity days.",
-  "Stay hydrated and follow acclimatisation guidelines shared by the expedition leader.",
-];
+  // Pattern like "6D" or "6 DAYS"
+  const dOnly = duration.match(/(\d+)\s*D(AYS)?/);
+  if (dOnly) {
+    const days = Number(dOnly[1]);
+    if (!Number.isNaN(days) && days > 0) return days;
+  }
 
-const createCancellationPolicy = () => [
-  "30 days before departure: 25% of the total trip cost is chargeable.",
-  "15–30 days before departure: 50% of the total trip cost is chargeable.",
-  "0–15 days before departure: 100% cancellation charges apply.",
-  "Force majeure events may necessitate rerouting; refunds are guided by partner policies.",
-];
+  // Pattern like "5N" -> assume days = nights + 1
+  const nOnly = duration.match(/(\d+)\s*N(IGHTS)?/);
+  if (nOnly) {
+    const nights = Number(nOnly[1]);
+    const days = nights + 1;
+    if (!Number.isNaN(days) && days > 0) return days;
+  }
+
+  // Fallback based on highlights
+  return Math.max(4, travelPackage.highlights.length + 2);
+};
 
 export default DestinationDetail;
