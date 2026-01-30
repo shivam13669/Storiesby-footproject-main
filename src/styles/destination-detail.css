@@ -4,7 +4,6 @@
 .destination-detail-page {
   --primary: 24 95% 53%;
   --primary-foreground: 0 0% 100%;
-  --primary-hover: 24 95% 45%;
   --secondary: 210 40% 96.1%;
   --secondary-foreground: 220 13% 18%;
   --muted: 210 40% 96.1%;
@@ -17,15 +16,23 @@
 }
 
 .destination-detail-page .btn-primary {
-  @apply bg-primary text-primary-foreground hover:bg-orange-600 transition-colors duration-200 font-semibold;
+  @apply text-primary-foreground transition-colors duration-200 font-medium;
+  background-color: hsl(24 95% 53%);
+}
+
+.destination-detail-page .btn-primary:hover {
+  background-color: hsl(24 95% 45%);
 }
 
 .destination-detail-page .badge-duration {
-  @apply bg-primary text-primary-foreground px-3 py-1 rounded text-sm font-semibold;
+  @apply px-3 py-1 rounded text-sm font-semibold;
+  background-color: hsl(24 95% 53%);
+  color: hsl(0 0% 100%);
 }
 
 .destination-detail-page .tab-active {
-  @apply bg-primary text-primary-foreground;
+  @apply text-primary-foreground;
+  background-color: hsl(24 95% 53%);
 }
 
 .destination-detail-page .card-shadow {
