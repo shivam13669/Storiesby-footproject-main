@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageGallery from "@/components/ImageGallery";
+import journeyConcludes from "@/assets/journey-concludes.png";
 import PackageInfo from "@/components/PackageInfo";
 import PricingCard from "@/components/PricingCard";
 import TripHighlights from "@/components/TripHighlights";
@@ -19,7 +20,6 @@ import {
   getDestinationBySlug,
   getPackageBySlug,
 } from "@/data/destinations";
-import "@/styles/destination-detail.css";
 
 const DestinationDetail = () => {
   const { slug, packageSlug } = useParams<{ slug: string; packageSlug?: string }>();
