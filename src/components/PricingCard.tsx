@@ -14,9 +14,9 @@ interface PricingCardProps {
 
 const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900" }: PricingCardProps) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 sticky top-20">
       {/* Card 1: Download Itinerary with Pricing */}
-      <div className="card-shadow bg-card p-6 sticky top-20 rounded-xl">
+      <div className="card-shadow bg-card p-6 rounded-xl">
         {/* Package Title */}
         <div className="mb-4">
           <h3 className="text-base font-medium text-foreground">{title}</h3>
