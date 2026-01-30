@@ -9,7 +9,7 @@ const Header = () => {
           <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-lg">✈</span>
           </div>
-          <span className="text-xl font-bold text-primary" style={{ fontFamily: "'Poppins', sans-serif" }}>thrillophilia</span>
+          <span className="text-xl font-bold text-primary">thrillophilia</span>
         </div>
 
         {/* Search Bar */}
