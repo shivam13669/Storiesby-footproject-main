@@ -42,13 +42,13 @@ const ItineraryDay = ({ day, title, description, transfer, stay, experiences }: 
         className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/30 transition-colors"
       >
         <div className="flex items-center gap-3">
-          <span className="badge-day">DAY {day}</span>
-          <span className="font-medium text-foreground">{title}</span>
+          <span className="badge-day font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>DAY {day}</span>
+          <span className="font-semibold text-foreground" style={{ fontFamily: "'Poppins', sans-serif" }}>{title}</span>
         </div>
         {isOpen ? (
-          <ChevronUp className="w-5 h-5 text-muted-foreground" />
+          <ChevronUp className="w-5 h-5 text-muted-foreground" strokeWidth={2} />
         ) : (
-          <ChevronDown className="w-5 h-5 text-muted-foreground" />
+          <ChevronDown className="w-5 h-5 text-muted-foreground" strokeWidth={2} />
         )}
       </button>
 
