@@ -5,21 +5,37 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface PricingCardProps {
   showForm?: boolean;
+  title: string;
+  price: string;
+  oldPrice?: string;
+  saving?: string;
+  rating: number;
+  reviews: number;
 }
 
-const PricingCard = ({ showForm = false }: PricingCardProps) => {
+const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating, reviews }: PricingCardProps) => {
   return (
     <div className="card-shadow bg-card p-6 sticky top-20 rounded-xl">
       {/* Package Title */}
       <div className="mb-4">
-        <h3 className="text-base font-medium text-foreground">Scenic Iceland With Diamond Circle</h3>
+        <h3 className="text-base font-medium text-foreground">{title}</h3>
         <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-2xl font-bold text-foreground">INR 2,30,206</span>
-          <span className="text-sm text-muted-foreground line-through">INR 3,06,106</span>
-          <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
-            SAVE INR 75,900
-          </span>
+          <span className="text-2xl font-bold text-foreground">{price}</span>
+          {oldPrice && (
+            <span className="text-sm text-muted-foreground line-through">{oldPrice}</span>
+          )}
+          {saving && (
+            <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
+              {saving}
+            </span>
+          )}
         </div>
+      </div>
+
+      {/* Rating */}
+      <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-6">
+        <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+        <span>{rating} · {reviews} reviews</span>
       </div>
 
       {showForm ? (
