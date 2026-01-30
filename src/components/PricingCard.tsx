@@ -13,24 +13,28 @@ interface PricingCardProps {
   reviews?: number;
 }
 
-const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900" }: PricingCardProps) => {
+const PricingCard = ({ showForm = false, showPricing = true, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900" }: PricingCardProps) => {
+  const cardClasses = showForm ? "bg-card p-6 rounded-xl" : "card-shadow bg-card p-6 sticky top-20 rounded-xl";
+
   return (
-    <div className="card-shadow bg-card p-6 sticky top-20 rounded-xl">
-      {/* Package Title */}
-      <div className="mb-4">
-        <h3 className="text-base font-medium text-foreground">{title}</h3>
-        <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-2xl font-bold text-foreground">{price}</span>
-          {oldPrice && (
-            <span className="text-sm text-muted-foreground line-through">{oldPrice}</span>
-          )}
-          {saving && (
-            <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
-              {saving}
-            </span>
-          )}
+    <div className={cardClasses}>
+      {/* Package Title - Only show if not in form mode or if showPricing is true */}
+      {showPricing && (
+        <div className="mb-4">
+          <h3 className="text-base font-medium text-foreground">{title}</h3>
+          <div className="flex items-baseline gap-2 mt-2">
+            <span className="text-2xl font-bold text-foreground">{price}</span>
+            {oldPrice && (
+              <span className="text-sm text-muted-foreground line-through">{oldPrice}</span>
+            )}
+            {saving && (
+              <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
+                {saving}
+              </span>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {showForm ? (
         <div className="space-y-4">
