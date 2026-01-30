@@ -39,7 +39,7 @@ const PromoBanners = () => {
       <div
         className="relative rounded-lg overflow-hidden h-[180px] bg-cover bg-center"
         style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80)`,
+          backgroundImage: `url(https://cdn.builder.io/api/v1/image/assets%2Fd229f0c7501c426c9024cfaac32fea5b%2F6c322abfc8ed479bacecbf8ea1aa3099?format=webp&width=800&height=1200)`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
