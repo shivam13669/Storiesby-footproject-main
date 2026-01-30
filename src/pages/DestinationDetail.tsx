@@ -1,5 +1,7 @@
 import { useState } from "react";
-import Header from "@/components/Header";
+import { Navigate, useParams } from "react-router-dom";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import ImageGallery from "@/components/ImageGallery";
 import PackageInfo from "@/components/PackageInfo";
 import PricingCard from "@/components/PricingCard";
@@ -10,32 +12,73 @@ import PackageInclusions from "@/components/PackageInclusions";
 import PolicyAccordion from "@/components/PolicyAccordion";
 import PromoBanners from "@/components/PromoBanners";
 import TrustBadges from "@/components/TrustBadges";
-import Footer from "@/components/Footer";
+import {
+  Destination,
+  DestinationPackage,
+  findPackageAcrossDestinations,
+  getDestinationBySlug,
+  getPackageBySlug,
+} from "@/data/destinations";
 
 const DestinationDetail = () => {
+  const { slug, packageSlug } = useParams<{ slug: string; packageSlug?: string }>();
   const [activeTab, setActiveTab] = useState("itinerary");
+
+  let destination = slug ? getDestinationBySlug(slug) : undefined;
+  let travelPackage =
+    destination && packageSlug
+      ? getPackageBySlug(destination.slug, packageSlug)
+      : undefined;
+
+  if ((!destination || !travelPackage) && packageSlug) {
+    const fallback = findPackageAcrossDestinations(packageSlug);
+    if (fallback) {
+      destination = fallback.destination;
+      travelPackage = fallback.travelPackage;
+    }
+  }
+
+  if (!destination) {
+    return <Navigate to="/destinations" replace />;
+  }
+
+  if (!travelPackage) {
+    travelPackage = destination.packages[0];
+  }
+
+  const galleryImages = buildGalleryImages(destination, travelPackage);
+  const dayCount = getDayCount(travelPackage);
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Navigation />
 
       <main className="container mx-auto px-4 py-6">
-        <ImageGallery />
+        <ImageGallery images={galleryImages} destinationName={destination.name} />
 
         {/* Two Column Layout - Only until End of Trip */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Content */}
           <div className="lg:col-span-2">
-            <PackageInfo />
-            <TripHighlights />
+            <PackageInfo duration={travelPackage.duration} title={travelPackage.name} />
+            <TripHighlights highlights={travelPackage.highlights} />
             <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
-            {activeTab === "itinerary" && <ItinerarySection />}
+            {activeTab === "itinerary" && (
+              <ItinerarySection images={galleryImages} days={dayCount} />
+            )}
           </div>
 
           {/* Right Sidebar - Pricing Card (sticky, ends at End of Trip) */}
           <div className="lg:col-span-1">
-            <PricingCard showForm={true} />
+            <PricingCard
+              showForm={true}
+              title={travelPackage.name}
+              price={travelPackage.price}
+              oldPrice={travelPackage.oldPrice}
+              rating={travelPackage.rating}
+              reviews={travelPackage.reviews}
+            />
           </div>
         </div>
 
@@ -58,11 +101,11 @@ const DestinationDetail = () => {
 
           <TrustBadges />
 
-          <PolicyAccordion title="More On Iceland Tourism" defaultOpen={true}>
+          <PolicyAccordion title="More About This Destination" defaultOpen={true}>
             <div className="flex flex-wrap gap-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Iceland Tour Packages</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do in Iceland</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Places to visit in Iceland</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Tour Packages</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Places to visit</a>
             </div>
           </PolicyAccordion>
 
@@ -93,6 +136,88 @@ const DestinationDetail = () => {
       <Footer />
     </div>
   );
+};
+
+const destinationGalleryMap: Record<string, string[]> = {
+  ladakh: [
+    "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1562157873-818bc0726f99?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1526481280695-3c4693df8ced?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80",
+  ],
+  tawang: [
+    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1558180079-7f0f7180a5ec?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1509098681029-b45e9c845022?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1464207687429-7505649dae38?auto=format&fit=crop&w=1600&q=80",
+  ],
+  bhutan: [
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1559112094-4137e19ff3a5?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1494475673543-6a6a27143b22?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1464207687429-7505649dae38?auto=format&fit=crop&w=1600&q=80",
+  ],
+  meghalaya: [
+    "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1545652711-491a01fb5d28?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80",
+  ],
+  nepal: [
+    "https://images.unsplash.com/photo-1509644851169-51ebdcca9864?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1563144760-3da8c746b16c?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1460522324493-a0e90ff22a91?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1549989476-69a92fa57c4e?auto=format&fit=crop&w=1600&q=80",
+  ],
+  zanskar: [
+    "https://images.unsplash.com/photo-1512238701577-f182d9ef8af7?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1493815793585-d94ccbc86df0?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1516131206008-dd041a9764fd?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1542401886-65d27afda266?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1486870591958-9b9d7d1dda99?auto=format&fit=crop&w=1600&q=80",
+  ],
+};
+
+const buildGalleryImages = (destination: Destination, travelPackage: DestinationPackage) => {
+  const additionalImages = destinationGalleryMap[destination.slug] ?? [];
+  const baseImages = [travelPackage.image, destination.heroImage, ...additionalImages].filter(
+    (image): image is string => Boolean(image)
+  );
+
+  return Array.from(new Set(baseImages));
+};
+
+const getDayCount = (travelPackage: DestinationPackage) => {
+  const duration = (travelPackage.duration || "").toUpperCase();
+
+  // Pattern like "5N/6D" -> return days (6)
+  const nd = duration.match(/(\d+)\s*N\s*\/?\s*(\d+)\s*D/);
+  if (nd) {
+    const days = Number(nd[2]);
+    if (!Number.isNaN(days) && days > 0) return days;
+  }
+
+  // Pattern like "6D" or "6 DAYS"
+  const dOnly = duration.match(/(\d+)\s*D(AYS)?/);
+  if (dOnly) {
+    const days = Number(dOnly[1]);
+    if (!Number.isNaN(days) && days > 0) return days;
+  }
+
+  // Pattern like "5N" -> assume days = nights + 1
+  const nOnly = duration.match(/(\d+)\s*N(IGHTS)?/);
+  if (nOnly) {
+    const nights = Number(nOnly[1]);
+    const days = nights + 1;
+    if (!Number.isNaN(days) && days > 0) return days;
+  }
+
+  // Fallback based on highlights
+  return Math.max(4, travelPackage.highlights.length + 2);
 };
 
 export default DestinationDetail;
