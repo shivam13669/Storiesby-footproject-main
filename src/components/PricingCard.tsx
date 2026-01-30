@@ -31,8 +31,13 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
         </div>
       </div>
 
+      {/* Download Itinerary Button - Above Form */}
+      <Button className="w-full btn-primary h-12 text-base font-semibold rounded-lg">
+        Download Itinerary
+      </Button>
+
       {showForm ? (
-        <div className="space-y-4">
+        <div className="space-y-4 mt-5">
           {/* Full Name */}
           <div className="relative">
             <Input
@@ -92,12 +97,13 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
             placeholder="Message..."
             className="bg-background border-border min-h-[100px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
           />
+
+          {/* Send Enquiry Button */}
+          <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
+            Send Enquiry
+          </Button>
         </div>
       ) : null}
-
-      <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
-        Send Enquiry
-      </Button>
     </div>
   );
 };
