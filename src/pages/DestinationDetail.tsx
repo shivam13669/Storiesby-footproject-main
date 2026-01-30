@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageGallery from "@/components/ImageGallery";
+import journeyConcludes from "@/assets/journey-concludes.png";
 import PackageInfo from "@/components/PackageInfo";
 import PricingCard from "@/components/PricingCard";
 import TripHighlights from "@/components/TripHighlights";
@@ -77,14 +78,26 @@ const DestinationDetail = () => {
               title={travelPackage.name}
               price={travelPackage.price}
               oldPrice={travelPackage.oldPrice}
-              rating={travelPackage.rating}
-              reviews={travelPackage.reviews}
+              saving={
+                travelPackage.oldPrice && travelPackage.price
+                  ? `SAVE INR ${parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - parseInt(travelPackage.price.replace(/\D/g, ""))}`
+                  : undefined
+              }
             />
           </div>
         </div>
 
+        {/* The Journey Concludes - Full Width */}
+        <div className="flex items-center justify-center py-12 mt-8">
+          <img
+            src={journeyConcludes}
+            alt="The Journey Concludes"
+            className="max-w-2xl w-full h-auto"
+          />
+        </div>
+
         {/* Full Width Content - After End of Trip */}
-        <div className="mt-8">
+        <div>
           <PackageInclusions />
 
           {/* Policy Sections */}
@@ -102,11 +115,11 @@ const DestinationDetail = () => {
 
           <TrustBadges />
 
-          <PolicyAccordion title="More On This Destination" defaultOpen={true}>
+          <PolicyAccordion title={`More On ${destination.name} Tourism`} defaultOpen={true}>
             <div className="flex flex-wrap gap-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Tour Packages</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Places to visit</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">{destination.name} Tour Packages</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do in {destination.name}</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Places to visit in {destination.name}</a>
             </div>
           </PolicyAccordion>
 

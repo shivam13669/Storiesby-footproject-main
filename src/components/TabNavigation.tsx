@@ -16,21 +16,23 @@ interface TabNavigationProps {
 
 const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
   return (
-    <div className="flex flex-wrap gap-2 mb-6">
-      {tabs.map((tab) => (
-        <button
-          key={tab.id}
-          onClick={() => onTabChange(tab.id)}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all ${
-            activeTab === tab.id
-              ? "tab-active"
-              : "tab-inactive"
-          }`}
-        >
-          {tab.icon && <tab.icon className="w-4 h-4" />}
-          {tab.label}
-        </button>
-      ))}
+    <div className="sticky top-[57px] z-40 bg-background py-3 -mx-4 px-4 mb-6 border-b border-border">
+      <div className="flex flex-wrap gap-2">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => onTabChange(tab.id)}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all ${
+              activeTab === tab.id
+                ? "tab-active"
+                : "tab-inactive"
+            }`}
+          >
+            {tab.icon && <tab.icon className="w-4 h-4" />}
+            {tab.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

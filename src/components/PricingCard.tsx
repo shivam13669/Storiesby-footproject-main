@@ -1,19 +1,18 @@
-import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 interface PricingCardProps {
   showForm?: boolean;
-  title: string;
-  price: string;
+  title?: string;
+  price?: string;
   oldPrice?: string;
   saving?: string;
-  rating: number;
-  reviews: number;
+  rating?: number;
+  reviews?: number;
 }
 
-const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating, reviews }: PricingCardProps) => {
+const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900" }: PricingCardProps) => {
   return (
     <div className="card-shadow bg-card p-6 sticky top-20 rounded-xl">
       {/* Package Title */}
@@ -30,12 +29,6 @@ const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating,
             </span>
           )}
         </div>
-      </div>
-
-      {/* Rating */}
-      <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-6 pb-6 border-b border-border">
-        <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-        <span>{rating} · {reviews} reviews</span>
       </div>
 
       {showForm ? (
