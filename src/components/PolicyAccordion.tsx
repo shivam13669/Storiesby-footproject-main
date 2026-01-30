@@ -16,11 +16,11 @@ const PolicyAccordion = ({ title, children, defaultOpen = false }: PolicyAccordi
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-5 text-left hover:bg-muted/30 transition-colors"
       >
-        <span className="text-lg font-bold text-foreground" style={{ fontFamily: "'Poppins', sans-serif" }}>{title}</span>
+        <span className="text-lg font-semibold text-foreground">{title}</span>
         {isOpen ? (
-          <ChevronUp className="w-5 h-5 text-muted-foreground" strokeWidth={2} />
+          <ChevronUp className="w-5 h-5 text-muted-foreground" />
         ) : (
-          <ChevronDown className="w-5 h-5 text-muted-foreground" strokeWidth={2} />
+          <ChevronDown className="w-5 h-5 text-muted-foreground" />
         )}
       </button>
       {isOpen && (
