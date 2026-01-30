@@ -44,9 +44,9 @@ const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating,
           <div className="relative">
             <Input
               placeholder="Full Name"
-              className="bg-background border border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg"
+              className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
             />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary font-bold">*</span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
           </div>
 
           {/* Email */}
@@ -54,15 +54,15 @@ const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating,
             <Input
               placeholder="Email"
               type="email"
-              className="bg-background border border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg"
+              className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
             />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary font-bold">*</span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
           </div>
 
           {/* Phone */}
           <div className="flex gap-2">
-            <div className="flex items-center border border-border rounded-lg px-3 bg-background h-12 min-w-[80px]">
-              <span className="text-muted-foreground text-sm font-medium">+91</span>
+            <div className="flex items-center border border-border rounded-md px-3 bg-background h-12 min-w-[70px]">
+              <span className="text-muted-foreground text-sm">+91</span>
               <svg className="w-4 h-4 ml-1 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -70,9 +70,9 @@ const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating,
             <div className="relative flex-1">
               <Input
                 placeholder="Your Phone"
-                className="bg-background border border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg"
+                className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary font-bold">*</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
             </div>
           </div>
 
@@ -81,28 +81,28 @@ const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating,
             <div className="relative">
               <Input
                 placeholder="Travel Date"
-                className="bg-background border border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg"
+                className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary font-bold">*</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
             </div>
             <div className="relative">
               <Input
                 placeholder="Traveller Count"
-                className="bg-background border border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg"
+                className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary font-bold">*</span>
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
             </div>
           </div>
 
           {/* Message */}
           <Textarea
             placeholder="Message..."
-            className="bg-background border border-border min-h-[100px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary rounded-lg"
+            className="bg-background border-border min-h-[100px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
           />
         </div>
       ) : null}
 
-      <Button className="w-full btn-primary h-12 text-base font-bold mt-5 rounded-lg" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
         Send Enquiry
       </Button>
     </div>
