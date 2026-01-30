@@ -66,9 +66,9 @@ const ItinerarySection = ({ images, days }: ItinerarySectionProps) => {
         </div>
       )}
 
-      {/* End of Trip */}
+      {/* Journey Concludes */}
       <div className="text-center py-12 border-t border-border mt-8">
-        <h3 className="text-4xl md:text-5xl script-font text-gold">End Of Trip</h3>
+        <h3 className="text-4xl md:text-5xl script-font text-gold">Journey Concludes</h3>
       </div>
     </div>
   );
