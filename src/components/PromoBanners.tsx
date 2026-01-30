@@ -39,13 +39,13 @@ const PromoBanners = () => {
       <div className="relative rounded-lg overflow-hidden h-[180px] bg-gradient-to-r from-primary/90 via-primary/70 to-transparent">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
         <div className="relative z-10 p-6 h-full flex flex-col justify-center">
-          <h3 className="text-2xl font-bold text-primary-foreground mb-1">
+          <h3 className="text-2xl font-bold text-primary-foreground mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Bigger Group? Get special offers up to 50% Off!
           </h3>
           <p className="text-primary-foreground/90 text-sm mb-4">
             We create unforgettable adventures, customised for your group.
           </p>
-          <Button variant="outline" className="w-fit bg-background text-primary border-background hover:bg-background/90">
+          <Button variant="outline" className="w-fit bg-background text-primary border-background hover:bg-background/90 font-semibold">
             Get A Callback
           </Button>
         </div>
@@ -54,13 +54,13 @@ const PromoBanners = () => {
       {/* Sale Banner */}
       <div className="bg-footer rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <h3 className="text-2xl font-bold text-primary-foreground mb-1">
+          <h3 className="text-2xl font-bold text-primary-foreground mb-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Special Offers Available
           </h3>
           <p className="text-primary-foreground/70 text-sm mb-4">
             Connect with our destination experts to get exciting discounts
           </p>
-          <Button className="btn-primary">
+          <Button className="btn-primary font-semibold">
             Know more about the Deal
           </Button>
         </div>
@@ -70,26 +70,26 @@ const PromoBanners = () => {
           <div className="flex items-center gap-2">
             <div className="text-center">
               <div className="flex gap-1">
-                <div className="flip-card">{String(timeLeft.days).padStart(2, '0')[0]}</div>
-                <div className="flip-card">{String(timeLeft.days).padStart(2, '0')[1]}</div>
+                <div className="flip-card font-bold text-2xl">{String(timeLeft.days).padStart(2, '0')[0]}</div>
+                <div className="flip-card font-bold text-2xl">{String(timeLeft.days).padStart(2, '0')[1]}</div>
               </div>
-              <span className="text-xs text-primary-foreground/60 mt-1 block">DAYS</span>
+              <span className="text-xs text-primary-foreground/60 mt-1 block font-semibold">DAYS</span>
             </div>
             <span className="text-2xl text-primary-foreground font-bold">:</span>
             <div className="text-center">
               <div className="flex gap-1">
-                <div className="flip-card">{String(timeLeft.hours).padStart(2, '0')[0]}</div>
-                <div className="flip-card">{String(timeLeft.hours).padStart(2, '0')[1]}</div>
+                <div className="flip-card font-bold text-2xl">{String(timeLeft.hours).padStart(2, '0')[0]}</div>
+                <div className="flip-card font-bold text-2xl">{String(timeLeft.hours).padStart(2, '0')[1]}</div>
               </div>
-              <span className="text-xs text-primary-foreground/60 mt-1 block">HOURS</span>
+              <span className="text-xs text-primary-foreground/60 mt-1 block font-semibold">HOURS</span>
             </div>
             <span className="text-2xl text-primary-foreground font-bold">:</span>
             <div className="text-center">
               <div className="flex gap-1">
-                <div className="flip-card">{String(timeLeft.minutes).padStart(2, '0')[0]}</div>
-                <div className="flip-card">{String(timeLeft.minutes).padStart(2, '0')[1]}</div>
+                <div className="flip-card font-bold text-2xl">{String(timeLeft.minutes).padStart(2, '0')[0]}</div>
+                <div className="flip-card font-bold text-2xl">{String(timeLeft.minutes).padStart(2, '0')[1]}</div>
               </div>
-              <span className="text-xs text-primary-foreground/60 mt-1 block">MINUTES</span>
+              <span className="text-xs text-primary-foreground/60 mt-1 block font-semibold">MINUTES</span>
             </div>
           </div>
         </div>
