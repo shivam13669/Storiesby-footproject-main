@@ -65,6 +65,11 @@ const ItinerarySection = ({ images, days }: ItinerarySectionProps) => {
           ))}
         </div>
       )}
+
+      {/* End of Trip */}
+      <div className="text-center py-12 border-t border-border mt-8">
+        <h3 className="text-4xl md:text-5xl script-font text-gold">End Of Trip</h3>
+      </div>
     </div>
   );
 };
