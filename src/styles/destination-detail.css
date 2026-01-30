@@ -122,10 +122,6 @@
   color: hsl(var(--primary));
 }
 
-.destination-detail-page .script-font {
-  font-family: 'Dancing Script', cursive;
-}
-
 .destination-detail-page .flip-card {
   @apply rounded-md flex items-center justify-center text-3xl font-bold;
   background-color: hsl(var(--footer-bg));
