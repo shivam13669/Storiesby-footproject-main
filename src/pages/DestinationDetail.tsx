@@ -55,7 +55,7 @@ const DestinationDetail = () => {
     <div className="destination-detail-page min-h-screen bg-background">
       <Navigation />
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-6 mt-16">
         <ImageGallery images={galleryImages} destinationName={destination.name} />
 
         {/* Two Column Layout - Only until End of Trip */}
