@@ -115,7 +115,7 @@ const Footer = () => {
         <div className="border-t border-white/20 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-white/60 text-sm">
-              © 2025 StoriesByFoot. All rights reserved.
+              © 2026 StoriesByFoot. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <Link to="/privacy-policy" className="text-white/60 hover:text-adventure-gold transition-colors">Privacy Policy</Link>
