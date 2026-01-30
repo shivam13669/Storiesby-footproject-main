@@ -133,35 +133,62 @@ const TestimonialsCarousel: React.FC = () => {
                   {[...testimonials, ...testimonials].map((testimonial, idx) => (
                     <div
                       key={`${colIndex}-${idx}`}
-                      className="bg-gradient-to-b from-white to-green-50 p-[22px] rounded-[18px] border border-green-200/30 shadow-sm flex-shrink-0"
+                      className="flex-shrink-0"
                       style={{
-                        minHeight: "auto",
+                        background: "linear-gradient(180deg,#ffffff 0%,#fbfefc 100%)",
+                        padding: "22px",
+                        borderRadius: "18px",
+                        border: "1px solid rgba(34,197,94,.18)",
+                        boxShadow: "0 10px 28px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.8)",
                       }}
                     >
                       <div className="flex items-start justify-between gap-3 mb-3">
-                        <span className="text-2xl text-green-300">❝</span>
-                        <span className="text-yellow-400 tracking-wider text-sm">
+                        <span style={{ fontSize: "30px", color: "#86efac", lineHeight: 1 }}>❝</span>
+                        <span style={{ color: "#facc15", fontSize: "16px", letterSpacing: "2px" }}>
                           {Array(testimonial.rating).fill("★").join("")}
                         </span>
                       </div>
 
-                      <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                      <p style={{ color: "#374151", lineHeight: 1.5, marginBottom: "12px" }}>
                         "{testimonial.quote}"
                       </p>
 
-                      <div className="inline-block px-3 py-1 rounded-full bg-green-100 border border-green-300 text-green-700 text-xs font-medium mb-4">
+                      <div
+                        style={{
+                          display: "inline-block",
+                          padding: "6px 12px",
+                          borderRadius: "999px",
+                          background: "#ecfdf5",
+                          border: "1px solid #86efac",
+                          color: "#16a34a",
+                          fontSize: "12px",
+                          marginBottom: "14px",
+                        }}
+                      >
                         {testimonial.trip}
                       </div>
 
                       <div className="flex items-center gap-3 mt-4">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-green-500 text-white flex items-center justify-center font-semibold text-sm">
+                        <div
+                          style={{
+                            width: "42px",
+                            height: "42px",
+                            borderRadius: "50%",
+                            background: "linear-gradient(135deg,#22c55e,#4ade80)",
+                            color: "#fff",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontWeight: "600",
+                          }}
+                        >
                           {getInitials(testimonial.name)}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-gray-900 text-sm truncate">
+                          <div style={{ fontWeight: "600", color: "#111827" }}>
                             {testimonial.name}
                           </div>
-                          <div className="text-gray-500 text-xs truncate">
+                          <div style={{ fontSize: "12px", color: "#6b7280" }}>
                             {testimonial.location}
                           </div>
                         </div>
