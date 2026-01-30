@@ -13,7 +13,7 @@ const ImageGallery = ({ images, destinationName }: ImageGalleryProps) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-6">
       {/* Main Image */}
-      <div className="lg:col-span-2 relative rounded-lg overflow-hidden h-[300px] md:h-[450px]" style={{ borderRadius: '8px' }}>
+      <div className="lg:col-span-2 relative rounded-lg overflow-hidden h-[300px] md:h-[450px]">
         <img
           src={primary}
           alt="Scenic view"
@@ -24,46 +24,46 @@ const ImageGallery = ({ images, destinationName }: ImageGalleryProps) => {
       {/* Side Grid */}
       <div className="grid grid-cols-2 gap-2">
         {/* Image 1 */}
-        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]" style={{ borderRadius: '8px' }}>
+        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
             src={rest[0]}
             alt="Destinations"
             className="w-full h-full object-cover"
           />
           <div className="image-overlay" />
-          <span className="absolute bottom-3 left-3 text-white font-semibold text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <span className="absolute bottom-3 left-3 text-primary-foreground font-medium text-sm">
             Destinations
           </span>
         </div>
 
         {/* Image 2 */}
-        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]" style={{ borderRadius: '8px' }}>
+        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
             src={rest[1]}
             alt="Stays"
             className="w-full h-full object-cover"
           />
           <div className="image-overlay" />
-          <span className="absolute bottom-3 left-3 text-white font-semibold text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <span className="absolute bottom-3 left-3 text-primary-foreground font-medium text-sm">
             Stays
           </span>
         </div>
 
         {/* Image 3 */}
-        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]" style={{ borderRadius: '8px' }}>
+        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
             src={rest[2]}
             alt="Activity & Sightseeing"
             className="w-full h-full object-cover"
           />
           <div className="image-overlay" />
-          <span className="absolute bottom-3 left-3 text-white font-semibold text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <span className="absolute bottom-3 left-3 text-primary-foreground font-medium text-sm">
             Activity & Sightseeing
           </span>
         </div>
 
         {/* View All Images */}
-        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]" style={{ borderRadius: '8px' }}>
+        <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
             src={rest[3]}
             alt="View All"
