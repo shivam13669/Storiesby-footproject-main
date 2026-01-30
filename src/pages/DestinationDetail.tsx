@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ImageGallery from "@/components/ImageGallery";
 import journeyConcludes from "@/assets/journey-concludes.png";
