@@ -28,7 +28,7 @@ const Header = () => {
         <div className="flex items-center gap-6">
           <div className="hidden sm:flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
             <span className="text-xl">🇮🇳</span>
-            <span className="font-semibold text-foreground text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>INR ₹</span>
+            <span className="font-semibold text-foreground text-sm">INR ₹</span>
             <ChevronDown className="w-4 h-4 text-muted-foreground" strokeWidth={2} />
           </div>
           <button className="font-semibold text-foreground hover:text-primary transition-colors text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>
