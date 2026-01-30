@@ -19,6 +19,7 @@ import {
   getDestinationBySlug,
   getPackageBySlug,
 } from "@/data/destinations";
+import "@/styles/destination-detail.css";
 
 const DestinationDetail = () => {
   const { slug, packageSlug } = useParams<{ slug: string; packageSlug?: string }>();
