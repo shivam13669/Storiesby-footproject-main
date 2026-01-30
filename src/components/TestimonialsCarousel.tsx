@@ -118,7 +118,7 @@ const TestimonialsCarousel: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[0, 1, 2].map((colIndex) => (
-              <div key={colIndex} className="h-[520px] overflow-hidden relative group">
+              <div key={colIndex} className={`h-[520px] overflow-hidden relative group ${colIndex > 0 ? 'hidden lg:block' : ''}`}>
                 {/* Top fade */}
                 <div className="absolute top-0 left-0 right-0 h-[70px] bg-gradient-to-b from-background via-background to-transparent z-10 pointer-events-none" />
                 {/* Bottom fade */}
