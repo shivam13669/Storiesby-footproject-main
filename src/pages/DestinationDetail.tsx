@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ImageGallery from "@/components/ImageGallery";
 import journeyConcludes from "@/assets/journey-concludes.png";
@@ -53,9 +53,9 @@ const DestinationDetail = () => {
 
   return (
     <div className="destination-detail-page min-h-screen bg-background">
-      <Header />
+      <Navigation />
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-6 mt-16">
         <ImageGallery images={galleryImages} destinationName={destination.name} />
 
         {/* Two Column Layout - Only until End of Trip */}

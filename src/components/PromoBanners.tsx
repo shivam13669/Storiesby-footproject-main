@@ -36,7 +36,12 @@ const PromoBanners = () => {
   return (
     <div className="space-y-6 my-8">
       {/* Group Offer Banner */}
-      <div className="relative rounded-lg overflow-hidden h-[180px] bg-cover bg-center bg-primary">
+      <div
+        className="relative rounded-lg overflow-hidden h-[180px] bg-cover bg-center"
+        style={{
+          backgroundImage: `url(https://cdn.builder.io/api/v1/image/assets%2Fd229f0c7501c426c9024cfaac32fea5b%2F6c322abfc8ed479bacecbf8ea1aa3099?format=webp&width=800&height=1200)`,
+        }}
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
         <div className="relative z-10 p-6 h-full flex flex-col justify-center">
           <h3 className="text-2xl font-bold text-primary-foreground mb-1">
