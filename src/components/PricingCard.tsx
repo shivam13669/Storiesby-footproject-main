@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface PricingCardProps {
   showForm?: boolean;
+  showPricing?: boolean;
   title?: string;
   price?: string;
   oldPrice?: string;
