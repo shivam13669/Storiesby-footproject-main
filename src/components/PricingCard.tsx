@@ -80,7 +80,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
             </div>
             <div className="relative">
               <Input
-                placeholder="Traveller Count"
+                placeholder="Traveler Count"
                 className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
