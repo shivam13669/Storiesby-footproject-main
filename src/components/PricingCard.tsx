@@ -100,13 +100,15 @@ const PricingCard = ({ showForm = false, showPricing = true, title = "Scenic Ice
         </div>
       ) : null}
 
-      <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
-        Download Itinerary
-      </Button>
-
-      <Button className="w-full btn-primary h-12 text-base font-semibold mt-3 rounded-lg">
-        Send Enquiry
-      </Button>
+      {!showForm ? (
+        <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
+          Download Itinerary
+        </Button>
+      ) : (
+        <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
+          Send Enquiry
+        </Button>
+      )}
     </div>
   );
 };
