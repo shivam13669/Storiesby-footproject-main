@@ -73,24 +73,8 @@ const DestinationDetail = () => {
 
           {/* Right Sidebar - Pricing Card (sticky, ends at End of Trip) */}
           <div className="lg:col-span-1">
-            {/* Pricing Card - Small card with price and Download Itinerary */}
-            <PricingCard
-              showForm={false}
-              showPricing={true}
-              title={travelPackage.name}
-              price={travelPackage.price}
-              oldPrice={travelPackage.oldPrice}
-              saving={
-                travelPackage.oldPrice && travelPackage.price
-                  ? `SAVE INR ${parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - parseInt(travelPackage.price.replace(/\D/g, ""))}`
-                  : undefined
-              }
-            />
-
-            {/* Form Card - Form with Send Enquiry button */}
             <PricingCard
               showForm={true}
-              showPricing={false}
               title={travelPackage.name}
               price={travelPackage.price}
               oldPrice={travelPackage.oldPrice}
