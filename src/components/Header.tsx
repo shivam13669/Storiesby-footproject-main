@@ -31,7 +31,7 @@ const Header = () => {
             <span className="font-semibold text-foreground text-sm">INR ₹</span>
             <ChevronDown className="w-4 h-4 text-muted-foreground" strokeWidth={2} />
           </div>
-          <button className="font-semibold text-foreground hover:text-primary transition-colors text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <button className="font-semibold text-foreground hover:text-primary transition-colors text-sm">
             Login
           </button>
         </div>
