@@ -73,14 +73,7 @@ const DestinationDetail = () => {
 
           {/* Right Sidebar - Pricing Card (sticky, ends at End of Trip) */}
           <div className="lg:col-span-1">
-            <PricingCard
-              showForm={true}
-              title={travelPackage.name}
-              price={travelPackage.price}
-              oldPrice={travelPackage.oldPrice}
-              rating={travelPackage.rating}
-              reviews={travelPackage.reviews}
-            />
+            <PricingCard showForm={true} />
           </div>
         </div>
 
