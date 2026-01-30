@@ -15,17 +15,17 @@ interface PricingCardProps {
 
 const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating, reviews }: PricingCardProps) => {
   return (
-    <div className="card-shadow bg-card p-6 sticky top-20 rounded-xl">
+    <div className="card-shadow bg-card p-6 sticky top-20 rounded-xl" style={{ borderRadius: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
       {/* Package Title */}
-      <div className="mb-4">
-        <h3 className="text-base font-medium text-foreground">{title}</h3>
-        <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-2xl font-bold text-foreground">{price}</span>
+      <div className="mb-6">
+        <h3 className="text-base font-semibold text-foreground mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>{title}</h3>
+        <div className="flex items-baseline gap-2 flex-wrap">
+          <span className="text-3xl font-bold text-foreground" style={{ fontFamily: "'Poppins', sans-serif" }}>{price}</span>
           {oldPrice && (
             <span className="text-sm text-muted-foreground line-through">{oldPrice}</span>
           )}
           {saving && (
-            <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
+            <span className="bg-sale text-white text-xs px-2 py-1 rounded font-semibold">
               {saving}
             </span>
           )}
@@ -33,7 +33,7 @@ const PricingCard = ({ showForm = false, title, price, oldPrice, saving, rating,
       </div>
 
       {/* Rating */}
-      <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-6">
+      <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-6 pb-6 border-b border-border">
         <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
         <span>{rating} · {reviews} reviews</span>
       </div>
