@@ -29,10 +29,10 @@ const TrustBadges = () => {
       {badges.map((badge, index) => (
         <div key={index} className="text-center">
           <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
-            <badge.icon className="w-12 h-12 text-gold" strokeWidth={1.5} />
+            <badge.icon className="w-12 h-12 text-yellow-500" strokeWidth={1.5} />
           </div>
-          <h4 className="font-semibold text-foreground mb-1">{badge.title}</h4>
-          <p className="text-sm text-muted-foreground">{badge.description}</p>
+          <h4 className="font-bold text-foreground mb-2" style={{ fontFamily: "'Poppins', sans-serif", fontSize: '15px' }}>{badge.title}</h4>
+          <p className="text-xs text-muted-foreground leading-relaxed">{badge.description}</p>
         </div>
       ))}
     </div>

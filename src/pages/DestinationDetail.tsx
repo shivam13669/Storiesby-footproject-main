@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import Navigation from "@/components/Navigation";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageGallery from "@/components/ImageGallery";
 import PackageInfo from "@/components/PackageInfo";
@@ -51,7 +51,7 @@ const DestinationDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Header />
 
       <main className="container mx-auto px-4 py-6">
         <ImageGallery images={galleryImages} destinationName={destination.name} />
@@ -101,7 +101,7 @@ const DestinationDetail = () => {
 
           <TrustBadges />
 
-          <PolicyAccordion title="More About This Destination" defaultOpen={true}>
+          <PolicyAccordion title="More On This Destination" defaultOpen={true}>
             <div className="flex flex-wrap gap-4">
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Tour Packages</a>
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do</a>
@@ -121,7 +121,7 @@ const DestinationDetail = () => {
             <ul className="space-y-2 list-disc pl-5">
               <li>If cancellation is made 30 days or more before the date of travel, 30.0% of total booking cost will be charged as cancellation fees.</li>
               <li>If cancellation is made within 30 days before the date of travel, total booking cost will be charged as cancellation fees.</li>
-              <li>In the event of unforeseen weather conditions, union issues, government restrictions, or any other circumstances beyond human control, certain trips or activities may be cancelled. In such cases, alternate feasible options will be provided. However, a cash refund will not be available.</li>
+              <li>In the event of unforeseen weather conditions, union issues, government restrictions, or any other circumstances beyond human control, certain trips or activities may be cancelled. In such cases, alternate feasible options will be provided. However, a cash refund will not be availa</li>
             </ul>
           </PolicyAccordion>
 
