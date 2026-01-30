@@ -116,29 +116,24 @@ const TestimonialsCarousel: React.FC = () => {
         </div>
 
         <div className="max-w-7xl mx-auto">
-          <div
-            className="grid gap-6 md:gap-6"
-            style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[0, 1, 2].map((colIndex) => (
-              <div key={colIndex} className="h-96 overflow-hidden relative group">
+              <div key={colIndex} className="h-[520px] overflow-hidden relative group">
                 {/* Top fade */}
-                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background via-background to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-[70px] bg-gradient-to-b from-background via-background to-transparent z-10 pointer-events-none" />
                 {/* Bottom fade */}
-                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background via-background to-transparent z-10 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-[70px] bg-gradient-to-t from-background via-background to-transparent z-10 pointer-events-none" />
 
                 <div
                   ref={(el) => {
                     trackRefs.current[colIndex] = el;
                   }}
-                  className="flex flex-col gap-4"
+                  className="flex flex-col gap-[18px]"
                 >
                   {[...testimonials, ...testimonials].map((testimonial, idx) => (
                     <div
                       key={`${colIndex}-${idx}`}
-                      className="bg-gradient-to-b from-white to-green-50 p-6 rounded-lg border border-green-200/30 shadow-sm flex-shrink-0"
+                      className="bg-gradient-to-b from-white to-green-50 p-[22px] rounded-[18px] border border-green-200/30 shadow-sm flex-shrink-0"
                       style={{
                         minHeight: "auto",
                       }}
