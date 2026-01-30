@@ -20,7 +20,6 @@ const Header = () => {
               type="text"
               placeholder="Search for Dubai"
               className="w-full pl-12 pr-4 py-2.5 border border-border rounded-full bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
             />
           </div>
         </div>
