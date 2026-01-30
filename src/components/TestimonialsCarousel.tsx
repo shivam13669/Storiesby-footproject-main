@@ -130,71 +130,77 @@ const TestimonialsCarousel: React.FC = () => {
                   }}
                   className="flex flex-col gap-[18px]"
                 >
-                  {[...testimonials, ...testimonials].map((testimonial, idx) => (
-                    <div
-                      key={`${colIndex}-${idx}`}
-                      className="flex-shrink-0"
-                      style={{
-                        background: "linear-gradient(180deg,#ffffff 0%,#fbfefc 100%)",
-                        padding: "22px",
-                        borderRadius: "18px",
-                        border: "1px solid rgba(34,197,94,.18)",
-                        boxShadow: "0 10px 28px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.8)",
-                      }}
-                    >
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <span style={{ fontSize: "30px", color: "#86efac", lineHeight: 1 }}>❝</span>
-                        <span style={{ color: "#facc15", fontSize: "16px", letterSpacing: "2px" }}>
-                          {Array(testimonial.rating).fill("★").join("")}
-                        </span>
-                      </div>
-
-                      <p style={{ color: "#374151", lineHeight: 1.5, marginBottom: "12px" }}>
-                        "{testimonial.quote}"
-                      </p>
-
-                      <div
-                        style={{
-                          display: "inline-block",
-                          padding: "6px 12px",
-                          borderRadius: "999px",
-                          background: "#ecfdf5",
-                          border: "1px solid #86efac",
-                          color: "#16a34a",
-                          fontSize: "12px",
-                          marginBottom: "14px",
-                        }}
-                      >
-                        {testimonial.trip}
-                      </div>
-
-                      <div className="flex items-center gap-3 mt-4">
+                  {Array(testimonials.length * 2)
+                    .fill(null)
+                    .map((_, idx) => {
+                      const offset = (colIndex * 2) % testimonials.length;
+                      const testimonial = testimonials[(idx + offset) % testimonials.length];
+                      return (
                         <div
+                          key={`${colIndex}-${idx}`}
+                          className="flex-shrink-0"
                           style={{
-                            width: "42px",
-                            height: "42px",
-                            borderRadius: "50%",
-                            background: "linear-gradient(135deg,#22c55e,#4ade80)",
-                            color: "#fff",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontWeight: "600",
+                            background: "linear-gradient(180deg,#ffffff 0%,#fbfefc 100%)",
+                            padding: "22px",
+                            borderRadius: "18px",
+                            border: "1px solid rgba(34,197,94,.18)",
+                            boxShadow: "0 10px 28px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.8)",
                           }}
                         >
-                          {getInitials(testimonial.name)}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div style={{ fontWeight: "600", color: "#111827" }}>
-                            {testimonial.name}
+                          <div className="flex items-start justify-between gap-3 mb-3">
+                            <span style={{ fontSize: "30px", color: "#86efac", lineHeight: 1 }}>❝</span>
+                            <span style={{ color: "#facc15", fontSize: "16px", letterSpacing: "2px" }}>
+                              {Array(testimonial.rating).fill("★").join("")}
+                            </span>
                           </div>
-                          <div style={{ fontSize: "12px", color: "#6b7280" }}>
-                            {testimonial.location}
+
+                          <p style={{ color: "#374151", lineHeight: 1.5, marginBottom: "12px" }}>
+                            "{testimonial.quote}"
+                          </p>
+
+                          <div
+                            style={{
+                              display: "inline-block",
+                              padding: "6px 12px",
+                              borderRadius: "999px",
+                              background: "#ecfdf5",
+                              border: "1px solid #86efac",
+                              color: "#16a34a",
+                              fontSize: "12px",
+                              marginBottom: "14px",
+                            }}
+                          >
+                            {testimonial.trip}
+                          </div>
+
+                          <div className="flex items-center gap-3 mt-4">
+                            <div
+                              style={{
+                                width: "42px",
+                                height: "42px",
+                                borderRadius: "50%",
+                                background: "linear-gradient(135deg,#22c55e,#4ade80)",
+                                color: "#fff",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                fontWeight: "600",
+                              }}
+                            >
+                              {getInitials(testimonial.name)}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div style={{ fontWeight: "600", color: "#111827" }}>
+                                {testimonial.name}
+                              </div>
+                              <div style={{ fontSize: "12px", color: "#6b7280" }}>
+                                {testimonial.location}
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                      );
+                    })}
                 </div>
               </div>
             ))}
