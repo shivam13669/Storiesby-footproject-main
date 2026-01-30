@@ -121,7 +121,7 @@ const DestinationDetail = () => {
             <ul className="space-y-2 list-disc pl-5">
               <li>If cancellation is made 30 days or more before the date of travel, 30.0% of total booking cost will be charged as cancellation fees.</li>
               <li>If cancellation is made within 30 days before the date of travel, total booking cost will be charged as cancellation fees.</li>
-              <li>In the event of unforeseen weather conditions, union issues, government restrictions, or any other circumstances beyond human control, certain trips or activities may be cancelled. In such cases, alternate feasible options will be provided. However, a cash refund will not be available.</li>
+              <li>In the event of unforeseen weather conditions, union issues, government restrictions, or any other circumstances beyond human control, certain trips or activities may be cancelled. In such cases, alternate feasible options will be provided. However, a cash refund will not be availa</li>
             </ul>
           </PolicyAccordion>
 
