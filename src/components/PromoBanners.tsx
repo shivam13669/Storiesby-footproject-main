@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import beachSunset from "@/assets/beach-sunset.jpg";
 
 const PromoBanners = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -40,7 +39,7 @@ const PromoBanners = () => {
       <div
         className="relative rounded-lg overflow-hidden h-[180px] bg-cover bg-center"
         style={{
-          backgroundImage: `url(${beachSunset})`,
+          backgroundImage: `url(https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80)`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
