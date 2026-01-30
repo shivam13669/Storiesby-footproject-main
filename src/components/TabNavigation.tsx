@@ -21,14 +21,13 @@ const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
         <button
           key={tab.id}
           onClick={() => onTabChange(tab.id)}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold transition-all ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all ${
             activeTab === tab.id
               ? "tab-active"
               : "tab-inactive"
           }`}
-          style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          {tab.icon && <tab.icon className="w-4 h-4" strokeWidth={2} />}
+          {tab.icon && <tab.icon className="w-4 h-4" />}
           {tab.label}
         </button>
       ))}

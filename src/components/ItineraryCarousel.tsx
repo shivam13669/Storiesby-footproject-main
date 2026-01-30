@@ -35,22 +35,22 @@ const ItineraryCarousel = ({ images, days, location, totalImages }: ItineraryCar
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 flex items-center justify-center hover:bg-background transition-colors"
       >
-        <ChevronLeft className="w-5 h-5 text-foreground" strokeWidth={2} />
+        <ChevronLeft className="w-5 h-5 text-foreground" />
       </button>
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 flex items-center justify-center hover:bg-background transition-colors"
       >
-        <ChevronRight className="w-5 h-5 text-foreground" strokeWidth={2} />
+        <ChevronRight className="w-5 h-5 text-foreground" />
       </button>
 
       {/* Location info */}
       <div className="absolute bottom-4 left-4">
         <div className="flex items-end gap-2">
-          <span className="text-5xl font-bold text-primary-foreground" style={{ fontFamily: "'Poppins', sans-serif" }}>{days}</span>
+          <span className="text-5xl font-bold text-primary-foreground">{days}</span>
           <div className="mb-1">
             <span className="text-primary-foreground/80 text-sm">Days in</span>
-            <h3 className="text-2xl font-bold text-primary-foreground" style={{ fontFamily: "'Poppins', sans-serif" }}>{location}</h3>
+            <h3 className="text-2xl font-bold text-primary-foreground">{location}</h3>
           </div>
         </div>
       </div>

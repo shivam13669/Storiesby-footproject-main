@@ -19,6 +19,7 @@ import {
   getDestinationBySlug,
   getPackageBySlug,
 } from "@/data/destinations";
+import "@/styles/destination-detail.css";
 
 const DestinationDetail = () => {
   const { slug, packageSlug } = useParams<{ slug: string; packageSlug?: string }>();
@@ -50,7 +51,7 @@ const DestinationDetail = () => {
   const dayCount = getDayCount(travelPackage);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="destination-detail-page min-h-screen bg-background">
       <Header />
 
       <main className="container mx-auto px-4 py-6">

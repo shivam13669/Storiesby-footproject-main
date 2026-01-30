@@ -8,7 +8,7 @@ interface PackageInfoProps {
 const PackageInfo = ({ duration, title }: PackageInfoProps) => {
   return (
     <div className="mb-8">
-      <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <h1 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
         {title}
       </h1>
 

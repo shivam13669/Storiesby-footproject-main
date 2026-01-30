@@ -28,18 +28,18 @@ const exclusions = [
 const PackageInclusions = () => {
   return (
     <div className="border border-border rounded-lg p-6 mb-6">
-      <h2 className="text-xl font-bold text-foreground mb-6 pb-4 border-b border-border" style={{ fontFamily: "'Poppins', sans-serif" }}>
+      <h2 className="text-xl font-semibold text-foreground mb-6 pb-4 border-b border-border">
         What's inside the package?
       </h2>
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Inclusions */}
         <div>
-          <h3 className="font-bold text-foreground mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>Inclusions</h3>
+          <h3 className="font-semibold text-foreground mb-4">Inclusions</h3>
           <ul className="space-y-3">
             {inclusions.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                <Check className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">{item}</span>
               </li>
             ))}
@@ -48,11 +48,11 @@ const PackageInclusions = () => {
 
         {/* Exclusions */}
         <div>
-          <h3 className="font-bold text-foreground mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>Exclusions</h3>
+          <h3 className="font-semibold text-foreground mb-4">Exclusions</h3>
           <ul className="space-y-3">
             {exclusions.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
-                <X className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" strokeWidth={2} />
+                <X className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">{item}</span>
               </li>
             ))}
