@@ -111,11 +111,11 @@ const DestinationDetail = () => {
 
           <TrustBadges />
 
-          <PolicyAccordion title="More On This Destination" defaultOpen={true}>
+          <PolicyAccordion title={`More On ${destination.name} Tourism`} defaultOpen={true}>
             <div className="flex flex-wrap gap-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Tour Packages</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Places to visit</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">{destination.name} Tour Packages</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors border-r border-border pr-4">Things to do in {destination.name}</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Places to visit in {destination.name}</a>
             </div>
           </PolicyAccordion>
 
