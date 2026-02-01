@@ -206,7 +206,7 @@ const DestinationsPage = () => {
                   </div>
                 )}
 
-                <CardContent className="p-4 flex-1 flex flex-col">
+                <CardContent className="p-3 flex-1 flex flex-col">
                   <h3 className="text-base font-semibold leading-snug line-clamp-2">{pkg.name}</h3>
 
                   <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
