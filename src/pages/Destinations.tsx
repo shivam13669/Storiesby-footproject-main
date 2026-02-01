@@ -177,26 +177,30 @@ const DestinationsPage = () => {
       <Navigation />
 
       <main className="pb-20">
-        {/* Mobile Filter and Sort Buttons - Sticky */}
-        <div className="sticky top-16 z-30 bg-white border-b border-gray-200 px-4 py-3 flex gap-3 lg:hidden">
-          <Button
-            variant="outline"
-            size="sm"
-            className="flex-1 gap-2"
-            onClick={() => setShowMobileSort(true)}
-          >
-            <SortAsc className="h-4 w-4" />
-            <span>Sort</span>
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="flex-1 gap-2"
-            onClick={() => setShowMobileFilter(true)}
-          >
-            <Filter className="h-4 w-4" />
-            <span>Filter</span>
-          </Button>
+        {/* Mobile Filter and Sort Buttons - Sticky Unified Container */}
+        <div className="sticky top-16 z-30 bg-white border-b border-gray-200 lg:hidden">
+          <div className="flex h-14">
+            {/* Sort Button */}
+            <button
+              onClick={() => setShowMobileSort(true)}
+              className="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <SortAsc className="h-4 w-4" />
+              <span>Sort</span>
+            </button>
+
+            {/* Divider */}
+            <div className="w-px bg-gray-200"></div>
+
+            {/* Filter Button */}
+            <button
+              onClick={() => setShowMobileFilter(true)}
+              className="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <Filter className="h-4 w-4" />
+              <span>Filter</span>
+            </button>
+          </div>
         </div>
 
         {/* Destination Selector */}
