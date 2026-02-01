@@ -206,61 +206,50 @@ const DestinationsPage = () => {
                   </div>
                 )}
 
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                        {pkg.duration} <span className="text-lg">🏍️</span>
-                      </p>
-                      <h3 className="mt-1 text-lg font-semibold leading-snug">{pkg.name}</h3>
-                    </div>
-                    <div className="hidden sm:flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-700">
-                      <Star className="h-3.5 w-3.5 fill-current" />
-                      <span>{pkg.rating.toFixed ? pkg.rating.toFixed(1) : pkg.rating}</span>
-                      <span className="text-muted-foreground">({pkg.reviews})</span>
-                    </div>
+                <CardContent className="p-4 flex-1 flex flex-col">
+                  <h3 className="text-base font-semibold leading-snug line-clamp-2">{pkg.name}</h3>
+
+                  <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
+                    <MapPin className="h-3.5 w-3.5" /> {pkg.destinationRegion}
                   </div>
 
-                  <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="h-4 w-4" /> {pkg.destinationRegion}
+                  <p className="mt-2 text-xs text-muted-foreground line-clamp-2">{pkg.description}</p>
+
+                  <div className="mt-3 flex flex-wrap gap-1">
+                    {['3D', '4D', '5D'].slice(0, 3).map((day, idx) => (
+                      <span key={idx} className="text-[10px] px-2 py-1 rounded bg-gray-100 text-gray-700">
+                        {day} {pkg.destinationRegion?.split(' ')[0]}
+                      </span>
+                    ))}
                   </div>
 
-                  <p className="mt-3 text-sm text-muted-foreground">{pkg.description}</p>
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <span className="text-lg font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
+                    {pkg.oldPrice && (
+                      <span className="text-xs text-muted-foreground line-through">{formatPrice(parsePrice(pkg.oldPrice) ?? 0, { fromCurrency: "INR" })}</span>
+                    )}
+                    {pkg.badge && (
+                      <span className="ml-auto text-[10px] font-semibold text-emerald-700">{pkg.badge}</span>
+                    )}
+                  </div>
 
-                  <div className="mt-5 flex flex-wrap items-baseline justify-between gap-3">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-xl font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
-                      {pkg.oldPrice && (
-                        <span className="text-sm text-muted-foreground line-through">{formatPrice(parsePrice(pkg.oldPrice) ?? 0, { fromCurrency: "INR" })}</span>
-                      )}
-                      {pkg.badge && (
-                        <span className="rounded-full bg-emerald-100 px-2 py-1 text-[11px] font-semibold text-emerald-700">{pkg.badge}</span>
-                      )}
-                    </div>
-
-                    <div className="flex w-full gap-2 sm:w-auto">
-                      <Button
-                        asChild
-                        variant="secondary"
-                        className="flex-1 sm:flex-none"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        <Link
-                          to={`/destinations/${pkg.destinationSlug}/${pkg.slug}`}
-                          onClick={(event) => event.stopPropagation()}
-                        >
-                          View itinerary
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="flex-1 sm:flex-none"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        Request callback
-                      </Button>
-                    </div>
+                  <div className="mt-4 flex gap-2">
+                    <Button
+                      asChild
+                      className="flex-1 h-9 text-xs rounded-full"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      <Link to={`/destinations/${pkg.destinationSlug}/${pkg.slug}`}>
+                        <span className="flex items-center gap-1"><Bike className="h-3.5 w-3.5" /></span>
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="default"
+                      className="flex-1 h-9 text-xs rounded-full"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      Request Callback
+                    </Button>
                   </div>
                   </CardContent>
                   </Card>
