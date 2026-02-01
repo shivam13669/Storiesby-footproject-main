@@ -223,33 +223,40 @@ const DestinationsPage = () => {
                     ))}
                   </div>
 
-                  <div className="mt-3 flex items-baseline gap-2">
-                    <span className="text-base font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
-                    {pkg.oldPrice && (
-                      <span className="text-[10px] text-muted-foreground line-through">{formatPrice(parsePrice(pkg.oldPrice) ?? 0, { fromCurrency: "INR" })}</span>
-                    )}
-                    {pkg.badge && (
-                      <span className="ml-auto text-[9px] font-semibold text-emerald-700">{pkg.badge}</span>
-                    )}
-                  </div>
+                  <div className="mt-5 flex flex-wrap items-baseline justify-between gap-3">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-xl font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
+                      {pkg.oldPrice && (
+                        <span className="text-sm text-muted-foreground line-through">{formatPrice(parsePrice(pkg.oldPrice) ?? 0, { fromCurrency: "INR" })}</span>
+                      )}
+                      {pkg.badge && (
+                        <span className="rounded-full bg-emerald-100 px-2 py-1 text-[11px] font-semibold text-emerald-700">{pkg.badge}</span>
+                      )}
+                    </div>
 
-                  <div className="mt-3 flex gap-2">
-                    <Button
-                      asChild
-                      className="flex-1 h-8 text-[11px] rounded-full"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      <Link to={`/destinations/${pkg.destinationSlug}/${pkg.slug}`}>
-                        <span className="flex items-center gap-1"><Bike className="h-3 w-3" /></span>
-                      </Link>
-                    </Button>
-                    <Button
-                      variant="default"
-                      className="flex-1 h-8 text-[11px] rounded-full"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      Request Callback
-                    </Button>
+                    <div className="flex w-full gap-2 sm:w-auto">
+                      <Button
+                        asChild
+                        variant="default"
+                        className="flex-1 sm:flex-none bg-orange-500 hover:bg-orange-600"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        <Link
+                          to={`/destinations/${pkg.destinationSlug}/${pkg.slug}`}
+                          onClick={(event) => event.stopPropagation()}
+                        >
+                          View itinerary
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="flex-1 sm:flex-none"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        Request callback
+                      </Button>
+                    </div>
                   </div>
                   </CardContent>
                   </Card>
