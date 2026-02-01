@@ -177,48 +177,53 @@ const DestinationsPage = () => {
                         handleOpenPackage(pkg.slug, pkg.destinationSlug);
                       }
                     }}
-                    className="group flex h-full cursor-pointer flex-col overflow-visible border border-border/60 bg-card/90 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
                 {pkg.image && (
-                  <div className="relative h-64 w-full overflow-hidden">
+                  <div className="relative h-80 w-full overflow-hidden">
                     <img
                       src={pkg.image}
                       alt={pkg.name}
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground shadow">
+                    <span className="absolute left-4 bottom-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground shadow-sm">
                       <Calendar className="h-3.5 w-3.5" /> {pkg.duration}
                     </span>
-                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-semibold text-white shadow">
+                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-semibold text-white shadow-sm">
                       <Star className="h-3.5 w-3.5 fill-white" /> {pkg.rating.toFixed ? pkg.rating.toFixed(1) : pkg.rating}
                       <span className="text-white/80">({pkg.reviews})</span>
                     </span>
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1">
+                      {[...Array(3)].map((_, i) => (
+                        <button
+                          key={i}
+                          className={`h-1.5 rounded-full transition-all ${i === 0 ? 'bg-white w-5' : 'bg-white/50 w-1.5'}`}
+                          aria-label={`Slide ${i + 1}`}
+                        />
+                      ))}
+                    </div>
                   </div>
                 )}
 
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                        {pkg.duration} <span className="text-lg">🏍️</span>
-                      </p>
-                      <h3 className="mt-1 text-lg font-semibold leading-snug">{pkg.name}</h3>
-                    </div>
-                    <div className="hidden sm:flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-700">
-                      <Star className="h-3.5 w-3.5 fill-current" />
-                      <span>{pkg.rating.toFixed ? pkg.rating.toFixed(1) : pkg.rating}</span>
-                      <span className="text-muted-foreground">({pkg.reviews})</span>
-                    </div>
-                  </div>
+                <CardContent className="p-4 flex-1 flex flex-col">
+                  <h3 className="text-base font-semibold leading-snug line-clamp-2">{pkg.name}</h3>
 
                   <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                     <MapPin className="h-4 w-4" /> {pkg.destinationRegion}
                   </div>
 
-                  <p className="mt-3 text-sm text-muted-foreground">{pkg.description}</p>
+                  <p className="mt-3 text-sm text-muted-foreground line-clamp-2">{pkg.description}</p>
 
-                  <div className="mt-5 flex flex-wrap items-baseline justify-between gap-3">
+                  <div className="mt-3 flex flex-wrap gap-1">
+                    {['3D', '4D', '5D'].slice(0, 3).map((day, idx) => (
+                      <span key={idx} className="text-[10px] px-2 py-1 rounded bg-gray-100 text-gray-700">
+                        {day} {pkg.destinationRegion?.split(' ')[0]}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-5">
                     <div className="flex items-baseline gap-2">
                       <span className="text-xl font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
                       {pkg.oldPrice && (
@@ -229,11 +234,11 @@ const DestinationsPage = () => {
                       )}
                     </div>
 
-                    <div className="flex w-full gap-2 sm:w-auto">
+                    <div className="mt-3 flex w-full gap-2">
                       <Button
                         asChild
-                        variant="secondary"
-                        className="flex-1 sm:flex-none"
+                        variant="default"
+                        className="flex-1 bg-orange-500 hover:bg-orange-600"
                         onClick={(event) => event.stopPropagation()}
                       >
                         <Link
@@ -246,7 +251,7 @@ const DestinationsPage = () => {
                       </Button>
                       <Button
                         variant="outline"
-                        className="flex-1 sm:flex-none"
+                        className="flex-1"
                         onClick={(event) => event.stopPropagation()}
                       >
                         Request callback
