@@ -237,6 +237,28 @@ const DestinationsPage = () => {
 
             {/* Packages grid */}
             <div className="flex-1 min-w-0">
+              {/* Mobile Filter and Sort Buttons */}
+              <div className="flex gap-3 mb-4 lg:hidden">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 gap-2"
+                  onClick={() => setShowMobileFilter(true)}
+                >
+                  <Filter className="h-4 w-4" />
+                  <span>Filter</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 gap-2"
+                  onClick={() => setShowMobileSort(true)}
+                >
+                  <SortAsc className="h-4 w-4" />
+                  <span>Sort</span>
+                </Button>
+              </div>
+
               <p className="text-sm text-muted-foreground mb-4">Showing {displayPackages.length} destination{displayPackages.length !== 1 ? 's' : ''}</p>
               <div className="grid gap-6 sm:grid-cols-2">
                 {displayPackages.map((pkg) => (
