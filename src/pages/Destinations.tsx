@@ -247,11 +247,9 @@ const DestinationsPage = () => {
               );
             })}
             </div>
-            {canScrollRight && (
-              <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
-                ← Scroll to view more →
-              </div>
-            )}
+            <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
+              ← Scroll to view more →
+            </div>
           </div>
         </section>
 
