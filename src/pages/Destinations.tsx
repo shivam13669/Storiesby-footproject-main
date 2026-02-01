@@ -179,7 +179,7 @@ const DestinationsPage = () => {
       <main className="pb-20">
         {/* Mobile Filter and Sort Buttons - Sticky Unified Container */}
         <div className="sticky top-16 z-30 bg-white border-b border-gray-200 lg:hidden">
-          <div className="flex h-14">
+          <div className="flex h-12">
             {/* Sort Button */}
             <button
               onClick={() => setShowMobileSort(true)}
@@ -190,7 +190,7 @@ const DestinationsPage = () => {
             </button>
 
             {/* Divider */}
-            <div className="w-px bg-gray-200"></div>
+            <div className="w-px bg-gray-100"></div>
 
             {/* Filter Button */}
             <button
@@ -204,7 +204,7 @@ const DestinationsPage = () => {
         </div>
 
         {/* Destination Selector */}
-        <section className="pt-24 mb-12">
+        <section className="pt-16 lg:pt-24 mb-8 lg:mb-12">
           <div className="container mx-auto px-4">
             <div
               ref={destinationScrollRef}
@@ -247,11 +247,9 @@ const DestinationsPage = () => {
               );
             })}
             </div>
-            {canScrollRight && (
-              <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
-                ← Scroll to view more →
-              </div>
-            )}
+            <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
+              ← Scroll to view more →
+            </div>
           </div>
         </section>
 
@@ -265,7 +263,7 @@ const DestinationsPage = () => {
 
             {/* Packages grid */}
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-muted-foreground mb-4">Showing {displayPackages.length} destination{displayPackages.length !== 1 ? 's' : ''}</p>
+              <p className="text-sm text-muted-foreground mb-4">Showing {displayPackages.length} package{displayPackages.length !== 1 ? 's' : ''}</p>
               <div className="grid gap-6 sm:grid-cols-2">
                 {displayPackages.map((pkg) => (
                   <Card
