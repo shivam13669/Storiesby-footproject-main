@@ -236,16 +236,16 @@ const DestinationsPage = () => {
                   <div className="mt-3 flex gap-2">
                     <Button
                       asChild
-                      className="flex-1 h-9 text-xs rounded-full"
+                      className="flex-1 h-8 text-[11px] rounded-full"
                       onClick={(event) => event.stopPropagation()}
                     >
                       <Link to={`/destinations/${pkg.destinationSlug}/${pkg.slug}`}>
-                        <span className="flex items-center gap-1"><Bike className="h-3.5 w-3.5" /></span>
+                        <span className="flex items-center gap-1"><Bike className="h-3 w-3" /></span>
                       </Link>
                     </Button>
                     <Button
                       variant="default"
-                      className="flex-1 h-9 text-xs rounded-full"
+                      className="flex-1 h-8 text-[11px] rounded-full"
                       onClick={(event) => event.stopPropagation()}
                     >
                       Request Callback
