@@ -180,20 +180,29 @@ const DestinationsPage = () => {
                     className="group flex h-full cursor-pointer flex-col overflow-visible border border-border/40 bg-card shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
                 {pkg.image && (
-                  <div className="relative h-64 w-full overflow-hidden">
+                  <div className="relative h-56 w-full overflow-hidden rounded-t-2xl">
                     <img
                       src={pkg.image}
                       alt={pkg.name}
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground shadow">
+                    <span className="absolute left-4 bottom-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground shadow-sm">
                       <Calendar className="h-3.5 w-3.5" /> {pkg.duration}
                     </span>
-                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-semibold text-white shadow">
+                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-semibold text-white shadow-sm">
                       <Star className="h-3.5 w-3.5 fill-white" /> {pkg.rating.toFixed ? pkg.rating.toFixed(1) : pkg.rating}
                       <span className="text-white/80">({pkg.reviews})</span>
                     </span>
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1">
+                      {[...Array(3)].map((_, i) => (
+                        <button
+                          key={i}
+                          className={`h-1.5 rounded-full transition-all ${i === 0 ? 'bg-white w-5' : 'bg-white/50 w-1.5'}`}
+                          aria-label={`Slide ${i + 1}`}
+                        />
+                      ))}
+                    </div>
                   </div>
                 )}
 
