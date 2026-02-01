@@ -178,7 +178,7 @@ const DestinationsPage = () => {
 
       <main className="pb-20">
         {/* Mobile Filter and Sort Buttons - Sticky */}
-        <div className="sticky top-24 z-30 bg-white border-b border-gray-200 px-4 py-3 flex gap-3 lg:hidden">
+        <div className="sticky top-16 z-30 bg-white border-b border-gray-200 px-4 py-3 flex gap-3 lg:hidden">
           <Button
             variant="outline"
             size="sm"
