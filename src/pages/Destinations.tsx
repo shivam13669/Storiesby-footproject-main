@@ -180,7 +180,7 @@ const DestinationsPage = () => {
                     className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/40 bg-card shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
                 {pkg.image && (
-                  <div className="relative h-56 w-full overflow-hidden rounded-t-2xl">
+                  <div className="relative h-56 w-full overflow-hidden">
                     <img
                       src={pkg.image}
                       alt={pkg.name}
