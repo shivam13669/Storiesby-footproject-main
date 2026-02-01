@@ -4,12 +4,11 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
 const images = [
-  { src: "https://images.unsplash.com/photo-1762706372855-34d5efc09ef5?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Adventure 1" },
-  { src: "https://images.unsplash.com/photo-1762701254454-889d0cb98c30?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Adventure 2" },
-  { src: "https://images.unsplash.com/photo-1762696782497-2b39df0f4523?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Adventure 3" },
-  { src: "https://images.unsplash.com/photo-1762696796348-d6f22d721657?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Adventure 4" },
-  { src: "https://images.unsplash.com/photo-1762539609832-edc710faa692?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Adventure 5" },
-  { src: "https://images.unsplash.com/photo-1762698325112-16b13f4f8732?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Adventure 6" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F9f3f8b596da24833822556c18af6a74a?format=webp", alt: "Adventure 1" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F5eed1809b8994a098376feab82d06fef?format=webp", alt: "Adventure 2" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F0a4b1da12f8a4689863dc1dc542a7673?format=webp", alt: "Adventure 3" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F8a6ac40406994fb59e3150c5cef9ee5b?format=webp", alt: "Adventure 4" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2Fa4d4ea6f923843ce9c18b3391c014b29?format=webp", alt: "Adventure 5" },
 ];
 
 const TRANSITION_MS = 1000;
