@@ -178,8 +178,15 @@ const DestinationsPage = () => {
 
       <main className="pt-24 pb-20">
         {/* Destination Selector */}
-        <section className="container mx-auto px-4 mb-12 overflow-visible">
-          <div className="flex flex-nowrap gap-3 overflow-visible pb-2 py-2 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:py-0">
+        <section className="container mx-auto px-4 mb-12">
+          <div
+            ref={destinationScrollRef}
+            className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden pb-2 py-2 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:py-0 scrollbar-hide"
+            style={{
+              scrollBehavior: 'smooth',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
             <button
               onClick={() => setActiveSlug("all")}
               aria-pressed={activeSlug === "all"}
@@ -213,6 +220,11 @@ const DestinationsPage = () => {
               );
             })}
           </div>
+          {canScrollRight && (
+            <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
+              ← Scroll to view more →
+            </div>
+          )}
         </section>
 
         {/* Filters and Packages Container */}
