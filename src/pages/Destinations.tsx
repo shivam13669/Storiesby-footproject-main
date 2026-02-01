@@ -223,7 +223,7 @@ const DestinationsPage = () => {
                     ))}
                   </div>
 
-                  <div className="mt-5 flex flex-wrap items-baseline justify-between gap-3">
+                  <div className="mt-5">
                     <div className="flex items-baseline gap-2">
                       <span className="text-xl font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
                       {pkg.oldPrice && (
@@ -234,11 +234,11 @@ const DestinationsPage = () => {
                       )}
                     </div>
 
-                    <div className="flex w-full gap-2 sm:w-auto">
+                    <div className="mt-3 flex w-full gap-2">
                       <Button
                         asChild
                         variant="default"
-                        className="flex-1 sm:flex-none bg-orange-500 hover:bg-orange-600"
+                        className="flex-1 bg-orange-500 hover:bg-orange-600"
                         onClick={(event) => event.stopPropagation()}
                       >
                         <Link
@@ -251,7 +251,7 @@ const DestinationsPage = () => {
                       </Button>
                       <Button
                         variant="outline"
-                        className="flex-1 sm:flex-none"
+                        className="flex-1"
                         onClick={(event) => event.stopPropagation()}
                       >
                         Request callback
