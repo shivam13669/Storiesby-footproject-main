@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 
 const images = [
   { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F9f3f8b596da24833822556c18af6a74a?format=webp", alt: "Adventure 1" },
-  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F5eed1809b8994a098376feab82d06fef?format=webp", alt: "Adventure 2" },
-  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F0a4b1da12f8a4689863dc1dc542a7673?format=webp", alt: "Adventure 3" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F0a4b1da12f8a4689863dc1dc542a7673?format=webp", alt: "Adventure 2" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2Fad2d7d0632944f2a99e3df5568d6e82b%2F0a7a70bdabaa42b59defe24592c1de02?format=webp", alt: "Adventure 3" },
   { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2F8a6ac40406994fb59e3150c5cef9ee5b?format=webp", alt: "Adventure 4" },
   { src: "https://cdn.builder.io/api/v1/image/assets%2F00925d433c464f42bfbd8fae9c252b3b%2Fa4d4ea6f923843ce9c18b3391c014b29?format=webp", alt: "Adventure 5" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2Fad2d7d0632944f2a99e3df5568d6e82b%2F2431a4d47d524b5ca0af185ccfdc61b1?format=webp", alt: "Adventure 6" },
+  { src: "https://cdn.builder.io/api/v1/image/assets%2Fad2d7d0632944f2a99e3df5568d6e82b%2Fcd029c6f59694c71adb520aeae55044f?format=webp", alt: "Adventure 7" },
 ];
 
 const TRANSITION_MS = 1000;
