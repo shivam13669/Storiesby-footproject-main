@@ -176,17 +176,44 @@ const DestinationsPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
 
-      <main className="pt-24 pb-20">
+      <main className="pb-20">
+        {/* Mobile Filter and Sort Buttons - Sticky Unified Container */}
+        <div className="sticky top-16 z-30 bg-white border-b border-gray-200 lg:hidden">
+          <div className="flex h-14">
+            {/* Sort Button */}
+            <button
+              onClick={() => setShowMobileSort(true)}
+              className="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <SortAsc className="h-4 w-4" />
+              <span>Sort</span>
+            </button>
+
+            {/* Divider */}
+            <div className="w-px bg-gray-200"></div>
+
+            {/* Filter Button */}
+            <button
+              onClick={() => setShowMobileFilter(true)}
+              className="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <Filter className="h-4 w-4" />
+              <span>Filter</span>
+            </button>
+          </div>
+        </div>
+
         {/* Destination Selector */}
-        <section className="container mx-auto px-4 mb-12">
-          <div
-            ref={destinationScrollRef}
-            className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden pb-2 py-2 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:py-0 scrollbar-hide"
-            style={{
-              scrollBehavior: 'smooth',
-              WebkitOverflowScrolling: 'touch',
-            }}
-          >
+        <section className="pt-24 mb-12">
+          <div className="container mx-auto px-4">
+            <div
+              ref={destinationScrollRef}
+              className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden pb-2 py-2 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide"
+              style={{
+                scrollBehavior: 'smooth',
+                WebkitOverflowScrolling: 'touch',
+              }}
+            >
             <button
               onClick={() => setActiveSlug("all")}
               aria-pressed={activeSlug === "all"}
@@ -219,12 +246,13 @@ const DestinationsPage = () => {
                 </button>
               );
             })}
-          </div>
-          {canScrollRight && (
-            <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
-              ← Scroll to view more →
             </div>
-          )}
+            {canScrollRight && (
+              <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
+                ← Scroll to view more →
+              </div>
+            )}
+          </div>
         </section>
 
         {/* Filters and Packages Container */}
@@ -237,28 +265,6 @@ const DestinationsPage = () => {
 
             {/* Packages grid */}
             <div className="flex-1 min-w-0">
-              {/* Mobile Filter and Sort Buttons */}
-              <div className="flex gap-3 mb-4 lg:hidden">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 gap-2"
-                  onClick={() => setShowMobileFilter(true)}
-                >
-                  <Filter className="h-4 w-4" />
-                  <span>Filter</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 gap-2"
-                  onClick={() => setShowMobileSort(true)}
-                >
-                  <SortAsc className="h-4 w-4" />
-                  <span>Sort</span>
-                </Button>
-              </div>
-
               <p className="text-sm text-muted-foreground mb-4">Showing {displayPackages.length} destination{displayPackages.length !== 1 ? 's' : ''}</p>
               <div className="grid gap-6 sm:grid-cols-2">
                 {displayPackages.map((pkg) => (
