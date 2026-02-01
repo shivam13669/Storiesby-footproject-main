@@ -1,13 +1,15 @@
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { destinationIconMap, destinations } from "@/data/destinations";
-import { ArrowRight, Bike, Calendar, MapPin, MapPinned, Star } from "lucide-react";
+import { ArrowRight, Bike, Calendar, MapPin, MapPinned, Star, Filter, SortAsc } from "lucide-react";
 import { useCurrency, parsePrice } from "@/context/CurrencyContext";
 import { FilterSidebar, type FilterState } from "@/components/FilterSidebar";
+import { MobileFilterDrawer } from "@/components/MobileFilterDrawer";
+import { MobileSortSheet } from "@/components/MobileSortSheet";
 
 const DestinationsPage = () => {
   const location = useLocation();
