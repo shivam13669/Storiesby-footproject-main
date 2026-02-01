@@ -207,15 +207,15 @@ const DestinationsPage = () => {
                 )}
 
                 <CardContent className="p-3 flex-1 flex flex-col">
-                  <h3 className="text-base font-semibold leading-snug line-clamp-2">{pkg.name}</h3>
+                  <h3 className="text-sm font-semibold leading-tight line-clamp-2">{pkg.name}</h3>
 
-                  <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-                    <MapPin className="h-3.5 w-3.5" /> {pkg.destinationRegion}
+                  <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+                    <MapPin className="h-3 w-3" /> {pkg.destinationRegion}
                   </div>
 
-                  <p className="mt-2 text-xs text-muted-foreground line-clamp-2">{pkg.description}</p>
+                  <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{pkg.description}</p>
 
-                  <div className="mt-3 flex flex-wrap gap-1">
+                  <div className="mt-2 flex flex-wrap gap-1">
                     {['3D', '4D', '5D'].slice(0, 3).map((day, idx) => (
                       <span key={idx} className="text-[10px] px-2 py-1 rounded bg-gray-100 text-gray-700">
                         {day} {pkg.destinationRegion?.split(' ')[0]}
