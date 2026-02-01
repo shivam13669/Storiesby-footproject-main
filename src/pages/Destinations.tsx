@@ -223,17 +223,17 @@ const DestinationsPage = () => {
                     ))}
                   </div>
 
-                  <div className="mt-4 flex items-baseline gap-2">
-                    <span className="text-lg font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
+                  <div className="mt-3 flex items-baseline gap-2">
+                    <span className="text-base font-semibold text-foreground">{formatPrice(parsePrice(pkg.price) ?? 0, { fromCurrency: "INR" })}</span>
                     {pkg.oldPrice && (
-                      <span className="text-xs text-muted-foreground line-through">{formatPrice(parsePrice(pkg.oldPrice) ?? 0, { fromCurrency: "INR" })}</span>
+                      <span className="text-[10px] text-muted-foreground line-through">{formatPrice(parsePrice(pkg.oldPrice) ?? 0, { fromCurrency: "INR" })}</span>
                     )}
                     {pkg.badge && (
-                      <span className="ml-auto text-[10px] font-semibold text-emerald-700">{pkg.badge}</span>
+                      <span className="ml-auto text-[9px] font-semibold text-emerald-700">{pkg.badge}</span>
                     )}
                   </div>
 
-                  <div className="mt-4 flex gap-2">
+                  <div className="mt-3 flex gap-2">
                     <Button
                       asChild
                       className="flex-1 h-9 text-xs rounded-full"
