@@ -85,7 +85,7 @@ const DestinationsPage = () => {
     destinationRegion: activeDestination.region
   }));
 
-  const displayPackages = useMemo(() => {
+  const filteredPackages = useMemo(() => {
     return basePackages.filter(pkg => {
       // Search filter
       const searchLower = filters.search.toLowerCase();
@@ -132,6 +132,41 @@ const DestinationsPage = () => {
       return true;
     });
   }, [basePackages, filters]);
+
+  const displayPackages = useMemo(() => {
+    let sorted = [...filteredPackages];
+
+    switch (sortBy) {
+      case "price-low":
+        sorted.sort((a, b) => {
+          const priceA = parseInt(a.price.replace(/[₹,]/g, ""));
+          const priceB = parseInt(b.price.replace(/[₹,]/g, ""));
+          return priceA - priceB;
+        });
+        break;
+      case "price-high":
+        sorted.sort((a, b) => {
+          const priceA = parseInt(a.price.replace(/[₹,]/g, ""));
+          const priceB = parseInt(b.price.replace(/[₹,]/g, ""));
+          return priceB - priceA;
+        });
+        break;
+      case "rating":
+        sorted.sort((a, b) => b.rating - a.rating);
+        break;
+      case "newest":
+        sorted.sort((a, b) => {
+          const aDate = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const bDate = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return bDate - aDate;
+        });
+        break;
+      default: // relevance
+        break;
+    }
+
+    return sorted;
+  }, [filteredPackages, sortBy]);
 
   const handleOpenPackage = (packageSlug: string, destinationSlug: string) => {
     navigate(`/destinations/${destinationSlug}/${packageSlug}`);
