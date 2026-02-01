@@ -1,18 +1,25 @@
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { destinationIconMap, destinations } from "@/data/destinations";
-import { ArrowRight, Bike, Calendar, MapPin, MapPinned, Star } from "lucide-react";
+import { ArrowRight, Bike, Calendar, MapPin, MapPinned, Star, Filter, SortAsc } from "lucide-react";
 import { useCurrency, parsePrice } from "@/context/CurrencyContext";
 import { FilterSidebar, type FilterState } from "@/components/FilterSidebar";
+import { MobileFilterDrawer } from "@/components/MobileFilterDrawer";
+import { MobileSortSheet } from "@/components/MobileSortSheet";
 
 const DestinationsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { formatPrice } = useCurrency();
+  const destinationScrollRef = useRef<HTMLDivElement>(null);
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
+  const [showMobileSort, setShowMobileSort] = useState(false);
+  const [sortBy, setSortBy] = useState<string>("relevance");
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   useLayoutEffect(() => {
     if (location.pathname === "/destinations") {
@@ -38,6 +45,27 @@ const DestinationsPage = () => {
     rating: "All",
   });
 
+  // Check if destination scroll container can scroll right
+  const checkScroll = () => {
+    if (destinationScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = destinationScrollRef.current;
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10);
+    }
+  };
+
+  useLayoutEffect(() => {
+    checkScroll();
+    const container = destinationScrollRef.current;
+    if (container) {
+      container.addEventListener('scroll', checkScroll);
+      window.addEventListener('resize', checkScroll);
+      return () => {
+        container.removeEventListener('scroll', checkScroll);
+        window.removeEventListener('resize', checkScroll);
+      };
+    }
+  }, []);
+
   const isShowingAll = activeSlug === "all";
   const activeDestination = useMemo(
     () => destinations.find((d) => d.slug === activeSlug) ?? destinations[0],
@@ -57,7 +85,7 @@ const DestinationsPage = () => {
     destinationRegion: activeDestination.region
   }));
 
-  const displayPackages = useMemo(() => {
+  const filteredPackages = useMemo(() => {
     return basePackages.filter(pkg => {
       // Search filter
       const searchLower = filters.search.toLowerCase();
@@ -105,6 +133,41 @@ const DestinationsPage = () => {
     });
   }, [basePackages, filters]);
 
+  const displayPackages = useMemo(() => {
+    let sorted = [...filteredPackages];
+
+    switch (sortBy) {
+      case "price-low":
+        sorted.sort((a, b) => {
+          const priceA = parseInt(a.price.replace(/[₹,]/g, ""));
+          const priceB = parseInt(b.price.replace(/[₹,]/g, ""));
+          return priceA - priceB;
+        });
+        break;
+      case "price-high":
+        sorted.sort((a, b) => {
+          const priceA = parseInt(a.price.replace(/[₹,]/g, ""));
+          const priceB = parseInt(b.price.replace(/[₹,]/g, ""));
+          return priceB - priceA;
+        });
+        break;
+      case "rating":
+        sorted.sort((a, b) => b.rating - a.rating);
+        break;
+      case "newest":
+        sorted.sort((a, b) => {
+          const aDate = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const bDate = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return bDate - aDate;
+        });
+        break;
+      default: // relevance
+        break;
+    }
+
+    return sorted;
+  }, [filteredPackages, sortBy]);
+
   const handleOpenPackage = (packageSlug: string, destinationSlug: string) => {
     navigate(`/destinations/${destinationSlug}/${packageSlug}`);
   };
@@ -115,8 +178,15 @@ const DestinationsPage = () => {
 
       <main className="pt-24 pb-20">
         {/* Destination Selector */}
-        <section className="container mx-auto px-4 mb-12 overflow-visible">
-          <div className="flex flex-nowrap gap-3 overflow-visible pb-2 py-2 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:py-0">
+        <section className="container mx-auto px-4 mb-12">
+          <div
+            ref={destinationScrollRef}
+            className="flex flex-nowrap gap-3 overflow-x-auto overflow-y-hidden pb-2 py-2 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:py-0 scrollbar-hide"
+            style={{
+              scrollBehavior: 'smooth',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
             <button
               onClick={() => setActiveSlug("all")}
               aria-pressed={activeSlug === "all"}
@@ -150,6 +220,11 @@ const DestinationsPage = () => {
               );
             })}
           </div>
+          {canScrollRight && (
+            <div className="text-center mt-2 text-xs text-muted-foreground md:hidden">
+              ← Scroll to view more →
+            </div>
+          )}
         </section>
 
         {/* Filters and Packages Container */}
@@ -162,6 +237,28 @@ const DestinationsPage = () => {
 
             {/* Packages grid */}
             <div className="flex-1 min-w-0">
+              {/* Mobile Filter and Sort Buttons */}
+              <div className="flex gap-3 mb-4 lg:hidden">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 gap-2"
+                  onClick={() => setShowMobileFilter(true)}
+                >
+                  <Filter className="h-4 w-4" />
+                  <span>Filter</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 gap-2"
+                  onClick={() => setShowMobileSort(true)}
+                >
+                  <SortAsc className="h-4 w-4" />
+                  <span>Sort</span>
+                </Button>
+              </div>
+
               <p className="text-sm text-muted-foreground mb-4">Showing {displayPackages.length} destination{displayPackages.length !== 1 ? 's' : ''}</p>
               <div className="grid gap-6 sm:grid-cols-2">
                 {displayPackages.map((pkg) => (
@@ -266,6 +363,20 @@ const DestinationsPage = () => {
           </div>
         </section>
       </main>
+
+      <MobileFilterDrawer
+        isOpen={showMobileFilter}
+        onClose={() => setShowMobileFilter(false)}
+        filters={filters}
+        onFiltersChange={setFilters}
+      />
+
+      <MobileSortSheet
+        isOpen={showMobileSort}
+        onClose={() => setShowMobileSort(false)}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+      />
 
       <Footer />
     </div>
