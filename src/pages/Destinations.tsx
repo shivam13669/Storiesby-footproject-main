@@ -179,7 +179,7 @@ const DestinationsPage = () => {
       <main className="pb-20">
         {/* Mobile Filter and Sort Buttons - Sticky Unified Container */}
         <div className="sticky top-16 z-30 bg-white border-b border-gray-200 lg:hidden">
-          <div className="flex h-14">
+          <div className="flex h-12">
             {/* Sort Button */}
             <button
               onClick={() => setShowMobileSort(true)}
@@ -190,7 +190,7 @@ const DestinationsPage = () => {
             </button>
 
             {/* Divider */}
-            <div className="w-px bg-gray-200"></div>
+            <div className="w-px bg-gray-100"></div>
 
             {/* Filter Button */}
             <button
