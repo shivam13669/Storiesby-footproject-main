@@ -15,6 +15,11 @@ const DestinationsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { formatPrice } = useCurrency();
+  const destinationScrollRef = useRef<HTMLDivElement>(null);
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
+  const [showMobileSort, setShowMobileSort] = useState(false);
+  const [sortBy, setSortBy] = useState<string>("relevance");
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   useLayoutEffect(() => {
     if (location.pathname === "/destinations") {
@@ -39,6 +44,27 @@ const DestinationsPage = () => {
     maxPrice: 100000,
     rating: "All",
   });
+
+  // Check if destination scroll container can scroll right
+  const checkScroll = () => {
+    if (destinationScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = destinationScrollRef.current;
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10);
+    }
+  };
+
+  useLayoutEffect(() => {
+    checkScroll();
+    const container = destinationScrollRef.current;
+    if (container) {
+      container.addEventListener('scroll', checkScroll);
+      window.addEventListener('resize', checkScroll);
+      return () => {
+        container.removeEventListener('scroll', checkScroll);
+        window.removeEventListener('resize', checkScroll);
+      };
+    }
+  }, []);
 
   const isShowingAll = activeSlug === "all";
   const activeDestination = useMemo(
