@@ -204,7 +204,7 @@ const DestinationsPage = () => {
         </div>
 
         {/* Destination Selector */}
-        <section className="pt-24 mb-12">
+        <section className="pt-6 lg:pt-24 mb-8 lg:mb-12">
           <div className="container mx-auto px-4">
             <div
               ref={destinationScrollRef}
