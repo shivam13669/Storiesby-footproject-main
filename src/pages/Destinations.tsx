@@ -364,6 +364,20 @@ const DestinationsPage = () => {
         </section>
       </main>
 
+      <MobileFilterDrawer
+        isOpen={showMobileFilter}
+        onClose={() => setShowMobileFilter(false)}
+        filters={filters}
+        onFiltersChange={setFilters}
+      />
+
+      <MobileSortSheet
+        isOpen={showMobileSort}
+        onClose={() => setShowMobileSort(false)}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+      />
+
       <Footer />
     </div>
   );
