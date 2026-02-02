@@ -39,6 +39,8 @@ const ItinerarySection = ({ images, days, itinerary }: ItinerarySectionProps) =>
               description={item.description}
               highlights={item.highlights}
               location={item.location}
+              transfer={item.transfer}
+              stay={item.stay}
             />
           ))}
         </div>
@@ -55,6 +57,8 @@ const ItinerarySection = ({ images, days, itinerary }: ItinerarySectionProps) =>
               description={item.description}
               highlights={item.highlights}
               location={item.location}
+              transfer={item.transfer}
+              stay={item.stay}
             />
           ))}
         </div>
