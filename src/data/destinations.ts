@@ -89,6 +89,88 @@ export const destinations: Destination[] = [
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F677a8672f5074d078c0775a63e74de1f?format=webp&width=1200",
         categories: ["Mountain", "Adventure"],
+        itinerary: [
+          {
+            day: 1,
+            title: "Welcome to Leh – The Land of Lamas",
+            location: "Leh",
+            description:
+              "You'll be greeted with a warm Ladakhi welcome and transferred to your hotel. The day is reserved for acclimatization – take it easy, sip on hot butter tea, and let your body adjust to the altitude. Enjoy a leisurely evening stroll around Leh Market (if feeling well).",
+            highlights: [
+              "Arrival at Leh Airport",
+              "Warm Ladakhi welcome and hotel transfer",
+              "Acclimatization day",
+              "Evening stroll around Leh Market (optional)",
+            ],
+          },
+          {
+            day: 2,
+            title: "Exploring Leh – A Journey Through History and Mysticism",
+            location: "Leh",
+            description:
+              "Start with the Hall of Fame, a tribute to Indian soldiers, followed by a visit to the mysterious Magnetic Hill. Witness the confluence of the Indus and Zanskar Rivers at Sangam Point and find peace at the sacred Pathar Sahib Gurudwara. End your day with sunset views and peaceful vibes at Shanti Stupa.",
+            highlights: [
+              "Hall of Fame Museum – A tribute to our brave soldiers",
+              "Magnetic Hill – Defy gravity at this optical illusion spot",
+              "Sangam Point – Where the Indus and Zanskar rivers meet",
+              "Patthar Sahib Gurudwara – A spiritual haven with a legendary story",
+              "Evening at Shanti Stupa – Sunset views and peaceful vibes",
+            ],
+          },
+          {
+            day: 3,
+            title: "Road to Nubra – Into the Mystic Dunes",
+            location: "Nubra Valley",
+            description:
+              "Cross the mighty Khardungla (18,380 ft) – one of the highest motorable roads in the world. Reach the enchanting Nubra Valley and experience Hundar Village with camel rides on the white sand dunes and a beautiful sunset over the valley.",
+            highlights: [
+              "Leh to Nubra Valley via KhardungLa Pass",
+              "Cross the mighty KhardungLa (18,380 ft) – one of the highest motorable roads in the world",
+              "Reach the enchanting Nubra Valley",
+              "Camel ride on the white sand dunes",
+              "Catch a beautiful sunset over the valley",
+            ],
+          },
+          {
+            day: 4,
+            title: "Pangong Calling – The Lake of Dreams",
+            location: "Pangong Lake",
+            description:
+              "Drive from Nubra to Pangong Lake via the scenic Shyok Route through mesmerizing landscapes. Arrive at Pangong Lake – the crown jewel of Ladakh. Marvel at the ever-changing hues of the lake and watch the stars dance over the lake at night.",
+            highlights: [
+              "Nubra to Pangong Lake via Shyok Route",
+              "Scenic drive through mesmerizing landscapes",
+              "Arrive at Pangong Lake – The crown jewel of Ladakh",
+              "Marvel at the ever-changing hues of the lake",
+              "Watch the stars dance over the lake at night",
+            ],
+          },
+          {
+            day: 5,
+            title: "Return to Leh – Culture & Colors",
+            location: "Leh",
+            description:
+              "Drive via Changla Pass (17,586 ft), another high-altitude marvel. En route, stop by the peaceful Thiksey Monastery, Ladakh's wealthiest Hemis Monastery, and the iconic 3 Idiots School (Rancho's School) for Bollywood nostalgia before returning to Leh.",
+            highlights: [
+              "Pangong to Leh via ChangLa Pass",
+              "Drive via ChangLa (17,586 ft), another high-altitude marvel",
+              "Thiksey Monastery – A majestic hilltop monastery",
+              "Hemis Monastery – Ladakh's wealthiest and most famous monastery",
+              "3 Idiots School (Rancho's School) – Bollywood nostalgia",
+            ],
+          },
+          {
+            day: 6,
+            title: "Farewell Ladakh – Until Next Time",
+            location: "Leh",
+            description:
+              "After breakfast, you'll be escorted to Leh Airport. Take off with your heart full of memories and soul touched by the mountains.",
+            highlights: [
+              "After breakfast, escort to Leh Airport",
+              "Take off with unforgettable memories of Ladakh's landscapes, culture, and adventure",
+            ],
+          },
+        ],
       },
       {
         slug: "khardungla-changla-loop",
