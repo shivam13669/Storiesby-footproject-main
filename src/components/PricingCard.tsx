@@ -40,7 +40,11 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
         </div>
 
         {/* Download Itinerary Button */}
-        <Button className="w-full btn-primary h-12 text-base font-semibold rounded-lg">
+        <Button
+          onClick={handleDownloadItinerary}
+          disabled={!itineraryUrl}
+          className="w-full btn-primary h-12 text-base font-semibold rounded-lg"
+        >
           Download Itinerary
         </Button>
       </div>
