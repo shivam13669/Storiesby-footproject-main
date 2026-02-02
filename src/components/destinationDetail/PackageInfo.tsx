@@ -28,7 +28,7 @@ const PackageInfo = ({ duration, title }: PackageInfoProps) => {
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <Coffee className="w-5 h-5" />
-            <span className="text-sm font-medium">Breakfast Included</span>
+            <span className="text-sm font-medium">Breakfast & Dinner Included</span>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <MapPin className="w-5 h-5" />
