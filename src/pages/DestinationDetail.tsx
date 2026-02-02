@@ -13,6 +13,11 @@ import PackageInclusions from "@/components/PackageInclusions";
 import PolicyAccordion from "@/components/PolicyAccordion";
 import PromoBanners from "@/components/PromoBanners";
 import TrustBadges from "@/components/TrustBadges";
+import SummarisedView from "@/components/destinationDetail/SummarisedView";
+import ActivitiesView from "@/components/destinationDetail/ActivitiesView";
+import FlightsView from "@/components/destinationDetail/FlightsView";
+import StayView from "@/components/destinationDetail/StayView";
+import TransfersView from "@/components/destinationDetail/TransfersView";
 import {
   Destination,
   DestinationPackage,
