@@ -15,6 +15,14 @@ interface PricingCardProps {
 }
 
 const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl }: PricingCardProps) => {
+  const { formatPrice } = useCurrency();
+
+  // Parse and format the prices dynamically
+  const parsedPrice = parsePrice(price);
+  const parsedOldPrice = parsePrice(oldPrice);
+  const formattedPrice = parsedPrice ? formatPrice(parsedPrice, { fromCurrency: "INR" }) : price;
+  const formattedOldPrice = parsedOldPrice ? formatPrice(parsedOldPrice, { fromCurrency: "INR" }) : oldPrice;
+
   const handleDownloadItinerary = () => {
     if (itineraryUrl) {
       window.open(itineraryUrl, "_blank");
@@ -28,9 +36,9 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
         <div className="mb-4">
           <h3 className="text-base font-medium text-foreground">{title}</h3>
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-2xl font-bold text-foreground">{price}</span>
-            {oldPrice && (
-              <span className="text-sm text-muted-foreground line-through">{oldPrice}</span>
+            <span className="text-2xl font-bold text-foreground">{formattedPrice}</span>
+            {formattedOldPrice && (
+              <span className="text-sm text-muted-foreground line-through">{formattedOldPrice}</span>
             )}
             {saving && (
               <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
