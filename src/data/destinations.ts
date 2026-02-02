@@ -96,6 +96,8 @@ export const destinations: Destination[] = [
           "Camel safari in Hunder",
           "Pangong Tso sunrise drive",
         ],
+        itineraryUrl:
+          "https://drive.google.com/uc?export=download&confirm=t&id=1UkGUiHOHgNTskO0w6OrnOsV8cwpkaCG8",
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=800",
         categories: ["Mountain", "Adventure"],
