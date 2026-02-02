@@ -164,7 +164,7 @@ export const destinations: Destination[] = [
           "All-inclusive meal arrangements",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2Ff7bafe136619419dbf13ca7afdf8e95e%2F3049f1a0c38f4c3b9725e7b207142b2a?format=webp&width=800&height=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2Ff7bafe136619419dbf13ca7afdf8e95e%2F3049f1a0c38f4c3b9725e7b207142b2a?format=webp&width=1200",
         categories: ["Mountain", "Adventure"],
       },
     ],
