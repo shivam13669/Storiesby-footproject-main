@@ -37,6 +37,8 @@ const ItinerarySection = ({ images, days, itinerary }: ItinerarySectionProps) =>
               day={item.day}
               title={item.title}
               description={item.description}
+              highlights={item.highlights}
+              location={item.location}
             />
           ))}
         </div>
@@ -51,6 +53,8 @@ const ItinerarySection = ({ images, days, itinerary }: ItinerarySectionProps) =>
               day={item.day}
               title={item.title}
               description={item.description}
+              highlights={item.highlights}
+              location={item.location}
             />
           ))}
         </div>
