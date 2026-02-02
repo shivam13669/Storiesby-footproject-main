@@ -93,11 +93,7 @@ const DestinationDetail = () => {
               title={travelPackage.name}
               price={travelPackage.price}
               oldPrice={travelPackage.oldPrice}
-              saving={
-                travelPackage.oldPrice && travelPackage.price
-                  ? `SAVE INR ${parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - parseInt(travelPackage.price.replace(/\D/g, ""))}`
-                  : undefined
-              }
+              saving={saving}
               itineraryUrl={travelPackage.itineraryUrl}
             />
           </div>
