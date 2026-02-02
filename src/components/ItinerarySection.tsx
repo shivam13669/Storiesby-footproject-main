@@ -29,12 +29,6 @@ const ItinerarySection = ({ images, days }: ItinerarySectionProps) => {
       {/* First Location */}
       {firstLocationDays.length > 0 && (
         <div>
-          <ItineraryCarousel
-            images={images.slice(0, Math.min(4, images.length))}
-            days={firstLocationDays.length}
-            location="Primary Destination"
-            totalImages={images.length}
-          />
           {firstLocationDays.map((item) => (
             <ItineraryDay
               key={item.day}
@@ -49,12 +43,6 @@ const ItinerarySection = ({ images, days }: ItinerarySectionProps) => {
       {/* Second Location */}
       {secondLocationDays.length > 0 && (
         <div className="mt-8">
-          <ItineraryCarousel
-            images={images.slice(Math.min(4, images.length))}
-            days={secondLocationDays.length}
-            location="Secondary Destination"
-            totalImages={images.length}
-          />
           {secondLocationDays.map((item) => (
             <ItineraryDay
               key={item.day}
