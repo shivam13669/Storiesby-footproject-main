@@ -9,6 +9,21 @@ export type ItineraryDay = {
   description: string;
   highlights?: string[];
   location?: string;
+  transfer?: {
+    type: string;
+    vehicle: string;
+    from: string;
+    to: string;
+    stops?: number;
+  };
+  stay?: {
+    name: string;
+    stars: number;
+    checkIn: string;
+    checkOut: string;
+    nights: number;
+    images: string[];
+  };
 };
 
 export type DestinationPackage = {
@@ -26,6 +41,8 @@ export type DestinationPackage = {
   image?: string;
   categories?: string[];
   itinerary?: ItineraryDay[];
+  inclusions?: string[];
+  exclusions?: string[];
 };
 
 export type DestinationQuickFacts = {
