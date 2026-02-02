@@ -60,12 +60,12 @@ const PromoBanners = () => {
       <div className="bg-footer rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <h3 className="text-2xl font-bold text-primary-foreground mb-1">
-            Up to INR 49,990 OFF
+            Up to INR 10,999 OFF
           </h3>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-primary-foreground/90">on selected trips</span>
             <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium flex items-center gap-1">
-              🇮🇳 REPUBLIC DAY SALE!
+              🇮🇳 EARLY BIRD OFFER!
             </span>
           </div>
           <p className="text-primary-foreground/70 text-sm mb-4">
