@@ -1,8 +1,10 @@
 import { Car, Building2, Coffee, MapPin } from "lucide-react";
+import { ItineraryDay } from "@/data/destinations";
 
 interface PackageInfoProps {
   duration: string;
   title: string;
+  itinerary?: ItineraryDay[];
 }
 
 // Helper function to extract day count from duration string
@@ -11,8 +13,40 @@ const extractDayCount = (duration: string): number => {
   return match ? parseInt(match[1]) : 0;
 };
 
-const PackageInfo = ({ duration, title }: PackageInfoProps) => {
+// Helper function to extract locations and count days in each
+const extractLocationBreakdown = (itinerary?: ItineraryDay[]): Array<{ location: string; days: number }> => {
+  if (!itinerary || itinerary.length === 0) return [];
+
+  const locationMap = new Map<string, number>();
+
+  itinerary.forEach((day) => {
+    if (day.location) {
+      locationMap.set(day.location, (locationMap.get(day.location) || 0) + 1);
+    }
+  });
+
+  // Return locations in order of first appearance with their day counts
+  const locations: Array<{ location: string; days: number }> = [];
+  const seen = new Set<string>();
+
+  itinerary.forEach((day) => {
+    if (day.location && !seen.has(day.location)) {
+      locations.push({
+        location: day.location,
+        days: locationMap.get(day.location) || 0,
+      });
+      seen.add(day.location);
+    }
+  });
+
+  return locations;
+};
+
+const PackageInfo = ({ duration, title, itinerary }: PackageInfoProps) => {
   const dayCount = extractDayCount(duration);
+  const locationBreakdown = extractLocationBreakdown(itinerary);
+
+  // Fallback to primary/secondary split if no itinerary
   const primaryDays = Math.ceil(dayCount / 2);
   const secondaryDays = dayCount - primaryDays;
 
@@ -24,23 +58,37 @@ const PackageInfo = ({ duration, title }: PackageInfoProps) => {
 
       <div className="flex flex-wrap items-center gap-4 mb-6">
         <span className="badge-duration">{duration}</span>
-        {primaryDays > 0 && (
-          <div className="flex items-center gap-1">
-            <span className="text-3xl font-bold text-foreground">{primaryDays}</span>
-            <div className="text-sm">
-              <span className="text-muted-foreground">Days in</span>
-              <p className="font-semibold text-foreground">Primary Destination</p>
+        {locationBreakdown.length > 0 ? (
+          locationBreakdown.map((location, index) => (
+            <div key={index} className="flex items-center gap-1">
+              <span className="text-3xl font-bold text-foreground">{location.days}</span>
+              <div className="text-sm">
+                <span className="text-muted-foreground">{location.days === 1 ? "Night in" : "Nights in"}</span>
+                <p className="font-semibold text-foreground">{location.location}</p>
+              </div>
             </div>
-          </div>
-        )}
-        {secondaryDays > 0 && (
-          <div className="flex items-center gap-1">
-            <span className="text-3xl font-bold text-foreground">{secondaryDays}</span>
-            <div className="text-sm">
-              <span className="text-muted-foreground">Days in</span>
-              <p className="font-semibold text-foreground">Secondary Destination</p>
-            </div>
-          </div>
+          ))
+        ) : (
+          <>
+            {primaryDays > 0 && (
+              <div className="flex items-center gap-1">
+                <span className="text-3xl font-bold text-foreground">{primaryDays}</span>
+                <div className="text-sm">
+                  <span className="text-muted-foreground">{primaryDays === 1 ? "Night in" : "Nights in"}</span>
+                  <p className="font-semibold text-foreground">Primary Destination</p>
+                </div>
+              </div>
+            )}
+            {secondaryDays > 0 && (
+              <div className="flex items-center gap-1">
+                <span className="text-3xl font-bold text-foreground">{secondaryDays}</span>
+                <div className="text-sm">
+                  <span className="text-muted-foreground">{secondaryDays === 1 ? "Night in" : "Nights in"}</span>
+                  <p className="font-semibold text-foreground">Secondary Destination</p>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 

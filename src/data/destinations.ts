@@ -267,7 +267,6 @@ export const destinations: Destination[] = [
           {
             day: 6,
             title: "Farewell Ladakh – Until Next Time",
-            location: "Leh",
             description:
               "After breakfast, you'll be escorted to Leh Airport. Take off with your heart full of memories and soul touched by the mountains.",
             highlights: [
@@ -512,7 +511,6 @@ export const destinations: Destination[] = [
           {
             day: 7,
             title: "Farewell Ladakh – Until Next Time",
-            location: "Leh",
             description:
               "After breakfast, transfer to Leh Airport. Depart with your heart full of memories and soul touched by the mountains, adventures, and the warmth of Ladakh's people.",
             highlights: [
@@ -803,7 +801,6 @@ export const destinations: Destination[] = [
           {
             day: 8,
             title: "Farewell Leh – Until We Meet Again",
-            location: "Leh",
             description:
               "If flight late, quick stop at monastery or more market gifts like prayer beads or tea. Hand bike back with mechanic final check all good. Private cab to airport, carry Ladakh happy memories forever.",
             highlights: [
@@ -1108,7 +1105,6 @@ export const destinations: Destination[] = [
           {
             day: 8,
             title: "Farewell Leh – Until We Meet Again",
-            location: "Leh",
             description:
               "If flight late, quick stop at monastery or more market gifts. Hand bike back with mechanic final check all good. Private cab to airport, carry Ladakh happy memories forever with your heart full of adventures.",
             highlights: [

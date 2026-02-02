@@ -3,7 +3,7 @@ import { Heart, Star, Clock } from "lucide-react";
 const badges = [
   {
     icon: Heart,
-    title: "3 Million+",
+    title: "10K+",
     description: "Happy customers from 70+ countries all around.",
   },
   {
