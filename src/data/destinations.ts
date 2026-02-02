@@ -59,7 +59,7 @@ export const destinations: Destination[] = [
       {
         slug: "xtreme-ladakh-expedition",
         name: "Khardungla Changla Loop",
-        duration: "6 days · 5 nights",
+        duration: "5 nights · 6 days",
         description:
           "Conquer Khardung La, trace the Shyok River, and camp under galaxy-bright skies at Pangong Tso and Tso Moriri.",
         price: "₹38,500",
@@ -82,7 +82,7 @@ export const destinations: Destination[] = [
       {
         slug: "khardungla-changla-loop",
         name: "India's Last Turn",
-        duration: "7 days · 6 nights",
+        duration: "6 nights · 7 days",
         description:
           "A spirited bike tour covering Magnetic Hill, Sangam, and the dunes of Hunder with backup vehicle support.",
         price: "₹34,200",
@@ -105,7 +105,7 @@ export const destinations: Destination[] = [
       {
         slug: "migla-throne-ride",
         name: "MigLa Throne Ride",
-        duration: "6 days · 5 nights",
+        duration: "7 nights · 8 days",
         description:
           "Comfort-first itinerary with boutique stays, private SUV transfers, and immersive monastery visits.",
         price: "₹29,900",
@@ -126,7 +126,7 @@ export const destinations: Destination[] = [
       {
         slug: "ultimate-ulingla",
         name: "Ultimate UmlingLa",
-        duration: "8 days · 7 nights",
+        duration: "7 nights · 8 days",
         description:
           "The ultimate high-altitude adventure conquering Ulingla Pass, crossing pristine valleys, and experiencing Ladakh's most remote landscapes.",
         price: "₹45,600",
@@ -149,7 +149,7 @@ export const destinations: Destination[] = [
       {
         slug: "trans-himalayan-ride",
         name: "Trans Himalayan Ride",
-        duration: "10 days · 9 nights",
+        duration: "12 nights · 13 days",
         description:
           "Experience the ultimate group adventure across the Trans-Himalayan route with team bonding, breathtaking passes, and unforgettable memories.",
         price: "₹52,900",
