@@ -267,7 +267,6 @@ export const destinations: Destination[] = [
           {
             day: 6,
             title: "Farewell Ladakh – Until Next Time",
-            location: "Leh",
             description:
               "After breakfast, you'll be escorted to Leh Airport. Take off with your heart full of memories and soul touched by the mountains.",
             highlights: [
