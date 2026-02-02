@@ -58,23 +58,37 @@ const PackageInfo = ({ duration, title, itinerary }: PackageInfoProps) => {
 
       <div className="flex flex-wrap items-center gap-4 mb-6">
         <span className="badge-duration">{duration}</span>
-        {primaryDays > 0 && (
-          <div className="flex items-center gap-1">
-            <span className="text-3xl font-bold text-foreground">{primaryDays}</span>
-            <div className="text-sm">
-              <span className="text-muted-foreground">Days in</span>
-              <p className="font-semibold text-foreground">Primary Destination</p>
+        {locationBreakdown.length > 0 ? (
+          locationBreakdown.map((location, index) => (
+            <div key={index} className="flex items-center gap-1">
+              <span className="text-3xl font-bold text-foreground">{location.days}</span>
+              <div className="text-sm">
+                <span className="text-muted-foreground">Days in</span>
+                <p className="font-semibold text-foreground">{location.location}</p>
+              </div>
             </div>
-          </div>
-        )}
-        {secondaryDays > 0 && (
-          <div className="flex items-center gap-1">
-            <span className="text-3xl font-bold text-foreground">{secondaryDays}</span>
-            <div className="text-sm">
-              <span className="text-muted-foreground">Days in</span>
-              <p className="font-semibold text-foreground">Secondary Destination</p>
-            </div>
-          </div>
+          ))
+        ) : (
+          <>
+            {primaryDays > 0 && (
+              <div className="flex items-center gap-1">
+                <span className="text-3xl font-bold text-foreground">{primaryDays}</span>
+                <div className="text-sm">
+                  <span className="text-muted-foreground">Days in</span>
+                  <p className="font-semibold text-foreground">Primary Destination</p>
+                </div>
+              </div>
+            )}
+            {secondaryDays > 0 && (
+              <div className="flex items-center gap-1">
+                <span className="text-3xl font-bold text-foreground">{secondaryDays}</span>
+                <div className="text-sm">
+                  <span className="text-muted-foreground">Days in</span>
+                  <p className="font-semibold text-foreground">Secondary Destination</p>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 
