@@ -3,6 +3,14 @@ import { Flag, Landmark, Mountain, MountainSnow, Waves } from "lucide-react";
 
 export type DestinationIcon = "mountain" | "landmark" | "waves" | "flag" | "mountainSnow";
 
+export type ItineraryDay = {
+  day: number;
+  title: string;
+  description: string;
+  highlights?: string[];
+  location?: string;
+};
+
 export type DestinationPackage = {
   slug: string;
   name: string;
@@ -17,6 +25,7 @@ export type DestinationPackage = {
   itineraryUrl?: string;
   image?: string;
   categories?: string[];
+  itinerary?: ItineraryDay[];
 };
 
 export type DestinationQuickFacts = {
