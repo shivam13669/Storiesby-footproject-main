@@ -63,7 +63,7 @@ const PackageInfo = ({ duration, title, itinerary }: PackageInfoProps) => {
             <div key={index} className="flex items-center gap-1">
               <span className="text-3xl font-bold text-foreground">{location.days}</span>
               <div className="text-sm">
-                <span className="text-muted-foreground">Days in</span>
+                <span className="text-muted-foreground">Nights in</span>
                 <p className="font-semibold text-foreground">{location.location}</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ const PackageInfo = ({ duration, title, itinerary }: PackageInfoProps) => {
               <div className="flex items-center gap-1">
                 <span className="text-3xl font-bold text-foreground">{primaryDays}</span>
                 <div className="text-sm">
-                  <span className="text-muted-foreground">Days in</span>
+                  <span className="text-muted-foreground">Nights in</span>
                   <p className="font-semibold text-foreground">Primary Destination</p>
                 </div>
               </div>
@@ -83,7 +83,7 @@ const PackageInfo = ({ duration, title, itinerary }: PackageInfoProps) => {
               <div className="flex items-center gap-1">
                 <span className="text-3xl font-bold text-foreground">{secondaryDays}</span>
                 <div className="text-sm">
-                  <span className="text-muted-foreground">Days in</span>
+                  <span className="text-muted-foreground">Nights in</span>
                   <p className="font-semibold text-foreground">Secondary Destination</p>
                 </div>
               </div>
