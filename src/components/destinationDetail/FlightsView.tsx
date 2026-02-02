@@ -27,10 +27,10 @@ const FlightsView = ({ itinerary = [] }: FlightsViewProps) => {
               <Plane className="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-50" />
               <h3 className="text-lg font-semibold text-foreground mb-2">Flight Information</h3>
               <p className="text-muted-foreground text-sm">
-                This trip includes airport transfers. International flights are not included in the package.
+                This trip includes airport transfers. International & Domestic flights are not included in the package.
                 <br />
                 <br />
-                <strong>Note:</strong> Please arrange your flights to the starting airport independently.
+                <strong>Note:</strong> Please book your flights independently.
               </p>
             </div>
           </CardContent>
@@ -49,7 +49,7 @@ const FlightsView = ({ itinerary = [] }: FlightsViewProps) => {
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-2 text-sm text-muted-foreground">
-          International flights are not included in the package. Please book your flights independently.
+          International & Domestic flights are not included in the package. Please book your flights independently.
         </CardContent>
       </Card>
 
