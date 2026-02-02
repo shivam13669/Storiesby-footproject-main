@@ -45,7 +45,7 @@ const PromoBanners = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
         <div className="relative z-10 p-6 h-full flex flex-col justify-center">
           <h3 className="text-2xl font-bold text-primary-foreground mb-1">
-            Bigger Group? Get special offers up to 20% Off!
+            Login to get up to 20% OFF on special offers
           </h3>
           <p className="text-primary-foreground/90 text-sm mb-4">
             We create unforgettable adventures, customised for your group.
