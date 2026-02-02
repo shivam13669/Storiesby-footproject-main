@@ -10,6 +10,7 @@ interface PricingCardProps {
   saving?: string;
   rating?: number;
   reviews?: number;
+  itineraryUrl?: string;
 }
 
 const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900" }: PricingCardProps) => {
