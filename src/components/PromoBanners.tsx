@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 
 const PromoBanners = () => {
   const [timeLeft, setTimeLeft] = useState({
-    days: 1,
+    days: 15,
     hours: 20,
-    minutes: 49,
+    minutes: 27,
   });
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const PromoBanners = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
         <div className="relative z-10 p-6 h-full flex flex-col justify-center">
           <h3 className="text-2xl font-bold text-primary-foreground mb-1">
-            Bigger Group? Get special offers up to 50% Off!
+            Bigger Group? Get special offers up to 20% Off!
           </h3>
           <p className="text-primary-foreground/90 text-sm mb-4">
             We create unforgettable adventures, customised for your group.
@@ -60,7 +60,7 @@ const PromoBanners = () => {
       <div className="bg-footer rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <h3 className="text-2xl font-bold text-primary-foreground mb-1">
-            Up to INR 75,900 OFF
+            Up to INR 49,990 OFF
           </h3>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-primary-foreground/90">on selected trips</span>
