@@ -83,6 +83,7 @@ const DestinationDetail = () => {
                   ? `SAVE INR ${parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - parseInt(travelPackage.price.replace(/\D/g, ""))}`
                   : undefined
               }
+              itineraryUrl={travelPackage.itineraryUrl}
             />
           </div>
         </div>
