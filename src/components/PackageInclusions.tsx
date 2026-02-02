@@ -44,7 +44,7 @@ const PackageInclusions = ({ inclusions, exclusions }: PackageInclusionsProps) =
         <div>
           <h3 className="font-semibold text-foreground mb-4">Inclusions</h3>
           <ul className="space-y-3">
-            {inclusions.map((item, index) => (
+            {displayInclusions.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">{item}</span>
@@ -57,7 +57,7 @@ const PackageInclusions = ({ inclusions, exclusions }: PackageInclusionsProps) =
         <div>
           <h3 className="font-semibold text-foreground mb-4">Exclusions</h3>
           <ul className="space-y-3">
-            {exclusions.map((item, index) => (
+            {displayExclusions.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <X className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">{item}</span>
