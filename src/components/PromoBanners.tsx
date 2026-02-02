@@ -65,7 +65,7 @@ const PromoBanners = () => {
           <div className="flex items-center gap-2 mb-2">
             <span className="text-primary-foreground/90">on selected trips</span>
             <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium flex items-center gap-1">
-              🇮🇳 EARLY BIRD OFFER!
+              EARLY BIRD OFFER!
             </span>
           </div>
           <p className="text-primary-foreground/70 text-sm mb-4">
