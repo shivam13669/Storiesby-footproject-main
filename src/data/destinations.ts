@@ -76,7 +76,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1jV0EcTYct29O9DY7dEI2HK1bgHq79Myq",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F677a8672f5074d078c0775a63e74de1f?format=webp&width=800",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F677a8672f5074d078c0775a63e74de1f?format=webp&width=1200",
         categories: ["Mountain", "Adventure"],
       },
       {
@@ -99,7 +99,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1UkGUiHOHgNTskO0w6OrnOsV8cwpkaCG8",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=800",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=1200",
         categories: ["Mountain", "Adventure"],
       },
       {
@@ -120,7 +120,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1ftCLsCQzd-Vhv50ENyvLpVGzpiUFJFvC",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=800",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=1200",
         categories: ["Mountain", "Luxury"],
       },
       {
@@ -143,7 +143,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1_pTNYJcwkfVVtfWn5LVkJcd1plVcyjM_",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F7dcb39e48c924358b1c8822906e58ffc?format=webp&width=800",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F7dcb39e48c924358b1c8822906e58ffc?format=webp&width=1200",
         categories: ["Mountain", "Adventure"],
       },
       {
