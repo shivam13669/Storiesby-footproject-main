@@ -61,6 +61,18 @@ const ItineraryDay = ({ day, title, description, transfer, stay, experiences, hi
             <p className="text-muted-foreground leading-relaxed">{description}</p>
           )}
 
+          {/* Highlights Section */}
+          {highlights && highlights.length > 0 && (
+            <div className="space-y-3">
+              <h4 className="font-semibold text-foreground">Highlights</h4>
+              <ul className="space-y-2 list-disc pl-5 text-muted-foreground">
+                {highlights.map((highlight, idx) => (
+                  <li key={idx} className="text-sm">{highlight}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Transfer Section */}
           {transfer && (
             <div className="space-y-3">
