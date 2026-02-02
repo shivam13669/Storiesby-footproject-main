@@ -13,7 +13,12 @@ interface PricingCardProps {
   itineraryUrl?: string;
 }
 
-const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900" }: PricingCardProps) => {
+const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl }: PricingCardProps) => {
+  const handleDownloadItinerary = () => {
+    if (itineraryUrl) {
+      window.open(itineraryUrl, "_blank");
+    }
+  };
   return (
     <div className="flex flex-col gap-3 sticky top-20">
       {/* Card 1: Download Itinerary with Pricing */}
