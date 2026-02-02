@@ -58,20 +58,22 @@ export const destinations: Destination[] = [
     packages: [
       {
         slug: "xtreme-ladakh-expedition",
-        name: "Khardungla Changla Loop",
+        name: "Xtreme Ladakh",
         duration: "5 nights · 6 days",
         description:
-          "Conquer Khardung La, trace the Shyok River, and camp under galaxy-bright skies at Pangong Tso and Tso Moriri.",
+          "Embark on a breathtaking 6-day journey through the majestic landscapes of Ladakh. Experience high-altitude adventure with the legendary Khardungla and Changla passes, serene Pangong Lake, mystical monasteries, and the enchanting Nubra Valley. This is not just about luxury or budget—it's about reconnecting with nature, embracing challenges, and finding joy in the unexpected.",
         price: "₹38,500",
         oldPrice: "₹42,000",
         badge: "Save 8%",
         rating: 4.9,
         reviews: 428,
         highlights: [
-          "Khardung La sunrise ride",
-          "Stays at Nubra Valley camps",
-          "Night astrophotography session",
-          "Guided acclimatisation walks",
+          "Welcome to Leh - The Land of Lamas",
+          "Exploring Leh - A Journey Through History and Mysticism",
+          "Road to Nubra - Into the Mystic Dunes",
+          "Pangong Calling - The Lake of Dreams",
+          "Return to Leh - Culture & Colors",
+          "Farewell Ladakh - Until Next Time",
         ],
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1jV0EcTYct29O9DY7dEI2HK1bgHq79Myq",
