@@ -74,6 +74,30 @@ const DestinationDetail = () => {
             {activeTab === "itinerary" && (
               <ItinerarySection images={galleryImages} days={dayCount} itinerary={travelPackage.itinerary} />
             )}
+
+            {activeTab === "summarised" && (
+              <SummarisedView
+                itinerary={travelPackage.itinerary}
+                highlights={travelPackage.highlights}
+                duration={travelPackage.duration}
+              />
+            )}
+
+            {activeTab === "activities" && (
+              <ActivitiesView itinerary={travelPackage.itinerary} />
+            )}
+
+            {activeTab === "flights" && (
+              <FlightsView itinerary={travelPackage.itinerary} />
+            )}
+
+            {activeTab === "stay" && (
+              <StayView itinerary={travelPackage.itinerary} />
+            )}
+
+            {activeTab === "transfers" && (
+              <TransfersView itinerary={travelPackage.itinerary} />
+            )}
           </div>
 
           {/* Right Sidebar - Pricing Card (sticky, ends at End of Trip) */}
