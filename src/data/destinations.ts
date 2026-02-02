@@ -84,7 +84,7 @@ export const destinations: Destination[] = [
     packages: [
       {
         slug: "xtreme-ladakh-expedition",
-        name: "Xtreme Ladakh",
+        name: "Khardungla Changla Loop",
         duration: "5 nights · 6 days",
         description:
           "Embark on a breathtaking 6-day journey through the majestic landscapes of Ladakh. Experience high-altitude adventure with the legendary Khardungla and Changla passes, serene Pangong Lake, mystical monasteries, and the enchanting Nubra Valley. This is not just about luxury or budget—it's about reconnecting with nature, embracing challenges, and finding joy in the unexpected.",
