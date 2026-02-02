@@ -117,6 +117,8 @@ export const destinations: Destination[] = [
           "Lunch with local family",
           "Leh heritage walking tour",
         ],
+        itineraryUrl:
+          "https://drive.google.com/uc?export=download&confirm=t&id=1ftCLsCQzd-Vhv50ENyvLpVGzpiUFJFvC",
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=800",
         categories: ["Mountain", "Luxury"],
