@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useCurrency, parsePrice } from "@/context/CurrencyContext";
 
 interface PricingCardProps {
   showForm?: boolean;
@@ -14,6 +15,23 @@ interface PricingCardProps {
 }
 
 const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl }: PricingCardProps) => {
+  const { formatPrice } = useCurrency();
+
+  // Parse and format prices
+  const formattedPrice = price ? formatPrice(parsePrice(price) ?? 0, { fromCurrency: "INR" }) : "";
+  const formattedOldPrice = oldPrice ? formatPrice(parsePrice(oldPrice) ?? 0, { fromCurrency: "INR" }) : "";
+
+  // Calculate savings if both prices exist
+  let formattedSaving = saving;
+  if (price && oldPrice) {
+    const priceNum = parsePrice(price) ?? 0;
+    const oldPriceNum = parsePrice(oldPrice) ?? 0;
+    if (oldPriceNum > priceNum) {
+      const savingAmount = oldPriceNum - priceNum;
+      formattedSaving = `SAVE ${formatPrice(savingAmount, { fromCurrency: "INR" })}`;
+    }
+  }
+
   const handleDownloadItinerary = () => {
     if (itineraryUrl) {
       window.open(itineraryUrl, "_blank");
@@ -27,13 +45,13 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
         <div className="mb-4">
           <h3 className="text-base font-medium text-foreground">{title}</h3>
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-2xl font-bold text-foreground">{price}</span>
-            {oldPrice && (
-              <span className="text-sm text-muted-foreground line-through">{oldPrice}</span>
+            <span className="text-2xl font-bold text-foreground">{formattedPrice}</span>
+            {formattedOldPrice && (
+              <span className="text-sm text-muted-foreground line-through">{formattedOldPrice}</span>
             )}
-            {saving && (
+            {formattedSaving && (
               <span className="bg-sale text-primary-foreground text-xs px-2 py-0.5 rounded font-medium">
-                {saving}
+                {formattedSaving}
               </span>
             )}
           </div>
