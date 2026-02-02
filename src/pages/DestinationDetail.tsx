@@ -67,7 +67,7 @@ const DestinationDetail = () => {
             <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
             {activeTab === "itinerary" && (
-              <ItinerarySection images={galleryImages} days={dayCount} />
+              <ItinerarySection images={galleryImages} days={dayCount} itinerary={travelPackage.itinerary} />
             )}
           </div>
 
