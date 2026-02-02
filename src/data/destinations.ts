@@ -146,6 +146,27 @@ export const destinations: Destination[] = [
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F7dcb39e48c924358b1c8822906e58ffc?format=webp&width=800",
         categories: ["Mountain", "Adventure"],
       },
+      {
+        slug: "trans-himalayan-ride",
+        name: "Trans Himalayan Ride",
+        duration: "10 days · 9 nights",
+        description:
+          "Experience the ultimate group adventure across the Trans-Himalayan route with team bonding, breathtaking passes, and unforgettable memories.",
+        price: "₹52,900",
+        oldPrice: "₹58,600",
+        badge: "Group Special",
+        rating: 4.9,
+        reviews: 315,
+        highlights: [
+          "Scenic high-altitude group rides",
+          "Team camping experiences",
+          "Professional group coordination",
+          "All-inclusive meal arrangements",
+        ],
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Ff7bafe136619419dbf13ca7afdf8e95e%2F3049f1a0c38f4c3b9725e7b207142b2a?format=webp&width=800&height=1200",
+        categories: ["Mountain", "Adventure"],
+      },
     ],
   },
   {
