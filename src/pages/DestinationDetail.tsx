@@ -26,6 +26,7 @@ import "@/styles/destination-detail.css";
 const DestinationDetail = () => {
   const { slug, packageSlug } = useParams<{ slug: string; packageSlug?: string }>();
   const [activeTab, setActiveTab] = useState("itinerary");
+  const { formatPrice } = useCurrency();
 
   let destination = slug ? getDestinationBySlug(slug) : undefined;
   let travelPackage =
@@ -47,6 +48,19 @@ const DestinationDetail = () => {
 
   if (!travelPackage) {
     travelPackage = destination.packages[0];
+  }
+
+  // Calculate saving dynamically based on currency
+  let saving: string | undefined;
+  if (travelPackage.oldPrice && travelPackage.price) {
+    const basePriceNum = parsePrice(travelPackage.price);
+    const oldPriceNum = parsePrice(travelPackage.oldPrice);
+    if (basePriceNum && oldPriceNum) {
+      const savingAmount = oldPriceNum - basePriceNum;
+      if (savingAmount > 0) {
+        saving = `SAVE ${formatPrice(savingAmount, { fromCurrency: "INR" })}`;
+      }
+    }
   }
 
   const galleryImages = buildGalleryImages(destination, travelPackage);
