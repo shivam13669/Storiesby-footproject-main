@@ -30,9 +30,11 @@ interface ItineraryDayProps {
   transfer?: TransferInfo;
   stay?: StayInfo;
   experiences?: Experience[];
+  highlights?: string[];
+  location?: string;
 }
 
-const ItineraryDay = ({ day, title, description, transfer, stay, experiences }: ItineraryDayProps) => {
+const ItineraryDay = ({ day, title, description, transfer, stay, experiences, highlights, location }: ItineraryDayProps) => {
   const [isOpen, setIsOpen] = useState(day === 1);
 
   return (
