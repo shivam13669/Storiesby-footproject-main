@@ -13,6 +13,7 @@ import PackageInclusions from "@/components/PackageInclusions";
 import PolicyAccordion from "@/components/PolicyAccordion";
 import PromoBanners from "@/components/PromoBanners";
 import TrustBadges from "@/components/TrustBadges";
+import { useCurrency, parsePrice } from "@/context/CurrencyContext";
 import {
   Destination,
   DestinationPackage,
