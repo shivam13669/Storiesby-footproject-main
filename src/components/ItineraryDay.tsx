@@ -30,9 +30,11 @@ interface ItineraryDayProps {
   transfer?: TransferInfo;
   stay?: StayInfo;
   experiences?: Experience[];
+  highlights?: string[];
+  location?: string;
 }
 
-const ItineraryDay = ({ day, title, description, transfer, stay, experiences }: ItineraryDayProps) => {
+const ItineraryDay = ({ day, title, description, transfer, stay, experiences, highlights, location }: ItineraryDayProps) => {
   const [isOpen, setIsOpen] = useState(day === 1);
 
   return (
@@ -57,6 +59,18 @@ const ItineraryDay = ({ day, title, description, transfer, stay, experiences }: 
           {/* Description */}
           {description && (
             <p className="text-muted-foreground leading-relaxed">{description}</p>
+          )}
+
+          {/* Highlights Section */}
+          {highlights && highlights.length > 0 && (
+            <div className="space-y-3">
+              <h4 className="font-semibold text-foreground">Highlights</h4>
+              <ul className="space-y-2 list-disc pl-5 text-muted-foreground">
+                {highlights.map((highlight, idx) => (
+                  <li key={idx} className="text-sm">{highlight}</li>
+                ))}
+              </ul>
+            </div>
           )}
 
           {/* Transfer Section */}

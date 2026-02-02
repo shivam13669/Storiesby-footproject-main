@@ -67,7 +67,7 @@ const DestinationDetail = () => {
             <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
             {activeTab === "itinerary" && (
-              <ItinerarySection images={galleryImages} days={dayCount} />
+              <ItinerarySection images={galleryImages} days={dayCount} itinerary={travelPackage.itinerary} />
             )}
           </div>
 
@@ -83,6 +83,7 @@ const DestinationDetail = () => {
                   ? `SAVE INR ${parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - parseInt(travelPackage.price.replace(/\D/g, ""))}`
                   : undefined
               }
+              itineraryUrl={travelPackage.itineraryUrl}
             />
           </div>
         </div>
@@ -98,7 +99,10 @@ const DestinationDetail = () => {
 
         {/* Full Width Content - After End of Trip */}
         <div>
-          <PackageInclusions />
+          <PackageInclusions
+            inclusions={travelPackage.inclusions}
+            exclusions={travelPackage.exclusions}
+          />
 
           {/* Policy Sections */}
           <PolicyAccordion title="Know Before You Go" defaultOpen={true}>
