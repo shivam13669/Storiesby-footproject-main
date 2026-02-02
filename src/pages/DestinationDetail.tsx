@@ -99,7 +99,10 @@ const DestinationDetail = () => {
 
         {/* Full Width Content - After End of Trip */}
         <div>
-          <PackageInclusions />
+          <PackageInclusions
+            inclusions={travelPackage.inclusions}
+            exclusions={travelPackage.exclusions}
+          />
 
           {/* Policy Sections */}
           <PolicyAccordion title="Know Before You Go" defaultOpen={true}>
