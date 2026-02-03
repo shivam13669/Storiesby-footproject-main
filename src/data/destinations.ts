@@ -105,7 +105,7 @@ export const destinations: Destination[] = [
           "https://drive.google.com/uc?export=download&confirm=t&id=1jV0EcTYct29O9DY7dEI2HK1bgHq79Myq",
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F677a8672f5074d078c0775a63e74de1f?format=webp&width=1200",
-        categories: ["Mountain", "Adventure"],
+        categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
             day: 1,
@@ -327,7 +327,7 @@ export const destinations: Destination[] = [
           "https://drive.google.com/uc?export=download&confirm=t&id=1UkGUiHOHgNTskO0w6OrnOsV8cwpkaCG8",
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=1200",
-        categories: ["Mountain", "Adventure"],
+        categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
             day: 1,
@@ -574,7 +574,7 @@ export const destinations: Destination[] = [
           "https://drive.google.com/uc?export=download&confirm=t&id=1ftCLsCQzd-Vhv50ENyvLpVGzpiUFJFvC",
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=1200",
-        categories: ["Mountain", "Adventure"],
+        categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
             day: 1,
@@ -864,7 +864,7 @@ export const destinations: Destination[] = [
           "https://drive.google.com/uc?export=download&confirm=t&id=1_pTNYJcwkfVVtfWn5LVkJcd1plVcyjM_",
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F7dcb39e48c924358b1c8822906e58ffc?format=webp&width=1200",
-        categories: ["Mountain", "Adventure"],
+        categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
             day: 1,
@@ -1173,7 +1173,7 @@ export const destinations: Destination[] = [
           "https://drive.google.com/uc?export=download&confirm=t&id=1MPyuMnNvDp1g9lSAgDbym3PxGXc87lrp",
         image:
           "https://cdn.builder.io/api/v1/image/assets%2Ff7bafe136619419dbf13ca7afdf8e95e%2F3049f1a0c38f4c3b9725e7b207142b2a?format=webp&width=1200",
-        categories: ["Mountain", "Adventure"],
+        categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
             day: 1,
@@ -1680,7 +1680,7 @@ export const destinations: Destination[] = [
         ],
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F0c9f08f02c764866969402fd835478cb%2Fd0879b3f63dc4393ab28eb025eac97e7?format=webp&width=1200",
-        categories: ["Luxury", "Adventure"],
+        categories: ["Luxury", "Adventure", "Four-wheeler"],
       },
     ],
   },
@@ -1717,7 +1717,7 @@ export const destinations: Destination[] = [
         ],
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F36318bde1826458f8c22a7003aedd265?format=webp&width=1200",
-        categories: ["Beach", "Adventure"],
+        categories: ["Beach", "Adventure", "Four-wheeler"],
       },
       {
         slug: "khasi-highlands-retreat",
@@ -1736,7 +1736,7 @@ export const destinations: Destination[] = [
         ],
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F107c2ff1e4bf414fa214bc78eaab88c0?format=webp&width=1200",
-        categories: ["Beach", "Luxury"],
+        categories: ["Beach", "Luxury", "Four-wheeler"],
       },
     ],
   },
@@ -1774,7 +1774,7 @@ export const destinations: Destination[] = [
         ],
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F9f419557f45e49b18a9a1af4d0db408e?format=webp&width=1200",
-        categories: ["Mountain", "Adventure"],
+        categories: ["Mountain", "Adventure", "Four-wheeler"],
       },
       {
         slug: "kathmandu-heritage-chitwan",
@@ -1793,7 +1793,7 @@ export const destinations: Destination[] = [
         ],
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F3ba47243a6834d3eade8da3e45996207?format=webp&width=1200",
-        categories: ["City", "Adventure"],
+        categories: ["City", "Adventure", "Four-wheeler"],
       },
     ],
   },
@@ -1878,11 +1878,13 @@ export const getPackageBySlug = (destinationSlug: string, packageSlug: string) =
 // Category icon mapping
 export const categoryIconMap: Record<string, string> = {
   "All": "🌍",
-  "Adventure": "🎯",
+  "Adventure": "🧗",
   "Mountain": "⛰️",
   "Beach": "🏖️",
   "City": "🏙️",
   "Luxury": "✨",
+  "Two-wheeler": "🏍️",
+  "Four-wheeler": "🚙",
 };
 
 // Extract unique categories from all packages
