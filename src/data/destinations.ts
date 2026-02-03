@@ -1883,6 +1883,8 @@ export const categoryIconMap: Record<string, string> = {
   "Beach": "🏖️",
   "City": "🏙️",
   "Luxury": "✨",
+  "Two-wheeler": "🏍️",
+  "Four-wheeler": "🚙",
 };
 
 // Extract unique categories from all packages
