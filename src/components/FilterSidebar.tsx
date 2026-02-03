@@ -1,5 +1,7 @@
 import { Search, Filter } from "lucide-react";
 import { Slider } from "./ui/slider";
+import { getAvailableCategories, getCategoryPackageCounts, categoryIconMap } from "@/data/destinations";
+import { useRef } from "react";
 
 export type FilterState = {
   search: string;
@@ -15,7 +17,6 @@ interface FilterSidebarProps {
   onFiltersChange: (filters: FilterState) => void;
 }
 
-const CATEGORIES = ["All", "Beach", "Mountain", "City", "Two-wheeler", "Four-wheeler", "Luxury", "Adventure"];
 const PRICE_RANGES = ["All", "₹0 - ₹25,000", "₹25,000 - ₹40,000", "₹40,000+"];
 const RATINGS = ["All", "4.5+", "4.7+", "4.8+"];
 const MIN_PRICE = 0;
@@ -90,23 +91,48 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
           <label className="block text-sm font-semibold text-foreground mb-3">
             Category
           </label>
-          <div className="space-y-2">
-            {CATEGORIES.map((cat) => (
-              <label
-                key={cat}
-                className="flex items-center gap-2 cursor-pointer"
-              >
+          <div className="flex flex-wrap gap-2">
+            {getAvailableCategories().map((cat) => {
+              const counts = getCategoryPackageCounts();
+              const count = counts[cat] || 0;
+              const isSelected = filters.category === cat;
+              const icon = categoryIconMap[cat] || "•";
+
+              return (
                 <input
+                  key={cat}
                   type="radio"
+                  id={`category-${cat}`}
                   name="category"
                   value={cat}
-                  checked={filters.category === cat}
+                  checked={isSelected}
                   onChange={handleCategoryChange}
-                  className="w-4 h-4 cursor-pointer"
+                  className="sr-only peer"
+                  aria-label={`${cat} category filter`}
                 />
-                <span className="text-sm text-gray-700">{cat}</span>
-              </label>
-            ))}
+              );
+            })}
+          </div>
+          <div className="flex flex-wrap gap-2 mt-3">
+            {getAvailableCategories().map((cat) => {
+              const isSelected = filters.category === cat;
+              const icon = categoryIconMap[cat] || "•";
+
+              return (
+                <label
+                  key={cat}
+                  htmlFor={`category-${cat}`}
+                  className={`inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 border-2 ${
+                    isSelected
+                      ? "bg-primary text-primary-foreground border-primary shadow-md"
+                      : "bg-white text-foreground border-gray-200 hover:border-primary/30 hover:bg-gray-50"
+                  }`}
+                >
+                  <span className="text-base">{icon}</span>
+                  <span className="text-xs font-medium">{cat}</span>
+                </label>
+              );
+            })}
           </div>
         </div>
 
