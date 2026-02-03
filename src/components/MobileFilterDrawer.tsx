@@ -107,21 +107,41 @@ export const MobileFilterDrawer = ({
           <div>
             <h3 className="font-semibold text-sm mb-3">Category</h3>
             <div className="space-y-2">
-              {CATEGORIES.map((cat) => (
-                <label
-                  key={cat}
-                  className="flex items-center gap-3 cursor-pointer py-2"
-                >
-                  <input
-                    type="radio"
-                    name="category"
-                    checked={filters.category === cat}
-                    onChange={() => handleCategoryChange(cat)}
-                    className="w-4 h-4 cursor-pointer"
-                  />
-                  <span className="text-sm text-gray-700">{cat}</span>
-                </label>
-              ))}
+              {getAvailableCategories().map((cat) => {
+                const counts = getCategoryPackageCounts();
+                const count = counts[cat] || 0;
+                const isSelected = filters.category === cat;
+
+                return (
+                  <div key={cat}>
+                    <input
+                      type="radio"
+                      id={`mobile-category-${cat}`}
+                      name="category"
+                      checked={isSelected}
+                      onChange={() => handleCategoryChange(cat)}
+                      className="sr-only"
+                    />
+                    <label
+                      htmlFor={`mobile-category-${cat}`}
+                      className={`flex items-center justify-between gap-2 px-3 py-3 rounded-lg cursor-pointer transition-all ${
+                        isSelected
+                          ? "bg-primary text-primary-foreground font-medium"
+                          : "bg-gray-100 text-foreground hover:bg-gray-200"
+                      }`}
+                    >
+                      <span className="text-sm">{cat}</span>
+                      <span className={`text-xs px-2 py-1 rounded-full ${
+                        isSelected
+                          ? "bg-primary-foreground/20"
+                          : "bg-gray-300"
+                      }`}>
+                        {count}
+                      </span>
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
