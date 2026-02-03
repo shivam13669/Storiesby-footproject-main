@@ -41,7 +41,7 @@ const HowItWorks = () => {
         <div
           className="relative grid grid-cols-1 md:grid-cols-4"
           style={{
-            gap: "32px"
+            gap: "24px"
           }}
         >
           {/* Connector line - positioned to pass through the center of number circles */}
