@@ -101,7 +101,7 @@ const ItineraryDay = ({ day, title, description, transfer, stay, experiences, hi
                 <div className="absolute left-[-16px] top-8 bottom-8 w-0.5 bg-border" />
 
                 {/* Stops */}
-                {transfer.stops !== undefined && transfer.stops > 0 && (
+                {(transfer.stops ?? 0) > 0 && (
                   <div className="text-center">
                     <a href="#" className="text-primary text-sm hover:underline">↕ View {transfer.stops} Stop{transfer.stops > 1 ? 's' : ''}</a>
                   </div>
