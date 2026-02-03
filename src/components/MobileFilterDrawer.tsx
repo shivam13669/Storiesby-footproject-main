@@ -3,6 +3,7 @@ import { ChevronLeft } from "lucide-react";
 import { Button } from "./ui/button";
 import { Slider } from "./ui/slider";
 import { FilterState } from "./FilterSidebar";
+import { getAvailableCategories, getCategoryPackageCounts } from "@/data/destinations";
 
 interface MobileFilterDrawerProps {
   isOpen: boolean;
@@ -11,7 +12,6 @@ interface MobileFilterDrawerProps {
   onFiltersChange: (filters: FilterState) => void;
 }
 
-const CATEGORIES = ["All", "Beach", "Mountain", "City", "Two-wheeler", "Four-wheeler", "Luxury", "Adventure"];
 const PRICE_RANGES = ["All", "₹0 - ₹25,000", "₹25,000 - ₹40,000", "₹40,000+"];
 const RATINGS = ["All", "4.5+", "4.7+", "4.8+"];
 const MIN_PRICE = 0;
