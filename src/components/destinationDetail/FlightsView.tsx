@@ -128,7 +128,7 @@ const FlightsView = ({ itinerary = [] }: FlightsViewProps) => {
         </CardHeader>
         <CardContent className="text-sm space-y-2">
           <p>
-            ✈️ <strong>International Flights:</strong> Not included in package price. Book separately.
+            ✈️ <strong>International & Domestic Flights:</strong> Not included in package price. Book separately.
           </p>
           <p>
             🚐 <strong>Airport Transfers:</strong> Included as mentioned in itinerary above.
