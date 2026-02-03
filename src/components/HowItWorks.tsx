@@ -27,8 +27,8 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="bg-white" style={{ margin: "100px auto", padding: "0 20px" }}>
+      <div className="mx-auto" style={{ maxWidth: "1200px" }}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             How It Works
