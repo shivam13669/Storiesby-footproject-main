@@ -50,8 +50,9 @@ const HowItWorks = () => {
             >
               {/* Step card */}
               <div
-                className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] px-[26px] py-10 pt-16 border transition-all duration-350 hover:-translate-y-2.5 relative"
+                className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] border transition-all duration-350 hover:-translate-y-2.5 relative"
                 style={{
+                  padding: "60px 26px 40px 26px",
                   borderColor: "rgba(34, 197, 94, 0.15)",
                   boxShadow: "0 18px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)"
                 }}
