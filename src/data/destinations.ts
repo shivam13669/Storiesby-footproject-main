@@ -1878,7 +1878,7 @@ export const getPackageBySlug = (destinationSlug: string, packageSlug: string) =
 // Category icon mapping
 export const categoryIconMap: Record<string, string> = {
   "All": "🌍",
-  "Adventure": "🎯",
+  "Adventure": "🧗",
   "Mountain": "⛰️",
   "Beach": "🏖️",
   "City": "🏙️",
