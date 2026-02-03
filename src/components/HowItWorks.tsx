@@ -38,7 +38,7 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 relative" style={{ gap: "32px" }}>
+        <div className="relative" style={{ gap: "32px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
           {/* Connector line - positioned to pass through the center of number circles */}
           <div
             className="hidden md:block absolute left-[8%] right-[8%] pointer-events-none"
@@ -58,7 +58,7 @@ const HowItWorks = () => {
             >
               {/* Step card */}
               <div
-                className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] border transition-all duration-350 hover:-translate-y-2.5 relative"
+                className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] border transition-all duration-350 hover:-translate-y-2.5 relative w-full"
                 style={{
                   padding: "60px 26px 40px 26px",
                   borderColor: "rgba(34, 197, 94, 0.15)",
