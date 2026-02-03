@@ -3,7 +3,7 @@ import { ChevronLeft } from "lucide-react";
 import { Button } from "./ui/button";
 import { Slider } from "./ui/slider";
 import { FilterState } from "./FilterSidebar";
-import { getAvailableCategories, getCategoryPackageCounts } from "@/data/destinations";
+import { getAvailableCategories, getCategoryPackageCounts, categoryIconMap } from "@/data/destinations";
 
 interface MobileFilterDrawerProps {
   isOpen: boolean;
