@@ -1875,6 +1875,38 @@ export const getPackageBySlug = (destinationSlug: string, packageSlug: string) =
   return destination.packages.find((travelPackage) => travelPackage.slug === packageSlug);
 };
 
+// Extract unique categories from all packages
+export const getAvailableCategories = (): string[] => {
+  const categoriesSet = new Set<string>();
+  destinations.forEach((destination) => {
+    destination.packages.forEach((pkg) => {
+      pkg.categories?.forEach((cat) => {
+        categoriesSet.add(cat);
+      });
+    });
+  });
+  // Return sorted categories
+  return ["All", ...Array.from(categoriesSet).sort()];
+};
+
+// Get count of packages for each category
+export const getCategoryPackageCounts = (): Record<string, number> => {
+  const counts: Record<string, number> = {};
+  let totalCount = 0;
+
+  destinations.forEach((destination) => {
+    destination.packages.forEach((pkg) => {
+      totalCount++;
+      pkg.categories?.forEach((cat) => {
+        counts[cat] = (counts[cat] || 0) + 1;
+      });
+    });
+  });
+
+  counts["All"] = totalCount;
+  return counts;
+};
+
 export const findPackageAcrossDestinations = (packageSlug: string) => {
   for (const destination of destinations) {
     const travelPackage = destination.packages.find((item) => item.slug === packageSlug);
