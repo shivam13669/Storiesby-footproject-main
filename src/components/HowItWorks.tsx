@@ -29,11 +29,11 @@ const HowItWorks = () => {
   return (
     <section className="bg-white" style={{ margin: "100px auto", padding: "0 20px" }}>
       <div className="mx-auto" style={{ maxWidth: "1200px" }}>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center" style={{ marginBottom: "60px" }}>
+          <h2 className="font-bold text-slate-900 mb-3" style={{ fontSize: "44px", letterSpacing: "-0.5px" }}>
             How It Works
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-slate-600 mx-auto" style={{ maxWidth: "640px", fontSize: "17px" }}>
             Your seamless journey from booking to unforgettable travel experiences.
           </p>
         </div>
