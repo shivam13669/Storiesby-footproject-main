@@ -74,10 +74,10 @@ const HowItWorks = () => {
                 </div>
 
                 {/* Text */}
-                <h3 className="text-[22px] font-semibold text-slate-900 mb-3 text-center">
+                <h3 className="text-[22px] font-semibold text-slate-900 text-center" style={{ margin: "0 0 14px" }}>
                   {step.title}
                 </h3>
-                <p className="text-slate-700 text-[15px] leading-relaxed text-center">
+                <p className="text-slate-700 text-[15px] leading-relaxed text-center" style={{ margin: "0" }}>
                   {step.description}
                 </p>
               </div>
