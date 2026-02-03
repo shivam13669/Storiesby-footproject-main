@@ -39,19 +39,19 @@ const HowItWorks = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-          {/* Connector line */}
-          <div className="hidden md:block absolute top-[66px] left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-green-300 via-green-500 to-green-300 opacity-60 -z-10" />
+          {/* Connector line - positioned to pass through the center of number circles */}
+          <div className="hidden md:block absolute top-[66px] left-[8%] right-[8%] h-[2px] bg-gradient-to-r from-green-200 via-green-500 to-green-200 opacity-60 pointer-events-none" />
 
           {steps.map((step, index) => (
             <div
               key={step.number}
-              className="relative group"
+              className="relative"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Step card */}
-              <div className="bg-gradient-to-b from-white to-green-50/40 rounded-3xl p-10 pt-16 border border-green-500/15 shadow-lg hover:shadow-2xl transition-all duration-350 hover:-translate-y-2.5 relative">
-                {/* Number circle */}
-                <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center font-bold text-lg shadow-xl">
+              <div className="bg-gradient-to-b from-white to-green-50/40 rounded-3xl px-7 py-10 pt-16 border border-green-500/15 shadow-lg hover:shadow-2xl transition-all duration-350 hover:-translate-y-2.5 relative">
+                {/* Number circle - sits on the connector line */}
+                <div className="absolute left-1/2 -translate-x-1/2 w-[60px] h-[60px] rounded-full bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center font-bold text-base shadow-xl" style={{ top: "-30px" }}>
                   {step.number}
                 </div>
 
