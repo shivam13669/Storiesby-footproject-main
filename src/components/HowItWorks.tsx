@@ -56,15 +56,15 @@ const HowItWorks = () => {
                 </div>
 
                 {/* Icon */}
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-b from-green-50 to-white mx-auto mb-7 flex items-center justify-center text-4xl shadow-inner border border-green-500/10">
+                <div className="w-[76px] h-[76px] rounded-[20px] bg-gradient-to-b from-emerald-50 to-white mx-auto mb-7 flex items-center justify-center text-3xl shadow-sm" style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9)" }}>
                   {step.icon}
                 </div>
 
                 {/* Text */}
-                <h3 className="text-xl font-semibold text-foreground mb-3 text-center">
+                <h3 className="text-[22px] font-semibold text-slate-900 mb-3 text-center">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed text-center">
+                <p className="text-slate-700 text-[15px] leading-relaxed text-center">
                   {step.description}
                 </p>
               </div>
