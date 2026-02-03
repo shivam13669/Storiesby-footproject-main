@@ -1,6 +1,7 @@
-import { Search, Filter, X } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 import { Slider } from "./ui/slider";
-import { getAvailableCategories, getCategoryPackageCounts } from "@/data/destinations";
+import { getAvailableCategories, getCategoryPackageCounts, categoryIconMap } from "@/data/destinations";
+import { useRef } from "react";
 
 export type FilterState = {
   search: string;
