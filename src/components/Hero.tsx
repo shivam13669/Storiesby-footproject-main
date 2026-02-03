@@ -56,45 +56,45 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-3xl mx-auto animate-fade-in space-y-8">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
+        <div className="max-w-3xl mx-auto animate-fade-in space-y-4 sm:space-y-8">
+          <div className="space-y-3 sm:space-y-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
               Discover Your Next
-              <span className="block gradient-adventure bg-clip-text text-transparent pt-2">Adventure</span>
+              <span className="block gradient-adventure bg-clip-text text-transparent pt-1 sm:pt-2">Adventure</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="text-sm sm:text-lg md:text-xl text-white/95 max-w-2xl mx-auto leading-relaxed font-light">
               Discover breathtaking landscapes, thrilling expeditions, and unforgettable journeys designed to inspire your spirit of exploration and adventure.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-slide-up">
-            <Button asChild variant="hero" size="xl" className="group">
-              <Link to="/destinations" className="inline-flex items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-2 sm:pt-4 animate-slide-up">
+            <Button asChild variant="hero" size="xl" className="group w-full sm:w-auto">
+              <Link to="/destinations" className="inline-flex items-center justify-center">
                 Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
 
-            <Button variant="glass" size="xl" className="group">
+            <Button variant="glass" size="xl" className="group w-full sm:w-auto">
               <Play className="mr-2 h-5 w-5" />
               Watch Stories
             </Button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-12 max-w-md mx-auto">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 pt-6 sm:pt-12 max-w-md mx-auto">
             <div className="text-center animate-float">
-              <div className="text-3xl md:text-4xl font-bold text-white">500+</div>
-              <div className="text-white/70 text-xs md:text-sm pt-2">Adventures</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">500+</div>
+              <div className="text-white/70 text-xs pt-1 sm:pt-2">Adventures</div>
             </div>
             <div className="text-center animate-float" style={{ animationDelay: "0.5s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-white">10k+</div>
-              <div className="text-white/70 text-xs md:text-sm pt-2">Happy Travelers</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">10k+</div>
+              <div className="text-white/70 text-xs pt-1 sm:pt-2">Happy Travelers</div>
             </div>
             <div className="text-center animate-float" style={{ animationDelay: "1s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-white">3+</div>
-              <div className="text-white/70 text-xs md:text-sm pt-2">Countries</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">3+</div>
+              <div className="text-white/70 text-xs pt-1 sm:pt-2">Countries</div>
             </div>
           </div>
         </div>
