@@ -38,7 +38,7 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-4 relative" style={{ gap: "32px" }}>
           {/* Connector line - positioned to pass through the center of number circles */}
           <div className="hidden md:block absolute top-[66px] left-[8%] right-[8%] h-[2px] bg-gradient-to-r from-green-200 via-green-500 to-green-200 opacity-60 pointer-events-none" />
 
