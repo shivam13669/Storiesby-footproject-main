@@ -39,15 +39,11 @@ const HowItWorks = () => {
         </div>
 
         <div
-          className="relative"
+          className="relative grid grid-cols-1 md:grid-cols-4"
           style={{
-            gap: "32px",
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)"
+            gap: "32px"
           }}
-          onResize={() => {}}
         >
-          {/* Mobile responsive styles handled via media query simulation */}
           {/* Connector line - positioned to pass through the center of number circles */}
           <div
             className="hidden md:block absolute left-[8%] right-[8%] pointer-events-none"
