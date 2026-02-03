@@ -69,7 +69,7 @@ const HowItWorks = () => {
                 </div>
 
                 {/* Icon */}
-                <div className="w-[76px] h-[76px] rounded-[20px] bg-gradient-to-b from-emerald-50 to-white mx-auto mb-7 flex items-center justify-center text-3xl shadow-sm" style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9)" }}>
+                <div className="w-[76px] h-[76px] rounded-[20px] bg-gradient-to-b from-emerald-50 to-white mx-auto flex items-center justify-center text-3xl" style={{ margin: "0 auto 28px", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9)" }}>
                   {step.icon}
                 </div>
 
