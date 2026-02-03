@@ -120,7 +120,7 @@ const TransfersView = ({ itinerary = [] }: TransfersViewProps) => {
                       </div>
 
                       {/* Stops */}
-                      {day.transfer.stops !== undefined && day.transfer.stops > 0 && (
+                      {(day.transfer.stops ?? 0) > 0 && (
                         <div className="bg-blue-50 dark:bg-blue-950 rounded p-3">
                           <p className="text-sm text-blue-900 dark:text-blue-100">
                             <strong>🛑 {day.transfer.stops} stop{day.transfer.stops > 1 ? 's' : ''}</strong> along the way
