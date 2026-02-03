@@ -63,11 +63,14 @@ const HowItWorks = () => {
             >
               {/* Step card */}
               <div
-                className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] border transition-all duration-350 hover:-translate-y-2.5 relative w-full"
+                className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] border transition-all duration-350 hover:-translate-y-2.5 relative w-full h-full"
                 style={{
-                  padding: "60px 26px 40px 26px",
+                  padding: "60px 32px 40px 32px",
                   borderColor: "rgba(34, 197, 94, 0.15)",
-                  boxShadow: "0 18px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)"
+                  boxShadow: "0 18px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = "0 28px 60px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95)";
