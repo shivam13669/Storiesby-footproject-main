@@ -106,7 +106,7 @@ const FlightsView = ({ itinerary = [] }: FlightsViewProps) => {
                     </div>
                   </div>
 
-                  {day.transfer.stops !== undefined && day.transfer.stops !== 0 && day.transfer.stops > 0 && (
+                  {(day.transfer.stops ?? 0) > 0 && (
                     <div>
                       <p className="text-xs text-muted-foreground font-semibold uppercase mb-2">
                         Stops
