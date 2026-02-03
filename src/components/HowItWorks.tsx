@@ -61,7 +61,7 @@ const HowItWorks = () => {
                 </div>
 
                 {/* Card */}
-                <div className="pt-16 pb-8 px-7 rounded-3xl bg-gradient-to-b from-white to-green-50 border border-green-200 border-opacity-15 shadow-lg hover:shadow-2xl transition-all duration-350 group-hover:-translate-y-2.5 bg-opacity-80 backdrop-blur-sm h-full flex flex-col">
+                <div className="pt-16 pb-8 px-7 rounded-3xl bg-gradient-to-b from-white to-green-50 border border-green-200 border-opacity-15 shadow-lg hover:shadow-2xl transition-all duration-350 group-hover:-translate-y-2.5 bg-opacity-80 backdrop-blur-sm h-full min-h-96 flex flex-col">
                   {/* Icon */}
                   <div className="w-20 h-20 rounded-2xl bg-gradient-to-b from-emerald-100 to-white mx-auto mb-7 flex items-center justify-center text-4xl shadow-sm flex-shrink-0">
                     {step.icon}
