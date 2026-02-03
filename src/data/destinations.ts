@@ -1736,7 +1736,7 @@ export const destinations: Destination[] = [
         ],
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F107c2ff1e4bf414fa214bc78eaab88c0?format=webp&width=1200",
-        categories: ["Beach", "Luxury"],
+        categories: ["Beach", "Luxury", "Four-wheeler"],
       },
     ],
   },
