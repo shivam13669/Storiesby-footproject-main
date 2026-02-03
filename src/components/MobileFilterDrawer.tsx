@@ -106,40 +106,53 @@ export const MobileFilterDrawer = ({
           {/* Category Filter */}
           <div>
             <h3 className="font-semibold text-sm mb-3">Category</h3>
-            <div className="space-y-2">
+            <div className="flex flex-wrap gap-2">
               {getAvailableCategories().map((cat) => {
                 const counts = getCategoryPackageCounts();
                 const count = counts[cat] || 0;
                 const isSelected = filters.category === cat;
+                const icon = categoryIconMap[cat] || "•";
 
                 return (
-                  <div key={cat}>
-                    <input
-                      type="radio"
-                      id={`mobile-category-${cat}`}
-                      name="category"
-                      checked={isSelected}
-                      onChange={() => handleCategoryChange(cat)}
-                      className="sr-only"
-                    />
-                    <label
-                      htmlFor={`mobile-category-${cat}`}
-                      className={`flex items-center justify-between gap-2 px-3 py-3 rounded-lg cursor-pointer transition-all ${
-                        isSelected
-                          ? "bg-primary text-primary-foreground font-medium"
-                          : "bg-gray-100 text-foreground hover:bg-gray-200"
-                      }`}
-                    >
-                      <span className="text-sm">{cat}</span>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        isSelected
-                          ? "bg-primary-foreground/20"
-                          : "bg-gray-300"
-                      }`}>
-                        {count}
-                      </span>
-                    </label>
-                  </div>
+                  <input
+                    key={cat}
+                    type="radio"
+                    id={`mobile-category-${cat}`}
+                    name="category"
+                    checked={isSelected}
+                    onChange={() => handleCategoryChange(cat)}
+                    className="sr-only"
+                  />
+                );
+              })}
+            </div>
+            <div className="flex flex-wrap gap-2 mt-3">
+              {getAvailableCategories().map((cat) => {
+                const counts = getCategoryPackageCounts();
+                const count = counts[cat] || 0;
+                const isSelected = filters.category === cat;
+                const icon = categoryIconMap[cat] || "•";
+
+                return (
+                  <label
+                    key={cat}
+                    htmlFor={`mobile-category-${cat}`}
+                    className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-full cursor-pointer transition-all duration-200 border-2 ${
+                      isSelected
+                        ? "bg-primary text-primary-foreground border-primary shadow-md scale-105"
+                        : "bg-white text-foreground border-gray-200 hover:border-primary/30 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span className="text-base">{icon}</span>
+                    <span className="text-sm font-medium">{cat}</span>
+                    <span className={`text-xs font-semibold px-1.5 py-0.5 rounded-full ${
+                      isSelected
+                        ? "bg-primary-foreground/25"
+                        : "bg-gray-200"
+                    }`}>
+                      {count}
+                    </span>
+                  </label>
                 );
               })}
             </div>
