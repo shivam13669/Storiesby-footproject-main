@@ -38,7 +38,8 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div className="relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative">
           {/* Connector line */}
           <div className="hidden md:block absolute top-16 left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-emerald-300 via-green-500 to-emerald-300 opacity-60" />
 
@@ -77,6 +78,7 @@ const HowItWorks = () => {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
 
