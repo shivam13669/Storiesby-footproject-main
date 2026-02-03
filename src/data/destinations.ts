@@ -1875,6 +1875,16 @@ export const getPackageBySlug = (destinationSlug: string, packageSlug: string) =
   return destination.packages.find((travelPackage) => travelPackage.slug === packageSlug);
 };
 
+// Category icon mapping
+export const categoryIconMap: Record<string, string> = {
+  "All": "🌍",
+  "Adventure": "🎯",
+  "Mountain": "⛰️",
+  "Beach": "🏖️",
+  "City": "🏙️",
+  "Luxury": "✨",
+};
+
 // Extract unique categories from all packages
 export const getAvailableCategories = (): string[] => {
   const categoriesSet = new Set<string>();
