@@ -91,22 +91,42 @@ export const FilterSidebar = ({ filters, onFiltersChange }: FilterSidebarProps) 
             Category
           </label>
           <div className="space-y-2">
-            {CATEGORIES.map((cat) => (
-              <label
-                key={cat}
-                className="flex items-center gap-2 cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  name="category"
-                  value={cat}
-                  checked={filters.category === cat}
-                  onChange={handleCategoryChange}
-                  className="w-4 h-4 cursor-pointer"
-                />
-                <span className="text-sm text-gray-700">{cat}</span>
-              </label>
-            ))}
+            {getAvailableCategories().map((cat) => {
+              const counts = getCategoryPackageCounts();
+              const count = counts[cat] || 0;
+              const isSelected = filters.category === cat;
+
+              return (
+                <div key={cat}>
+                  <input
+                    type="radio"
+                    id={`category-${cat}`}
+                    name="category"
+                    value={cat}
+                    checked={isSelected}
+                    onChange={handleCategoryChange}
+                    className="sr-only"
+                  />
+                  <label
+                    htmlFor={`category-${cat}`}
+                    className={`flex items-center justify-between gap-2 px-3 py-2 rounded-lg cursor-pointer transition-all ${
+                      isSelected
+                        ? "bg-primary text-primary-foreground font-medium"
+                        : "bg-gray-100 text-foreground hover:bg-gray-200"
+                    }`}
+                  >
+                    <span className="text-sm">{cat}</span>
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      isSelected
+                        ? "bg-primary-foreground/20"
+                        : "bg-gray-300"
+                    }`}>
+                      {count}
+                    </span>
+                  </label>
+                </div>
+              );
+            })}
           </div>
         </div>
 
