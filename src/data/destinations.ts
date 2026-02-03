@@ -1774,7 +1774,7 @@ export const destinations: Destination[] = [
         ],
         image:
           "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F9f419557f45e49b18a9a1af4d0db408e?format=webp&width=1200",
-        categories: ["Mountain", "Adventure"],
+        categories: ["Mountain", "Adventure", "Four-wheeler"],
       },
       {
         slug: "kathmandu-heritage-chitwan",
