@@ -49,7 +49,19 @@ const HowItWorks = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Step card */}
-              <div className="bg-gradient-to-b from-white to-green-50/40 rounded-3xl px-7 py-10 pt-16 border border-green-500/15 shadow-lg hover:shadow-2xl transition-all duration-350 hover:-translate-y-2.5 relative">
+              <div
+                className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] px-[26px] py-10 pt-16 border transition-all duration-350 hover:-translate-y-2.5 relative"
+                style={{
+                  borderColor: "rgba(34, 197, 94, 0.15)",
+                  boxShadow: "0 18px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = "0 28px 60px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = "0 18px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)";
+                }}
+              >
                 {/* Number circle - sits on the connector line */}
                 <div className="absolute left-1/2 -translate-x-1/2 w-[60px] h-[60px] rounded-full bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center font-bold text-base shadow-xl" style={{ top: "-30px" }}>
                   {step.number}
