@@ -104,7 +104,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1jV0EcTYct29O9DY7dEI2HK1bgHq79Myq",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F9e2929517ee44d719568aadc2e96dcef%2F0487332556e645c49689f34a07f57e14?format=webp&width=800&height=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F9e2929517ee44d719568aadc2e96dcef%2F0487332556e645c49689f34a07f57e14?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
