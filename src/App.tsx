@@ -13,6 +13,7 @@ import AboutPage from "./pages/About";
 import TermsAndConditionPage from "./pages/TermsAndCondition";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 import CookiePolicyPage from "./pages/CookiePolicy";
+import CareersPage from "./pages/Careers";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
