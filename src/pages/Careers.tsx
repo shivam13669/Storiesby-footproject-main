@@ -333,7 +333,7 @@ export default function CareersPage() {
               {filteredJobs.filter(job => job.isFeatured).map(job => (
                 <div
                   key={job.id}
-                  className="group bg-gradient-to-br from-blue-50 to-green-50 rounded-xl border-2 border-blue-200 p-6 hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1"
+                  className="group bg-gradient-to-br from-blue-50 to-green-50 rounded-xl border-2 border-blue-200 p-6 hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1 flex flex-col h-full"
                   onClick={() => {
                     setSelectedJob(job);
                     setShowApplicationForm(true);
@@ -344,7 +344,7 @@ export default function CareersPage() {
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   </div>
                   <p className="text-sm text-slate-600 mb-4">{job.description}</p>
-                  <div className="space-y-2 mb-4 text-sm">
+                  <div className="space-y-2 mb-4 text-sm flex-1">
                     <div className="flex items-center gap-2 text-slate-600">
                       <MapPin className="w-4 h-4" />
                       {job.location}
