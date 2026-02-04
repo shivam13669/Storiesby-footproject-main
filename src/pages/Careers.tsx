@@ -439,14 +439,25 @@ export default function CareersPage() {
         </section>
 
         {/* Why Join Section */}
-        <section className="max-w-5xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Why Join StoriesByFoot?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section className="max-w-5xl mx-auto mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-3">Why Join StoriesByFoot?</h2>
+            <p className="text-lg text-slate-600">Discover what makes working with us special</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
-              <div key={index} className="p-6 bg-white rounded-lg border hover:shadow-lg transition-all text-center">
-                <div className="flex justify-center mb-3">{benefit.icon}</div>
-                <h3 className="font-semibold text-slate-900 mb-2">{benefit.title}</h3>
-                <p className="text-sm text-slate-600">{benefit.description}</p>
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-xl"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative p-8 border border-slate-200 rounded-xl hover:border-blue-300">
+                  <div className="mb-4 inline-block p-4 bg-gradient-to-br from-blue-50 to-green-50 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">{benefit.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{benefit.description}</p>
+                </div>
               </div>
             ))}
           </div>
