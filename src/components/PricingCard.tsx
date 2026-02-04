@@ -67,7 +67,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
             Download Itinerary
           </Button>
           <Button className="flex-1 btn-primary h-12 text-base font-semibold rounded-lg">
-            Buy Now
+            Book Now
           </Button>
         </div>
       </div>
