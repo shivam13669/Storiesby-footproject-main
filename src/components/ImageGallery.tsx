@@ -53,12 +53,12 @@ const ImageGallery = ({ images, destinationName }: ImageGalleryProps) => {
         <div className="relative rounded-lg overflow-hidden h-[145px] md:h-[220px]">
           <img
             src={rest[2]}
-            alt="Activity & Sightseeing"
+            alt="Activity"
             className="w-full h-full object-cover"
           />
           <div className="image-overlay" />
           <span className="absolute bottom-3 left-3 text-primary-foreground font-medium text-sm">
-            Activity & Sightseeing
+            Activity
           </span>
         </div>
 
