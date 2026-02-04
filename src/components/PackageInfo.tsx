@@ -96,7 +96,7 @@ const PackageInfo = ({ duration, title, itinerary }: PackageInfoProps) => {
         <div className="flex flex-wrap gap-6 md:gap-10">
           <div className="flex items-center gap-2 text-muted-foreground">
             <Car className="w-5 h-5" />
-            <span className="text-sm font-medium">Transfer Included</span>
+            <span className="text-sm font-medium">Group Departure</span>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <Building2 className="w-5 h-5" />
