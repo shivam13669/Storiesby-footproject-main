@@ -246,7 +246,7 @@ export default function CareersPage() {
         <div className="absolute inset-0 opacity-20"></div>
         <div className="relative max-w-5xl mx-auto text-center text-white">
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
-            Join Our <span className="text-yellow-300">Adventure</span>
+            Join Our <span className="text-yellow-300">Team</span>
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white/90">
             Build your career with passionate explorers who transform travel into unforgettable stories
