@@ -157,24 +157,21 @@ const jobListings = [
   }
 ];
 
-const testimonials = [
+const teamMembers = [
   {
-    name: "Rahul Sharma",
-    role: "Expedition Leader",
-    quote: "Working at StoriesByFoot has been a dream come true. I get to do what I love every day and work with an amazing team that truly cares about people.",
-    image: "👨‍🔬"
+    name: "Nitin Mishra",
+    role: "Founder, StoriesByFoot",
+    bio: "Visionary explorer and adventure enthusiast who founded StoriesByFoot with a passion to create unforgettable travel experiences and build a team that shares the same spirit."
   },
   {
-    name: "Priya Verma",
-    role: "Content Manager",
-    quote: "The creativity and support here are unmatched. I've grown tremendously both professionally and personally. This is where adventure meets career.",
-    image: "👩‍💼"
+    name: "Shivam Anand",
+    role: "Full Stack Developer",
+    bio: "Tech innovator building the digital backbone of StoriesByFoot. Passionate about creating seamless experiences that connect adventurers with their next great journey."
   },
   {
-    name: "Arjun Patel",
-    role: "Operations Coordinator",
-    quote: "The team culture is incredible. Everyone is passionate about what they do, and it shows in the quality of experiences we create for our travelers.",
-    image: "👨‍💻"
+    name: "Sumit Jha",
+    role: "Advisor",
+    bio: "Strategic guide with deep industry expertise, helping StoriesByFoot navigate growth and maintain its core values of authentic travel and meaningful experiences."
   }
 ];
 
