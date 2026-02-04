@@ -189,7 +189,7 @@ const destinationGalleryMap: Record<string, string[]> = {
   ladakh: [
     "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1600&q=80",
     "https://images.unsplash.com/photo-1562157873-818bc0726f99?auto=format&fit=crop&w=1600&q=80",
-    "https://images.unsplash.com/photo-1526481280695-3c4693df8ced?auto=format&fit=crop&w=1600&q=80",
+    "https://cdn.builder.io/api/v1/image/assets%2F9e2929517ee44d719568aadc2e96dcef%2Fc56e32ac67b5429a8298412d2fca44d4?format=webp&width=1600&height=2400",
     "https://images.unsplash.com/photo-1549294413-26f195200c16?auto=format&fit=crop&w=1600&q=80",
     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80",
   ],
