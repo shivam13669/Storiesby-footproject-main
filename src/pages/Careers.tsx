@@ -380,10 +380,7 @@ export default function CareersPage() {
                 >
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600">{job.title}</h3>
-                        {job.isFeatured && <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">HOT</span>}
-                      </div>
+                      <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 mb-2">{job.title}</h3>
                       <p className="text-slate-600 mb-3">{job.description}</p>
                       <div className="flex flex-wrap gap-3 text-sm">
                         <div className="flex items-center gap-1 text-slate-600">
