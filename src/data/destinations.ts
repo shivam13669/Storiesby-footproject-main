@@ -326,7 +326,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1UkGUiHOHgNTskO0w6OrnOsV8cwpkaCG8",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F33b69c51a9f5485eb147c5ce9248f980?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
@@ -573,7 +573,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1ftCLsCQzd-Vhv50ENyvLpVGzpiUFJFvC",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2Fa4a5f66915b3483c84c56b989e32176e?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
@@ -863,7 +863,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1_pTNYJcwkfVVtfWn5LVkJcd1plVcyjM_",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F7dcb39e48c924358b1c8822906e58ffc?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F381a433fb289442aa3ed9e966284c387%2F7dcb39e48c924358b1c8822906e58ffc?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
@@ -1172,7 +1172,7 @@ export const destinations: Destination[] = [
         itineraryUrl:
           "https://drive.google.com/uc?export=download&confirm=t&id=1MPyuMnNvDp1g9lSAgDbym3PxGXc87lrp",
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2Ff7bafe136619419dbf13ca7afdf8e95e%2F3049f1a0c38f4c3b9725e7b207142b2a?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2Ff7bafe136619419dbf13ca7afdf8e95e%2F3049f1a0c38f4c3b9725e7b207142b2a?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure", "Two-wheeler"],
         itinerary: [
           {
@@ -1641,7 +1641,7 @@ export const destinations: Destination[] = [
           "Guided cultural interactions",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F0c9f08f02c764866969402fd835478cb%2Faf28aeeed9944bfca81a00b8cdcdd8fb?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F0c9f08f02c764866969402fd835478cb%2Faf28aeeed9944bfca81a00b8cdcdd8fb?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure"],
       },
     ],
@@ -1679,7 +1679,7 @@ export const destinations: Destination[] = [
           "Dochula 108 chortens visit",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F0c9f08f02c764866969402fd835478cb%2Fd0879b3f63dc4393ab28eb025eac97e7?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F0c9f08f02c764866969402fd835478cb%2Fd0879b3f63dc4393ab28eb025eac97e7?format=webp&width=1600&height=2400",
         categories: ["Luxury", "Adventure", "Four-wheeler"],
       },
     ],
@@ -1716,7 +1716,7 @@ export const destinations: Destination[] = [
           "Campfire storytelling nights",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F36318bde1826458f8c22a7003aedd265?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F36318bde1826458f8c22a7003aedd265?format=webp&width=1600&height=2400",
         categories: ["Beach", "Adventure", "Four-wheeler"],
       },
       {
@@ -1735,7 +1735,7 @@ export const destinations: Destination[] = [
           "Sunset at Laitlum canyon",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F107c2ff1e4bf414fa214bc78eaab88c0?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F107c2ff1e4bf414fa214bc78eaab88c0?format=webp&width=1600&height=2400",
         categories: ["Beach", "Luxury", "Four-wheeler"],
       },
     ],
@@ -1773,7 +1773,7 @@ export const destinations: Destination[] = [
           "Kala Patthar viewpoint",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F9f419557f45e49b18a9a1af4d0db408e?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F9f419557f45e49b18a9a1af4d0db408e?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure", "Four-wheeler"],
       },
       {
@@ -1792,7 +1792,7 @@ export const destinations: Destination[] = [
           "Phewa Lake boating",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F3ba47243a6834d3eade8da3e45996207?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F4a4b23c4a4604f318cabea6540b9b38b%2F3ba47243a6834d3eade8da3e45996207?format=webp&width=1600&height=2400",
         categories: ["City", "Adventure", "Four-wheeler"],
       },
     ],
@@ -1829,7 +1829,7 @@ export const destinations: Destination[] = [
           "Bonfire astronomy sessions",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F0c9f08f02c764866969402fd835478cb%2F5eb306acdcb041aaa622522f123ba2e8?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F0c9f08f02c764866969402fd835478cb%2F5eb306acdcb041aaa622522f123ba2e8?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure"],
       },
       {
@@ -1848,7 +1848,7 @@ export const destinations: Destination[] = [
           "Certified mountain guides",
         ],
         image:
-          "https://cdn.builder.io/api/v1/image/assets%2F3005cb3e673a454989d4f95fc852f4e9%2Ff41b9a57ee954f3098ff1c1aefa34d0b?format=webp&width=1200",
+          "https://cdn.builder.io/api/v1/image/assets%2F3005cb3e673a454989d4f95fc852f4e9%2Ff41b9a57ee954f3098ff1c1aefa34d0b?format=webp&width=1600&height=2400",
         categories: ["Mountain", "Adventure"],
       },
     ],
