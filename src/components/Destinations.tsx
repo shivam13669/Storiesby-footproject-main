@@ -41,7 +41,7 @@ const Destinations = () => {
                     <img
                       src={displayImage}
                       alt={destination.name}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-700"
                     />
                     {primaryPackage?.badge && (
                       <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold uppercase">
