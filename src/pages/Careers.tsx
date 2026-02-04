@@ -463,24 +463,36 @@ export default function CareersPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="max-w-5xl mx-auto mb-16 bg-gradient-to-r from-blue-50 to-green-50 p-12 rounded-xl border border-blue-200">
-          <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+        {/* Meet Our Team */}
+        <section className="max-w-5xl mx-auto mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-3">Meet Our Team</h2>
+            <p className="text-lg text-slate-600">The people behind StoriesByFoot's vision</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-4xl">{testimonial.image}</div>
-                  <div>
-                    <h3 className="font-bold text-slate-900">{testimonial.name}</h3>
-                    <p className="text-sm text-slate-600">{testimonial.role}</p>
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="group relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-br from-blue-100 to-green-100 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
+                <div className="relative bg-white p-8 rounded-xl border border-slate-200 h-full flex flex-col">
+                  <div className="mb-6">
+                    <div className="inline-block">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white text-2xl font-bold">
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <p className="text-slate-600 italic">"{testimonial.quote}"</p>
-                <div className="flex gap-1 mt-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
+                  <p className="text-sm font-semibold text-blue-600 mb-4">{member.role}</p>
+                  <p className="text-slate-600 leading-relaxed flex-1">{member.bio}</p>
+                  <div className="mt-6 pt-6 border-t border-slate-200">
+                    <div className="flex gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                      <Users className="w-4 h-4 text-slate-400" />
+                      <span className="text-xs text-slate-500">Part of our core team</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
