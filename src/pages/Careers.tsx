@@ -235,7 +235,7 @@ export default function CareersPage() {
       <section
         className="relative pt-24 pb-32 px-6 md:px-12 overflow-hidden"
         style={{
-          backgroundImage: "linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(34, 197, 94, 0.95) 100%), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop')",
+          backgroundImage: "linear-gradient(135deg, rgba(5, 150, 105, 0.95) 0%, rgba(13, 148, 136, 0.95) 100%), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop')",
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
@@ -350,7 +350,7 @@ export default function CareersPage() {
                     </div>
                     <div className="text-green-600 font-semibold">{job.salary}</div>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white hover:shadow-lg">
+                  <Button className="w-full bg-gradient-to-r from-emerald-700 to-teal-600 text-white hover:shadow-lg">
                     Apply Now
                   </Button>
                 </div>
@@ -423,7 +423,7 @@ export default function CareersPage() {
                     </div>
                   </div>
 
-                  <Button className="bg-gradient-to-r from-blue-600 to-green-600 text-white hover:shadow-lg">
+                  <Button className="bg-gradient-to-r from-emerald-700 to-teal-600 text-white hover:shadow-lg">
                     View & Apply
                   </Button>
                 </div>
@@ -467,15 +467,15 @@ export default function CareersPage() {
                 key={index}
                 className="group relative"
               >
-                <div className="absolute -inset-1 bg-gradient-to-br from-blue-300 to-green-300 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg" />
-                <div className="relative bg-white p-8 rounded-2xl border-2 border-slate-200 group-hover:border-blue-300 h-full flex flex-col transition-all duration-300 shadow-md group-hover:shadow-xl">
+                <div className="absolute -inset-1 bg-gradient-to-br from-emerald-300 to-teal-300 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg" />
+                <div className="relative bg-white p-8 rounded-2xl border-2 border-slate-200 group-hover:border-emerald-300 h-full flex flex-col transition-all duration-300 shadow-md group-hover:shadow-xl">
                   <div className="mb-6">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg group-hover:shadow-xl transition-transform group-hover:scale-105">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg group-hover:shadow-xl transition-transform group-hover:scale-105">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
-                  <p className="text-sm font-semibold text-blue-600 mb-4">{member.role}</p>
+                  <p className="text-sm font-semibold text-emerald-600 mb-4">{member.role}</p>
                   <p className="text-slate-600 leading-relaxed flex-1">{member.bio}</p>
                 </div>
               </div>
@@ -484,7 +484,7 @@ export default function CareersPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="max-w-5xl mx-auto mb-16 bg-gradient-to-r from-blue-600 to-green-600 text-white p-12 rounded-xl text-center">
+        <section className="max-w-5xl mx-auto mb-16 bg-gradient-to-r from-emerald-700 to-teal-600 text-white p-12 rounded-xl text-center">
           <h2 className="text-3xl font-bold mb-3">Ready to Start Your Adventure?</h2>
           <p className="text-lg mb-6 text-white/90">Explore opportunities above or send us your resume for future roles</p>
           <Button
@@ -537,7 +537,7 @@ export default function CareersPage() {
       {showApplicationForm && selectedJob && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-green-600 text-white p-6 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-emerald-700 to-teal-600 text-white p-6 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
                 <p className="text-white/80">{selectedJob.location}</p>
@@ -558,7 +558,7 @@ export default function CareersPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-emerald-600"
                   placeholder="Your name"
                 />
               </div>
@@ -571,7 +571,7 @@ export default function CareersPage() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-emerald-600"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -582,7 +582,7 @@ export default function CareersPage() {
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-emerald-600"
                     placeholder="+91 98765 43210"
                   />
                 </div>
@@ -595,7 +595,7 @@ export default function CareersPage() {
                   required
                   value={formData.resume}
                   onChange={(e) => setFormData({ ...formData, resume: e.target.value })}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-emerald-600"
                   placeholder="https://drive.google.com/your-resume or your-portfolio.com"
                 />
               </div>
@@ -605,7 +605,7 @@ export default function CareersPage() {
                 <textarea
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-emerald-600"
                   placeholder="Tell us why you'd be a great fit for this role..."
                   rows="4"
                 />
@@ -614,7 +614,7 @@ export default function CareersPage() {
               <div className="pt-4 flex gap-3">
                 <Button
                   type="submit"
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white hover:shadow-lg"
+                  className="flex-1 bg-gradient-to-r from-emerald-700 to-teal-600 text-white hover:shadow-lg"
                 >
                   Submit Application
                 </Button>
@@ -635,6 +635,4 @@ export default function CareersPage() {
       <Footer />
     </div>
   );
-}git add .
-git commit -m "your message"
-git push origin main
+}
