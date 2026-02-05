@@ -631,4 +631,3 @@ export default function CareersPage() {
       <Footer />
     </div>
   );
-}
