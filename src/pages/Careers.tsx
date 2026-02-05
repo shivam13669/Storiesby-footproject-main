@@ -211,7 +211,7 @@ export default function CareersPage() {
 
   const filteredJobs = jobListings.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         job.description.toLowerCase().includes(searchTerm.toLowerCase());
+      job.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "All" || job.category === selectedCategory;
     const matchesLocation = selectedLocation === "All" || job.location === selectedLocation;
     return matchesSearch && matchesCategory && matchesLocation;
@@ -232,7 +232,7 @@ export default function CareersPage() {
       <Navigation />
 
       {/* Hero Section with Background */}
-      <section 
+      <section
         className="relative pt-24 pb-32 px-6 md:px-12 overflow-hidden"
         style={{
           backgroundImage: "linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(34, 197, 94, 0.95) 100%), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop')",
@@ -281,11 +281,10 @@ export default function CareersPage() {
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`px-4 py-2 rounded-full transition-all ${
-                        selectedCategory === cat
+                      className={`px-4 py-2 rounded-full transition-all ${selectedCategory === cat
                           ? "bg-blue-600 text-white"
                           : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                      }`}
+                        }`}
                     >
                       {cat}
                     </button>
@@ -300,11 +299,10 @@ export default function CareersPage() {
                     <button
                       key={loc}
                       onClick={() => setSelectedLocation(loc)}
-                      className={`px-4 py-2 rounded-full transition-all ${
-                        selectedLocation === loc
+                      className={`px-4 py-2 rounded-full transition-all ${selectedLocation === loc
                           ? "bg-green-600 text-white"
                           : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                      }`}
+                        }`}
                     >
                       {loc}
                     </button>
@@ -489,14 +487,14 @@ export default function CareersPage() {
         <section className="max-w-5xl mx-auto mb-16 bg-gradient-to-r from-blue-600 to-green-600 text-white p-12 rounded-xl text-center">
           <h2 className="text-3xl font-bold mb-3">Ready to Start Your Adventure?</h2>
           <p className="text-lg mb-6 text-white/90">Explore opportunities above or send us your resume for future roles</p>
-          <Button 
-            asChild 
+          <Button
+            asChild
             className="bg-white text-blue-600 hover:bg-slate-100 font-semibold mr-3"
           >
             <a href="mailto:careers@storiesbyfoot.com">Send Resume</a>
           </Button>
-          <Button 
-            asChild 
+          <Button
+            asChild
             variant="outline"
             className="border-white text-white hover:bg-white/20"
           >
@@ -637,4 +635,6 @@ export default function CareersPage() {
       <Footer />
     </div>
   );
-}
+}git add .
+git commit -m "your message"
+git push origin main
