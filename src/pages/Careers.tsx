@@ -157,24 +157,21 @@ const jobListings = [
   }
 ];
 
-const testimonials = [
+const teamMembers = [
   {
-    name: "Rahul Sharma",
-    role: "Expedition Leader",
-    quote: "Working at StoriesByFoot has been a dream come true. I get to do what I love every day and work with an amazing team that truly cares about people.",
-    image: "👨‍🔬"
+    name: "Nitin Mishra",
+    role: "Founder, StoriesByFoot",
+    bio: "Visionary explorer and adventure enthusiast who founded StoriesByFoot with a passion to create unforgettable travel experiences and build a team that shares the same spirit."
   },
   {
-    name: "Priya Verma",
-    role: "Content Manager",
-    quote: "The creativity and support here are unmatched. I've grown tremendously both professionally and personally. This is where adventure meets career.",
-    image: "👩‍💼"
+    name: "Shivam Anand",
+    role: "Full Stack Developer",
+    bio: "Tech innovator building the digital backbone of StoriesByFoot. Passionate about creating seamless experiences that connect adventurers with their next great journey."
   },
   {
-    name: "Arjun Patel",
-    role: "Operations Coordinator",
-    quote: "The team culture is incredible. Everyone is passionate about what they do, and it shows in the quality of experiences we create for our travelers.",
-    image: "👨‍💻"
+    name: "Sumit Jha",
+    role: "Advisor",
+    bio: "Strategic guide with deep industry expertise, helping StoriesByFoot navigate growth and maintain its core values of authentic travel and meaningful experiences."
   }
 ];
 
@@ -442,37 +439,46 @@ export default function CareersPage() {
         </section>
 
         {/* Why Join Section */}
-        <section className="max-w-5xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Why Join StoriesByFoot?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section className="max-w-5xl mx-auto mb-20">
+          <h2 className="text-4xl font-bold text-center mb-12">Why Join StoriesByFoot?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
-              <div key={index} className="p-6 bg-white rounded-lg border hover:shadow-lg transition-all text-center">
-                <div className="flex justify-center mb-3">{benefit.icon}</div>
-                <h3 className="font-semibold text-slate-900 mb-2">{benefit.title}</h3>
-                <p className="text-sm text-slate-600">{benefit.description}</p>
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-green-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative p-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl border-2 border-blue-100 group-hover:border-blue-300">
+                  <div className="mb-5 inline-flex items-center justify-center w-16 h-16 bg-white rounded-xl shadow-md group-hover:shadow-lg transition-all group-hover:scale-110">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">{benefit.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{benefit.description}</p>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="max-w-5xl mx-auto mb-16 bg-gradient-to-r from-blue-50 to-green-50 p-12 rounded-xl border border-blue-200">
-          <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+        {/* Meet Our Team */}
+        <section className="max-w-5xl mx-auto mb-20">
+          <h2 className="text-4xl font-bold text-center mb-12">Meet Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-4xl">{testimonial.image}</div>
-                  <div>
-                    <h3 className="font-bold text-slate-900">{testimonial.name}</h3>
-                    <p className="text-sm text-slate-600">{testimonial.role}</p>
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="group relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-br from-blue-300 to-green-300 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg" />
+                <div className="relative bg-white p-8 rounded-2xl border-2 border-slate-200 group-hover:border-blue-300 h-full flex flex-col transition-all duration-300 shadow-md group-hover:shadow-xl">
+                  <div className="mb-6">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg group-hover:shadow-xl transition-transform group-hover:scale-105">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </div>
                   </div>
-                </div>
-                <p className="text-slate-600 italic">"{testimonial.quote}"</p>
-                <div className="flex gap-1 mt-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
+                  <p className="text-sm font-semibold text-blue-600 mb-4">{member.role}</p>
+                  <p className="text-slate-600 leading-relaxed flex-1">{member.bio}</p>
                 </div>
               </div>
             ))}
