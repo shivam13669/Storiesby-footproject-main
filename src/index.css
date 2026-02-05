@@ -231,4 +231,14 @@
   .text-success {
     @apply text-green-600;
   }
+
+  /* Hide scrollbar while keeping scrollability */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
