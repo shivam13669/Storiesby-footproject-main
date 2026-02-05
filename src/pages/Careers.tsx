@@ -614,18 +614,18 @@ export default function CareersPage() {
 
               <div className="pt-4 flex gap-3">
                 <Button
-                  type="submit"
-                  className="flex-1 bg-gradient-to-r from-emerald-700 to-teal-600 text-white hover:shadow-lg"
-                >
-                  Submit Application
-                </Button>
-                <Button
                   type="button"
                   variant="outline"
                   onClick={() => setShowApplicationForm(false)}
                   className="flex-1"
                 >
                   Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  className="flex-1 bg-gradient-to-r from-emerald-700 to-teal-600 text-white hover:shadow-lg"
+                >
+                  Submit Application
                 </Button>
               </div>
             </form>
