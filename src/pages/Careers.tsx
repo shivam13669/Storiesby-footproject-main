@@ -322,21 +322,21 @@ export default function CareersPage() {
         {filteredJobs.some(job => job.isFeatured) && (
           <section className="max-w-5xl mx-auto mb-16">
             <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
-              🔥 <span>Featured Opportunities</span>
+              🔥 <span className="text-secondary">Featured Opportunities</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {filteredJobs.filter(job => job.isFeatured).map(job => (
                 <div
                   key={job.id}
-                  className="group bg-gradient-to-br from-blue-50 to-green-50 rounded-xl border-2 border-blue-200 p-6 hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1 flex flex-col h-full"
+                  className="group bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border-2 border-emerald-200 p-6 hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1 flex flex-col h-full"
                   onClick={() => {
                     setSelectedJob(job);
                     setShowApplicationForm(true);
                   }}
                 >
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600">{job.title}</h3>
-                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-secondary">{job.title}</h3>
+                    <Star className="w-5 h-5 fill-secondary text-secondary" />
                   </div>
                   <p className="text-sm text-slate-600 mb-4">{job.description}</p>
                   <div className="space-y-2 mb-4 text-sm flex-1">
@@ -361,13 +361,13 @@ export default function CareersPage() {
 
         {/* All Open Positions */}
         <section className="max-w-5xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-8">All Open Positions</h2>
+          <h2 className="text-3xl font-bold mb-8"><span className="text-secondary">All Open</span> Positions</h2>
           {filteredJobs.length > 0 ? (
             <div className="space-y-6">
               {filteredJobs.map((job) => (
                 <div
                   key={job.id}
-                  className="group p-6 bg-gradient-to-r from-slate-50 to-white rounded-lg border hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer"
+                  className="group p-6 bg-gradient-to-r from-slate-50 to-white rounded-lg border hover:border-secondary hover:shadow-lg transition-all cursor-pointer"
                   onClick={() => {
                     setSelectedJob(job);
                     setShowApplicationForm(true);
@@ -375,7 +375,7 @@ export default function CareersPage() {
                 >
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 mb-2">{job.title}</h3>
+                      <h3 className="text-2xl font-bold text-slate-900 group-hover:text-secondary mb-2">{job.title}</h3>
                       <p className="text-slate-600 mb-3">{job.description}</p>
                       <div className="flex flex-wrap gap-3 text-sm">
                         <div className="flex items-center gap-1 text-slate-600">
@@ -387,7 +387,7 @@ export default function CareersPage() {
                           {job.type}
                         </div>
                         <div className="text-green-600 font-semibold">{job.salary}</div>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">{job.category}</span>
+                        <span className="px-2 py-1 bg-secondary/10 text-secondary rounded text-xs font-medium">{job.category}</span>
                       </div>
                     </div>
                   </div>
@@ -438,15 +438,15 @@ export default function CareersPage() {
 
         {/* Why Join Section */}
         <section className="max-w-5xl mx-auto mb-20">
-          <h2 className="text-4xl font-bold text-center mb-12">Why Join StoriesByFoot?</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">Why Join <span className="text-secondary">StoriesByFoot</span>?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
                 className="group relative overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-green-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative p-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl border-2 border-blue-100 group-hover:border-blue-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 via-teal-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative p-8 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl border-2 border-emerald-100 group-hover:border-emerald-300">
                   <div className="mb-5 inline-flex items-center justify-center w-16 h-16 bg-white rounded-xl shadow-md group-hover:shadow-lg transition-all group-hover:scale-110">
                     {benefit.icon}
                   </div>
@@ -460,7 +460,7 @@ export default function CareersPage() {
 
         {/* Meet Our Team */}
         <section className="max-w-5xl mx-auto mb-20">
-          <h2 className="text-4xl font-bold text-center mb-12">Meet Our Team</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">Meet Our <span className="text-secondary">Team</span></h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <div
@@ -489,7 +489,7 @@ export default function CareersPage() {
           <p className="text-lg mb-6 text-white/90">Explore opportunities above or send us your resume for future roles</p>
           <Button
             asChild
-            className="bg-white text-blue-600 hover:bg-slate-100 font-semibold mr-3"
+            className="bg-white text-secondary hover:bg-slate-100 font-semibold mr-3"
           >
             <a href="mailto:careers@storiesbyfoot.com">Send Resume</a>
           </Button>
@@ -504,7 +504,7 @@ export default function CareersPage() {
 
         {/* FAQs */}
         <section className="max-w-5xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked <span className="text-secondary">Questions</span></h2>
           <div className="space-y-4">
             {[
               {
