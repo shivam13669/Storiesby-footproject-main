@@ -45,11 +45,24 @@ const Footer = () => {
             <div>
               <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
               <ul className="space-y-3">
-                {["About Us", "Destinations", "Services", "Gallery", "Blog", "Careers"].map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-white/80 hover:text-adventure-gold transition-colors">
-                      {link}
-                    </a>
+                {[
+                  { label: "About Us", path: "#" },
+                  { label: "Destinations", path: "#" },
+                  { label: "Services", path: "#" },
+                  { label: "Gallery", path: "#" },
+                  { label: "Blog", path: "#" },
+                  { label: "Careers", path: "/careers" }
+                ].map((item) => (
+                  <li key={item.label}>
+                    {item.path.startsWith("/") ? (
+                      <Link to={item.path} className="text-white/80 hover:text-adventure-gold transition-colors">
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a href={item.path} className="text-white/80 hover:text-adventure-gold transition-colors">
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
