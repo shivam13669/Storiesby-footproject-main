@@ -16,7 +16,7 @@ interface TabNavigationProps {
 
 const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
   return (
-    <div className="sticky top-[57px] z-40 bg-background py-3 -mx-4 px-4 mb-6 border-b-2 border-b-border">
+    <div className="sticky top-[57px] z-40 bg-background py-3 -mx-4 px-4 mb-6 border-b border-border">
       <div className="flex gap-2 overflow-x-auto overflow-y-hidden scrollbar-hide snap-x snap-mandatory">
         {tabs.map((tab) => (
           <button
