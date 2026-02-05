@@ -39,16 +39,16 @@ const HowItWorks = () => {
         </div>
 
         <div
-          className="relative grid grid-cols-1 md:grid-cols-4"
+          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
           style={{
-            gap: "24px"
+            gap: "40px"
           }}
         >
           {/* Connector line - positioned to pass through the center of number circles */}
           <div
-            className="hidden md:block absolute left-[8%] right-[8%] pointer-events-none"
+            className="hidden lg:block absolute left-[8%] right-[8%] pointer-events-none"
             style={{
-              top: "66px",
+              top: "90px",
               height: "2px",
               background: "linear-gradient(90deg, #bbf7d0, #22c55e, #bbf7d0)",
               opacity: 0.6
@@ -65,7 +65,7 @@ const HowItWorks = () => {
               <div
                 className="bg-gradient-to-b from-white to-emerald-50 rounded-[26px] border transition-all duration-350 hover:-translate-y-2.5 relative w-full h-full"
                 style={{
-                  padding: "60px 26px 40px 26px",
+                  padding: "80px 36px 48px 36px",
                   borderColor: "rgba(34, 197, 94, 0.15)",
                   boxShadow: "0 18px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
                   display: "flex",
@@ -80,20 +80,20 @@ const HowItWorks = () => {
                 }}
               >
                 {/* Number circle - sits on the connector line */}
-                <div className="absolute left-1/2 -translate-x-1/2 w-[60px] h-[60px] rounded-full bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center font-bold text-base shadow-xl" style={{ top: "-30px" }}>
+                <div className="absolute left-1/2 -translate-x-1/2 w-[72px] h-[72px] rounded-full bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center font-bold text-lg shadow-xl" style={{ top: "-36px" }}>
                   {step.number}
                 </div>
 
                 {/* Icon */}
-                <div className="w-[76px] h-[76px] rounded-[20px] bg-gradient-to-b from-emerald-50 to-white mx-auto flex items-center justify-center text-3xl" style={{ margin: "0 auto 28px", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9)" }}>
+                <div className="w-[96px] h-[96px] rounded-[20px] bg-gradient-to-b from-emerald-50 to-white mx-auto flex items-center justify-center text-4xl" style={{ margin: "0 auto 32px", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9)" }}>
                   {step.icon}
                 </div>
 
                 {/* Text */}
-                <h3 className="text-[22px] font-semibold text-slate-900 text-center" style={{ margin: "0 0 14px" }}>
+                <h3 className="text-[24px] font-semibold text-slate-900 text-center" style={{ margin: "0 0 16px" }}>
                   {step.title}
                 </h3>
-                <p className="text-slate-700 text-[15px] leading-relaxed text-center" style={{ margin: "0" }}>
+                <p className="text-slate-700 text-[16px] leading-relaxed text-center" style={{ margin: "0" }}>
                   {step.description}
                 </p>
               </div>
