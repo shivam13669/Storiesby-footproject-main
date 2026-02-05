@@ -487,16 +487,16 @@ export default function CareersPage() {
         <section className="max-w-5xl mx-auto mb-16 bg-gradient-to-r from-emerald-700 to-teal-600 text-white p-12 rounded-xl text-center">
           <h2 className="text-3xl font-bold mb-3">Ready to Start Your Adventure?</h2>
           <p className="text-lg mb-6 text-white/90">Explore opportunities above or send us your resume for future roles</p>
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
             <Button
               asChild
-              className="w-full sm:w-auto bg-white text-emerald-700 hover:bg-slate-100 font-semibold"
+              className="sm:w-auto bg-white text-emerald-700 hover:bg-slate-100 font-semibold px-8"
             >
               <a href="mailto:careerstoriesbyfoot@gmail.com">Send Resume</a>
             </Button>
             <Button
               asChild
-              className="w-full sm:w-auto bg-white/20 border-2 border-white text-white hover:bg-white hover:text-emerald-700 font-semibold transition-all"
+              className="sm:w-auto bg-white/20 border-2 border-white text-white hover:bg-white hover:text-emerald-700 font-semibold transition-all px-8"
             >
               <Link to="/contact">Get in Touch</Link>
             </Button>
