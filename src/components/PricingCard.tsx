@@ -192,6 +192,18 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
       {showForm && (
         <div className="card-shadow bg-card p-6 rounded-xl">
           <div className="space-y-4">
+            {/* Package Name */}
+            <div className="relative">
+              <Input
+                placeholder="Package Name"
+                value={formData.packageName}
+                readOnly
+                disabled
+                className="bg-muted border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary cursor-not-allowed opacity-75"
+              />
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
+            </div>
+
             {/* Full Name */}
             <div className="relative">
               <Input
