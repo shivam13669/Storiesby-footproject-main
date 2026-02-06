@@ -1664,7 +1664,6 @@ export const destinations: Destination[] = [
           {
             day: 13,
             title: "The Final Descent (270 km, 6-7 Hours)",
-            location: "Chandigarh",
             description:
               "Scenic ride following Beas River. Wind down through hills of Himachal Pradesh back to plains. Reflect on 1,500+ km journey over final roadside chai before reaching Chandigarh, concluding your Himalayan odyssey.",
             highlights: [
