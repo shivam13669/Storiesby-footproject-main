@@ -7,6 +7,7 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
+import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { FormEvent, useState, useEffect } from "react";
 
