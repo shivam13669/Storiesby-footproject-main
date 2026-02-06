@@ -1,7 +1,7 @@
 /**
  * Region configuration
  * All prices are in INR (base currency)
- * Non-Indian users see prices with 20% markup applied
+ * Non-Indian users see prices with 75% markup applied
  */
 
 export type RegionPricing = {
