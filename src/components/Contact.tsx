@@ -45,6 +45,7 @@ const Contact = () => {
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
   const [countrySearch, setCountrySearch] = useState("");
   const [openCountryPopover, setOpenCountryPopover] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   // Initialize EmailJS
   useEffect(() => {
