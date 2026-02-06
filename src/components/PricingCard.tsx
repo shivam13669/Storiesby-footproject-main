@@ -77,6 +77,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
   const [openDatePopover, setOpenDatePopover] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [loading, setLoading] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
   const [formData, setFormData] = useState({
     packageName: packageName || title || "",
     fullName: "",
