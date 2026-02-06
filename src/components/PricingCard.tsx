@@ -371,7 +371,10 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
             />
 
             {/* Send Enquiry Button */}
-            <Button className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg">
+            <Button
+              onClick={handleSendEnquiry}
+              className="w-full btn-primary h-12 text-base font-semibold mt-5 rounded-lg"
+            >
               Send Enquiry
             </Button>
           </div>
