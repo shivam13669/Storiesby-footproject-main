@@ -104,49 +104,67 @@ const Contact = () => {
                   <Label htmlFor="phone">Phone</Label>
                   <div className="flex gap-2">
                     {/* Country Code Selector */}
-                    <Popover open={openCountryPopover} onOpenChange={setOpenCountryPopover}>
+                    <Popover open={openCountryPopover} onOpenChange={(open) => {
+                      setOpenCountryPopover(open);
+                      if (!open) {
+                        setCountrySearch("");
+                      }
+                    }}>
                       <PopoverTrigger asChild>
                         <button
                           type="button"
-                          className="px-3 py-2.5 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center gap-2 min-w-fit focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                          className="px-3 py-2.5 border border-border rounded-md bg-background hover:bg-muted transition-all flex items-center gap-2 min-w-fit focus:outline-none focus:ring-1 focus:ring-primary h-10"
                         >
-                          <span className="text-sm font-medium">{selectedCountry.dial}</span>
-                          <ChevronDown className="h-4 w-4 text-gray-400" />
+                          <span className="text-sm font-medium text-foreground">{selectedCountry.dial}</span>
+                          <ChevronDown className="h-4 w-4 text-muted-foreground" />
                         </button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-64 p-0" align="start">
-                        <div className="p-3 border-b border-gray-200">
-                          <div className="relative">
-                            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
-                            <Input
-                              type="text"
-                              placeholder="Search country..."
-                              value={countrySearch}
-                              onChange={(e) => setCountrySearch(e.target.value)}
-                              className="w-full pl-8 pr-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                            />
-                          </div>
-                        </div>
-                        <div className="max-h-64 overflow-y-auto">
-                          {filteredCountries.length > 0 ? (
-                            filteredCountries.map((country) => (
-                              <button
-                                key={country.code}
-                                type="button"
-                                onClick={() => handleCountrySelect(country)}
-                                className={`w-full text-left px-3 py-2.5 text-sm hover:bg-blue-50 transition-colors flex justify-between items-center ${
-                                  selectedCountry.code === country.code ? "bg-blue-100 font-semibold" : ""
-                                }`}
-                              >
-                                <span>{country.name}</span>
-                                <span className="text-gray-500">{country.dial}</span>
-                              </button>
-                            ))
-                          ) : (
-                            <div className="px-3 py-4 text-sm text-gray-500 text-center">
-                              No countries found
+                      <PopoverContent className="w-56 p-0" align="start">
+                        <div className="flex flex-col">
+                          {/* Search Input */}
+                          <div className="sticky top-0 z-10 p-3 border-b border-border bg-card">
+                            <div className="relative">
+                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                              <input
+                                type="text"
+                                placeholder="Search country..."
+                                value={countrySearch}
+                                onChange={(e) => setCountrySearch(e.target.value)}
+                                className="w-full pl-9 pr-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary bg-background"
+                                autoFocus
+                              />
                             </div>
-                          )}
+                          </div>
+
+                          {/* Countries List */}
+                          <div className="max-h-64 overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
+                            {filteredCountries.length > 0 ? (
+                              filteredCountries.map((country) => (
+                                <button
+                                  key={country.code}
+                                  type="button"
+                                  onClick={() => handleCountrySelect(country)}
+                                  className={`w-full text-left px-3 py-2.5 text-sm hover:bg-primary/10 transition-colors flex items-center justify-between ${
+                                    selectedCountry.code === country.code ? "bg-primary/20 font-semibold text-primary" : "text-foreground"
+                                  }`}
+                                >
+                                  <span>
+                                    <span className="font-medium">{country.dial}</span>
+                                    <span className="text-muted-foreground ml-2">
+                                      {country.name}
+                                    </span>
+                                  </span>
+                                  {selectedCountry.code === country.code && (
+                                    <span className="text-primary">✓</span>
+                                  )}
+                                </button>
+                              ))
+                            ) : (
+                              <div className="px-3 py-8 text-sm text-muted-foreground text-center">
+                                No countries found
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </PopoverContent>
                     </Popover>
