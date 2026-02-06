@@ -17,6 +17,7 @@ interface PricingCardProps {
   rating?: number;
   reviews?: number;
   itineraryUrl?: string;
+  packageName?: string;
 }
 
 const COUNTRIES = [
