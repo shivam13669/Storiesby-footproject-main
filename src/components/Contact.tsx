@@ -229,8 +229,8 @@ const Contact = () => {
                   <Label htmlFor="message">Message</Label>
                   <Textarea id="message" name="message" placeholder="Tell us about your plans…" className="min-h-32" required />
                 </div>
-                <Button type="submit" variant="contact" className="w-full" disabled={loading}>
-                  {loading ? "Sending…" : "Send Message"}
+                <Button type="submit" variant="contact" className="w-full disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
+                  {loading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
