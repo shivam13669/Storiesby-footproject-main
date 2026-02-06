@@ -195,6 +195,8 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
             <div className="relative">
               <Input
                 placeholder="Full Name"
+                value={formData.fullName}
+                onChange={handleInputChange}
                 className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
@@ -205,6 +207,8 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
               <Input
                 placeholder="Email"
                 type="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
