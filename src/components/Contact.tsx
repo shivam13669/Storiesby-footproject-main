@@ -282,6 +282,30 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      {/* Thank You Modal */}
+      <Dialog open={showThankYou} onOpenChange={setShowThankYou}>
+        <DialogContent className="max-w-md text-center">
+          <DialogTitle className="sr-only">Thank You</DialogTitle>
+          <div className="py-8 px-4">
+            <div className="mb-6 text-6xl">✨</div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Thank You!</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              We will reach out to you shortly!
+            </p>
+            <p className="text-sm text-gray-500 mb-8">
+              Our team is reviewing your message and will get back to you as soon as possible.
+            </p>
+            <Button
+              onClick={() => setShowThankYou(false)}
+              className="w-full"
+              variant="default"
+            >
+              Got it
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
