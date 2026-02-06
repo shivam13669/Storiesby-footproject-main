@@ -198,7 +198,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
         enquiryData
       );
 
-      alert('Enquiry sent successfully! We will contact you soon.');
+      setShowThankYou(true);
 
       // Reset form
       setFormData({
