@@ -62,7 +62,7 @@ const COUNTRY_DIGIT_REQUIREMENTS: Record<string, { min: number; max: number }> =
   NP: { min: 10, max: 10 },
 };
 
-const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl }: PricingCardProps) => {
+const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl, packageName }: PricingCardProps) => {
   const { formatPrice } = useCurrency();
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
   const [countrySearch, setCountrySearch] = useState("");
@@ -70,6 +70,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
   const [openDatePopover, setOpenDatePopover] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [formData, setFormData] = useState({
+    packageName: packageName || title || "",
     fullName: "",
     email: "",
     phoneNumber: "",
