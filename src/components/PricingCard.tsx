@@ -312,13 +312,10 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
                   </div>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0 bg-card border-border" align="start">
-                  <CalendarComponent
-                    mode="single"
+                  <AdvancedDatePicker
                     selected={selectedDate}
                     onSelect={handleDateSelect}
                     disabled={isDateDisabled}
-                    initialFocus
-                    className="bg-card"
                   />
                 </PopoverContent>
               </Popover>
