@@ -339,6 +339,8 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
             {/* Message */}
             <Textarea
               placeholder="Message..."
+              value={formData.message}
+              onChange={handleMessageChange}
               className="bg-background border-border min-h-[100px] px-4 py-3 resize-none focus:border-primary focus:ring-1 focus:ring-primary"
             />
 
