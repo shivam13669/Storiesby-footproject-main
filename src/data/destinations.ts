@@ -1693,9 +1693,10 @@ export const destinations: Destination[] = [
           "Oxygen cylinder (1)",
           "Marshall",
           "Mechanic cum Sweep Rider (From Srinagar to Manali)",
+          "Motorbike (RE Classic 350, RE Himalayan 411 & 452) if opted",
           "Backup Vehicle (throughout the trip)",
           "All inner line permits",
-          "Bonfire (1 night)",
+          "Bonfire & Music",
         ],
         exclusions: [
           "Any food or beverage expenses not covered in the package",
