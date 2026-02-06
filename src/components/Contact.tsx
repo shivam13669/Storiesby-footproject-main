@@ -100,11 +100,9 @@ const Contact = () => {
         contactData
       );
 
-      toast({
-        title: "Message sent",
-        description: `${name}, we'll get back to you shortly.`,
-      });
+      setShowThankYou(true);
       form.reset();
+      setSelectedCountry(COUNTRIES[0]);
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
