@@ -62,21 +62,56 @@ const Contact = () => {
     setCountrySearch("");
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
     const name = String(formData.get("name") || "");
+    const email = String(formData.get("email") || "");
+    const phone = String(formData.get("phone") || "");
+    const message = String(formData.get("message") || "");
+
+    // Validation
+    if (!name || !email || !phone || !message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+      });
+      return;
+    }
 
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+
+    const fullPhoneNumber = selectedCountry.dial + phone;
+
+    const contactData = {
+      fullName: name,
+      email: email,
+      phone: fullPhoneNumber,
+      message: message,
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        contactData
+      );
+
       toast({
         title: "Message sent",
-        description: `${name ? name + ", " : ""}we'll get back to you shortly.`,
+        description: `${name}, we'll get back to you shortly.`,
       });
       form.reset();
-    }, 800);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
