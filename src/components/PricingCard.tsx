@@ -75,6 +75,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
   const [openCountryPopover, setOpenCountryPopover] = useState(false);
   const [openDatePopover, setOpenDatePopover] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     packageName: packageName || title || "",
     fullName: "",
@@ -84,6 +85,11 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
     travelerCount: "",
     message: "",
   });
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const filteredCountries = COUNTRIES.filter(country =>
     country.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
