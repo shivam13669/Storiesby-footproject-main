@@ -45,6 +45,11 @@ const Contact = () => {
   const [countrySearch, setCountrySearch] = useState("");
   const [openCountryPopover, setOpenCountryPopover] = useState(false);
 
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const filteredCountries = COUNTRIES.filter(country =>
     country.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
     country.dial.includes(countrySearch) ||
