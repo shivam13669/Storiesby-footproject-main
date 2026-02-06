@@ -212,16 +212,81 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
 
             {/* Phone */}
             <div className="flex gap-2">
-              <div className="flex items-center border border-border rounded-md px-3 bg-background h-12 min-w-[70px]">
-                <span className="text-muted-foreground text-sm">+91</span>
-                <svg className="w-4 h-4 ml-1 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+              {/* Country Code Selector */}
+              <Popover open={openCountryPopover} onOpenChange={(open) => {
+                setOpenCountryPopover(open);
+                if (!open) {
+                  setCountrySearch("");
+                }
+              }}>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className="px-3 py-2.5 border border-border rounded-md bg-background hover:bg-muted transition-all flex items-center gap-2 min-w-fit focus:outline-none focus:ring-1 focus:ring-primary h-12"
+                  >
+                    <span className="text-sm font-medium text-foreground">{selectedCountry.dial}</span>
+                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-56 p-0" align="start">
+                  <div className="flex flex-col">
+                    {/* Search Input */}
+                    <div className="sticky top-0 z-10 p-3 border-b border-border bg-card">
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <input
+                          type="text"
+                          placeholder="Search country..."
+                          value={countrySearch}
+                          onChange={(e) => setCountrySearch(e.target.value)}
+                          className="w-full pl-9 pr-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary bg-background"
+                          autoFocus
+                        />
+                      </div>
+                    </div>
+
+                    {/* Countries List */}
+                    <div className="max-h-64 overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
+                      {filteredCountries.length > 0 ? (
+                        filteredCountries.map((country) => (
+                          <button
+                            key={country.code}
+                            type="button"
+                            onClick={() => handleCountrySelect(country)}
+                            className={`w-full text-left px-3 py-2.5 text-sm hover:bg-primary/10 transition-colors flex items-center justify-between ${
+                              selectedCountry.code === country.code ? "bg-primary/20 font-semibold text-primary" : "text-foreground"
+                            }`}
+                          >
+                            <span>
+                              <span className="font-medium">{country.dial}</span>
+                              <span className="text-muted-foreground ml-2">
+                                {country.name}
+                              </span>
+                            </span>
+                            {selectedCountry.code === country.code && (
+                              <span className="text-primary">✓</span>
+                            )}
+                          </button>
+                        ))
+                      ) : (
+                        <div className="px-3 py-8 text-sm text-muted-foreground text-center">
+                          No countries found
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+
+              {/* Phone Number Input */}
               <div className="relative flex-1">
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
+                  type="tel"
                   placeholder="Your Phone"
-                  className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
+                  value={formData.phoneNumber}
+                  onChange={handlePhoneChange}
+                  className="bg-background border-border h-12 px-4 pl-10 focus:border-primary focus:ring-1 focus:ring-primary"
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
               </div>
