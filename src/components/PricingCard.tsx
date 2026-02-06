@@ -6,8 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { useCurrency, parsePrice } from "@/context/CurrencyContext";
-import { parsePhoneNumberFromString } from "libphonenumber-js";
-import { formatDate, isToday, isAfter, startOfDay } from "date-fns";
+import { formatDate, startOfDay } from "date-fns";
 
 interface PricingCardProps {
   showForm?: boolean;
