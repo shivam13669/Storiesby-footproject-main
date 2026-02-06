@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { AdvancedDatePicker } from "@/components/AdvancedDatePicker";
 import { useCurrency, parsePrice } from "@/context/CurrencyContext";
 import { formatDate, startOfDay } from "date-fns";
