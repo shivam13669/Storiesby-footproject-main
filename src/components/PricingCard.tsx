@@ -294,16 +294,38 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
 
             {/* Travel Date & Traveller Count */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="relative">
-                <Input
-                  placeholder="Travel Date"
-                  className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
-                />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
-              </div>
+              {/* Travel Date with Calendar Picker */}
+              <Popover open={openDatePopover} onOpenChange={setOpenDatePopover}>
+                <PopoverTrigger asChild>
+                  <div className="relative cursor-pointer">
+                    <Input
+                      placeholder="Travel Date"
+                      value={formData.travelDate}
+                      readOnly
+                      className="bg-background border-border h-12 px-4 cursor-pointer focus:border-primary focus:ring-1 focus:ring-primary pr-10"
+                    />
+                    <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                    <span className="absolute right-10 top-1/2 -translate-y-1/2 text-primary">*</span>
+                  </div>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 bg-card border-border" align="start">
+                  <CalendarComponent
+                    mode="single"
+                    selected={selectedDate}
+                    onSelect={handleDateSelect}
+                    disabled={isDateDisabled}
+                    initialFocus
+                    className="bg-card"
+                  />
+                </PopoverContent>
+              </Popover>
+
+              {/* Traveller Count */}
               <div className="relative">
                 <Input
                   placeholder="Traveler Count"
+                  value={formData.travelerCount}
+                  onChange={handleInputChange}
                   className="bg-background border-border h-12 px-4 focus:border-primary focus:ring-1 focus:ring-primary"
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-primary">*</span>
