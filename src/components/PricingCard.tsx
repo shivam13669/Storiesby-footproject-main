@@ -166,7 +166,15 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
     }
   };
 
-  const handleSendEnquiry = () => {
+  const handleSendEnquiry = async () => {
+    // Validation
+    if (!formData.fullName || !formData.email || !formData.phoneNumber || !formData.travelDate || !formData.travelerCount) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setLoading(true);
+
     // Combine country code with phone number
     const fullPhoneNumber = selectedCountry.dial + formData.phoneNumber;
 
@@ -181,9 +189,32 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
       message: formData.message,
     };
 
-    // Log for now - tu yahan apna EmailJS code laga dena
-    console.log("Enquiry Data:", enquiryData);
-    // Example: emailjs.send(SERVICE_ID, TEMPLATE_ID, enquiryData)
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        enquiryData
+      );
+
+      alert('Enquiry sent successfully! We will contact you soon.');
+
+      // Reset form
+      setFormData({
+        packageName: packageName || title || "",
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        travelDate: "",
+        travelerCount: "",
+        message: "",
+      });
+      setSelectedDate(undefined);
+    } catch (error) {
+      console.error('Error sending enquiry:', error);
+      alert('Error sending enquiry. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
