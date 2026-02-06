@@ -1,7 +1,13 @@
+import { useState } from "react";
+import { Calendar, ChevronDown, Phone, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { useCurrency, parsePrice } from "@/context/CurrencyContext";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
+import { formatDate, isToday, isAfter, startOfDay } from "date-fns";
 
 interface PricingCardProps {
   showForm?: boolean;
@@ -14,8 +20,117 @@ interface PricingCardProps {
   itineraryUrl?: string;
 }
 
+const COUNTRIES = [
+  { code: "IN", name: "India", dial: "+91" },
+  { code: "US", name: "United States", dial: "+1" },
+  { code: "GB", name: "United Kingdom", dial: "+44" },
+  { code: "CA", name: "Canada", dial: "+1" },
+  { code: "AU", name: "Australia", dial: "+61" },
+  { code: "DE", name: "Germany", dial: "+49" },
+  { code: "FR", name: "France", dial: "+33" },
+  { code: "IT", name: "Italy", dial: "+39" },
+  { code: "ES", name: "Spain", dial: "+34" },
+  { code: "JP", name: "Japan", dial: "+81" },
+  { code: "CN", name: "China", dial: "+86" },
+  { code: "SG", name: "Singapore", dial: "+65" },
+  { code: "MY", name: "Malaysia", dial: "+60" },
+  { code: "TH", name: "Thailand", dial: "+66" },
+  { code: "PH", name: "Philippines", dial: "+63" },
+  { code: "ID", name: "Indonesia", dial: "+62" },
+  { code: "SL", name: "Sri Lanka", dial: "+94" },
+  { code: "NP", name: "Nepal", dial: "+977" },
+];
+
+const COUNTRY_DIGIT_REQUIREMENTS: Record<string, { min: number; max: number }> = {
+  IN: { min: 10, max: 10 },
+  US: { min: 10, max: 10 },
+  GB: { min: 10, max: 11 },
+  CA: { min: 10, max: 10 },
+  AU: { min: 9, max: 9 },
+  DE: { min: 10, max: 11 },
+  FR: { min: 9, max: 9 },
+  IT: { min: 10, max: 10 },
+  ES: { min: 9, max: 9 },
+  JP: { min: 10, max: 11 },
+  CN: { min: 11, max: 11 },
+  SG: { min: 8, max: 8 },
+  MY: { min: 9, max: 10 },
+  TH: { min: 9, max: 10 },
+  PH: { min: 10, max: 10 },
+  ID: { min: 9, max: 12 },
+  SL: { min: 9, max: 9 },
+  NP: { min: 10, max: 10 },
+};
+
 const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl }: PricingCardProps) => {
   const { formatPrice } = useCurrency();
+  const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
+  const [countrySearch, setCountrySearch] = useState("");
+  const [openCountryPopover, setOpenCountryPopover] = useState(false);
+  const [openDatePopover, setOpenDatePopover] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    travelDate: "",
+    travelerCount: "",
+    message: "",
+  });
+
+  const filteredCountries = COUNTRIES.filter(country =>
+    country.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
+    country.dial.includes(countrySearch) ||
+    country.code.toLowerCase().includes(countrySearch.toLowerCase())
+  );
+
+  const handleCountrySelect = (country: typeof COUNTRIES[0]) => {
+    setSelectedCountry(country);
+    setOpenCountryPopover(false);
+    setCountrySearch("");
+  };
+
+  const handleDateSelect = (date: Date | undefined) => {
+    if (date) {
+      setSelectedDate(date);
+      setFormData({
+        ...formData,
+        travelDate: formatDate(date, "dd/MM/yyyy"),
+      });
+      setOpenDatePopover(false);
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digitsOnly = e.target.value.replace(/\D/g, '');
+    const maxDigits = COUNTRY_DIGIT_REQUIREMENTS[selectedCountry.code]?.max || 15;
+    const truncated = digitsOnly.slice(0, maxDigits);
+    setFormData({
+      ...formData,
+      phoneNumber: truncated,
+    });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { placeholder, value } = e.target;
+    if (placeholder === "Full Name") {
+      setFormData({ ...formData, fullName: value });
+    } else if (placeholder === "Email") {
+      setFormData({ ...formData, email: value });
+    } else if (placeholder === "Traveler Count") {
+      setFormData({ ...formData, travelerCount: value });
+    }
+  };
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({ ...formData, message: e.target.value });
+  };
+
+  // Disable past dates
+  const isDateDisabled = (date: Date) => {
+    const today = startOfDay(new Date());
+    return date < today;
+  };
 
   // Parse and format prices
   const formattedPrice = price ? formatPrice(parsePrice(price) ?? 0, { fromCurrency: "INR" }) : "";
