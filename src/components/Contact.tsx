@@ -1,4 +1,5 @@
 import { Mail as MailIcon, Phone as PhoneIcon, Search, ChevronDown } from "lucide-react";
+import emailjs from '@emailjs/browser';
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
@@ -7,7 +8,12 @@ import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import { useToast } from "@/hooks/use-toast";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
+
+// EmailJS Credentials
+const EMAILJS_SERVICE_ID = 'storiesbyfoot';
+const EMAILJS_TEMPLATE_ID = 'template_57tfwsw';
+const EMAILJS_PUBLIC_KEY = 'JH95W_X6r4YZ6I_-0';
 
 const COUNTRIES = [
   { code: "IN", name: "India", dial: "+91" },
