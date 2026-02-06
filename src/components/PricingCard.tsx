@@ -153,6 +153,27 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
       window.open(itineraryUrl, "_blank");
     }
   };
+
+  const handleSendEnquiry = () => {
+    // Combine country code with phone number
+    const fullPhoneNumber = selectedCountry.dial + formData.phoneNumber;
+
+    // Create the data object to send
+    const enquiryData = {
+      packageName: formData.packageName,
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: fullPhoneNumber, // +918709356155 format
+      travelDate: formData.travelDate,
+      travelerCount: formData.travelerCount,
+      message: formData.message,
+    };
+
+    // Log for now - tu yahan apna EmailJS code laga dena
+    console.log("Enquiry Data:", enquiryData);
+    // Example: emailjs.send(SERVICE_ID, TEMPLATE_ID, enquiryData)
+  };
+
   return (
     <div className="flex flex-col gap-3 sticky top-20">
       {/* Card 1: Download Itinerary with Pricing */}
