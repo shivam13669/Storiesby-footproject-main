@@ -22,7 +22,7 @@ export type RegionPricing = {
  * Keys: ISO country codes (e.g., 'IN', 'US', 'GB', etc.)
  * Values: Region configuration with INR as base price
  *
- * All basePrice values are in INR. Non-Indian users see 20% markup applied.
+ * All basePrice values are in INR. Non-Indian users see 50% markup applied.
  * Add new regions as needed - the system is scalable and country-agnostic
  */
 export const REGION_PRICING_MAP: Record<string, RegionPricing> = {
