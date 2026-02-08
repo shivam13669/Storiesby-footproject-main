@@ -229,8 +229,8 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
     (basePrice: number, fromCurrency?: string) => {
       if (!Number.isFinite(basePrice)) return 0;
 
-      // Apply 75% markup for non-Indian users
-      const adjustedBasePrice = isIndianUser ? basePrice : basePrice * 1.75;
+      // Apply 50% markup for non-Indian users
+      const adjustedBasePrice = isIndianUser ? basePrice : basePrice * 1.50;
 
       // Always use INR as the source currency
       const sourceCurrency = fromCurrency || "INR";
@@ -239,7 +239,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 
       const converted = (adjustedBasePrice / sourceRate) * targetRate;
       console.log(
-        `[CONVERSION] ${adjustedBasePrice} ${sourceCurrency} (rate: ${sourceRate}) → ${currency} (rate: ${targetRate}) = ${converted} [markup: ${isIndianUser ? "none" : "+75%"}]`
+        `[CONVERSION] ${adjustedBasePrice} ${sourceCurrency} (rate: ${sourceRate}) → ${currency} (rate: ${targetRate}) = ${converted} [markup: ${isIndianUser ? "none" : "+50%"}]`
       );
       return converted;
     },
