@@ -239,7 +239,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 
       const converted = (adjustedBasePrice / sourceRate) * targetRate;
       console.log(
-        `[CONVERSION] ${adjustedBasePrice} ${sourceCurrency} (rate: ${sourceRate}) → ${currency} (rate: ${targetRate}) = ${converted} [markup: ${isIndianUser ? "none" : "+75%"}]`
+        `[CONVERSION] ${adjustedBasePrice} ${sourceCurrency} (rate: ${sourceRate}) → ${currency} (rate: ${targetRate}) = ${converted} [markup: ${isIndianUser ? "none" : "+50%"}]`
       );
       return converted;
     },
