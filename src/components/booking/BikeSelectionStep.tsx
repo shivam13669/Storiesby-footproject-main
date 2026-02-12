@@ -147,35 +147,81 @@ const BikeSelectionStep = ({
         <h4 className="font-bold text-gray-900 mb-4">What's Included</h4>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="flex items-start gap-3">
-            <span className="text-lg mt-1">🛡️</span>
+            <span className="text-lg mt-1">🏨</span>
             <div>
-              <p className="font-semibold text-sm text-gray-900">Safety & Insurance</p>
-              <p className="text-xs text-gray-600 mt-1">Helmets, spare parts, first-aid kits</p>
+              <p className="font-semibold text-sm text-gray-900">Accommodation & Meals</p>
+              <p className="text-xs text-gray-600 mt-1">Hotel stays and breakfast/dinner</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-lg mt-1">👨‍🔧</span>
             <div>
               <p className="font-semibold text-sm text-gray-900">Professional Support</p>
-              <p className="text-xs text-gray-600 mt-1">Mechanics and backup vehicles</p>
+              <p className="text-xs text-gray-600 mt-1">Mechanic, marshall & backup vehicles</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <span className="text-lg mt-1">📋</span>
+            <span className="text-lg mt-1">🚗</span>
             <div>
-              <p className="font-semibold text-sm text-gray-900">Insurance Coverage</p>
-              <p className="text-xs text-gray-600 mt-1">Comprehensive coverage included</p>
+              <p className="font-semibold text-sm text-gray-900">Pickup & Drop</p>
+              <p className="text-xs text-gray-600 mt-1">Airport transfers included</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <span className="text-lg mt-1">💰</span>
+            <span className="text-lg mt-1">⛽</span>
             <div>
-              <p className="font-semibold text-sm text-gray-900">Flexible Pricing</p>
-              <p className="text-xs text-gray-600 mt-1">Price varies by bike model</p>
+              <p className="font-semibold text-sm text-gray-900">Fuel & Oxygen</p>
+              <p className="text-xs text-gray-600 mt-1">Bike fuel and emergency oxygen</p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Seating Option - Only show if co-travellers are added */}
+      {formData.guests && formData.guests.length > 0 && (
+        <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md">
+          <h4 className="font-bold text-gray-900 mb-4">Seating Preference</h4>
+          <p className="text-sm text-gray-600 mb-4">Choose how your co-traveller will ride</p>
+          <div className="space-y-3">
+            <label className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-400 cursor-pointer transition-all">
+              <input
+                type="radio"
+                name="seating"
+                value="dual-sharing"
+                className="w-4 h-4"
+              />
+              <div>
+                <p className="font-semibold text-sm text-gray-900">Dual Sharing</p>
+                <p className="text-xs text-gray-600">Your co-traveller rides with you</p>
+              </div>
+            </label>
+            <label className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-400 cursor-pointer transition-all">
+              <input
+                type="radio"
+                name="seating"
+                value="solo"
+                className="w-4 h-4"
+              />
+              <div>
+                <p className="font-semibold text-sm text-gray-900">Solo</p>
+                <p className="text-xs text-gray-600">Your co-traveller gets their own bike</p>
+              </div>
+            </label>
+            <label className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-400 cursor-pointer transition-all">
+              <input
+                type="radio"
+                name="seating"
+                value="seat-in-backup"
+                className="w-4 h-4"
+              />
+              <div>
+                <p className="font-semibold text-sm text-gray-900">Seat in Backup</p>
+                <p className="text-xs text-gray-600">Your co-traveller rides in backup vehicle</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
