@@ -203,7 +203,7 @@ const BookingPage = () => {
               {currentStep > 1 && (
                 <button
                   onClick={handlePrevStep}
-                  className="flex-1 h-12 text-base font-semibold border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all"
+                  className="flex-1 h-12 text-base font-semibold bg-white border border-gray-200 rounded-lg text-gray-700 shadow-md hover:shadow-lg hover:border-gray-300 transition-all"
                 >
                   Previous Step
                 </button>
@@ -211,7 +211,7 @@ const BookingPage = () => {
               {currentStep < 3 && (
                 <button
                   onClick={handleNextStep}
-                  className="flex-1 h-12 text-base font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+                  className="flex-1 h-12 text-base font-semibold bg-blue-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-blue-700 transition-all"
                 >
                   Next Step
                 </button>
@@ -219,14 +219,14 @@ const BookingPage = () => {
               {currentStep === 3 && (
                 <button
                   onClick={handlePrevStep}
-                  className="flex-1 h-12 text-base font-semibold border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all"
+                  className="flex-1 h-12 text-base font-semibold bg-white border border-gray-200 rounded-lg text-gray-700 shadow-md hover:shadow-lg hover:border-gray-300 transition-all"
                 >
                   Edit Details
                 </button>
               )}
               {currentStep === 3 && (
                 <button
-                  className="flex-1 h-12 text-base font-semibold bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all"
+                  className="flex-1 h-12 text-base font-semibold bg-green-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all"
                 >
                   Confirm Booking
                 </button>
