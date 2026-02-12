@@ -39,7 +39,8 @@ type BookingStep = 1 | 2 | 3;
 const BookingPage = () => {
   const { packageSlug } = useParams<{ packageSlug: string }>();
   const [currentStep, setCurrentStep] = useState<BookingStep>(1);
-  
+  const [validationError, setValidationError] = useState<string>("");
+
   const [formData, setFormData] = useState<BookingFormData>({
     fullName: "",
     email: "",
@@ -84,19 +85,22 @@ const BookingPage = () => {
 
   const handleFormDataChange = (data: Partial<BookingFormData>) => {
     setFormData(prev => ({ ...prev, ...data }));
+    setValidationError("");
   };
 
   const handleNextStep = () => {
+    setValidationError("");
+
     if (currentStep === 1) {
       // Validate step 1
       if (!formData.fullName || !formData.email || !formData.phoneNumber || !formData.travelDate || !formData.aadhaarNumber) {
-        alert("Please fill in all required fields");
+        setValidationError("Please fill in all required fields");
         return;
       }
       setCurrentStep(2);
     } else if (currentStep === 2) {
       if (!formData.selectedBikeId) {
-        alert("Please select a bike");
+        setValidationError("Please select a bike");
         return;
       }
       setCurrentStep(3);
@@ -176,6 +180,13 @@ const BookingPage = () => {
                 selectedBike={selectedBike}
                 finalPrice={finalPrice}
               />
+            )}
+
+            {/* Validation Error Message */}
+            {validationError && (
+              <div className="bg-red-50 border-l-4 border-red-600 p-4 mb-6 rounded-r-lg">
+                <p className="text-red-700 font-medium text-sm">{validationError}</p>
+              </div>
             )}
 
             {/* Navigation Buttons */}
