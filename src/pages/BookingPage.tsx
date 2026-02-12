@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -112,6 +112,11 @@ const BookingPage = () => {
       setCurrentStep((currentStep - 1) as BookingStep);
     }
   };
+
+  // Scroll to top when step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep]);
 
   return (
     <div className="min-h-screen bg-gray-50">
