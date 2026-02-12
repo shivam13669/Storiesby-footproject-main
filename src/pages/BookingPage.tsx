@@ -355,9 +355,6 @@ const BookingPage = () => {
                       <button className="w-full h-12 text-base font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-lg">
                         🔒 Confirm Booking
                       </button>
-                      <p className="text-xs text-gray-600 text-center">
-                        Secure checkout • Encrypted payments
-                      </p>
                     </div>
                   )}
 
@@ -371,12 +368,6 @@ const BookingPage = () => {
                 </div>
               </div>
 
-              {/* Info Banner */}
-              <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <p className="text-xs text-gray-700 text-center font-medium">
-                  🔒 Secure checkout • Encrypted payments
-                </p>
-              </div>
             </div>
           </div>
         </div>
