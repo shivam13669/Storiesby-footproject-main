@@ -18,7 +18,7 @@ const BikeSelectionStep = ({
 }: BikeSelectionStepProps) => {
   if (!travelPackage.bikes || travelPackage.bikes.length === 0) {
     return (
-      <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
+      <div className="bg-white rounded-xl p-8 text-center shadow-md">
         <p className="text-gray-600">No bikes available for this package.</p>
       </div>
     );
@@ -29,136 +29,152 @@ const BikeSelectionStep = ({
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
-        <h2 className="text-2xl font-bold text-gray-900 mb-3">Select Your Bike</h2>
-        <p className="text-gray-600 mb-8">
+    <div className="space-y-8">
+      {/* Title Section */}
+      <div>
+        <h2 className="text-3xl font-bold text-gray-900 mb-3">Select Your Bike</h2>
+        <p className="text-gray-600">
           Choose the bike that suits your riding experience and comfort level
         </p>
+      </div>
 
-        <div className="space-y-4">
-          {travelPackage.bikes.map((bike) => {
-            const bikePrice = Math.round(basePrice * bike.priceMultiplier);
-            const priceDifference = bikePrice - basePrice;
-            const isSelected = formData.selectedBikeId === bike.id;
+      {/* Bikes Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {travelPackage.bikes.map((bike) => {
+          const bikePrice = Math.round(basePrice * bike.priceMultiplier);
+          const priceDifference = bikePrice - basePrice;
+          const isSelected = formData.selectedBikeId === bike.id;
 
-            return (
-              <div
-                key={bike.id}
-                onClick={() => handleBikeSelect(bike.id)}
-                className={`cursor-pointer rounded-lg border-2 transition-all overflow-hidden ${
-                  isSelected
-                    ? "border-blue-600 bg-blue-50 shadow-md"
-                    : "border-gray-300 bg-white hover:border-blue-400 hover:shadow-sm"
-                }`}
-              >
-                <div className="flex flex-col md:flex-row">
-                  {/* Bike Image */}
-                  <div className="md:w-48 h-48 md:h-auto overflow-hidden bg-gray-200 flex-shrink-0">
-                    <img
-                      src={bike.image}
-                      alt={bike.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+          return (
+            <div
+              key={bike.id}
+              onClick={() => handleBikeSelect(bike.id)}
+              className={`bg-white rounded-2xl shadow-md hover:shadow-lg transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                isSelected
+                  ? "border-blue-600 shadow-lg"
+                  : "border-gray-200 hover:border-blue-400"
+              }`}
+            >
+              {/* Selection Badge */}
+              {isSelected && (
+                <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                  <Check className="w-5 h-5" />
+                </div>
+              )}
 
-                  {/* Bike Details */}
-                  <div className="flex-1 p-6 flex flex-col justify-between">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-xl font-bold text-gray-900">
-                            {bike.name}
-                          </h3>
-                          <span className="text-xs font-bold px-2 py-1 bg-gray-200 text-gray-700 rounded">
-                            {bike.cc}
-                          </span>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          {bike.description}
-                        </p>
-                      </div>
+              {/* Image Section */}
+              <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200">
+                <img
+                  src={bike.image}
+                  alt={bike.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                {isSelected && (
+                  <div className="absolute inset-0 bg-blue-600/20" />
+                )}
+              </div>
 
-                      {/* Selection Indicator */}
-                      {isSelected && (
-                        <div className="ml-4 w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                          <Check className="w-4 h-4 text-white" />
-                        </div>
-                      )}
-                    </div>
+              {/* Content Section */}
+              <div className="space-y-3">
+                {/* Name and CC */}
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {bike.name}
+                  </h3>
+                  <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
+                    {bike.cc}
+                  </p>
+                </div>
 
-                    {/* Features */}
-                    <div className="mb-4 pb-4 border-b border-gray-200">
-                      <div className="grid grid-cols-2 gap-2">
-                        {bike.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                            <span className="text-gray-700">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                {/* Description */}
+                <p className="text-sm text-gray-600 line-clamp-2">
+                  {bike.description}
+                </p>
 
-                    {/* Price Section */}
-                    <div className="flex items-end justify-between">
-                      <div>
-                        <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
-                          Price per rider
-                        </p>
-                        <p className="text-2xl font-bold text-gray-900">
-                          ₹{bikePrice.toLocaleString("en-IN")}
-                        </p>
-                        {priceDifference !== 0 && (
-                          <p
-                            className={`text-sm font-semibold mt-1 ${
-                              priceDifference > 0
-                                ? "text-orange-600"
-                                : "text-green-600"
-                            }`}
-                          >
-                            {priceDifference > 0 ? "+" : ""}₹
-                            {priceDifference.toLocaleString("en-IN")} from base
-                          </p>
-                        )}
-                      </div>
+                {/* Features */}
+                <ul className="space-y-2">
+                  {bike.features.slice(0, 2).map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                      {isSelected && (
-                        <div className="text-right">
-                          <span className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm">
-                            Selected
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                {/* Price Section */}
+                <div className="pt-2 border-t border-gray-200">
+                  <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
+                    Price per rider
+                  </p>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-gray-900">
+                      ₹{bikePrice.toLocaleString("en-IN")}
+                    </span>
+                    {priceDifference !== 0 && (
+                      <span
+                        className={`text-sm font-semibold ${
+                          priceDifference > 0
+                            ? "text-orange-600"
+                            : "text-green-600"
+                        }`}
+                      >
+                        {priceDifference > 0 ? "+" : ""}₹
+                        {priceDifference.toLocaleString("en-IN")}
+                      </span>
+                    )}
                   </div>
                 </div>
+
+                {/* Select Button */}
+                <button
+                  onClick={() => handleBikeSelect(bike.id)}
+                  className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                    isSelected
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {isSelected ? "✓ Selected" : "Select Bike"}
+                </button>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* Info Box */}
-      <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-        <h4 className="font-bold text-blue-900 mb-4">What's Included</h4>
-        <ul className="text-sm text-blue-800 space-y-2">
-          <li className="flex items-start gap-2">
-            <span className="text-blue-600 font-bold mt-0.5">✓</span>
-            <span>Helmets, spare parts, and first-aid kits</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-blue-600 font-bold mt-0.5">✓</span>
-            <span>Professional mechanics and backup vehicles</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-blue-600 font-bold mt-0.5">✓</span>
-            <span>Comprehensive insurance coverage</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-blue-600 font-bold mt-0.5">✓</span>
-            <span>Price varies based on bike model</span>
-          </li>
-        </ul>
+      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md">
+        <h4 className="font-bold text-gray-900 mb-4">What's Included</h4>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="flex items-start gap-3">
+            <span className="text-lg mt-1">🛡️</span>
+            <div>
+              <p className="font-semibold text-sm text-gray-900">Safety & Insurance</p>
+              <p className="text-xs text-gray-600 mt-1">Helmets, spare parts, first-aid kits</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-lg mt-1">👨‍🔧</span>
+            <div>
+              <p className="font-semibold text-sm text-gray-900">Professional Support</p>
+              <p className="text-xs text-gray-600 mt-1">Mechanics and backup vehicles</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-lg mt-1">📋</span>
+            <div>
+              <p className="font-semibold text-sm text-gray-900">Insurance Coverage</p>
+              <p className="text-xs text-gray-600 mt-1">Comprehensive coverage included</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-lg mt-1">💰</span>
+            <div>
+              <p className="font-semibold text-sm text-gray-900">Flexible Pricing</p>
+              <p className="text-xs text-gray-600 mt-1">Price varies by bike model</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
