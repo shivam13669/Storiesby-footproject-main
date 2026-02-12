@@ -184,13 +184,13 @@ const BookingPage = () => {
 
             {/* Validation Error Message */}
             {validationError && (
-              <div className="bg-red-50 border-l-4 border-red-600 p-4 mb-6 rounded-r-lg">
+              <div className="bg-red-50 border-l-4 border-red-600 p-4 mt-8 mb-6 rounded-r-lg">
                 <p className="text-red-700 font-medium text-sm">{validationError}</p>
               </div>
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex gap-4 mt-8">
+            <div className="border-t border-gray-200 pt-8 mt-8 flex gap-4">
               {currentStep > 1 && (
                 <button
                   onClick={handlePrevStep}
