@@ -18,6 +18,9 @@ const BikeSelectionStep = ({
   onFormDataChange,
 }: BikeSelectionStepProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [seatingPreference, setSeatingPreference] = useState<"solo" | "dual-sharing" | "seat-in-backup">(
+    formData.seatingPreference || "solo"
+  );
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   if (!travelPackage.bikes || travelPackage.bikes.length === 0) {
@@ -30,6 +33,15 @@ const BikeSelectionStep = ({
 
   // Check if this is trans-himalayan package
   const isTransHimalayan = travelPackage.slug === "trans-himalayan-ride";
+
+  const getBikePrice = (bike: any) => {
+    // For trans-himalayan ride, use seating-based prices if available
+    if (isTransHimalayan && bike.seatingPrices && seatingPreference in bike.seatingPrices) {
+      return bike.seatingPrices[seatingPreference];
+    }
+    // Otherwise use the traditional multiplier method
+    return Math.round(basePrice * bike.priceMultiplier);
+  };
 
   const handleBikeSelect = (bikeId: string) => {
     onFormDataChange({ selectedBikeId: bikeId });
@@ -158,7 +170,7 @@ const BikeSelectionStep = ({
 
                 {/* Provided Bikes */}
                 {travelPackage.bikes.map((bike) => {
-                  const bikePrice = Math.round(basePrice * bike.priceMultiplier);
+                  const bikePrice = getBikePrice(bike);
                   const priceDifference = bikePrice - basePrice;
                   const isSelected = formData.selectedBikeId === bike.id;
 
@@ -266,7 +278,7 @@ const BikeSelectionStep = ({
             // Grid layout for other packages
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {travelPackage.bikes.map((bike) => {
-                const bikePrice = Math.round(basePrice * bike.priceMultiplier);
+                const bikePrice = getBikePrice(bike);
                 const priceDifference = bikePrice - basePrice;
                 const isSelected = formData.selectedBikeId === bike.id;
 
@@ -418,19 +430,25 @@ const BikeSelectionStep = ({
           </div>
         </div>
 
-        {/* Seating Option - Only show if co-travellers are added */}
-        {formData.guests && formData.guests.length > 0 && (
+        {/* Seating Option - Only show for trans-himalayan if co-travellers are added */}
+        {isTransHimalayan && formData.guests && formData.guests.length > 0 && (
           <div>
             <h4 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
               Seating Preference
             </h4>
             <p className="text-sm text-gray-600 mb-4">Choose how your co-traveller will ride</p>
             <div className="space-y-3">
-              <label className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-400 cursor-pointer transition-all">
+              <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
+                style={{borderColor: seatingPreference === "dual-sharing" ? "#2563eb" : "#d1d5db"}}>
                 <input
                   type="radio"
                   name="seating"
                   value="dual-sharing"
+                  checked={seatingPreference === "dual-sharing"}
+                  onChange={(e) => {
+                    setSeatingPreference(e.target.value as any);
+                    onFormDataChange({ seatingPreference: e.target.value as any });
+                  }}
                   className="w-4 h-4"
                 />
                 <div>
@@ -438,11 +456,17 @@ const BikeSelectionStep = ({
                   <p className="text-xs text-gray-600">Your co-traveller rides with you</p>
                 </div>
               </label>
-              <label className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-400 cursor-pointer transition-all">
+              <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
+                style={{borderColor: seatingPreference === "solo" ? "#2563eb" : "#d1d5db"}}>
                 <input
                   type="radio"
                   name="seating"
                   value="solo"
+                  checked={seatingPreference === "solo"}
+                  onChange={(e) => {
+                    setSeatingPreference(e.target.value as any);
+                    onFormDataChange({ seatingPreference: e.target.value as any });
+                  }}
                   className="w-4 h-4"
                 />
                 <div>
@@ -450,11 +474,17 @@ const BikeSelectionStep = ({
                   <p className="text-xs text-gray-600">Your co-traveller gets their own bike</p>
                 </div>
               </label>
-              <label className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-400 cursor-pointer transition-all">
+              <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
+                style={{borderColor: seatingPreference === "seat-in-backup" ? "#2563eb" : "#d1d5db"}}>
                 <input
                   type="radio"
                   name="seating"
                   value="seat-in-backup"
+                  checked={seatingPreference === "seat-in-backup"}
+                  onChange={(e) => {
+                    setSeatingPreference(e.target.value as any);
+                    onFormDataChange({ seatingPreference: e.target.value as any });
+                  }}
                   className="w-4 h-4"
                 />
                 <div>

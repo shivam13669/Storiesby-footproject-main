@@ -29,9 +29,10 @@ export type BookingFormData = {
   travelDate: string;
   aadhaarNumber: string;
   guests: GuestData[];
-  
+
   // Step 2: Bike Selection
   selectedBikeId: string;
+  seatingPreference?: "solo" | "dual-sharing" | "seat-in-backup";
 };
 
 type BookingStep = 1 | 2 | 3;
@@ -50,6 +51,7 @@ const BookingPage = () => {
     aadhaarNumber: "",
     guests: [],
     selectedBikeId: "",
+    seatingPreference: "solo",
   });
 
   // Find package data
@@ -72,9 +74,20 @@ const BookingPage = () => {
   // Calculate price
   const basePrice = parsePrice(travelPackage.price) || 0;
   const selectedBike = travelPackage.bikes?.find(b => b.id === formData.selectedBikeId);
-  const priceMultiplier = selectedBike?.priceMultiplier || 1.0;
+  const isTransHimalayan = travelPackage.slug === "trans-himalayan-ride";
+
+  // Determine bike price based on seating preference for trans-himalayan or use multiplier for others
+  let bikePrice = basePrice;
+  if (selectedBike) {
+    if (isTransHimalayan && selectedBike.seatingPrices && formData.seatingPreference) {
+      bikePrice = selectedBike.seatingPrices[formData.seatingPreference] || basePrice;
+    } else {
+      bikePrice = basePrice * (selectedBike.priceMultiplier || 1.0);
+    }
+  }
+
   const totalTravelers = 1 + formData.guests.length; // Primary traveler + co-travelers
-  const finalPrice = Math.round(basePrice * priceMultiplier * totalTravelers);
+  const finalPrice = Math.round(bikePrice * totalTravelers);
 
   const handleStepChange = (step: BookingStep) => {
     setCurrentStep(step);

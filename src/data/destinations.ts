@@ -11,6 +11,11 @@ export type BikeOption = {
   priceMultiplier: number; // 1.0 = base price, 1.2 = 20% more
   cc: string;
   features: string[];
+  seatingPrices?: {
+    solo: number;
+    "dual-sharing": number;
+    "seat-in-backup": number;
+  };
 };
 
 export type ItineraryDay = {
@@ -1291,7 +1296,7 @@ export const destinations: Destination[] = [
         duration: "12 nights · 13 days",
         description:
           "This 13-day Himalayan Odyssey is the ultimate pilgrimage for every adventure seeker - a grand circuit spanning over 3000 kilometers from the plains of Chandigarh to the highest reaches of the trans-Himalayan desert. From the lush saffron valleys of Kashmir to the stark moonscapes of Ladakh, conquer legendary passes and experience Ladakh's most remote frontiers before descending through the Atal Tunnel engineering marvel.",
-        price: "₹34,999",
+        price: "₹27,999",
         oldPrice: "₹58,600",
         badge: "Group Special",
         rating: 4.9,
@@ -1788,6 +1793,11 @@ export const destinations: Destination[] = [
             priceMultiplier: 1.0,
             cc: "350cc",
             features: ["Best for beginners", "Comfortable seating", "Excellent fuel efficiency", "Classic design"],
+            seatingPrices: {
+              solo: 52899,
+              "dual-sharing": 40399,
+              "seat-in-backup": 27999,
+            },
           },
           {
             id: "himalayan-411",
@@ -1797,6 +1807,11 @@ export const destinations: Destination[] = [
             priceMultiplier: 1.15,
             cc: "411cc",
             features: ["Better ground clearance", "Improved suspension", "More powerful engine", "Ideal for rough terrain"],
+            seatingPrices: {
+              solo: 55199,
+              "dual-sharing": 41499,
+              "seat-in-backup": 27999,
+            },
           },
           {
             id: "himalayan-452",
@@ -1806,6 +1821,11 @@ export const destinations: Destination[] = [
             priceMultiplier: 1.35,
             cc: "452cc",
             features: ["Maximum power", "Advanced suspension", "Best for experts", "Handles all terrains"],
+            seatingPrices: {
+              solo: 73499,
+              "dual-sharing": 50599,
+              "seat-in-backup": 27999,
+            },
           },
         ],
         availableDates: [
