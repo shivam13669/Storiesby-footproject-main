@@ -14,7 +14,7 @@ const CompletionStep = ({
   destination,
 }: CompletionStepProps) => {
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 max-w-2xl mx-auto">
       {/* Success Card */}
       <div className="bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden">
         {/* Success Message Section */}
@@ -121,11 +121,11 @@ const CompletionStep = ({
             <div className="space-y-2 text-sm text-gray-700">
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-gray-600" />
-                <span>Email: <span className="font-medium">support@storiesbyfoot.com</span></span>
+                <span>Email: <span className="font-medium">storiesbyfoot@gmail.com</span></span>
               </p>
               <p className="flex items-center gap-2">
                 <span className="text-gray-600">📱</span>
-                <span>WhatsApp: <span className="font-medium">+91 9876543210</span></span>
+                <span>WhatsApp: <span className="font-medium">+916205129118</span></span>
               </p>
             </div>
           </div>

@@ -314,7 +314,7 @@ const BookingPage = () => {
         {/* Main Content - Checkout Style */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-4">
           {/* Left side - Form content */}
-          <div className="lg:col-span-2 space-y-0">
+          <div className={`${currentStep === 4 ? 'lg:col-span-3' : 'lg:col-span-2'} space-y-0`}>
             {currentStep === 1 && (
               <GuestDetailsStep
                 formData={formData}
