@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
+import emailjs from '@emailjs/browser';
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import GuestDetailsStep from "@/components/booking/GuestDetailsStep";
 import BikeSelectionStep from "@/components/booking/BikeSelectionStep";
 import ConfirmationStep from "@/components/booking/ConfirmationStep";
-import { 
-  findPackageAcrossDestinations, 
+import CompletionStep from "@/components/booking/CompletionStep";
+import {
+  findPackageAcrossDestinations,
   BikeOption,
   DestinationPackage,
   Destination
@@ -14,6 +16,11 @@ import {
 import { parsePrice } from "@/context/CurrencyContext";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
+
+// EmailJS Credentials for Booking Confirmation
+const EMAILJS_SERVICE_ID = 'sbf2nd';
+const EMAILJS_TEMPLATE_ID = 'template_edqs96c';
+const EMAILJS_PUBLIC_KEY = 'VtBo89KCEBX6sQEKy';
 
 export type GuestData = {
   name: string;
@@ -35,11 +42,16 @@ export type BookingFormData = {
   seatingPreference?: "solo" | "dual-sharing" | "seat-in-backup";
 };
 
-type BookingStep = 1 | 2 | 3;
+type BookingStep = 1 | 2 | 3 | 4;
 
 const BookingPage = () => {
   const { packageSlug } = useParams<{ packageSlug: string }>();
   const [validationError, setValidationError] = useState<string>("");
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   // Get storage key for this booking
   const storageKey = `booking_${packageSlug}`;
@@ -178,15 +190,64 @@ const BookingPage = () => {
     }
   };
 
-  const handleConfirmBooking = () => {
-    // Clear saved booking data after successful confirmation
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem(storageKey);
-      localStorage.removeItem(stepStorageKey);
-      localStorage.removeItem(packageStorageKey);
+  const handleConfirmBooking = async () => {
+    try {
+      // Format co-travelers for email
+      const coTravelersList = formData.guests
+        .map((guest, index) => `${index + 1}. ${guest.name} (Aadhaar: ${guest.aadhaarNumber})`)
+        .join('\n');
+
+      // Format travel date
+      const travelDateObj = new Date(formData.travelDate);
+      const formattedTravelDate = travelDateObj.toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+
+      // Prepare booking data for email
+      const bookingData = {
+        packageName: travelPackage.name,
+        destination: destination.name,
+        duration: travelPackage.duration,
+        travelDate: formattedTravelDate,
+        travelerCount: `${1 + formData.guests.length} ${1 + formData.guests.length === 1 ? 'person' : 'people'}`,
+        primaryName: formData.fullName,
+        primaryEmail: formData.email,
+        primaryPhone: `${formData.countryCode} ${formData.phoneNumber}`,
+        primaryAadhaar: formData.aadhaarNumber,
+        bikeModel: selectedBike?.name || 'Not selected',
+        engine: selectedBike?.cc || 'N/A',
+        coTravelerName: coTravelersList || 'No co-travelers',
+        coTravelerAadhaar: coTravelersList || 'No co-travelers',
+        basePrice: `₹${Math.round(basePrice).toLocaleString("en-IN")}`,
+        coTravelerPrice: formData.guests.length > 0
+          ? `+₹${Math.round(basePrice * formData.guests.length).toLocaleString("en-IN")}`
+          : '₹0',
+        totalPrice: `₹${finalPrice.toLocaleString("en-IN")}`,
+      };
+
+      // Send email via EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        bookingData
+      );
+
+      // Move to step 4
+      setCurrentStep(4);
+
+      // Clear saved booking data
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(storageKey);
+        localStorage.removeItem(stepStorageKey);
+        localStorage.removeItem(packageStorageKey);
+      }
+    } catch (error) {
+      console.error("Failed to send booking confirmation email:", error);
+      setValidationError("Booking received but email failed. Our team will contact you soon.");
+      setCurrentStep(4);
     }
-    // TODO: Add actual booking confirmation logic here
-    alert("Booking confirmed!");
   };
 
   // Save currentStep to localStorage whenever it changes (only steps 2 and 3 mean validated data)
@@ -216,7 +277,7 @@ const BookingPage = () => {
         {/* Centered Step Indicator */}
         <div className="mb-12 flex justify-center">
           <div className="flex items-center gap-4">
-            {[1, 2, 3].map((step, idx) => (
+            {[1, 2, 3, 4].map((step, idx) => (
               <div key={step} className="flex items-center gap-4">
                 <div className="flex flex-col items-center">
                   <div
@@ -231,10 +292,10 @@ const BookingPage = () => {
                     {step < currentStep ? "✓" : step}
                   </div>
                   <p className="text-xs font-semibold text-gray-700 mt-2 text-center whitespace-nowrap">
-                    {step === 1 ? "Travel Info" : step === 2 ? "Select Bike" : "Review"}
+                    {step === 1 ? "Travel Info" : step === 2 ? "Select Bike" : step === 3 ? "Review" : "Complete"}
                   </p>
                 </div>
-                {idx < 2 && (
+                {idx < 3 && (
                   <div
                     className={`w-8 h-1 transition-all ${
                       step < currentStep ? "bg-green-600" : "bg-gray-300"
@@ -277,6 +338,14 @@ const BookingPage = () => {
               />
             )}
 
+            {currentStep === 4 && (
+              <CompletionStep
+                formData={formData}
+                travelPackage={travelPackage}
+                destination={destination}
+              />
+            )}
+
             {/* Validation Error Message */}
             {validationError && (
               <div className="bg-red-50 border-l-4 border-red-600 p-4 mt-8 mb-6 rounded-r-lg">
@@ -284,44 +353,39 @@ const BookingPage = () => {
               </div>
             )}
 
-            {/* Navigation Buttons */}
-            <div className="border-t border-gray-200 pt-8 mt-8 flex gap-4">
-              {currentStep > 1 && (
-                <button
-                  onClick={handlePrevStep}
-                  className="flex-1 h-12 text-base font-semibold bg-white border border-gray-200 rounded-lg text-gray-700 shadow-md hover:shadow-lg hover:border-gray-300 transition-all"
-                >
-                  Previous Step
-                </button>
-              )}
-              {currentStep < 3 && (
-                <button
-                  onClick={handleNextStep}
-                  className="flex-1 h-12 text-base font-semibold bg-blue-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-blue-700 transition-all"
-                >
-                  Next Step
-                </button>
-              )}
-              {currentStep === 3 && (
-                <button
-                  onClick={handlePrevStep}
-                  className="flex-1 h-12 text-base font-semibold bg-white border border-gray-200 rounded-lg text-gray-700 shadow-md hover:shadow-lg hover:border-gray-300 transition-all"
-                >
-                  Edit Details
-                </button>
-              )}
-              {currentStep === 3 && (
-                <button
-                  onClick={handleConfirmBooking}
-                  className="flex-1 h-12 text-base font-semibold bg-green-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all"
-                >
-                  Confirm Booking
-                </button>
-              )}
-            </div>
+            {/* Navigation Buttons - Hidden on Step 4 */}
+            {currentStep < 4 && (
+              <div className="border-t border-gray-200 pt-8 mt-8 flex gap-4">
+                {currentStep > 1 && (
+                  <button
+                    onClick={handlePrevStep}
+                    className="flex-1 h-12 text-base font-semibold bg-white border border-gray-200 rounded-lg text-gray-700 shadow-md hover:shadow-lg hover:border-gray-300 transition-all"
+                  >
+                    {currentStep === 3 ? "Edit Details" : "Previous Step"}
+                  </button>
+                )}
+                {currentStep < 3 && (
+                  <button
+                    onClick={handleNextStep}
+                    className="flex-1 h-12 text-base font-semibold bg-blue-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-blue-700 transition-all"
+                  >
+                    Next Step
+                  </button>
+                )}
+                {currentStep === 3 && (
+                  <button
+                    onClick={handleConfirmBooking}
+                    className="flex-1 h-12 text-base font-semibold bg-green-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all"
+                  >
+                    Confirm Booking
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
-          {/* Right side - Booking Summary (Checkout Style) */}
+          {/* Right side - Booking Summary (Checkout Style) - Hidden on Step 4 */}
+          {currentStep < 4 && (
           <div className="lg:col-span-1">
             <div className="sticky top-24">
               {/* Booking Card */}
@@ -463,6 +527,7 @@ const BookingPage = () => {
 
             </div>
           </div>
+          )}
         </div>
       </div>
 
