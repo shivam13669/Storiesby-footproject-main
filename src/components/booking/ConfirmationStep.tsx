@@ -26,202 +26,204 @@ const ConfirmationStep = ({
 
   return (
     <div className="space-y-5">
-      {/* Success Message */}
-      <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-8 text-center">
-        <div className="flex justify-center mb-4">
-          <CheckCircle2 className="w-16 h-16 text-green-600" />
-        </div>
-        <h2 className="text-2xl font-bold text-green-900 mb-2">
-          Review Your Booking
-        </h2>
-        <p className="text-green-800">
-          Please verify all details before confirming your booking
-        </p>
-      </div>
-
-      {/* Booking Details - All in One Card */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-md hover:shadow-lg transition-all space-y-6">
-        {/* Trip Details Section */}
-        <div>
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-            Trip Details
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Destination</p>
-              <p className="text-lg font-bold text-gray-900">{destination.name}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Package</p>
-              <p className="text-lg font-bold text-gray-900">{travelPackage.name}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Duration</p>
-              <p className="text-lg font-bold text-gray-900">{travelPackage.duration}</p>
-            </div>
+      {/* All Booking Details - Single Card */}
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all overflow-hidden">
+        {/* Success Message Section */}
+        <div className="bg-green-50 border-b-2 border-green-200 p-8 text-center">
+          <div className="flex justify-center mb-4">
+            <CheckCircle2 className="w-16 h-16 text-green-600" />
           </div>
+          <h2 className="text-2xl font-bold text-green-900 mb-2">
+            Review Your Booking
+          </h2>
+          <p className="text-green-800">
+            Please verify all details before confirming your booking
+          </p>
         </div>
 
-        {/* Travel Information Section */}
-        <div>
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-            Travel Information
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Travel Date</p>
-              <p className="text-lg font-bold text-gray-900">{formattedDate}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Number of Travellers</p>
-              <p className="text-lg font-bold text-gray-900">
-                {1 + formData.guests.length} {1 + formData.guests.length === 1 ? "person" : "people"}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Primary Traveler Section */}
-        <div>
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-            Primary Traveller
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Name</p>
-              <p className="font-semibold text-gray-900">{formData.fullName}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Email</p>
-              <p className="font-semibold text-gray-900 break-all text-sm">{formData.email}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Phone</p>
-              <p className="font-semibold text-gray-900">
-                {formData.countryCode} {formData.phoneNumber}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Bike Selection Section */}
-        {selectedBike && (
+        {/* All Other Sections */}
+        <div className="p-8 space-y-6">
+          {/* Trip Details Section */}
           <div>
             <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-              Bike Selected
+              Trip Details
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Destination</p>
+                <p className="text-lg font-bold text-gray-900">{destination.name}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Package</p>
+                <p className="text-lg font-bold text-gray-900">{travelPackage.name}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Duration</p>
+                <p className="text-lg font-bold text-gray-900">{travelPackage.duration}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Travel Information Section */}
+          <div>
+            <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+              Travel Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-gray-600 mb-1">Model</p>
-                <p className="text-lg font-bold text-gray-900">{selectedBike.name}</p>
+                <p className="text-xs text-gray-600 mb-1">Travel Date</p>
+                <p className="text-lg font-bold text-gray-900">{formattedDate}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-600 mb-1">Engine</p>
-                <p className="text-lg font-bold text-gray-900">{selectedBike.cc}</p>
+                <p className="text-xs text-gray-600 mb-1">Number of Travellers</p>
+                <p className="text-lg font-bold text-gray-900">
+                  {1 + formData.guests.length} {1 + formData.guests.length === 1 ? "person" : "people"}
+                </p>
               </div>
             </div>
           </div>
-        )}
 
-        {/* Co-Travellers Section */}
-        {formData.guests.length > 0 && (
+          {/* Primary Traveler Section */}
           <div>
             <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-              Co-Travellers ({formData.guests.length})
+              Primary Traveller
             </h3>
-            <div className="space-y-2">
-              {formData.guests.map((guest: GuestData, index: number) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div>
-                    <p className="font-semibold text-gray-900">{guest.name}</p>
-                    <p className="text-sm text-gray-600">Aadhaar: {guest.aadhaarNumber}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Name</p>
+                <p className="font-semibold text-gray-900">{formData.fullName}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Email</p>
+                <p className="font-semibold text-gray-900 break-all text-sm">{formData.email}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Phone</p>
+                <p className="font-semibold text-gray-900">
+                  {formData.countryCode} {formData.phoneNumber}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bike Selection Section */}
+          {selectedBike && (
+            <div>
+              <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+                Bike Selected
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-gray-600 mb-1">Model</p>
+                  <p className="text-lg font-bold text-gray-900">{selectedBike.name}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-600 mb-1">Engine</p>
+                  <p className="text-lg font-bold text-gray-900">{selectedBike.cc}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Co-Travellers Section */}
+          {formData.guests.length > 0 && (
+            <div>
+              <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+                Co-Travellers ({formData.guests.length})
+              </h3>
+              <div className="space-y-2">
+                {formData.guests.map((guest: GuestData, index: number) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
+                    <div>
+                      <p className="font-semibold text-gray-900">{guest.name}</p>
+                      <p className="text-sm text-gray-600">Aadhaar: {guest.aadhaarNumber}</p>
+                    </div>
+                    <span className="text-xs font-bold px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+                      Guest {index + 1}
+                    </span>
                   </div>
-                  <span className="text-xs font-bold px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
-                    Guest {index + 1}
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Price Breakdown Section */}
+          <div>
+            <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+              Fare Summary
+            </h3>
+
+            <div className="space-y-2">
+              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                <span className="text-gray-700">Base Price (per person)</span>
+                <span className="font-semibold text-gray-900">
+                  ₹{Math.round(parseInt(travelPackage.price.replace(/\D/g, ""))).toLocaleString("en-IN")}
+                </span>
+              </div>
+
+              {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-700">
+                    {selectedBike.name} Upgrade ({Math.round((selectedBike.priceMultiplier - 1) * 100)}%)
+                  </span>
+                  <span className="font-semibold text-gray-900">
+                    +₹{Math.round(
+                      parseInt(travelPackage.price.replace(/\D/g, "")) *
+                        (selectedBike.priceMultiplier - 1)
+                    ).toLocaleString("en-IN")}
                   </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              )}
 
-        {/* Price Breakdown Section */}
-        <div>
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-            Fare Summary
-          </h3>
+              {travelPackage.oldPrice && (
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-green-700 font-semibold">You Save</span>
+                  <span className="font-semibold text-green-700">
+                    -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
+                  </span>
+                </div>
+              )}
 
-          <div className="space-y-2">
-            <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-              <span className="text-gray-700">Base Price (per person)</span>
-              <span className="font-semibold text-gray-900">
-                ₹{Math.round(parseInt(travelPackage.price.replace(/\D/g, ""))).toLocaleString("en-IN")}
-              </span>
-            </div>
-
-            {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
-              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-                <span className="text-gray-700">
-                  {selectedBike.name} Upgrade ({Math.round((selectedBike.priceMultiplier - 1) * 100)}%)
-                </span>
-                <span className="font-semibold text-gray-900">
-                  +₹{Math.round(
-                    parseInt(travelPackage.price.replace(/\D/g, "")) *
-                      (selectedBike.priceMultiplier - 1)
-                  ).toLocaleString("en-IN")}
+              <div className="flex justify-between items-center pt-3">
+                <span className="text-lg font-bold text-gray-900">Total Price</span>
+                <span className="text-3xl font-bold text-blue-600">
+                  ₹{finalPrice.toLocaleString("en-IN")}
                 </span>
               </div>
-            )}
-
-            {travelPackage.oldPrice && (
-              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-                <span className="text-green-700 font-semibold">You Save</span>
-                <span className="font-semibold text-green-700">
-                  -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
-                </span>
-              </div>
-            )}
-
-            <div className="flex justify-between items-center pt-3">
-              <span className="text-lg font-bold text-gray-900">Total Price</span>
-              <span className="text-3xl font-bold text-blue-600">
-                ₹{finalPrice.toLocaleString("en-IN")}
-              </span>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Important Info and Confirmation - Combined Card */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-lg transition-all space-y-6">
-        {/* Important Information Section */}
-        <div>
-          <h4 className="font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">Important Information</h4>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li className="flex items-start gap-2">
-              <span className="text-gray-600 font-bold mt-0.5">•</span>
-              <span>Your booking is tentative until confirmed. We'll send confirmation within 24 hours.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-gray-600 font-bold mt-0.5">•</span>
-              <span>Payment details will be shared via email and SMS.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-gray-600 font-bold mt-0.5">•</span>
-              <span>Cancellation: 30+ days before = 30% fee, Less than 30 days = 100% fee</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-gray-600 font-bold mt-0.5">•</span>
-              <span>All travellers must carry valid government ID proof.</span>
-            </li>
-          </ul>
-        </div>
+          {/* Important Information Section */}
+          <div>
+            <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+              Important Information
+            </h3>
+            <ul className="text-sm text-gray-700 space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600 font-bold mt-0.5">•</span>
+                <span>Your booking is tentative until confirmed. We'll send confirmation within 24 hours.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600 font-bold mt-0.5">•</span>
+                <span>Payment details will be shared via email and SMS.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600 font-bold mt-0.5">•</span>
+                <span>Cancellation: 30+ days before = 30% fee, Less than 30 days = 100% fee</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600 font-bold mt-0.5">•</span>
+                <span>All travellers must carry valid government ID proof.</span>
+              </li>
+            </ul>
+          </div>
 
-        {/* Confirmation Section */}
-        <div className="pt-3 border-t border-gray-200">
-          <p className="text-sm text-gray-700 font-medium leading-relaxed">
-            By confirming this booking, you agree to our <a href="#" className="text-blue-600 hover:underline font-semibold">terms and conditions</a> and <a href="#" className="text-blue-600 hover:underline font-semibold">privacy policy</a>.
-          </p>
+          {/* Confirmation Section */}
+          <div className="pt-3 border-t border-gray-200">
+            <p className="text-sm text-gray-700 font-medium leading-relaxed">
+              By confirming this booking, you agree to our <a href="#" className="text-blue-600 hover:underline font-semibold">terms and conditions</a> and <a href="#" className="text-blue-600 hover:underline font-semibold">privacy policy</a>.
+            </p>
+          </div>
         </div>
       </div>
     </div>
