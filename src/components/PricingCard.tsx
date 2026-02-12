@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Calendar, ChevronDown, Phone, Search } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ interface PricingCardProps {
   reviews?: number;
   itineraryUrl?: string;
   packageName?: string;
+  packageSlug?: string;
 }
 
 const COUNTRIES = [
@@ -69,7 +71,8 @@ const COUNTRY_DIGIT_REQUIREMENTS: Record<string, { min: number; max: number }> =
   NP: { min: 10, max: 10 },
 };
 
-const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl, packageName }: PricingCardProps) => {
+const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Circle", price = "INR 2,30,206", oldPrice = "INR 3,06,106", saving = "SAVE INR 75,900", itineraryUrl, packageName, packageSlug }: PricingCardProps) => {
+  const navigate = useNavigate();
   const { formatPrice } = useCurrency();
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
   const [countrySearch, setCountrySearch] = useState("");
@@ -248,7 +251,16 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
           >
             Download Itinerary
           </Button>
-          <Button className="flex-1 btn-primary h-12 text-base font-semibold rounded-lg">
+          <Button
+            onClick={() => {
+              if (packageSlug) {
+                navigate(`/booking/${packageSlug}`);
+              } else {
+                alert("Package slug is missing");
+              }
+            }}
+            className="flex-1 btn-primary h-12 text-base font-semibold rounded-lg"
+          >
             Book Now
           </Button>
         </div>

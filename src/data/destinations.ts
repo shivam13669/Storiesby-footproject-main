@@ -3,6 +3,16 @@ import { Flag, Landmark, Mountain, MountainSnow, Waves } from "lucide-react";
 
 export type DestinationIcon = "mountain" | "landmark" | "waves" | "flag" | "mountainSnow";
 
+export type BikeOption = {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  priceMultiplier: number; // 1.0 = base price, 1.2 = 20% more
+  cc: string;
+  features: string[];
+};
+
 export type ItineraryDay = {
   day: number;
   title: string;
@@ -44,6 +54,8 @@ export type DestinationPackage = {
   itinerary?: ItineraryDay[];
   inclusions?: string[];
   exclusions?: string[];
+  bikes?: BikeOption[];
+  availableDates?: string[]; // Format: "YYYY-MM-DD"
 };
 
 export type DestinationQuickFacts = {
@@ -311,6 +323,44 @@ export const destinations: Destination[] = [
           "Any other expense not mentioned in the inclusion column",
           "Extra 5% GST",
         ],
+        bikes: [
+          {
+            id: "classic-350",
+            name: "Royal Enfield Classic 350",
+            description: "Perfect for beginners. Smooth, lightweight, and easy to handle.",
+            image: "https://cdn.builder.io/api/v1/image/assets%2Fefb8a20ed2eb4fb5b67c675a044988d4%2F3ce46e66d9b648498cebe69aaf9f207e?format=webp&width=800&height=1200",
+            priceMultiplier: 1.0,
+            cc: "350cc",
+            features: ["Best for beginners", "Comfortable seating", "Excellent fuel efficiency", "Classic design"],
+          },
+          {
+            id: "himalayan-411",
+            name: "Royal Enfield Himalayan 411",
+            description: "Mid-range adventure bike. Great balance of power and comfort.",
+            image: "https://cdn.builder.io/api/v1/image/assets%2Fefb8a20ed2eb4fb5b67c675a044988d4%2Fcfee6c3a5a1c40a39d5e62c03f695f72?format=webp&width=800&height=1200",
+            priceMultiplier: 1.15,
+            cc: "411cc",
+            features: ["Better ground clearance", "Improved suspension", "More powerful engine", "Ideal for rough terrain"],
+          },
+          {
+            id: "himalayan-452",
+            name: "Royal Enfield Himalayan 452",
+            description: "Premium adventure bike. Maximum power and capabilities.",
+            image: "https://cdn.builder.io/api/v1/image/assets%2Fefb8a20ed2eb4fb5b67c675a044988d4%2Fc9aec4380fa04f2b8857068d6a997558?format=webp&width=800&height=1200",
+            priceMultiplier: 1.35,
+            cc: "452cc",
+            features: ["Maximum power", "Advanced suspension", "Best for experts", "Handles all terrains"],
+          },
+        ],
+        availableDates: [
+          "2026-04-12", "2026-04-19",
+          "2026-05-03", "2026-05-17", "2026-05-24", "2026-05-31",
+          "2026-06-07", "2026-06-14", "2026-06-21", "2026-06-26",
+          "2026-07-05", "2026-07-12", "2026-07-19", "2026-07-26",
+          "2026-08-02", "2026-08-08", "2026-08-13", "2026-08-23", "2026-08-30",
+          "2026-09-06", "2026-09-13", "2026-09-20", "2026-09-27",
+          "2026-10-04", "2026-10-11", "2026-10-18",
+        ],
       },
       {
         slug: "khardungla-changla-loop",
@@ -574,6 +624,15 @@ export const destinations: Destination[] = [
           "Any additional costs incurred due to natural calamities or unforeseen circumstances beyond our control",
           "Any other expense not mentioned in the inclusion column",
           "GST 5%",
+        ],
+        availableDates: [
+          "2026-04-26",
+          "2026-05-01", "2026-05-22",
+          "2026-06-05", "2026-06-19", "2026-06-26",
+          "2026-07-03", "2026-07-17", "2026-07-31",
+          "2026-08-12", "2026-08-25",
+          "2026-09-04", "2026-09-11",
+          "2026-10-02", "2026-10-16",
         ],
       },
       {
@@ -885,6 +944,13 @@ export const destinations: Destination[] = [
           "Any food or beverage expenses not covered in the package",
           "Any additional costs incurred due to natural calamities or unforeseen circumstances beyond our control",
           "Any other expense not mentioned in the inclusion column",
+        ],
+        availableDates: [
+          "2026-05-16", "2026-05-30",
+          "2026-06-13", "2026-06-27",
+          "2026-07-11", "2026-07-25",
+          "2026-08-10", "2026-08-28",
+          "2026-09-08", "2026-09-25",
         ],
       },
       {
@@ -1210,6 +1276,13 @@ export const destinations: Destination[] = [
           "Any food or beverage expenses not covered in the package",
           "Any additional costs incurred due to natural calamities or unforeseen circumstances beyond our control",
           "Any other expense not mentioned in the inclusion column",
+        ],
+        availableDates: [
+          "2026-05-02", "2026-05-23",
+          "2026-06-06", "2026-06-20",
+          "2026-07-04", "2026-07-18",
+          "2026-08-01", "2026-08-10",
+          "2026-09-01", "2026-09-11",
         ],
       },
       {
@@ -1705,6 +1778,12 @@ export const destinations: Destination[] = [
           "Fuel (for Motorbike)",
           "Motorbike",
           "GST 5%",
+        ],
+        availableDates: [
+          "2026-05-30",
+          "2026-06-13", "2026-06-27",
+          "2026-07-11", "2026-07-25",
+          "2026-09-19",
         ],
       },
     ],
