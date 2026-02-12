@@ -113,14 +113,9 @@ const BookingPage = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <div className="container mx-auto px-4 py-8 mt-16">
-        {/* Title */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
-        </div>
-
+      <div className="container mx-auto px-4 py-4 mt-16">
         {/* Centered Step Indicator */}
-        <div className="mb-16 flex justify-center">
+        <div className="mb-12 flex justify-center">
           <div className="flex items-center gap-8">
             {[1, 2, 3].map((step, idx) => (
               <div key={step} className="flex items-center gap-8">
@@ -224,11 +219,16 @@ const BookingPage = () => {
             <div className="sticky top-24">
               {/* Booking Card */}
               <div className="bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden">
-                {/* Package Header with Icon */}
-                <div className="bg-gradient-to-br from-blue-600 to-blue-700 h-32 flex items-center justify-center text-white">
-                  <div className="text-center">
-                    <div className="text-6xl mb-2">📦</div>
-                    <p className="text-sm opacity-95">Booking Summary</p>
+                {/* Package Header with Image */}
+                <div className="relative h-40 overflow-hidden bg-gray-200">
+                  <img
+                    src={travelPackage.image || "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1600&q=80"}
+                    alt={travelPackage.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 text-white p-4">
+                    <h3 className="text-sm font-bold">Booking Summary</h3>
                   </div>
                 </div>
 
