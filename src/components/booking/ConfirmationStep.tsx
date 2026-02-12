@@ -161,6 +161,19 @@ const ConfirmationStep = ({
                 </span>
               </div>
 
+              {formData.guests.length > 0 && (
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span className="text-gray-700">
+                    Co-Travellers ({formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'})
+                  </span>
+                  <span className="font-semibold text-gray-900">
+                    +₹{Math.round(
+                      parseInt(travelPackage.price.replace(/\D/g, "")) * formData.guests.length
+                    ).toLocaleString("en-IN")}
+                  </span>
+                </div>
+              )}
+
               {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-700">
@@ -169,7 +182,7 @@ const ConfirmationStep = ({
                   <span className="font-semibold text-gray-900">
                     +₹{Math.round(
                       parseInt(travelPackage.price.replace(/\D/g, "")) *
-                        (selectedBike.priceMultiplier - 1)
+                        (selectedBike.priceMultiplier - 1) * (1 + formData.guests.length)
                     ).toLocaleString("en-IN")}
                   </span>
                 </div>
@@ -179,7 +192,7 @@ const ConfirmationStep = ({
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-green-700 font-semibold">You Save</span>
                   <span className="font-semibold text-green-700">
-                    -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
+                    -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) * (1 + formData.guests.length) - finalPrice).toLocaleString("en-IN")}
                   </span>
                 </div>
               )}

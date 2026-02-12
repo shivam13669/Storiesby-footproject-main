@@ -73,7 +73,8 @@ const BookingPage = () => {
   const basePrice = parsePrice(travelPackage.price) || 0;
   const selectedBike = travelPackage.bikes?.find(b => b.id === formData.selectedBikeId);
   const priceMultiplier = selectedBike?.priceMultiplier || 1.0;
-  const finalPrice = Math.round(basePrice * priceMultiplier);
+  const totalTravelers = 1 + formData.guests.length; // Primary traveler + co-travelers
+  const finalPrice = Math.round(basePrice * priceMultiplier * totalTravelers);
 
   const handleStepChange = (step: BookingStep) => {
     setCurrentStep(step);
