@@ -400,7 +400,7 @@ const BikeSelectionStep = ({
                   {isTransHimalayan ? "Permit and Bonfire" : "Pickup & Drop"}
                 </p>
                 <p className="text-xs text-gray-600 mt-1">
-                  {isTransHimalayan ? "ILP, Bonfire music" : "Airport transfers included"}
+                  {isTransHimalayan ? "Inner Line Permit, Bonfire music" : "Airport transfers included"}
                 </p>
               </div>
             </div>
