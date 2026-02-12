@@ -63,7 +63,13 @@ const BikeSelectionStep = ({
   };
 
   const handleBikeSelect = (bikeId: string) => {
-    onFormDataChange({ selectedBikeId: bikeId });
+    // If selecting a bike other than "seat-in-backup", reset seating preference to solo
+    if (bikeId !== "seat-in-backup") {
+      setSeatingPreference("solo");
+      onFormDataChange({ selectedBikeId: bikeId, seatingPreference: "solo" });
+    } else {
+      onFormDataChange({ selectedBikeId: bikeId });
+    }
   };
 
   const handleScroll = (direction: "left" | "right") => {
