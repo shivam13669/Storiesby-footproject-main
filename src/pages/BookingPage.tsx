@@ -115,7 +115,7 @@ const BookingPage = () => {
 
   // Scroll to top when step changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, [currentStep]);
 
   return (
