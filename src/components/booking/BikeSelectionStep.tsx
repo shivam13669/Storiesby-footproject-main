@@ -63,7 +63,13 @@ const BikeSelectionStep = ({
   };
 
   const handleBikeSelect = (bikeId: string) => {
-    onFormDataChange({ selectedBikeId: bikeId });
+    // If selecting a bike other than "seat-in-backup", reset seating preference to solo
+    if (bikeId !== "seat-in-backup") {
+      setSeatingPreference("solo");
+      onFormDataChange({ selectedBikeId: bikeId, seatingPreference: "solo" });
+    } else {
+      onFormDataChange({ selectedBikeId: bikeId });
+    }
   };
 
   const handleScroll = (direction: "left" | "right") => {
@@ -96,264 +102,100 @@ const BikeSelectionStep = ({
             Select Your Preferred Bike
           </h3>
 
-          {isTransHimalayan ? (
-            // Carousel for Trans-Himalayan
-            <div className="relative">
-              {/* Left Arrow */}
-              <button
-                onClick={() => handleScroll("left")}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:shadow-xl transition-all -ml-4"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-700" />
-              </button>
+          {/* Carousel for all packages */}
+          <div className="relative">
+            {/* Left Arrow */}
+            <button
+              onClick={() => handleScroll("left")}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:shadow-xl transition-all -ml-4"
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-700" />
+            </button>
 
-              {/* Carousel Container */}
+            {/* Carousel Container */}
+            <div
+              ref={scrollContainerRef}
+              className="flex gap-6 overflow-x-auto scroll-smooth pb-2"
+              style={{ scrollBehavior: 'smooth' }}
+            >
+              {/* Own Bike Option */}
               <div
-                ref={scrollContainerRef}
-                className="flex gap-6 overflow-x-auto scroll-smooth pb-2"
-                style={{ scrollBehavior: 'smooth' }}
+                onClick={() => handleBikeSelect("own-bike")}
+                className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                  formData.selectedBikeId === "own-bike"
+                    ? "border-blue-600 shadow-md bg-blue-50"
+                    : "border-gray-200 hover:border-blue-400"
+                }`}
               >
-                {/* Own Bike Option */}
-                <div
-                  onClick={() => handleBikeSelect("own-bike")}
-                  className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
-                    formData.selectedBikeId === "own-bike"
-                      ? "border-blue-600 shadow-md bg-blue-50"
-                      : "border-gray-200 hover:border-blue-400"
-                  }`}
-                >
-                  {/* Selection Badge */}
-                  {formData.selectedBikeId === "own-bike" && (
-                    <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
-                      <Check className="w-5 h-5" />
-                    </div>
-                  )}
-
-                  {/* Image Section */}
-                  <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-5xl mb-2">🏍️</div>
-                      <p className="text-gray-700 font-semibold">Your Own Bike</p>
-                    </div>
+                {/* Selection Badge */}
+                {formData.selectedBikeId === "own-bike" && (
+                  <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                    <Check className="w-5 h-5" />
                   </div>
+                )}
 
-                  {/* Content Section */}
-                  <div className="space-y-3">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900">
-                        Own Bike
-                      </h3>
-                      <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
-                        Bring Your Own
-                      </p>
-                    </div>
-
-                    <p className="text-sm text-gray-600 line-clamp-2">
-                      Ride with your own motorcycle on this adventure
-                    </p>
-
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-sm">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                        <span className="text-gray-700">Complete freedom</span>
-                      </li>
-                      <li className="flex items-start gap-2 text-sm">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                        <span className="text-gray-700">Familiar machine</span>
-                      </li>
-                    </ul>
-
-                    <div className="pt-2 border-t border-gray-200">
-                      <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
-                        Price per traveler
-                      </p>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-bold text-gray-900">
-                          ₹{basePrice.toLocaleString("en-IN")}
-                        </span>
-                        <span className="text-sm font-semibold text-green-600">
-                          ✓ EARLY BIRD OFFER!
-                        </span>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => handleBikeSelect("own-bike")}
-                      className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                        formData.selectedBikeId === "own-bike"
-                          ? "bg-blue-600 text-white shadow-md"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
-                    >
-                      {formData.selectedBikeId === "own-bike" ? "✓ Selected" : "Select Bike"}
-                    </button>
+                {/* Image Section */}
+                <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-5xl mb-2">🏍️</div>
+                    <p className="text-gray-700 font-semibold">Your Own Bike</p>
                   </div>
                 </div>
 
-                {/* Provided Bikes */}
-                {regularBikes.map((bike) => {
-                  const bikePrice = getBikePrice(bike);
-                  const priceDifference = bikePrice - basePrice;
-                  const isSelected = formData.selectedBikeId === bike.id;
+                {/* Content Section */}
+                <div className="space-y-3">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      Own Bike
+                    </h3>
+                    <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
+                      Bring Your Own
+                    </p>
+                  </div>
 
-                  return (
-                    <div
-                      key={bike.id}
-                      onClick={() => handleBikeSelect(bike.id)}
-                      className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
-                        isSelected
-                          ? "border-blue-600 shadow-md bg-blue-50"
-                          : "border-gray-200 hover:border-blue-400"
-                      }`}
-                    >
-                      {/* Selection Badge */}
-                      {isSelected && (
-                        <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
-                          <Check className="w-5 h-5" />
-                        </div>
-                      )}
+                  <p className="text-sm text-gray-600 line-clamp-2">
+                    Ride with your own motorcycle on this adventure
+                  </p>
 
-                      {/* Image Section */}
-                      <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
-                        <img
-                          src={bike.image}
-                          alt={bike.name}
-                          className="w-full h-full object-contain"
-                        />
-                        {isSelected && (
-                          <div className="absolute inset-0 bg-blue-600/20" />
-                        )}
-                      </div>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2 text-sm">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                      <span className="text-gray-700">Complete freedom</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-sm">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                      <span className="text-gray-700">Familiar machine</span>
+                    </li>
+                  </ul>
 
-                      {/* Content Section */}
-                      <div className="space-y-3">
-                        <div>
-                          <h3 className="text-xl font-semibold text-gray-900">
-                            {bike.name}
-                          </h3>
-                          <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
-                            {bike.cc}
-                          </p>
-                        </div>
-
-                        <p className="text-sm text-gray-600 line-clamp-2">
-                          {bike.description}
-                        </p>
-
-                        <ul className="space-y-2">
-                          {bike.features.slice(0, 2).map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm">
-                              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                              <span className="text-gray-700">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        <div className="pt-2 border-t border-gray-200">
-                          <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
-                            Price per traveler
-                          </p>
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-2xl font-bold text-gray-900">
-                              ₹{bikePrice.toLocaleString("en-IN")}
-                            </span>
-                            {priceDifference !== 0 && (
-                              <span
-                                className={`text-sm font-semibold ${
-                                  priceDifference > 0
-                                    ? "text-green-600"
-                                    : "text-green-600"
-                                }`}
-                              >
-                                {priceDifference > 0 ? "✓ EARLY BIRD OFFER!" : ""}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => handleBikeSelect(bike.id)}
-                          className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                            isSelected
-                              ? "bg-blue-600 text-white shadow-md"
-                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                          }`}
-                        >
-                          {isSelected ? "✓ Selected" : "Select Bike"}
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-
-                {/* Seat in Backup Vehicle - Info Only, Select via Seating Preference */}
-                {backupVehicle && (
-                  <div
-                    ref={backupVehicleCardRef}
-                    className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm p-5 relative group overflow-hidden border-2 ${
-                      formData.selectedBikeId === backupVehicle.id
-                        ? "border-blue-600 shadow-md bg-blue-50"
-                        : "border-gray-200 opacity-75"
-                    }`}
-                  >
-                    {/* Image Section */}
-                    <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
-                      <img
-                        src={backupVehicle.image}
-                        alt={backupVehicle.name}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-
-                    {/* Details Section */}
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">
-                        {backupVehicle.name}
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-3">
-                        {backupVehicle.description}
-                      </p>
-
-                      {/* Features */}
-                      <ul className="space-y-2 mb-4">
-                        {backupVehicle.features?.map((feature, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <span className="text-blue-600">•</span>
-                            <span className="text-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="pt-2 border-t border-gray-200">
-                        <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
-                          Price per traveler
-                        </p>
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-2xl font-bold text-gray-900">
-                            ₹{getBikePrice(backupVehicle).toLocaleString("en-IN")}
-                          </span>
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-gray-500 italic mt-4 text-center">
-                        Select via Seating Preference below
-                      </p>
+                  <div className="pt-2 border-t border-gray-200">
+                    <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
+                      Price per traveler
+                    </p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-2xl font-bold text-gray-900">
+                        ₹{basePrice.toLocaleString("en-IN")}
+                      </span>
+                      <span className="text-sm font-semibold text-green-600">
+                        ✓ EARLY BIRD OFFER!
+                      </span>
                     </div>
                   </div>
-                )}
+
+                  <button
+                    onClick={() => handleBikeSelect("own-bike")}
+                    className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      formData.selectedBikeId === "own-bike"
+                        ? "bg-blue-600 text-white shadow-md"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {formData.selectedBikeId === "own-bike" ? "✓ Selected" : "Select Bike"}
+                  </button>
+                </div>
               </div>
 
-              {/* Right Arrow */}
-              <button
-                onClick={() => handleScroll("right")}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:shadow-xl transition-all -mr-4"
-              >
-                <ChevronRight className="w-6 h-6 text-gray-700" />
-              </button>
-            </div>
-          ) : (
-            // Grid layout for other packages
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Provided Bikes */}
               {regularBikes.map((bike) => {
                 const bikePrice = getBikePrice(bike);
                 const priceDifference = bikePrice - basePrice;
@@ -363,7 +205,7 @@ const BikeSelectionStep = ({
                   <div
                     key={bike.id}
                     onClick={() => handleBikeSelect(bike.id)}
-                    className={`bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                    className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
                       isSelected
                         ? "border-blue-600 shadow-md bg-blue-50"
                         : "border-gray-200 hover:border-blue-400"
@@ -390,7 +232,6 @@ const BikeSelectionStep = ({
 
                     {/* Content Section */}
                     <div className="space-y-3">
-                      {/* Name and CC */}
                       <div>
                         <h3 className="text-xl font-semibold text-gray-900">
                           {bike.name}
@@ -400,12 +241,10 @@ const BikeSelectionStep = ({
                         </p>
                       </div>
 
-                      {/* Description */}
                       <p className="text-sm text-gray-600 line-clamp-2">
                         {bike.description}
                       </p>
 
-                      {/* Features */}
                       <ul className="space-y-2">
                         {bike.features.slice(0, 2).map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-sm">
@@ -415,7 +254,6 @@ const BikeSelectionStep = ({
                         ))}
                       </ul>
 
-                      {/* Price Section */}
                       <div className="pt-2 border-t border-gray-200">
                         <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
                           Price per traveler
@@ -426,7 +264,11 @@ const BikeSelectionStep = ({
                           </span>
                           {priceDifference !== 0 && (
                             <span
-                              className={`text-sm font-semibold text-green-600`}
+                              className={`text-sm font-semibold ${
+                                priceDifference > 0
+                                  ? "text-green-600"
+                                  : "text-green-600"
+                              }`}
                             >
                               {priceDifference > 0 ? "✓ EARLY BIRD OFFER!" : ""}
                             </span>
@@ -434,7 +276,6 @@ const BikeSelectionStep = ({
                         </div>
                       </div>
 
-                      {/* Select Button */}
                       <button
                         onClick={() => handleBikeSelect(bike.id)}
                         className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
@@ -453,7 +294,8 @@ const BikeSelectionStep = ({
               {/* Seat in Backup Vehicle - Info Only, Select via Seating Preference */}
               {backupVehicle && (
                 <div
-                  className={`bg-gray-50 rounded-2xl shadow-sm p-5 relative group overflow-hidden border-2 ${
+                  ref={backupVehicleCardRef}
+                  className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm p-5 relative group overflow-hidden border-2 ${
                     formData.selectedBikeId === backupVehicle.id
                       ? "border-blue-600 shadow-md bg-blue-50"
                       : "border-gray-200 opacity-75"
@@ -487,7 +329,6 @@ const BikeSelectionStep = ({
                       ))}
                     </ul>
 
-                    {/* Price Section */}
                     <div className="pt-2 border-t border-gray-200">
                       <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
                         Price per traveler
@@ -506,7 +347,15 @@ const BikeSelectionStep = ({
                 </div>
               )}
             </div>
-          )}
+
+            {/* Right Arrow */}
+            <button
+              onClick={() => handleScroll("right")}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:shadow-xl transition-all -mr-4"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-700" />
+            </button>
+          </div>
         </div>
 
         {/* What's Included Section */}

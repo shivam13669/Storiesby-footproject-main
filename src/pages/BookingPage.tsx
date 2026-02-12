@@ -39,19 +39,61 @@ type BookingStep = 1 | 2 | 3;
 
 const BookingPage = () => {
   const { packageSlug } = useParams<{ packageSlug: string }>();
-  const [currentStep, setCurrentStep] = useState<BookingStep>(1);
   const [validationError, setValidationError] = useState<string>("");
 
-  const [formData, setFormData] = useState<BookingFormData>({
-    fullName: "",
-    email: "",
-    countryCode: "+91",
-    phoneNumber: "",
-    travelDate: "",
-    aadhaarNumber: "",
-    guests: [],
-    selectedBikeId: "",
-    seatingPreference: "solo",
+  // Get storage key for this booking
+  const storageKey = `booking_${packageSlug}`;
+  const stepStorageKey = `booking_step_${packageSlug}`;
+  const packageStorageKey = `booking_package_${packageSlug}`;
+
+  // Initialize form data from localStorage or use defaults
+  const [formData, setFormData] = useState<BookingFormData>(() => {
+    if (typeof window !== 'undefined') {
+      // Check if this is the same booking package (not navigated away)
+      const savedPackage = localStorage.getItem(packageStorageKey);
+      if (savedPackage === packageSlug) {
+        const saved = localStorage.getItem(storageKey);
+        if (saved) {
+          try {
+            return JSON.parse(saved);
+          } catch (e) {
+            console.error("Failed to parse saved form data");
+          }
+        }
+      } else {
+        // User navigated away and came back, or went to different package - clear all data
+        localStorage.removeItem(storageKey);
+        localStorage.removeItem(stepStorageKey);
+      }
+    }
+    return {
+      fullName: "",
+      email: "",
+      countryCode: "+91",
+      phoneNumber: "",
+      travelDate: "",
+      aadhaarNumber: "",
+      guests: [],
+      selectedBikeId: "",
+      seatingPreference: "solo",
+    };
+  });
+
+  // Initialize current step from localStorage or use default
+  const [currentStep, setCurrentStep] = useState<BookingStep>(() => {
+    if (typeof window !== 'undefined') {
+      const savedPackage = localStorage.getItem(packageStorageKey);
+      if (savedPackage === packageSlug) {
+        const saved = localStorage.getItem(stepStorageKey);
+        if (saved) {
+          const step = parseInt(saved) as BookingStep;
+          if (step === 1 || step === 2 || step === 3) {
+            return step;
+          }
+        }
+      }
+    }
+    return 1;
   });
 
   // Find package data
@@ -76,14 +118,17 @@ const BookingPage = () => {
   const selectedBike = travelPackage.bikes?.find(b => b.id === formData.selectedBikeId);
   const isTransHimalayan = travelPackage.slug === "trans-himalayan-ride";
 
-  // Determine bike price based on seating preference for trans-himalayan or use multiplier for others
+  // Determine bike price based on seating preference for trans-himalayan or backup vehicles, or use multiplier for others
   let bikePrice = basePrice;
   if (selectedBike) {
-    if (isTransHimalayan && selectedBike.seatingPrices && formData.seatingPreference) {
+    // Use seating prices if available (for trans-himalayan or backup vehicles)
+    if (selectedBike.seatingPrices && formData.seatingPreference) {
       bikePrice = selectedBike.seatingPrices[formData.seatingPreference] || basePrice;
-    } else {
-      bikePrice = basePrice * (selectedBike.priceMultiplier || 1.0);
+    } else if (selectedBike.priceMultiplier) {
+      // Otherwise use price multiplier if available
+      bikePrice = basePrice * selectedBike.priceMultiplier;
     }
+    // If neither seatingPrices nor priceMultiplier exist, keep basePrice
   }
 
   const totalTravelers = 1 + formData.guests.length; // Primary traveler + co-travelers
@@ -107,11 +152,21 @@ const BookingPage = () => {
         setValidationError("Please fill in all required fields");
         return;
       }
+      // Step 1 validated, save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(storageKey, JSON.stringify(formData));
+        localStorage.setItem(packageStorageKey, packageSlug || "");
+      }
       setCurrentStep(2);
     } else if (currentStep === 2) {
       if (!formData.selectedBikeId) {
         setValidationError("Please select a bike");
         return;
+      }
+      // Step 2 validated, save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(storageKey, JSON.stringify(formData));
+        localStorage.setItem(packageStorageKey, packageSlug || "");
       }
       setCurrentStep(3);
     }
@@ -122,6 +177,24 @@ const BookingPage = () => {
       setCurrentStep((currentStep - 1) as BookingStep);
     }
   };
+
+  const handleConfirmBooking = () => {
+    // Clear saved booking data after successful confirmation
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(storageKey);
+      localStorage.removeItem(stepStorageKey);
+      localStorage.removeItem(packageStorageKey);
+    }
+    // TODO: Add actual booking confirmation logic here
+    alert("Booking confirmed!");
+  };
+
+  // Save currentStep to localStorage whenever it changes (only steps 2 and 3 mean validated data)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && currentStep > 1) {
+      localStorage.setItem(stepStorageKey, currentStep.toString());
+    }
+  }, [currentStep, stepStorageKey]);
 
   // Scroll to top when step changes
   useEffect(() => {
@@ -239,6 +312,7 @@ const BookingPage = () => {
               )}
               {currentStep === 3 && (
                 <button
+                  onClick={handleConfirmBooking}
                   className="flex-1 h-12 text-base font-semibold bg-green-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all"
                 >
                   Confirm Booking
@@ -339,7 +413,7 @@ const BookingPage = () => {
                       </span>
                     </div>
 
-                    {selectedBike && (isTransHimalayan && selectedBike.seatingPrices) || (!isTransHimalayan && selectedBike.priceMultiplier !== 1.0) ? (
+                    {selectedBike && ((isTransHimalayan && selectedBike.seatingPrices) || (!isTransHimalayan && selectedBike.priceMultiplier !== 1.0)) ? (
                       <div className="flex justify-between items-center text-sm">
                         <span className="font-semibold text-green-600 uppercase tracking-wide text-xs">EARLY BIRD OFFER!</span>
                         <span className="font-semibold text-green-600">
@@ -372,7 +446,7 @@ const BookingPage = () => {
                   {/* Action Button */}
                   {currentStep === 3 && (
                     <div className="pt-2 space-y-3">
-                      <button className="w-full h-12 text-base font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-lg">
+                      <button onClick={handleConfirmBooking} className="w-full h-12 text-base font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-lg">
                         🔒 Confirm Booking
                       </button>
                       <p className="text-xs text-gray-600 text-center">
