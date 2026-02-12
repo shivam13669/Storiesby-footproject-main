@@ -118,82 +118,84 @@ const BikeSelectionStep = ({
               className="flex gap-6 overflow-x-auto scroll-smooth pb-2"
               style={{ scrollBehavior: 'smooth' }}
             >
-              {/* Own Bike Option */}
-              <div
-                onClick={() => handleBikeSelect("own-bike")}
-                className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
-                  formData.selectedBikeId === "own-bike"
-                    ? "border-blue-600 shadow-md bg-blue-50"
-                    : "border-gray-200 hover:border-blue-400"
-                }`}
-              >
-                {/* Selection Badge */}
-                {formData.selectedBikeId === "own-bike" && (
-                  <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
-                    <Check className="w-5 h-5" />
-                  </div>
-                )}
+              {/* Own Bike Option - Only for Trans Himalayan Ride */}
+              {isTransHimalayan && (
+                <div
+                  onClick={() => handleBikeSelect("own-bike")}
+                  className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                    formData.selectedBikeId === "own-bike"
+                      ? "border-blue-600 shadow-md bg-blue-50"
+                      : "border-gray-200 hover:border-blue-400"
+                  }`}
+                >
+                  {/* Selection Badge */}
+                  {formData.selectedBikeId === "own-bike" && (
+                    <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                      <Check className="w-5 h-5" />
+                    </div>
+                  )}
 
-                {/* Image Section */}
-                <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-5xl mb-2">🏍️</div>
-                    <p className="text-gray-700 font-semibold">Your Own Bike</p>
-                  </div>
-                </div>
-
-                {/* Content Section */}
-                <div className="space-y-3">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      Own Bike
-                    </h3>
-                    <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
-                      Bring Your Own
-                    </p>
-                  </div>
-
-                  <p className="text-sm text-gray-600 line-clamp-2">
-                    Ride with your own motorcycle on this adventure
-                  </p>
-
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm">
-                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                      <span className="text-gray-700">Complete freedom</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm">
-                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                      <span className="text-gray-700">Familiar machine</span>
-                    </li>
-                  </ul>
-
-                  <div className="pt-2 border-t border-gray-200">
-                    <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
-                      Price per traveler
-                    </p>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-2xl font-bold text-gray-900">
-                        ₹{basePrice.toLocaleString("en-IN")}
-                      </span>
-                      <span className="text-sm font-semibold text-green-600">
-                        ✓ EARLY BIRD OFFER!
-                      </span>
+                  {/* Image Section */}
+                  <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-5xl mb-2">🏍️</div>
+                      <p className="text-gray-700 font-semibold">Your Own Bike</p>
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => handleBikeSelect("own-bike")}
-                    className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                      formData.selectedBikeId === "own-bike"
-                        ? "bg-blue-600 text-white shadow-md"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                  >
-                    {formData.selectedBikeId === "own-bike" ? "✓ Selected" : "Select Bike"}
-                  </button>
+                  {/* Content Section */}
+                  <div className="space-y-3">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900">
+                        Own Bike
+                      </h3>
+                      <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
+                        Bring Your Own
+                      </p>
+                    </div>
+
+                    <p className="text-sm text-gray-600 line-clamp-2">
+                      Ride with your own motorcycle on this adventure
+                    </p>
+
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                        <span className="text-gray-700">Complete freedom</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                        <span className="text-gray-700">Familiar machine</span>
+                      </li>
+                    </ul>
+
+                    <div className="pt-2 border-t border-gray-200">
+                      <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
+                        Price per traveler
+                      </p>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-bold text-gray-900">
+                          ₹{basePrice.toLocaleString("en-IN")}
+                        </span>
+                        <span className="text-sm font-semibold text-green-600">
+                          ✓ EARLY BIRD OFFER!
+                        </span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => handleBikeSelect("own-bike")}
+                      className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                        formData.selectedBikeId === "own-bike"
+                          ? "bg-blue-600 text-white shadow-md"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      {formData.selectedBikeId === "own-bike" ? "✓ Selected" : "Select Bike"}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Provided Bikes */}
               {regularBikes.map((bike) => {
