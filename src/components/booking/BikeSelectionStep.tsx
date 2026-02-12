@@ -2,7 +2,7 @@ import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { BookingFormData } from "@/pages/BookingPage";
 import { DestinationPackage } from "@/data/destinations";
 import { parsePrice } from "@/context/CurrencyContext";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface BikeSelectionStepProps {
   formData: BookingFormData;
@@ -24,6 +24,15 @@ const BikeSelectionStep = ({
     defaultSeating as "solo" | "dual-sharing" | "seat-in-backup"
   );
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const backupVehicleCardRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to backup vehicle when it's selected
+  useEffect(() => {
+    if (formData.selectedBikeId === "seat-in-backup" && backupVehicleCardRef.current && scrollContainerRef.current) {
+      // Scroll the backup vehicle card into view
+      backupVehicleCardRef.current.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "end" });
+    }
+  }, [formData.selectedBikeId]);
 
   if (!travelPackage.bikes || travelPackage.bikes.length === 0) {
     return (
@@ -35,9 +44,6 @@ const BikeSelectionStep = ({
 
   // Check if this is trans-himalayan package
   const isTransHimalayan = travelPackage.slug === "trans-himalayan-ride";
-
-  // Check if Seat in Backup is selected
-  const isBackupVehicleSelected = formData.selectedBikeId === "seat-in-backup";
 
   // Filter out backup vehicle from regular bikes, get it separately
   const regularBikes = travelPackage.bikes?.filter(bike => !bike.isBackupVehicle) || [];
@@ -109,12 +115,12 @@ const BikeSelectionStep = ({
               >
                 {/* Own Bike Option */}
                 <div
-                  onClick={() => !isBackupVehicleSelected && handleBikeSelect("own-bike")}
+                  onClick={() => handleBikeSelect("own-bike")}
                   className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
                     formData.selectedBikeId === "own-bike"
                       ? "border-blue-600 shadow-md bg-blue-50"
                       : "border-gray-200 hover:border-blue-400"
-                  } ${isBackupVehicleSelected ? "opacity-50 cursor-not-allowed" : ""}`}
+                  }`}
                 >
                   {/* Selection Badge */}
                   {formData.selectedBikeId === "own-bike" && (
@@ -193,12 +199,12 @@ const BikeSelectionStep = ({
                   return (
                     <div
                       key={bike.id}
-                      onClick={() => !isBackupVehicleSelected && handleBikeSelect(bike.id)}
+                      onClick={() => handleBikeSelect(bike.id)}
                       className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
                         isSelected
                           ? "border-blue-600 shadow-md bg-blue-50"
                           : "border-gray-200 hover:border-blue-400"
-                      } ${isBackupVehicleSelected ? "opacity-50 cursor-not-allowed" : ""}`}
+                      }`}
                     >
                       {/* Selection Badge */}
                       {isSelected && (
@@ -280,23 +286,16 @@ const BikeSelectionStep = ({
                   );
                 })}
 
-                {/* Seat in Backup Vehicle */}
+                {/* Seat in Backup Vehicle - Info Only, Select via Seating Preference */}
                 {backupVehicle && (
                   <div
-                    onClick={() => handleBikeSelect(backupVehicle.id)}
-                    className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                    ref={backupVehicleCardRef}
+                    className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm p-5 relative group overflow-hidden border-2 ${
                       formData.selectedBikeId === backupVehicle.id
                         ? "border-blue-600 shadow-md bg-blue-50"
-                        : "border-gray-200 hover:border-blue-400"
+                        : "border-gray-200 opacity-75"
                     }`}
                   >
-                    {/* Selection Badge */}
-                    {formData.selectedBikeId === backupVehicle.id && (
-                      <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
-                        <Check className="w-5 h-5" />
-                      </div>
-                    )}
-
                     {/* Image Section */}
                     <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
                       <img
@@ -304,9 +303,6 @@ const BikeSelectionStep = ({
                         alt={backupVehicle.name}
                         className="w-full h-full object-contain"
                       />
-                      {formData.selectedBikeId === backupVehicle.id && (
-                        <div className="absolute inset-0 bg-blue-600/20" />
-                      )}
                     </div>
 
                     {/* Details Section */}
@@ -339,16 +335,9 @@ const BikeSelectionStep = ({
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => handleBikeSelect(backupVehicle.id)}
-                        className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                          formData.selectedBikeId === backupVehicle.id
-                            ? "bg-blue-600 text-white shadow-md"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
-                      >
-                        {formData.selectedBikeId === backupVehicle.id ? "✓ Selected" : "Select Bike"}
-                      </button>
+                      <p className="text-xs text-gray-500 italic mt-4 text-center">
+                        Select via Seating Preference below
+                      </p>
                     </div>
                   </div>
                 )}
@@ -373,12 +362,12 @@ const BikeSelectionStep = ({
                 return (
                   <div
                     key={bike.id}
-                    onClick={() => !isBackupVehicleSelected && handleBikeSelect(bike.id)}
+                    onClick={() => handleBikeSelect(bike.id)}
                     className={`bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
                       isSelected
                         ? "border-blue-600 shadow-md bg-blue-50"
                         : "border-gray-200 hover:border-blue-400"
-                    } ${isBackupVehicleSelected ? "opacity-50 cursor-not-allowed" : ""}`}
+                    }`}
                   >
                     {/* Selection Badge */}
                     {isSelected && (
@@ -461,23 +450,15 @@ const BikeSelectionStep = ({
                 );
               })}
 
-              {/* Seat in Backup Vehicle */}
+              {/* Seat in Backup Vehicle - Info Only, Select via Seating Preference */}
               {backupVehicle && (
                 <div
-                  onClick={() => handleBikeSelect(backupVehicle.id)}
-                  className={`bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                  className={`bg-gray-50 rounded-2xl shadow-sm p-5 relative group overflow-hidden border-2 ${
                     formData.selectedBikeId === backupVehicle.id
                       ? "border-blue-600 shadow-md bg-blue-50"
-                      : "border-gray-200 hover:border-blue-400"
+                      : "border-gray-200 opacity-75"
                   }`}
                 >
-                  {/* Selection Badge */}
-                  {formData.selectedBikeId === backupVehicle.id && (
-                    <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
-                      <Check className="w-5 h-5" />
-                    </div>
-                  )}
-
                   {/* Image Section */}
                   <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
                     <img
@@ -485,9 +466,6 @@ const BikeSelectionStep = ({
                       alt={backupVehicle.name}
                       className="w-full h-full object-contain"
                     />
-                    {formData.selectedBikeId === backupVehicle.id && (
-                      <div className="absolute inset-0 bg-blue-600/20" />
-                    )}
                   </div>
 
                   {/* Details Section */}
@@ -521,17 +499,9 @@ const BikeSelectionStep = ({
                       </div>
                     </div>
 
-                    {/* Select Button */}
-                    <button
-                      onClick={() => handleBikeSelect(backupVehicle.id)}
-                      className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                        formData.selectedBikeId === backupVehicle.id
-                          ? "bg-blue-600 text-white shadow-md"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
-                    >
-                      {formData.selectedBikeId === backupVehicle.id ? "✓ Selected" : "Select Bike"}
-                    </button>
+                    <p className="text-xs text-gray-500 italic mt-4 text-center">
+                      Select via Seating Preference below
+                    </p>
                   </div>
                 </div>
               )}
@@ -588,46 +558,26 @@ const BikeSelectionStep = ({
           </div>
         </div>
 
-        {/* Seating Option - Show for all packages, but hide if backup vehicle is selected */}
-        {!isBackupVehicleSelected && (
-          <div>
-            <h4 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-              Seating Preference
-            </h4>
-            <p className="text-sm text-gray-600 mb-4">
-              {formData.guests && formData.guests.length > 0
-                ? "Choose how your co-traveller will ride"
-                : "Select your preferred seating arrangement"}
-            </p>
-            <div className="space-y-3">
-              {/* Show DUAL SHARING only when co-travellers are added */}
-              {formData.guests && formData.guests.length > 0 && (
-                <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
-                  style={{borderColor: seatingPreference === "dual-sharing" ? "#2563eb" : "#d1d5db"}}>
-                  <input
-                    type="radio"
-                    name="seating"
-                    value="dual-sharing"
-                    checked={seatingPreference === "dual-sharing"}
-                    onChange={(e) => {
-                      setSeatingPreference(e.target.value as any);
-                      onFormDataChange({ seatingPreference: e.target.value as any });
-                    }}
-                    className="w-4 h-4"
-                  />
-                  <div>
-                    <p className="font-semibold text-sm text-gray-900">Dual Sharing</p>
-                    <p className="text-xs text-gray-600">Your co-traveller rides with you</p>
-                  </div>
-                </label>
-              )}
+        {/* Seating Preference - Show for all packages */}
+        <div>
+          <h4 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+            Seating Preference
+          </h4>
+          <p className="text-sm text-gray-600 mb-4">
+            {formData.guests && formData.guests.length > 0
+              ? "Choose how your co-traveller will ride"
+              : "Select your preferred seating arrangement"}
+          </p>
+          <div className="space-y-3">
+            {/* Show DUAL SHARING only when co-travellers are added */}
+            {formData.guests && formData.guests.length > 0 && (
               <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
-                style={{borderColor: seatingPreference === "solo" ? "#2563eb" : "#d1d5db"}}>
+                style={{borderColor: seatingPreference === "dual-sharing" ? "#2563eb" : "#d1d5db"}}>
                 <input
                   type="radio"
                   name="seating"
-                  value="solo"
-                  checked={seatingPreference === "solo"}
+                  value="dual-sharing"
+                  checked={seatingPreference === "dual-sharing"}
                   onChange={(e) => {
                     setSeatingPreference(e.target.value as any);
                     onFormDataChange({ seatingPreference: e.target.value as any });
@@ -635,39 +585,60 @@ const BikeSelectionStep = ({
                   className="w-4 h-4"
                 />
                 <div>
-                  <p className="font-semibold text-sm text-gray-900">Solo</p>
-                  <p className="text-xs text-gray-600">
-                    {formData.guests && formData.guests.length > 0
-                      ? "Your co-traveller gets their own bike"
-                      : "Get your own bike"}
-                  </p>
+                  <p className="font-semibold text-sm text-gray-900">Dual Sharing</p>
+                  <p className="text-xs text-gray-600">Your co-traveller rides with you</p>
                 </div>
               </label>
-              <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
-                style={{borderColor: seatingPreference === "seat-in-backup" ? "#2563eb" : "#d1d5db"}}>
-                <input
-                  type="radio"
-                  name="seating"
-                  value="seat-in-backup"
-                  checked={seatingPreference === "seat-in-backup"}
-                  onChange={(e) => {
-                    setSeatingPreference(e.target.value as any);
-                    onFormDataChange({ seatingPreference: e.target.value as any });
-                  }}
-                  className="w-4 h-4"
-                />
-                <div>
-                  <p className="font-semibold text-sm text-gray-900">Seat in Backup</p>
-                  <p className="text-xs text-gray-600">
-                    {formData.guests && formData.guests.length > 0
-                      ? "Your co-traveller rides in backup vehicle"
-                      : "Ride in backup vehicle"}
-                  </p>
-                </div>
-              </label>
-            </div>
+            )}
+            <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
+              style={{borderColor: seatingPreference === "solo" ? "#2563eb" : "#d1d5db"}}>
+              <input
+                type="radio"
+                name="seating"
+                value="solo"
+                checked={seatingPreference === "solo"}
+                onChange={(e) => {
+                  setSeatingPreference(e.target.value as any);
+                  onFormDataChange({ seatingPreference: e.target.value as any });
+                }}
+                className="w-4 h-4"
+              />
+              <div>
+                <p className="font-semibold text-sm text-gray-900">Solo</p>
+                <p className="text-xs text-gray-600">
+                  {formData.guests && formData.guests.length > 0
+                    ? "Your co-traveller gets their own bike"
+                    : "Get your own bike"}
+                </p>
+              </div>
+            </label>
+            <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
+              style={{borderColor: seatingPreference === "seat-in-backup" ? "#2563eb" : "#d1d5db"}}>
+              <input
+                type="radio"
+                name="seating"
+                value="seat-in-backup"
+                checked={seatingPreference === "seat-in-backup"}
+                onChange={(e) => {
+                  const value = e.target.value as any;
+                  setSeatingPreference(value);
+                  onFormDataChange({ seatingPreference: value });
+                  // When Seat in Backup is selected, also select the backup vehicle bike
+                  handleBikeSelect("seat-in-backup");
+                }}
+                className="w-4 h-4"
+              />
+              <div>
+                <p className="font-semibold text-sm text-gray-900">Seat in Backup</p>
+                <p className="text-xs text-gray-600">
+                  {formData.guests && formData.guests.length > 0
+                    ? "Your co-traveller rides in backup vehicle"
+                    : "Ride in backup vehicle"}
+                </p>
+              </div>
+            </label>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
