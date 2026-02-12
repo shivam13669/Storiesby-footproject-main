@@ -114,6 +114,13 @@ const BookingPage = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [currentStep]);
 
+  // Set default bike selection when moving to step 2
+  useEffect(() => {
+    if (currentStep === 2 && !formData.selectedBikeId && travelPackage.bikes && travelPackage.bikes.length > 0) {
+      setFormData(prev => ({ ...prev, selectedBikeId: travelPackage.bikes![0].id }));
+    }
+  }, [currentStep]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
