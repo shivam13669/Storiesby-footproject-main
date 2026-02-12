@@ -42,28 +42,28 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
-        <DialogTitle className="text-2xl font-bold">Add Guest</DialogTitle>
-        <DialogDescription>
-          Add another traveler's details for this trip.
+        <DialogTitle className="text-2xl font-bold text-gray-900">Add Co-Traveller</DialogTitle>
+        <DialogDescription className="text-gray-600">
+          Enter details of another person traveling with you.
         </DialogDescription>
 
         <div className="space-y-5 py-6">
           {/* Guest Name */}
           <div>
-            <label className="text-sm font-semibold text-foreground mb-2 block">
-              Guest Name <span className="text-red-500">*</span>
+            <label className="text-sm font-semibold text-gray-900 mb-2 block">
+              Full Name <span className="text-red-500">*</span>
             </label>
             <Input
-              placeholder="Enter guest name"
+              placeholder="As per ID proof"
               value={guestName}
               onChange={(e) => setGuestName(e.target.value)}
-              className="h-12 text-base"
+              className="h-12 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
           {/* Guest Aadhaar */}
           <div>
-            <label className="text-sm font-semibold text-foreground mb-2 block">
+            <label className="text-sm font-semibold text-gray-900 mb-2 block">
               Aadhaar Number <span className="text-red-500">*</span>
             </label>
             <Input
@@ -71,26 +71,25 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
               value={guestAadhaar}
               onChange={(e) => setGuestAadhaar(e.target.value.slice(0, 16))}
               maxLength={16}
-              className="h-12 text-base tracking-widest"
+              className="h-12 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
         </div>
 
         {/* Action Buttons */}
         <div className="flex gap-3">
-          <Button
-            variant="outline"
+          <button
             onClick={onClose}
-            className="flex-1 h-11"
+            className="flex-1 h-11 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition-all"
           >
             Cancel
-          </Button>
-          <Button
+          </button>
+          <button
             onClick={handleSubmit}
-            className="flex-1 btn-primary h-11"
+            className="flex-1 h-11 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
           >
-            Add Guest
-          </Button>
+            Add Co-Traveller
+          </button>
         </div>
       </DialogContent>
     </Dialog>

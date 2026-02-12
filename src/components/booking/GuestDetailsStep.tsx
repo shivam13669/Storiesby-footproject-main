@@ -111,7 +111,6 @@ const GuestDetailsStep = ({
     
     if (dateOnly < today) return true;
     
-    // Check if date is in available dates
     if (travelPackage.availableDates) {
       const dateStr = formatDate(date, "yyyy-MM-dd");
       return !travelPackage.availableDates.includes(dateStr);
@@ -123,37 +122,28 @@ const GuestDetailsStep = ({
   return (
     <div className="space-y-6">
       {/* Card: Personal Information */}
-      <div
-        className="rounded-2xl border-2 p-8 overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
-          backdropFilter: "blur(10px)",
-          border: "2px solid rgba(229, 231, 235, 0.6)",
-          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
-        }}
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
-          <h2 className="text-3xl font-bold text-foreground">Your Details</h2>
-        </div>
+      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+          Traveller Details
+        </h2>
         
-        <div className="space-y-5">
+        <div className="space-y-6">
           {/* Full Name */}
           <div>
-            <label className="text-sm font-semibold text-foreground mb-2 block">
+            <label className="block text-sm font-semibold text-gray-900 mb-3">
               Full Name <span className="text-red-500">*</span>
             </label>
             <Input
-              placeholder="Enter your full name"
+              placeholder="As per ID proof"
               value={formData.fullName}
               onChange={handleInputChange("fullName")}
-              className="h-12 text-base"
+              className="h-12 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="text-sm font-semibold text-foreground mb-2 block">
+            <label className="block text-sm font-semibold text-gray-900 mb-3">
               Email Address <span className="text-red-500">*</span>
             </label>
             <Input
@@ -161,16 +151,16 @@ const GuestDetailsStep = ({
               placeholder="your.email@example.com"
               value={formData.email}
               onChange={handleInputChange("email")}
-              className="h-12 text-base"
+              className="h-12 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
           {/* Phone Number */}
           <div>
-            <label className="text-sm font-semibold text-foreground mb-2 block">
-              Phone Number <span className="text-red-500">*</span>
+            <label className="block text-sm font-semibold text-gray-900 mb-3">
+              Mobile Number <span className="text-red-500">*</span>
             </label>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <Popover open={openCountryPopover} onOpenChange={(open) => {
                 setOpenCountryPopover(open);
                 if (!open) setCountrySearch("");
@@ -178,23 +168,23 @@ const GuestDetailsStep = ({
                 <PopoverTrigger asChild>
                   <button
                     type="button"
-                    className="px-4 py-3 border border-border rounded-lg bg-background hover:bg-muted transition-all flex items-center gap-2 min-w-fit h-12 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="px-4 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center gap-2 min-w-fit h-12 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <span className="font-semibold text-foreground">{selectedCountry.dial}</span>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                    <span className="font-semibold text-gray-900">{selectedCountry.dial}</span>
+                    <ChevronDown className="h-4 w-4 text-gray-600" />
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-64 p-0" align="start">
                   <div className="flex flex-col max-h-96">
-                    <div className="sticky top-0 z-10 p-3 border-b border-border bg-card">
+                    <div className="sticky top-0 z-10 p-3 border-b border-gray-200 bg-white">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <input
                           type="text"
-                          placeholder="Search..."
+                          placeholder="Search country..."
                           value={countrySearch}
                           onChange={(e) => setCountrySearch(e.target.value)}
-                          className="w-full pl-9 pr-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-background"
+                          className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
                           autoFocus
                         />
                       </div>
@@ -205,14 +195,14 @@ const GuestDetailsStep = ({
                           key={country.code}
                           type="button"
                           onClick={() => handleCountrySelect(country)}
-                          className={`w-full text-left px-4 py-3 text-sm hover:bg-primary/10 transition-colors flex items-center justify-between border-b border-border last:border-0 ${
+                          className={`w-full text-left px-4 py-3 text-sm hover:bg-blue-50 transition-colors flex items-center justify-between border-b border-gray-100 last:border-0 ${
                             selectedCountry.code === country.code
-                              ? "bg-primary/20 font-semibold text-primary"
-                              : "text-foreground"
+                              ? "bg-blue-50 font-semibold text-blue-600"
+                              : "text-gray-700"
                           }`}
                         >
                           <span>{country.name}</span>
-                          <span className="font-medium text-muted-foreground">{country.dial}</span>
+                          <span className="font-medium text-gray-600">{country.dial}</span>
                         </button>
                       ))}
                     </div>
@@ -225,14 +215,14 @@ const GuestDetailsStep = ({
                 placeholder="9876543210"
                 value={formData.phoneNumber}
                 onChange={handlePhoneChange}
-                className="flex-1 h-12 text-base"
+                className="flex-1 h-12 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </div>
 
           {/* Aadhaar Number */}
           <div>
-            <label className="text-sm font-semibold text-foreground mb-2 block">
+            <label className="block text-sm font-semibold text-gray-900 mb-3">
               Aadhaar Number <span className="text-red-500">*</span>
             </label>
             <Input
@@ -240,41 +230,32 @@ const GuestDetailsStep = ({
               value={formData.aadhaarNumber}
               onChange={handleInputChange("aadhaarNumber")}
               maxLength={16}
-              className="h-12 text-base tracking-widest"
+              className="h-12 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
-            <p className="text-xs text-muted-foreground mt-2">
-              Required for domestic travel. Your information is secure and encrypted.
+            <p className="text-xs text-gray-600 mt-2">
+              Required for domestic travel. Your data is secure and encrypted.
             </p>
           </div>
         </div>
       </div>
 
       {/* Card: Travel Date */}
-      <div
-        className="rounded-2xl border-2 p-8 overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
-          backdropFilter: "blur(10px)",
-          border: "2px solid rgba(229, 231, 235, 0.6)",
-          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
-        }}
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
-          <h2 className="text-3xl font-bold text-foreground">When will you travel?</h2>
-        </div>
+      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+          Travel Date
+        </h2>
         
         <div>
-          <label className="text-sm font-semibold text-foreground mb-2 block">
-            Travel Date <span className="text-red-500">*</span>
+          <label className="block text-sm font-semibold text-gray-900 mb-3">
+            When do you want to travel? <span className="text-red-500">*</span>
           </label>
           <Popover open={openDatePopover} onOpenChange={setOpenDatePopover}>
             <PopoverTrigger asChild>
               <button
                 type="button"
-                className="w-full h-12 px-4 border border-border rounded-lg bg-background hover:bg-muted transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full h-12 px-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <span className={formData.travelDate ? "text-foreground font-medium" : "text-muted-foreground"}>
+                <span className={formData.travelDate ? "text-gray-900 font-medium" : "text-gray-500"}>
                   {formData.travelDate
                     ? new Date(formData.travelDate).toLocaleDateString("en-IN", {
                         day: "numeric",
@@ -283,10 +264,10 @@ const GuestDetailsStep = ({
                       })
                     : "Select a date"}
                 </span>
-                <Calendar className="h-5 w-5 text-muted-foreground" />
+                <Calendar className="h-5 w-5 text-gray-600" />
               </button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 bg-card" align="start">
+            <PopoverContent className="w-auto p-0 bg-white" align="start">
               <AdvancedDatePicker
                 selected={selectedDate}
                 onSelect={handleDateSelect}
@@ -295,53 +276,43 @@ const GuestDetailsStep = ({
               />
             </PopoverContent>
           </Popover>
-          <p className="text-xs text-muted-foreground mt-2">
-            Only available dates are shown. {travelPackage.availableDates?.length || 0} dates available.
+          <p className="text-xs text-gray-600 mt-2">
+            {travelPackage.availableDates?.length || 0} available dates
           </p>
         </div>
       </div>
 
       {/* Card: Additional Guests */}
-      <div
-        className="rounded-2xl border-2 p-8 overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
-          backdropFilter: "blur(10px)",
-          border: "2px solid rgba(229, 231, 235, 0.6)",
-          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
-        }}
-      >
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <span className="w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
-            <h2 className="text-3xl font-bold text-foreground">Additional Guests</h2>
-          </div>
+      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl font-bold text-gray-900">Co-Travellers</h2>
           <Button
             onClick={() => setShowAddGuestModal(true)}
-            className="btn-primary h-10"
+            className="bg-blue-600 hover:bg-blue-700 text-white"
           >
-            + Add Guest
+            + Add Co-Traveller
           </Button>
         </div>
 
         {formData.guests.length === 0 ? (
-          <div className="py-8 text-center border-2 border-dashed border-border rounded-lg">
-            <p className="text-muted-foreground">No additional guests yet. Click "Add Guest" to add co-travelers.</p>
+          <div className="py-12 text-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
+            <p className="text-gray-600 font-medium">No co-travellers added yet</p>
+            <p className="text-sm text-gray-500 mt-1">Add family members or friends traveling with you</p>
           </div>
         ) : (
           <div className="space-y-3">
             {formData.guests.map((guest, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-4 bg-background rounded-lg border border-border"
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-all"
               >
                 <div className="flex-1">
-                  <p className="font-semibold text-foreground">{guest.name}</p>
-                  <p className="text-sm text-muted-foreground">Aadhaar: {guest.aadhaarNumber}</p>
+                  <p className="font-semibold text-gray-900">{guest.name}</p>
+                  <p className="text-sm text-gray-600">Aadhaar: {guest.aadhaarNumber}</p>
                 </div>
                 <button
                   onClick={() => handleRemoveGuest(index)}
-                  className="p-2 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
+                  className="p-2 hover:bg-red-100 hover:text-red-600 rounded-lg transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>

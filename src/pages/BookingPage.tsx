@@ -110,59 +110,63 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{ backgroundColor: "#f5f7fa" }}>
       <Navigation />
-      
-      <div className="container mx-auto px-4 py-8 mt-16">
-        {/* Header with back button */}
-        <div className="mb-12">
+
+      <div className="w-full py-8 mt-16" style={{ backgroundColor: "#ffffff" }}>
+        <div className="container mx-auto px-4">
           <Button
             variant="ghost"
             size="sm"
             onClick={() => window.history.back()}
-            className="mb-6 hover:bg-gray-100"
+            className="mb-0 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
           >
-            <ChevronLeft className="w-4 h-4 mr-2" />
-            Back to Package
+            <ChevronLeft className="w-5 h-5 mr-2" />
+            Back
           </Button>
+        </div>
+      </div>
 
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="w-1 h-10 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                  Complete Your Booking
-                </h1>
-              </div>
-              <p className="text-muted-foreground text-lg ml-8">
-                {travelPackage.name} • {travelPackage.duration}
-              </p>
-            </div>
-          </div>
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Booking Details
+          </h1>
+          <p className="text-gray-600">
+            {travelPackage.name} • {travelPackage.duration}
+          </p>
+        </div>
 
-          {/* Step Indicator */}
-          <div className="flex items-center justify-between max-w-2xl mb-12 px-4 py-6 rounded-2xl" style={{ background: "rgba(59, 130, 246, 0.05)" }}>
-            {[1, 2, 3].map((step) => (
-              <div key={step} className="flex items-center flex-1">
-                <button
-                  onClick={() => step < currentStep && handleStepChange(step as BookingStep)}
-                  className={`w-14 h-14 rounded-full font-bold text-sm transition-all flex items-center justify-center ${
-                    step === currentStep
-                      ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-xl scale-110"
-                      : step < currentStep
-                      ? "bg-gradient-to-br from-green-500 to-green-600 text-white cursor-pointer"
-                      : "bg-gray-200 text-gray-500"
-                  }`}
-                >
-                  {step < currentStep ? "✓" : step}
-                </button>
-                <p className="ml-3 text-sm font-semibold text-foreground">
-                  {step === 1 ? "Guest Details" : step === 2 ? "Select Bike" : "Confirm"}
-                </p>
-                {step < 3 && (
+        {/* Step Progress Bar */}
+        <div className="mb-12 bg-white rounded-lg p-6 border border-gray-200">
+          <div className="flex items-center justify-between">
+            {[
+              { num: 1, label: "Travel Info" },
+              { num: 2, label: "Select Bike" },
+              { num: 3, label: "Review Booking" },
+            ].map((item, idx) => (
+              <div key={item.num} className="flex items-center flex-1">
+                <div className="flex flex-col items-center">
                   <div
-                    className={`flex-1 h-1.5 mx-3 rounded-full transition-all ${
-                      step < currentStep ? "bg-gradient-to-r from-green-500 to-green-400" : "bg-gray-300"
+                    className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all ${
+                      item.num === currentStep
+                        ? "bg-blue-600 text-white shadow-lg"
+                        : item.num < currentStep
+                        ? "bg-green-600 text-white"
+                        : "bg-gray-200 text-gray-600"
+                    }`}
+                  >
+                    {item.num < currentStep ? "✓" : item.num}
+                  </div>
+                  <p className="text-xs font-semibold text-gray-700 mt-2 text-center whitespace-nowrap">
+                    {item.label}
+                  </p>
+                </div>
+                {idx < 2 && (
+                  <div
+                    className={`flex-1 h-1 mx-3 transition-all ${
+                      item.num < currentStep ? "bg-green-600" : "bg-gray-300"
                     }`}
                   />
                 )}
@@ -172,7 +176,7 @@ const BookingPage = () => {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left side - Form content */}
           <div className="lg:col-span-2">
             {currentStep === 1 && (
@@ -205,54 +209,60 @@ const BookingPage = () => {
             {/* Navigation Buttons */}
             <div className="flex gap-4 mt-12">
               {currentStep > 1 && (
-                <Button
-                  variant="outline"
+                <button
                   onClick={handlePrevStep}
-                  className="flex-1 h-12 text-base font-semibold"
+                  className="flex-1 h-12 text-base font-semibold border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all"
                 >
                   Previous Step
-                </Button>
+                </button>
               )}
               {currentStep < 3 && (
-                <Button
+                <button
                   onClick={handleNextStep}
-                  className="flex-1 btn-primary h-12 text-base font-semibold"
+                  className="flex-1 h-12 text-base font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
                 >
                   Next Step
-                </Button>
+                </button>
+              )}
+              {currentStep === 3 && (
+                <button
+                  onClick={handlePrevStep}
+                  className="flex-1 h-12 text-base font-semibold border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all"
+                >
+                  Edit Details
+                </button>
+              )}
+              {currentStep === 3 && (
+                <button
+                  className="flex-1 h-12 text-base font-semibold bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all"
+                >
+                  Confirm Booking
+                </button>
               )}
             </div>
           </div>
 
           {/* Right side - Booking Summary (Sticky) */}
           <div className="lg:col-span-1">
-            <div
-              className="sticky top-20 rounded-2xl border-2 p-6 space-y-6 overflow-hidden"
-              style={{
-                background: "linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.02) 100%)",
-                border: "2px solid rgba(59, 130, 246, 0.2)",
-                boxShadow: "0 20px 60px rgba(59, 130, 246, 0.15), 0 0 1px rgba(59, 130, 246, 0.2)",
-                backdropFilter: "blur(10px)",
-              }}
-            >
+            <div className="sticky top-20 bg-white rounded-lg p-6 space-y-6 border border-gray-200 shadow-lg">
               <div>
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                <h3 className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-3">
                   Booking Summary
                 </h3>
-                <h2 className="text-xl font-bold text-foreground mb-1">
+                <h2 className="text-lg font-bold text-gray-900 mb-1">
                   {travelPackage.name}
                 </h2>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-gray-600">
                   {travelPackage.duration}
                 </p>
               </div>
 
-              <div className="border-t border-border pt-4">
-                <div className="space-y-3">
+              <div className="border-t border-gray-200 pt-4">
+                <div className="space-y-3 text-sm">
                   {formData.travelDate && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Travel Date:</span>
-                      <span className="font-medium text-foreground">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Travel Date</span>
+                      <span className="font-semibold text-gray-900">
                         {new Date(formData.travelDate).toLocaleDateString('en-IN', {
                           day: 'numeric',
                           month: 'short',
@@ -261,47 +271,45 @@ const BookingPage = () => {
                       </span>
                     </div>
                   )}
-                  
+
                   {selectedBike && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Selected Bike:</span>
-                      <span className="font-medium text-foreground">{selectedBike.name}</span>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Selected Bike</span>
+                      <span className="font-semibold text-gray-900">{selectedBike.name}</span>
                     </div>
                   )}
 
                   {formData.guests.length > 0 && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Additional Guests:</span>
-                      <span className="font-medium text-foreground">{formData.guests.length}</span>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Co-Travellers</span>
+                      <span className="font-semibold text-gray-900">{formData.guests.length}</span>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="border-t border-border pt-4">
-                <div className="flex justify-between items-end mb-4">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Total Price</p>
-                    <p className="text-3xl font-bold text-foreground">
-                      ₹{finalPrice.toLocaleString("en-IN")}
-                    </p>
-                  </div>
+              <div className="border-t border-gray-200 pt-4">
+                <div className="mb-4">
+                  <p className="text-xs text-gray-600 mb-1 font-semibold">Total Price</p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    ₹{finalPrice.toLocaleString("en-IN")}
+                  </p>
                 </div>
 
                 {travelPackage.oldPrice && (
-                  <p className="text-xs text-muted-foreground line-through">
+                  <p className="text-xs text-gray-500 line-through">
                     Original: {travelPackage.oldPrice}
                   </p>
                 )}
               </div>
 
               {currentStep === 3 && (
-                <div className="border-t border-border pt-4">
-                  <Button className="w-full btn-primary h-12 text-base font-semibold rounded-lg">
+                <div className="border-t border-gray-200 pt-4">
+                  <button className="w-full h-12 text-base font-semibold bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all mb-3">
                     Confirm Booking
-                  </Button>
-                  <p className="text-xs text-muted-foreground text-center mt-3">
-                    No payment required yet. We'll send you payment details shortly.
+                  </button>
+                  <p className="text-xs text-gray-600 text-center">
+                    No payment needed now. We'll send payment details via email.
                   </p>
                 </div>
               )}
