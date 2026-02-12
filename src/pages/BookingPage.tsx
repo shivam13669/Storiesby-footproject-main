@@ -342,7 +342,7 @@ const BookingPage = () => {
                       </span>
                     </div>
 
-                    {selectedBike && (isTransHimalayan && selectedBike.seatingPrices) || (!isTransHimalayan && selectedBike.priceMultiplier !== 1.0) ? (
+                    {selectedBike && ((isTransHimalayan && selectedBike.seatingPrices) || (!isTransHimalayan && selectedBike.priceMultiplier !== 1.0)) ? (
                       <div className="flex justify-between items-center text-sm">
                         <span className="font-semibold text-green-600 uppercase tracking-wide text-xs">EARLY BIRD OFFER!</span>
                         <span className="font-semibold text-green-600">
