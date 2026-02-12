@@ -362,7 +362,7 @@ export const destinations: Destination[] = [
             id: "seat-in-backup",
             name: "Seat in Backup",
             description: "Travel comfortably in a backup support vehicle.",
-            image: "https://images.unsplash.com/photo-1748446055669-227277c94322?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: "https://cdn.builder.io/api/v1/image/assets%2Fc5bcaa71489e4444b44e4bf32a26a570%2F03651deabdd94bccaee077d99e2caed7?format=webp&width=800&height=1200",
             priceMultiplier: 1.0,
             isBackupVehicle: true,
             features: ["Comfortable seating", "Support vehicle", "Scenic viewing"],
@@ -1842,7 +1842,7 @@ export const destinations: Destination[] = [
             id: "seat-in-backup",
             name: "Seat in Backup",
             description: "Travel comfortably in a backup support vehicle.",
-            image: "https://images.unsplash.com/photo-1748446055669-227277c94322?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: "https://cdn.builder.io/api/v1/image/assets%2Fc5bcaa71489e4444b44e4bf32a26a570%2F03651deabdd94bccaee077d99e2caed7?format=webp&width=800&height=1200",
             isBackupVehicle: true,
             features: ["Comfortable seating", "Support vehicle", "Scenic viewing"],
             seatingPrices: {
