@@ -175,8 +175,8 @@ const BookingPage = () => {
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Content - Checkout Style */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left side - Form content */}
           <div className="lg:col-span-2">
             {currentStep === 1 && (
@@ -207,7 +207,7 @@ const BookingPage = () => {
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex gap-4 mt-12">
+            <div className="flex gap-4 mt-8">
               {currentStep > 1 && (
                 <button
                   onClick={handlePrevStep}
@@ -242,77 +242,155 @@ const BookingPage = () => {
             </div>
           </div>
 
-          {/* Right side - Booking Summary (Sticky) */}
+          {/* Right side - Booking Summary (Checkout Style) */}
           <div className="lg:col-span-1">
-            <div className="sticky top-20 bg-white rounded-lg p-6 space-y-6 border border-gray-200 shadow-lg">
-              <div>
-                <h3 className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-3">
-                  Booking Summary
-                </h3>
-                <h2 className="text-lg font-bold text-gray-900 mb-1">
-                  {travelPackage.name}
-                </h2>
-                <p className="text-sm text-gray-600">
-                  {travelPackage.duration}
-                </p>
-              </div>
+            <div className="sticky top-20">
+              {/* Booking Card */}
+              <div className="bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden">
+                {/* Package Header with Image */}
+                <div className="bg-gradient-to-br from-blue-600 to-blue-700 h-40 flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <div className="text-5xl mb-2">🏍️</div>
+                    <p className="text-sm opacity-90">Bike Adventure Trip</p>
+                  </div>
+                </div>
 
-              <div className="border-t border-gray-200 pt-4">
-                <div className="space-y-3 text-sm">
-                  {formData.travelDate && (
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Travel Date</span>
-                      <span className="font-semibold text-gray-900">
-                        {new Date(formData.travelDate).toLocaleDateString('en-IN', {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                        })}
+                {/* Card Content */}
+                <div className="p-6 space-y-6">
+                  {/* Title Section */}
+                  <div>
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">
+                      Trip Summary
+                    </h3>
+                    <h2 className="text-lg font-bold text-gray-900">
+                      {travelPackage.name}
+                    </h2>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {travelPackage.duration}
+                    </p>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="border-t border-gray-200" />
+
+                  {/* Details Section */}
+                  <div className="space-y-3">
+                    {formData.travelDate && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Travel Date</span>
+                        <span className="text-sm font-semibold text-gray-900">
+                          {new Date(formData.travelDate).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          })}
+                        </span>
+                      </div>
+                    )}
+
+                    {selectedBike && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Your Bike</span>
+                        <span className="text-sm font-semibold text-gray-900 text-right">
+                          {selectedBike.name}
+                        </span>
+                      </div>
+                    )}
+
+                    {formData.guests.length > 0 && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Co-Travellers</span>
+                        <span className="text-sm font-semibold text-gray-900">
+                          {formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'}
+                        </span>
+                      </div>
+                    )}
+
+                    {!formData.travelDate && (
+                      <div className="flex justify-between items-center opacity-50">
+                        <span className="text-sm text-gray-600">Travel Date</span>
+                        <span className="text-sm text-gray-500">Not selected</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Divider */}
+                  <div className="border-t border-gray-200" />
+
+                  {/* Price Section */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-600">Subtotal</span>
+                      <span className="font-medium text-gray-900">
+                        ₹{Math.round(parseInt(travelPackage.price.replace(/\D/g, ""))).toLocaleString("en-IN")}
                       </span>
                     </div>
-                  )}
 
-                  {selectedBike && (
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Selected Bike</span>
-                      <span className="font-semibold text-gray-900">{selectedBike.name}</span>
+                    {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-gray-600">Bike Upgrade</span>
+                        <span className="font-medium text-gray-900">
+                          +₹{Math.round(
+                            parseInt(travelPackage.price.replace(/\D/g, "")) *
+                              (selectedBike.priceMultiplier - 1)
+                          ).toLocaleString("en-IN")}
+                        </span>
+                      </div>
+                    )}
+
+                    {travelPackage.oldPrice && (
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-green-600 font-medium">Discount</span>
+                        <span className="font-medium text-green-600">
+                          -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Divider */}
+                  <div className="border-t border-gray-200" />
+
+                  {/* Total Price */}
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <p className="text-xs text-gray-600 font-semibold mb-1">TOTAL AMOUNT</p>
+                      <p className="text-3xl font-bold text-gray-900">
+                        ₹{finalPrice.toLocaleString("en-IN")}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  {currentStep === 3 && (
+                    <div className="pt-2">
+                      <button className="w-full h-12 text-base font-semibold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-md">
+                        Confirm Booking
+                      </button>
+                      <p className="text-xs text-gray-600 text-center mt-3">
+                        Secure & encrypted payment
+                      </p>
                     </div>
                   )}
 
-                  {formData.guests.length > 0 && (
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Co-Travellers</span>
-                      <span className="font-semibold text-gray-900">{formData.guests.length}</span>
+                  {currentStep < 3 && (
+                    <div className="pt-2">
+                      <div className="text-xs text-gray-500 text-center">
+                        <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full">
+                          {currentStep === 1 ? '2 more steps' : '1 more step'} to book
+                        </span>
+                      </div>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 pt-4">
-                <div className="mb-4">
-                  <p className="text-xs text-gray-600 mb-1 font-semibold">Total Price</p>
-                  <p className="text-3xl font-bold text-gray-900">
-                    ₹{finalPrice.toLocaleString("en-IN")}
-                  </p>
-                </div>
-
-                {travelPackage.oldPrice && (
-                  <p className="text-xs text-gray-500 line-through">
-                    Original: {travelPackage.oldPrice}
-                  </p>
-                )}
+              {/* Info Banner */}
+              <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <p className="text-xs text-blue-800">
+                  <span className="font-semibold">Secure Booking:</span> Your information is protected with SSL encryption
+                </p>
               </div>
-
-              {currentStep === 3 && (
-                <div className="border-t border-gray-200 pt-4">
-                  <button className="w-full h-12 text-base font-semibold bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all mb-3">
-                    Confirm Booking
-                  </button>
-                  <p className="text-xs text-gray-600 text-center">
-                    No payment needed now. We'll send payment details via email.
-                  </p>
-                </div>
-              )}
             </div>
           </div>
         </div>

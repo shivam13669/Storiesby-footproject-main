@@ -120,13 +120,13 @@ const GuestDetailsStep = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-0">
       {/* Card: Personal Information */}
-      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
+      <div className="bg-white rounded-t-lg p-8 border border-gray-200 shadow-sm">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">
           Traveller Details
         </h2>
-        
+
         <div className="space-y-6">
           {/* Full Name */}
           <div>
@@ -240,14 +240,14 @@ const GuestDetailsStep = ({
       </div>
 
       {/* Card: Travel Date */}
-      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
+      <div className="bg-white p-8 border border-gray-200 border-t-0 shadow-sm">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">
-          Travel Date
+          When will you travel?
         </h2>
         
         <div>
           <label className="block text-sm font-semibold text-gray-900 mb-3">
-            When do you want to travel? <span className="text-red-500">*</span>
+            Select Date <span className="text-red-500">*</span>
           </label>
           <Popover open={openDatePopover} onOpenChange={setOpenDatePopover}>
             <PopoverTrigger asChild>
@@ -283,9 +283,9 @@ const GuestDetailsStep = ({
       </div>
 
       {/* Card: Additional Guests */}
-      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
+      <div className="bg-white rounded-b-lg p-8 border border-gray-200 border-t-0 shadow-sm">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-gray-900">Co-Travellers</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Add Co-Travellers</h2>
           <Button
             onClick={() => setShowAddGuestModal(true)}
             className="bg-blue-600 hover:bg-blue-700 text-white"
