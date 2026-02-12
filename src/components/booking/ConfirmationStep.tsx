@@ -224,7 +224,7 @@ const ConfirmationStep = ({
             </li>
             <li className="flex items-start gap-2">
               <span className="text-gray-600 font-bold mt-0.5">•</span>
-              <span>Cancellation: 30+ days before = 30% fee, Less than 30 days = 100% fee</span>
+              <span>Cancellation: 30+ days before = 25% fee, Less than 30 days = 100% fee</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-gray-600 font-bold mt-0.5">•</span>
