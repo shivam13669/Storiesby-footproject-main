@@ -63,11 +63,11 @@ const BikeSelectionStep = ({
               )}
 
               {/* Image Section */}
-              <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200">
+              <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
                 <img
                   src={bike.image}
                   alt={bike.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-contain"
                 />
                 {isSelected && (
                   <div className="absolute inset-0 bg-blue-600/20" />

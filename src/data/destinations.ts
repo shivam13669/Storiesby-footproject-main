@@ -337,7 +337,7 @@ export const destinations: Destination[] = [
             id: "himalayan-411",
             name: "Royal Enfield Himalayan 411",
             description: "Mid-range adventure bike. Great balance of power and comfort.",
-            image: "https://cdn.builder.io/api/v1/image/assets%2Fefb8a20ed2eb4fb5b67c675a044988d4%2F70c8312fd07e4ef7a4c93b4f24344259?format=webp&width=800&height=1200",
+            image: "https://cdn.builder.io/api/v1/image/assets%2Fefb8a20ed2eb4fb5b67c675a044988d4%2Fcfee6c3a5a1c40a39d5e62c03f695f72?format=webp&width=800&height=1200",
             priceMultiplier: 1.15,
             cc: "411cc",
             features: ["Better ground clearance", "Improved suspension", "More powerful engine", "Ideal for rough terrain"],
