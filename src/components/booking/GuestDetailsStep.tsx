@@ -120,30 +120,30 @@ const GuestDetailsStep = ({
   };
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-6">
       {/* Card: Personal Information */}
-      <div className="bg-white rounded-t-lg p-8 border border-gray-200 shadow-sm">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
           Traveller Details
         </h2>
-
-        <div className="space-y-6">
+        
+        <div className="space-y-4">
           {/* Full Name */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-3">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Full Name <span className="text-red-500">*</span>
             </label>
             <Input
               placeholder="As per ID proof"
               value={formData.fullName}
               onChange={handleInputChange("fullName")}
-              className="h-12 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              className="h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-3">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Email Address <span className="text-red-500">*</span>
             </label>
             <Input
@@ -151,13 +151,13 @@ const GuestDetailsStep = ({
               placeholder="your.email@example.com"
               value={formData.email}
               onChange={handleInputChange("email")}
-              className="h-12 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              className="h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
             />
           </div>
 
           {/* Phone Number */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-3">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Mobile Number <span className="text-red-500">*</span>
             </label>
             <div className="flex gap-2">
@@ -168,7 +168,7 @@ const GuestDetailsStep = ({
                 <PopoverTrigger asChild>
                   <button
                     type="button"
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center gap-2 min-w-fit h-12 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="px-3 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center gap-2 min-w-fit h-11 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <span className="font-semibold text-gray-900">{selectedCountry.dial}</span>
                     <ChevronDown className="h-4 w-4 text-gray-600" />
@@ -215,14 +215,14 @@ const GuestDetailsStep = ({
                 placeholder="9876543210"
                 value={formData.phoneNumber}
                 onChange={handlePhoneChange}
-                className="flex-1 h-12 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                className="flex-1 h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
               />
             </div>
           </div>
 
           {/* Aadhaar Number */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-3">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
               Aadhaar Number <span className="text-red-500">*</span>
             </label>
             <Input
@@ -230,7 +230,7 @@ const GuestDetailsStep = ({
               value={formData.aadhaarNumber}
               onChange={handleInputChange("aadhaarNumber")}
               maxLength={16}
-              className="h-12 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              className="h-11 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
             />
             <p className="text-xs text-gray-600 mt-2">
               Required for domestic travel. Your data is secure and encrypted.
@@ -240,20 +240,20 @@ const GuestDetailsStep = ({
       </div>
 
       {/* Card: Travel Date */}
-      <div className="bg-white p-8 border border-gray-200 border-t-0 shadow-sm">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">
+      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
           When will you travel?
         </h2>
         
         <div>
-          <label className="block text-sm font-semibold text-gray-900 mb-3">
+          <label className="block text-sm font-semibold text-gray-900 mb-2">
             Select Date <span className="text-red-500">*</span>
           </label>
           <Popover open={openDatePopover} onOpenChange={setOpenDatePopover}>
             <PopoverTrigger asChild>
               <button
                 type="button"
-                className="w-full h-12 px-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full h-11 px-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <span className={formData.travelDate ? "text-gray-900 font-medium" : "text-gray-500"}>
                   {formData.travelDate
@@ -283,19 +283,19 @@ const GuestDetailsStep = ({
       </div>
 
       {/* Card: Additional Guests */}
-      <div className="bg-white rounded-b-lg p-8 border border-gray-200 border-t-0 shadow-sm">
-        <div className="flex items-center justify-between mb-8">
+      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all">
+        <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Add Co-Travellers</h2>
           <Button
             onClick={() => setShowAddGuestModal(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
           >
-            + Add Co-Traveller
+            + Add
           </Button>
         </div>
 
         {formData.guests.length === 0 ? (
-          <div className="py-12 text-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
+          <div className="py-10 text-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
             <p className="text-gray-600 font-medium">No co-travellers added yet</p>
             <p className="text-sm text-gray-500 mt-1">Add family members or friends traveling with you</p>
           </div>
@@ -304,7 +304,7 @@ const GuestDetailsStep = ({
             {formData.guests.map((guest, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-all"
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-100 transition-all"
               >
                 <div className="flex-1">
                   <p className="font-semibold text-gray-900">{guest.name}</p>

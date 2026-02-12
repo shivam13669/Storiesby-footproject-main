@@ -40,9 +40,9 @@ const ConfirmationStep = ({
       </div>
 
       {/* Booking Details Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Destination & Duration */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
           <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
             Trip Details
           </h3>
@@ -63,7 +63,7 @@ const ConfirmationStep = ({
         </div>
 
         {/* Travel Date */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
           <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
             Travel Information
           </h3>
@@ -82,7 +82,7 @@ const ConfirmationStep = ({
         </div>
 
         {/* Primary Traveler */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 md:col-span-2">
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all md:col-span-2">
           <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4">
             Primary Traveller
           </h3>
@@ -106,7 +106,7 @@ const ConfirmationStep = ({
 
         {/* Bike Selection */}
         {selectedBike && (
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
             <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
               Bike Selected
             </h3>
@@ -126,7 +126,7 @@ const ConfirmationStep = ({
 
       {/* Co-Travellers */}
       {formData.guests.length > 0 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
           <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4">
             Co-Travellers ({formData.guests.length})
           </h3>
@@ -147,7 +147,7 @@ const ConfirmationStep = ({
       )}
 
       {/* Price Breakdown */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
         <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-6">
           Fare Summary
         </h3>
@@ -193,7 +193,7 @@ const ConfirmationStep = ({
       </div>
 
       {/* Important Info */}
-      <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6">
+      <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 shadow-md">
         <h4 className="font-bold text-yellow-900 mb-3">Important Information</h4>
         <ul className="text-sm text-yellow-800 space-y-2">
           <li className="flex items-start gap-2">
@@ -216,7 +216,7 @@ const ConfirmationStep = ({
       </div>
 
       {/* Confirmation */}
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
+      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center shadow-md">
         <p className="text-sm text-gray-700 font-medium">
           By confirming this booking, you agree to our <a href="#" className="text-blue-600 hover:underline">terms and conditions</a> and <a href="#" className="text-blue-600 hover:underline">privacy policy</a>.
         </p>
