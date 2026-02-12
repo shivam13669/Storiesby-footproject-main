@@ -109,12 +109,12 @@ const BikeSelectionStep = ({
               >
                 {/* Own Bike Option */}
                 <div
-                  onClick={() => handleBikeSelect("own-bike")}
+                  onClick={() => !isBackupVehicleSelected && handleBikeSelect("own-bike")}
                   className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
                     formData.selectedBikeId === "own-bike"
                       ? "border-blue-600 shadow-md bg-blue-50"
                       : "border-gray-200 hover:border-blue-400"
-                  }`}
+                  } ${isBackupVehicleSelected ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {/* Selection Badge */}
                   {formData.selectedBikeId === "own-bike" && (
@@ -193,12 +193,12 @@ const BikeSelectionStep = ({
                   return (
                     <div
                       key={bike.id}
-                      onClick={() => handleBikeSelect(bike.id)}
+                      onClick={() => !isBackupVehicleSelected && handleBikeSelect(bike.id)}
                       className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
                         isSelected
                           ? "border-blue-600 shadow-md bg-blue-50"
                           : "border-gray-200 hover:border-blue-400"
-                      }`}
+                      } ${isBackupVehicleSelected ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
                       {/* Selection Badge */}
                       {isSelected && (
@@ -279,6 +279,79 @@ const BikeSelectionStep = ({
                     </div>
                   );
                 })}
+
+                {/* Seat in Backup Vehicle */}
+                {backupVehicle && (
+                  <div
+                    onClick={() => handleBikeSelect(backupVehicle.id)}
+                    className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                      formData.selectedBikeId === backupVehicle.id
+                        ? "border-blue-600 shadow-md bg-blue-50"
+                        : "border-gray-200 hover:border-blue-400"
+                    }`}
+                  >
+                    {/* Selection Badge */}
+                    {formData.selectedBikeId === backupVehicle.id && (
+                      <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                        <Check className="w-5 h-5" />
+                      </div>
+                    )}
+
+                    {/* Image Section */}
+                    <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
+                      <img
+                        src={backupVehicle.image}
+                        alt={backupVehicle.name}
+                        className="w-full h-full object-contain"
+                      />
+                      {formData.selectedBikeId === backupVehicle.id && (
+                        <div className="absolute inset-0 bg-blue-600/20" />
+                      )}
+                    </div>
+
+                    {/* Details Section */}
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">
+                        {backupVehicle.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-3">
+                        {backupVehicle.description}
+                      </p>
+
+                      {/* Features */}
+                      <ul className="space-y-2 mb-4">
+                        {backupVehicle.features?.map((feature, idx) => (
+                          <li key={idx} className="flex items-center gap-2">
+                            <span className="text-blue-600">•</span>
+                            <span className="text-gray-700">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="pt-2 border-t border-gray-200">
+                        <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
+                          Price per traveler
+                        </p>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-2xl font-bold text-gray-900">
+                            ₹{getBikePrice(backupVehicle).toLocaleString("en-IN")}
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => handleBikeSelect(backupVehicle.id)}
+                        className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                          formData.selectedBikeId === backupVehicle.id
+                            ? "bg-blue-600 text-white shadow-md"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        }`}
+                      >
+                        {formData.selectedBikeId === backupVehicle.id ? "✓ Selected" : "Select Bike"}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Right Arrow */}
@@ -300,12 +373,12 @@ const BikeSelectionStep = ({
                 return (
                   <div
                     key={bike.id}
-                    onClick={() => handleBikeSelect(bike.id)}
+                    onClick={() => !isBackupVehicleSelected && handleBikeSelect(bike.id)}
                     className={`bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
                       isSelected
                         ? "border-blue-600 shadow-md bg-blue-50"
                         : "border-gray-200 hover:border-blue-400"
-                    }`}
+                    } ${isBackupVehicleSelected ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
                     {/* Selection Badge */}
                     {isSelected && (
@@ -387,6 +460,81 @@ const BikeSelectionStep = ({
                   </div>
                 );
               })}
+
+              {/* Seat in Backup Vehicle */}
+              {backupVehicle && (
+                <div
+                  onClick={() => handleBikeSelect(backupVehicle.id)}
+                  className={`bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                    formData.selectedBikeId === backupVehicle.id
+                      ? "border-blue-600 shadow-md bg-blue-50"
+                      : "border-gray-200 hover:border-blue-400"
+                  }`}
+                >
+                  {/* Selection Badge */}
+                  {formData.selectedBikeId === backupVehicle.id && (
+                    <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                      <Check className="w-5 h-5" />
+                    </div>
+                  )}
+
+                  {/* Image Section */}
+                  <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
+                    <img
+                      src={backupVehicle.image}
+                      alt={backupVehicle.name}
+                      className="w-full h-full object-contain"
+                    />
+                    {formData.selectedBikeId === backupVehicle.id && (
+                      <div className="absolute inset-0 bg-blue-600/20" />
+                    )}
+                  </div>
+
+                  {/* Details Section */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      {backupVehicle.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      {backupVehicle.description}
+                    </p>
+
+                    {/* Features */}
+                    <ul className="space-y-2 mb-4">
+                      {backupVehicle.features?.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <span className="text-blue-600">•</span>
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Price Section */}
+                    <div className="pt-2 border-t border-gray-200">
+                      <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
+                        Price per traveler
+                      </p>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-bold text-gray-900">
+                          ₹{getBikePrice(backupVehicle).toLocaleString("en-IN")}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Select Button */}
+                    <button
+                      onClick={() => handleBikeSelect(backupVehicle.id)}
+                      className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                        formData.selectedBikeId === backupVehicle.id
+                          ? "bg-blue-600 text-white shadow-md"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      {formData.selectedBikeId === backupVehicle.id ? "✓ Selected" : "Select Bike"}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
