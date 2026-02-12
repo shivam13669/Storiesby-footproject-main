@@ -120,12 +120,12 @@ const BookingPage = () => {
       <div className="container mx-auto px-4 py-4 mt-16">
         {/* Centered Step Indicator */}
         <div className="mb-12 flex justify-center">
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4">
             {[1, 2, 3].map((step, idx) => (
-              <div key={step} className="flex items-center gap-8">
+              <div key={step} className="flex items-center gap-4">
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg transition-all ${
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
                       step === currentStep
                         ? "bg-blue-600 text-white shadow-lg scale-110"
                         : step < currentStep
@@ -135,13 +135,13 @@ const BookingPage = () => {
                   >
                     {step < currentStep ? "✓" : step}
                   </div>
-                  <p className="text-xs font-semibold text-gray-700 mt-3 text-center whitespace-nowrap">
+                  <p className="text-xs font-semibold text-gray-700 mt-2 text-center whitespace-nowrap">
                     {step === 1 ? "Travel Info" : step === 2 ? "Select Bike" : "Review"}
                   </p>
                 </div>
                 {idx < 2 && (
                   <div
-                    className={`w-12 h-1 transition-all ${
+                    className={`w-8 h-1 transition-all ${
                       step < currentStep ? "bg-green-600" : "bg-gray-300"
                     }`}
                   />
