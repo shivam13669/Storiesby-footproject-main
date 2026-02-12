@@ -356,15 +356,6 @@ const BookingPage = () => {
                         </span>
                       </div>
                     )}
-
-                    {travelPackage.oldPrice && (
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-green-700 font-semibold">Discount</span>
-                        <span className="font-semibold text-green-600">
-                          -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Divider */}
