@@ -68,10 +68,6 @@ const BookingPage = () => {
     return <Navigate to="/destinations" replace />;
   }
 
-  // Set default bike on first load
-  if (!formData.selectedBikeId && travelPackage.bikes && travelPackage.bikes.length > 0) {
-    setFormData(prev => ({ ...prev, selectedBikeId: travelPackage.bikes![0].id }));
-  }
 
   // Calculate price
   const basePrice = parsePrice(travelPackage.price) || 0;
@@ -284,13 +280,18 @@ const BookingPage = () => {
                       </div>
                     )}
 
-                    {/* Your Bike */}
-                    {selectedBike && (
+                    {/* Your Bike - Always show (selected or not selected) */}
+                    {selectedBike ? (
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-gray-600">Your Bike</span>
                         <span className="text-sm font-semibold text-gray-900 text-right">
                           {selectedBike.name}
                         </span>
+                      </div>
+                    ) : (
+                      <div className="flex justify-between items-center opacity-50">
+                        <span className="text-sm text-gray-600">Your Bike</span>
+                        <span className="text-sm text-gray-500">Not selected</span>
                       </div>
                     )}
 
