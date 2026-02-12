@@ -7,6 +7,7 @@ interface AdvancedDatePickerProps {
   selected?: Date;
   onSelect: (date: Date) => void;
   disabled?: (date: Date) => boolean;
+  availableDates?: string[];
 }
 
 type PickerMode = "day" | "month" | "year";
@@ -15,6 +16,7 @@ export const AdvancedDatePicker = ({
   selected,
   onSelect,
   disabled,
+  availableDates,
 }: AdvancedDatePickerProps) => {
   const today = startOfDay(new Date());
   const [mode, setMode] = useState<PickerMode>("day");

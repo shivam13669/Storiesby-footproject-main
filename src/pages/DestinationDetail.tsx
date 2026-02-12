@@ -106,6 +106,7 @@ const DestinationDetail = () => {
               showForm={true}
               title={travelPackage.name}
               packageName={travelPackage.name}
+              packageSlug={travelPackage.slug}
               price={travelPackage.price}
               oldPrice={travelPackage.oldPrice}
               saving={

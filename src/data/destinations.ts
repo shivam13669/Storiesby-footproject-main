@@ -3,6 +3,16 @@ import { Flag, Landmark, Mountain, MountainSnow, Waves } from "lucide-react";
 
 export type DestinationIcon = "mountain" | "landmark" | "waves" | "flag" | "mountainSnow";
 
+export type BikeOption = {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  priceMultiplier: number; // 1.0 = base price, 1.2 = 20% more
+  cc: string;
+  features: string[];
+};
+
 export type ItineraryDay = {
   day: number;
   title: string;
@@ -44,6 +54,8 @@ export type DestinationPackage = {
   itinerary?: ItineraryDay[];
   inclusions?: string[];
   exclusions?: string[];
+  bikes?: BikeOption[];
+  availableDates?: string[]; // Format: "YYYY-MM-DD"
 };
 
 export type DestinationQuickFacts = {
@@ -310,6 +322,44 @@ export const destinations: Destination[] = [
           "Any additional costs incurred due to natural calamities or unforeseen circumstances beyond our control",
           "Any other expense not mentioned in the inclusion column",
           "Extra 5% GST",
+        ],
+        bikes: [
+          {
+            id: "classic-350",
+            name: "Royal Enfield Classic 350",
+            description: "Perfect for beginners. Smooth, lightweight, and easy to handle.",
+            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
+            priceMultiplier: 1.0,
+            cc: "350cc",
+            features: ["Best for beginners", "Comfortable seating", "Excellent fuel efficiency", "Classic design"],
+          },
+          {
+            id: "himalayan-411",
+            name: "Royal Enfield Himalayan 411",
+            description: "Mid-range adventure bike. Great balance of power and comfort.",
+            image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80",
+            priceMultiplier: 1.15,
+            cc: "411cc",
+            features: ["Better ground clearance", "Improved suspension", "More powerful engine", "Ideal for rough terrain"],
+          },
+          {
+            id: "himalayan-452",
+            name: "Royal Enfield Himalayan 452",
+            description: "Premium adventure bike. Maximum power and capabilities.",
+            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
+            priceMultiplier: 1.35,
+            cc: "452cc",
+            features: ["Maximum power", "Advanced suspension", "Best for experts", "Handles all terrains"],
+          },
+        ],
+        availableDates: [
+          "2025-04-12", "2025-04-19",
+          "2025-05-03", "2025-05-17", "2025-05-24", "2025-05-31",
+          "2025-06-07", "2025-06-14", "2025-06-21", "2025-06-26",
+          "2025-07-05", "2025-07-12", "2025-07-19", "2025-07-26",
+          "2025-08-02", "2025-08-08", "2025-08-13", "2025-08-23", "2025-08-30",
+          "2025-09-06", "2025-09-13", "2025-09-20", "2025-09-27",
+          "2025-10-04", "2025-10-11", "2025-10-18",
         ],
       },
       {
