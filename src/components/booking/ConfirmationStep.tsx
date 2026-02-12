@@ -192,34 +192,37 @@ const ConfirmationStep = ({
         </div>
       </div>
 
-      {/* Important Info */}
-      <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all">
-        <h4 className="font-bold text-yellow-900 mb-3">Important Information</h4>
-        <ul className="text-sm text-yellow-800 space-y-2">
-          <li className="flex items-start gap-2">
-            <span className="text-yellow-600 font-bold mt-0.5">•</span>
-            <span>Your booking is tentative until confirmed. We'll send confirmation within 24 hours.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-yellow-600 font-bold mt-0.5">•</span>
-            <span>Payment details will be shared via email and SMS.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-yellow-600 font-bold mt-0.5">•</span>
-            <span>Cancellation: 30+ days before = 30% fee, Less than 30 days = 100% fee</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-yellow-600 font-bold mt-0.5">•</span>
-            <span>All travellers must carry valid government ID proof.</span>
-          </li>
-        </ul>
-      </div>
+      {/* Important Info and Confirmation - Combined Card */}
+      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-lg transition-all space-y-6">
+        {/* Important Information Section */}
+        <div>
+          <h4 className="font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">Important Information</h4>
+          <ul className="text-sm text-gray-700 space-y-2">
+            <li className="flex items-start gap-2">
+              <span className="text-gray-600 font-bold mt-0.5">•</span>
+              <span>Your booking is tentative until confirmed. We'll send confirmation within 24 hours.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-gray-600 font-bold mt-0.5">•</span>
+              <span>Payment details will be shared via email and SMS.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-gray-600 font-bold mt-0.5">•</span>
+              <span>Cancellation: 30+ days before = 30% fee, Less than 30 days = 100% fee</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-gray-600 font-bold mt-0.5">•</span>
+              <span>All travellers must carry valid government ID proof.</span>
+            </li>
+          </ul>
+        </div>
 
-      {/* Confirmation */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-md hover:shadow-lg transition-all">
-        <p className="text-sm text-gray-700 font-medium leading-relaxed">
-          By confirming this booking, you agree to our <a href="#" className="text-blue-600 hover:underline font-semibold">terms and conditions</a> and <a href="#" className="text-blue-600 hover:underline font-semibold">privacy policy</a>.
-        </p>
+        {/* Confirmation Section */}
+        <div className="pt-3 border-t border-gray-200">
+          <p className="text-sm text-gray-700 font-medium leading-relaxed">
+            By confirming this booking, you agree to our <a href="#" className="text-blue-600 hover:underline font-semibold">terms and conditions</a> and <a href="#" className="text-blue-600 hover:underline font-semibold">privacy policy</a>.
+          </p>
+        </div>
       </div>
     </div>
   );
