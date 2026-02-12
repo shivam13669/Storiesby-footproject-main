@@ -115,51 +115,54 @@ const BookingPage = () => {
       
       <div className="container mx-auto px-4 py-8 mt-16">
         {/* Header with back button */}
-        <div className="mb-8">
+        <div className="mb-12">
           <Button
             variant="ghost"
             size="sm"
             onClick={() => window.history.back()}
-            className="mb-4"
+            className="mb-6 hover:bg-gray-100"
           >
             <ChevronLeft className="w-4 h-4 mr-2" />
             Back to Package
           </Button>
-          
-          <div className="flex items-center justify-between mb-6">
+
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">
-                Complete Your Booking
-              </h1>
-              <p className="text-muted-foreground">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-1 h-10 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+                  Complete Your Booking
+                </h1>
+              </div>
+              <p className="text-muted-foreground text-lg ml-8">
                 {travelPackage.name} • {travelPackage.duration}
               </p>
             </div>
           </div>
 
           {/* Step Indicator */}
-          <div className="flex items-center justify-between max-w-2xl mb-8">
+          <div className="flex items-center justify-between max-w-2xl mb-12 px-4 py-6 rounded-2xl" style={{ background: "rgba(59, 130, 246, 0.05)" }}>
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex items-center flex-1">
                 <button
                   onClick={() => step < currentStep && handleStepChange(step as BookingStep)}
-                  className={`w-12 h-12 rounded-full font-semibold transition-all ${
+                  className={`w-14 h-14 rounded-full font-bold text-sm transition-all flex items-center justify-center ${
                     step === currentStep
-                      ? "bg-primary text-primary-foreground shadow-lg"
+                      ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-xl scale-110"
                       : step < currentStep
-                      ? "bg-green-500 text-white cursor-pointer"
-                      : "bg-muted text-muted-foreground"
+                      ? "bg-gradient-to-br from-green-500 to-green-600 text-white cursor-pointer"
+                      : "bg-gray-200 text-gray-500"
                   }`}
                 >
                   {step < currentStep ? "✓" : step}
                 </button>
-                <p className="ml-2 text-sm font-medium text-muted-foreground">
+                <p className="ml-3 text-sm font-semibold text-foreground">
                   {step === 1 ? "Guest Details" : step === 2 ? "Select Bike" : "Confirm"}
                 </p>
                 {step < 3 && (
                   <div
-                    className={`flex-1 h-1 mx-4 ${
-                      step < currentStep ? "bg-green-500" : "bg-muted"
+                    className={`flex-1 h-1.5 mx-3 rounded-full transition-all ${
+                      step < currentStep ? "bg-gradient-to-r from-green-500 to-green-400" : "bg-gray-300"
                     }`}
                   />
                 )}
@@ -223,7 +226,15 @@ const BookingPage = () => {
 
           {/* Right side - Booking Summary (Sticky) */}
           <div className="lg:col-span-1">
-            <div className="sticky top-20 bg-card rounded-xl border border-border p-6 space-y-6">
+            <div
+              className="sticky top-20 rounded-2xl border-2 p-6 space-y-6 overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.02) 100%)",
+                border: "2px solid rgba(59, 130, 246, 0.2)",
+                boxShadow: "0 20px 60px rgba(59, 130, 246, 0.15), 0 0 1px rgba(59, 130, 246, 0.2)",
+                backdropFilter: "blur(10px)",
+              }}
+            >
               <div>
                 <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
                   Booking Summary

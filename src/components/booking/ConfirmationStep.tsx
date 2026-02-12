@@ -42,7 +42,15 @@ const ConfirmationStep = ({
       {/* Booking Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Package Details */}
-        <div className="bg-card rounded-xl border border-border p-6">
+        <div
+          className="rounded-2xl border-2 p-6 overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+            backdropFilter: "blur(10px)",
+            border: "2px solid rgba(229, 231, 235, 0.6)",
+            boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+          }}
+        >
           <div className="flex items-start justify-between mb-4">
             <h3 className="text-lg font-bold text-foreground">Package</h3>
             <MapPin className="w-5 h-5 text-primary" />
@@ -76,7 +84,15 @@ const ConfirmationStep = ({
         </div>
 
         {/* Travel Details */}
-        <div className="bg-card rounded-xl border border-border p-6">
+        <div
+          className="rounded-2xl border-2 p-6 overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+            backdropFilter: "blur(10px)",
+            border: "2px solid rgba(229, 231, 235, 0.6)",
+            boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+          }}
+        >
           <div className="flex items-start justify-between mb-4">
             <h3 className="text-lg font-bold text-foreground">Travel Details</h3>
             <Calendar className="w-5 h-5 text-primary" />
@@ -102,7 +118,15 @@ const ConfirmationStep = ({
         </div>
 
         {/* Primary Traveler */}
-        <div className="bg-card rounded-xl border border-border p-6">
+        <div
+          className="rounded-2xl border-2 p-6 overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+            backdropFilter: "blur(10px)",
+            border: "2px solid rgba(229, 231, 235, 0.6)",
+            boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+          }}
+        >
           <div className="flex items-start justify-between mb-4">
             <h3 className="text-lg font-bold text-foreground">Primary Traveler</h3>
             <User className="w-5 h-5 text-primary" />
@@ -137,7 +161,15 @@ const ConfirmationStep = ({
 
         {/* Bike Selection */}
         {selectedBike && (
-          <div className="bg-card rounded-xl border border-border p-6">
+          <div
+            className="rounded-2xl border-2 p-6 overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(229, 231, 235, 0.6)",
+              boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+            }}
+          >
             <div className="flex items-start justify-between mb-4">
               <h3 className="text-lg font-bold text-foreground">Bike Selected</h3>
               <Bike className="w-5 h-5 text-primary" />
@@ -165,7 +197,15 @@ const ConfirmationStep = ({
 
         {/* Additional Guests */}
         {formData.guests.length > 0 && (
-          <div className="bg-card rounded-xl border border-border p-6 md:col-span-2">
+          <div
+            className="rounded-2xl border-2 p-6 overflow-hidden md:col-span-2"
+            style={{
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+              backdropFilter: "blur(10px)",
+              border: "2px solid rgba(229, 231, 235, 0.6)",
+              boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+            }}
+          >
             <div className="flex items-start justify-between mb-4">
               <h3 className="text-lg font-bold text-foreground">
                 Additional Travelers ({formData.guests.length})
@@ -195,7 +235,15 @@ const ConfirmationStep = ({
       </div>
 
       {/* Price Breakdown */}
-      <div className="bg-card rounded-xl border border-border p-6">
+      <div
+        className="rounded-2xl border-2 p-6 overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+          backdropFilter: "blur(10px)",
+          border: "2px solid rgba(229, 231, 235, 0.6)",
+          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+        }}
+      >
         <h3 className="text-lg font-bold text-foreground mb-6">Price Details</h3>
         
         <div className="space-y-4">
@@ -239,27 +287,48 @@ const ConfirmationStep = ({
       </div>
 
       {/* Terms & Conditions */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h4 className="font-semibold text-blue-900 mb-2">Important Information</h4>
-        <ul className="text-sm text-blue-800 space-y-2">
-          <li>
-            ✓ Your booking is tentative. We'll send a confirmation email within 24 hours.
+      <div
+        className="rounded-2xl border-2 p-6 overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.02) 100%)",
+          border: "2px solid rgba(59, 130, 246, 0.2)",
+          boxShadow: "0 8px 32px rgba(59, 130, 246, 0.08)",
+        }}
+      >
+        <h4 className="font-bold text-foreground mb-4 flex items-center gap-2">
+          <span className="w-1 h-6 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
+          Important Information
+        </h4>
+        <ul className="text-sm text-muted-foreground space-y-3">
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 font-bold mt-0.5">✓</span>
+            <span>Your booking is tentative. We'll send a confirmation email within 24 hours.</span>
           </li>
-          <li>
-            ✓ Payment can be made via bank transfer, card, or UPI.
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 font-bold mt-0.5">✓</span>
+            <span>Payment can be made via bank transfer, card, or UPI.</span>
           </li>
-          <li>
-            ✓ Cancellation policy applies: 30+ days = 30% fee, Less than 30 days = 100% fee
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 font-bold mt-0.5">✓</span>
+            <span>Cancellation policy applies: 30+ days = 30% fee, Less than 30 days = 100% fee</span>
           </li>
-          <li>
-            ✓ All travelers must carry valid government ID proof.
+          <li className="flex items-start gap-3">
+            <span className="text-blue-600 font-bold mt-0.5">✓</span>
+            <span>All travelers must carry valid government ID proof.</span>
           </li>
         </ul>
       </div>
 
       {/* Confirmation Note */}
-      <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-        <p className="text-sm text-green-800">
+      <div
+        className="rounded-2xl border-2 p-6 overflow-hidden text-center"
+        style={{
+          background: "linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.02) 100%)",
+          border: "2px solid rgba(34, 197, 94, 0.2)",
+          boxShadow: "0 8px 32px rgba(34, 197, 94, 0.08)",
+        }}
+      >
+        <p className="text-sm font-semibold" style={{ color: "rgb(6, 78, 59)" }}>
           By confirming this booking, you agree to our terms and conditions and have read our privacy policy.
         </p>
       </div>

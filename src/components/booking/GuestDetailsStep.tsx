@@ -123,8 +123,19 @@ const GuestDetailsStep = ({
   return (
     <div className="space-y-6">
       {/* Card: Personal Information */}
-      <div className="bg-card rounded-xl border border-border p-8">
-        <h2 className="text-2xl font-bold text-foreground mb-6">Your Details</h2>
+      <div
+        className="rounded-2xl border-2 p-8 overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+          backdropFilter: "blur(10px)",
+          border: "2px solid rgba(229, 231, 235, 0.6)",
+          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+        }}
+      >
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
+          <h2 className="text-3xl font-bold text-foreground">Your Details</h2>
+        </div>
         
         <div className="space-y-5">
           {/* Full Name */}
@@ -239,8 +250,19 @@ const GuestDetailsStep = ({
       </div>
 
       {/* Card: Travel Date */}
-      <div className="bg-card rounded-xl border border-border p-8">
-        <h2 className="text-2xl font-bold text-foreground mb-6">When will you travel?</h2>
+      <div
+        className="rounded-2xl border-2 p-8 overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+          backdropFilter: "blur(10px)",
+          border: "2px solid rgba(229, 231, 235, 0.6)",
+          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+        }}
+      >
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
+          <h2 className="text-3xl font-bold text-foreground">When will you travel?</h2>
+        </div>
         
         <div>
           <label className="text-sm font-semibold text-foreground mb-2 block">
@@ -280,9 +302,20 @@ const GuestDetailsStep = ({
       </div>
 
       {/* Card: Additional Guests */}
-      <div className="bg-card rounded-xl border border-border p-8">
+      <div
+        className="rounded-2xl border-2 p-8 overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%)",
+          backdropFilter: "blur(10px)",
+          border: "2px solid rgba(229, 231, 235, 0.6)",
+          boxShadow: "0 15px 40px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.06)",
+        }}
+      >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-foreground">Additional Guests</h2>
+          <div className="flex items-center gap-3">
+            <span className="w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full" />
+            <h2 className="text-3xl font-bold text-foreground">Additional Guests</h2>
+          </div>
           <Button
             onClick={() => setShowAddGuestModal(true)}
             className="btn-primary h-10"
