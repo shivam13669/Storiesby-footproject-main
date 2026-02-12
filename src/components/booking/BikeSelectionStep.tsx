@@ -1,7 +1,8 @@
-import { Check } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { BookingFormData } from "@/pages/BookingPage";
 import { DestinationPackage } from "@/data/destinations";
 import { parsePrice } from "@/context/CurrencyContext";
+import { useState, useRef } from "react";
 
 interface BikeSelectionStepProps {
   formData: BookingFormData;
@@ -16,6 +17,9 @@ const BikeSelectionStep = ({
   basePrice,
   onFormDataChange,
 }: BikeSelectionStepProps) => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   if (!travelPackage.bikes || travelPackage.bikes.length === 0) {
     return (
       <div className="bg-white rounded-xl p-8 text-center shadow-md">
@@ -24,8 +28,23 @@ const BikeSelectionStep = ({
     );
   }
 
+  // Check if this is trans-himalayan package
+  const isTransHimalayan = travelPackage.slug === "trans-himalayan-ride";
+
   const handleBikeSelect = (bikeId: string) => {
     onFormDataChange({ selectedBikeId: bikeId });
+  };
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 350;
+      const newPosition = direction === "left"
+        ? scrollContainerRef.current.scrollLeft - scrollAmount
+        : scrollContainerRef.current.scrollLeft + scrollAmount;
+
+      scrollContainerRef.current.scrollLeft = newPosition;
+      setScrollPosition(newPosition);
+    }
   };
 
   return (
@@ -45,108 +64,309 @@ const BikeSelectionStep = ({
           <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
             Select Your Preferred Bike
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {travelPackage.bikes.map((bike) => {
-              const bikePrice = Math.round(basePrice * bike.priceMultiplier);
-              const priceDifference = bikePrice - basePrice;
-              const isSelected = formData.selectedBikeId === bike.id;
 
-              return (
+          {isTransHimalayan ? (
+            // Carousel for Trans-Himalayan
+            <div className="relative">
+              {/* Left Arrow */}
+              <button
+                onClick={() => handleScroll("left")}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:shadow-xl transition-all -ml-4"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-700" />
+              </button>
+
+              {/* Carousel Container */}
+              <div
+                ref={scrollContainerRef}
+                className="flex gap-6 overflow-x-auto scroll-smooth pb-2"
+                style={{ scrollBehavior: 'smooth' }}
+              >
+                {/* Own Bike Option */}
                 <div
-                  key={bike.id}
-                  onClick={() => handleBikeSelect(bike.id)}
-                  className={`bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
-                    isSelected
+                  onClick={() => handleBikeSelect("own-bike")}
+                  className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                    formData.selectedBikeId === "own-bike"
                       ? "border-blue-600 shadow-md bg-blue-50"
                       : "border-gray-200 hover:border-blue-400"
                   }`}
                 >
                   {/* Selection Badge */}
-                  {isSelected && (
+                  {formData.selectedBikeId === "own-bike" && (
                     <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
                       <Check className="w-5 h-5" />
                     </div>
                   )}
 
                   {/* Image Section */}
-                  <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
-                    <img
-                      src={bike.image}
-                      alt={bike.name}
-                      className="w-full h-full object-contain"
-                    />
-                    {isSelected && (
-                      <div className="absolute inset-0 bg-blue-600/20" />
-                    )}
+                  <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-5xl mb-2">🏍️</div>
+                      <p className="text-gray-700 font-semibold">Your Own Bike</p>
+                    </div>
                   </div>
 
                   {/* Content Section */}
                   <div className="space-y-3">
-                    {/* Name and CC */}
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900">
-                        {bike.name}
+                        Own Bike
                       </h3>
                       <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
-                        {bike.cc}
+                        Bring Your Own
                       </p>
                     </div>
 
-                    {/* Description */}
                     <p className="text-sm text-gray-600 line-clamp-2">
-                      {bike.description}
+                      Ride with your own motorcycle on this adventure
                     </p>
 
-                    {/* Features */}
                     <ul className="space-y-2">
-                      {bike.features.slice(0, 2).map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm">
-                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
+                      <li className="flex items-start gap-2 text-sm">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                        <span className="text-gray-700">Complete freedom</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                        <span className="text-gray-700">Familiar machine</span>
+                      </li>
                     </ul>
 
-                    {/* Price Section */}
                     <div className="pt-2 border-t border-gray-200">
                       <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
                         Price per rider
                       </p>
                       <div className="flex items-baseline gap-2">
                         <span className="text-2xl font-bold text-gray-900">
-                          ₹{bikePrice.toLocaleString("en-IN")}
+                          ₹{basePrice.toLocaleString("en-IN")}
                         </span>
-                        {priceDifference !== 0 && (
-                          <span
-                            className={`text-sm font-semibold ${
-                              priceDifference > 0
-                                ? "text-orange-600"
-                                : "text-green-600"
-                            }`}
-                          >
-                            {priceDifference > 0 ? "+" : ""}₹
-                            {priceDifference.toLocaleString("en-IN")}
-                          </span>
-                        )}
                       </div>
                     </div>
 
-                    {/* Select Button */}
                     <button
-                      onClick={() => handleBikeSelect(bike.id)}
+                      onClick={() => handleBikeSelect("own-bike")}
                       className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                        isSelected
+                        formData.selectedBikeId === "own-bike"
                           ? "bg-blue-600 text-white shadow-md"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      {isSelected ? "✓ Selected" : "Select Bike"}
+                      {formData.selectedBikeId === "own-bike" ? "✓ Selected" : "Select Bike"}
                     </button>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Provided Bikes */}
+                {travelPackage.bikes.map((bike) => {
+                  const bikePrice = Math.round(basePrice * bike.priceMultiplier);
+                  const priceDifference = bikePrice - basePrice;
+                  const isSelected = formData.selectedBikeId === bike.id;
+
+                  return (
+                    <div
+                      key={bike.id}
+                      onClick={() => handleBikeSelect(bike.id)}
+                      className={`flex-shrink-0 w-80 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                        isSelected
+                          ? "border-blue-600 shadow-md bg-blue-50"
+                          : "border-gray-200 hover:border-blue-400"
+                      }`}
+                    >
+                      {/* Selection Badge */}
+                      {isSelected && (
+                        <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                          <Check className="w-5 h-5" />
+                        </div>
+                      )}
+
+                      {/* Image Section */}
+                      <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
+                        <img
+                          src={bike.image}
+                          alt={bike.name}
+                          className="w-full h-full object-contain"
+                        />
+                        {isSelected && (
+                          <div className="absolute inset-0 bg-blue-600/20" />
+                        )}
+                      </div>
+
+                      {/* Content Section */}
+                      <div className="space-y-3">
+                        <div>
+                          <h3 className="text-xl font-semibold text-gray-900">
+                            {bike.name}
+                          </h3>
+                          <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
+                            {bike.cc}
+                          </p>
+                        </div>
+
+                        <p className="text-sm text-gray-600 line-clamp-2">
+                          {bike.description}
+                        </p>
+
+                        <ul className="space-y-2">
+                          {bike.features.slice(0, 2).map((feature, idx) => (
+                            <li key={idx} className="flex items-start gap-2 text-sm">
+                              <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                              <span className="text-gray-700">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <div className="pt-2 border-t border-gray-200">
+                          <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
+                            Price per rider
+                          </p>
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold text-gray-900">
+                              ₹{bikePrice.toLocaleString("en-IN")}
+                            </span>
+                            {priceDifference !== 0 && (
+                              <span
+                                className={`text-sm font-semibold ${
+                                  priceDifference > 0
+                                    ? "text-orange-600"
+                                    : "text-green-600"
+                                }`}
+                              >
+                                {priceDifference > 0 ? "+" : ""}₹
+                                {priceDifference.toLocaleString("en-IN")}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => handleBikeSelect(bike.id)}
+                          className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                            isSelected
+                              ? "bg-blue-600 text-white shadow-md"
+                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          }`}
+                        >
+                          {isSelected ? "✓ Selected" : "Select Bike"}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Right Arrow */}
+              <button
+                onClick={() => handleScroll("right")}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:shadow-xl transition-all -mr-4"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-700" />
+              </button>
+            </div>
+          ) : (
+            // Grid layout for other packages
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {travelPackage.bikes.map((bike) => {
+                const bikePrice = Math.round(basePrice * bike.priceMultiplier);
+                const priceDifference = bikePrice - basePrice;
+                const isSelected = formData.selectedBikeId === bike.id;
+
+                return (
+                  <div
+                    key={bike.id}
+                    onClick={() => handleBikeSelect(bike.id)}
+                    className={`bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 cursor-pointer relative group overflow-hidden border-2 ${
+                      isSelected
+                        ? "border-blue-600 shadow-md bg-blue-50"
+                        : "border-gray-200 hover:border-blue-400"
+                    }`}
+                  >
+                    {/* Selection Badge */}
+                    {isSelected && (
+                      <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg">
+                        <Check className="w-5 h-5" />
+                      </div>
+                    )}
+
+                    {/* Image Section */}
+                    <div className="relative overflow-hidden rounded-xl mb-4 h-52 bg-gray-200 flex items-center justify-center">
+                      <img
+                        src={bike.image}
+                        alt={bike.name}
+                        className="w-full h-full object-contain"
+                      />
+                      {isSelected && (
+                        <div className="absolute inset-0 bg-blue-600/20" />
+                      )}
+                    </div>
+
+                    {/* Content Section */}
+                    <div className="space-y-3">
+                      {/* Name and CC */}
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900">
+                          {bike.name}
+                        </h3>
+                        <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">
+                          {bike.cc}
+                        </p>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-gray-600 line-clamp-2">
+                        {bike.description}
+                      </p>
+
+                      {/* Features */}
+                      <ul className="space-y-2">
+                        {bike.features.slice(0, 2).map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-sm">
+                            <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                            <span className="text-gray-700">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Price Section */}
+                      <div className="pt-2 border-t border-gray-200">
+                        <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
+                          Price per rider
+                        </p>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-2xl font-bold text-gray-900">
+                            ₹{bikePrice.toLocaleString("en-IN")}
+                          </span>
+                          {priceDifference !== 0 && (
+                            <span
+                              className={`text-sm font-semibold ${
+                                priceDifference > 0
+                                  ? "text-orange-600"
+                                  : "text-green-600"
+                              }`}
+                            >
+                              {priceDifference > 0 ? "+" : ""}₹
+                              {priceDifference.toLocaleString("en-IN")}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Select Button */}
+                      <button
+                        onClick={() => handleBikeSelect(bike.id)}
+                        className={`w-full mt-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                          isSelected
+                            ? "bg-blue-600 text-white shadow-md"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        }`}
+                      >
+                        {isSelected ? "✓ Selected" : "Select Bike"}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* What's Included Section */}
