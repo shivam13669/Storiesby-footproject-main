@@ -36,13 +36,24 @@ const BikeSelectionStep = ({
   // Check if this is trans-himalayan package
   const isTransHimalayan = travelPackage.slug === "trans-himalayan-ride";
 
+  // Check if Seat in Backup is selected
+  const isBackupVehicleSelected = formData.selectedBikeId === "seat-in-backup";
+
+  // Filter out backup vehicle from regular bikes, get it separately
+  const regularBikes = travelPackage.bikes?.filter(bike => !bike.isBackupVehicle) || [];
+  const backupVehicle = travelPackage.bikes?.find(bike => bike.isBackupVehicle);
+
   const getBikePrice = (bike: any) => {
+    // For backup vehicle with seating prices
+    if (bike.isBackupVehicle && bike.seatingPrices && seatingPreference in bike.seatingPrices) {
+      return bike.seatingPrices[seatingPreference];
+    }
     // For trans-himalayan ride, use seating-based prices if available
     if (isTransHimalayan && bike.seatingPrices && seatingPreference in bike.seatingPrices) {
       return bike.seatingPrices[seatingPreference];
     }
     // Otherwise use the traditional multiplier method
-    return Math.round(basePrice * bike.priceMultiplier);
+    return Math.round(basePrice * (bike.priceMultiplier || 1.0));
   };
 
   const handleBikeSelect = (bikeId: string) => {
@@ -174,7 +185,7 @@ const BikeSelectionStep = ({
                 </div>
 
                 {/* Provided Bikes */}
-                {travelPackage.bikes.map((bike) => {
+                {regularBikes.map((bike) => {
                   const bikePrice = getBikePrice(bike);
                   const priceDifference = bikePrice - basePrice;
                   const isSelected = formData.selectedBikeId === bike.id;
@@ -281,7 +292,7 @@ const BikeSelectionStep = ({
           ) : (
             // Grid layout for other packages
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {travelPackage.bikes.map((bike) => {
+              {regularBikes.map((bike) => {
                 const bikePrice = getBikePrice(bike);
                 const priceDifference = bikePrice - basePrice;
                 const isSelected = formData.selectedBikeId === bike.id;
@@ -429,8 +440,8 @@ const BikeSelectionStep = ({
           </div>
         </div>
 
-        {/* Seating Option - Show for all packages */}
-        {(
+        {/* Seating Option - Show for all packages, but hide if backup vehicle is selected */}
+        {!isBackupVehicleSelected && (
           <div>
             <h4 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
               Seating Preference

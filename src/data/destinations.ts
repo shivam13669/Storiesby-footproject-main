@@ -8,14 +8,16 @@ export type BikeOption = {
   name: string;
   description: string;
   image: string;
-  priceMultiplier: number; // 1.0 = base price, 1.2 = 20% more
-  cc: string;
-  features: string[];
+  priceMultiplier?: number; // 1.0 = base price, 1.2 = 20% more
+  cc?: string;
+  features?: string[];
   seatingPrices?: {
     solo: number;
     "dual-sharing": number;
     "seat-in-backup": number;
   };
+  isBackupVehicle?: boolean; // True if this is the "Seat in Backup" car option
+  isOwnBike?: boolean; // True if this is the "Own Bike" option
 };
 
 export type ItineraryDay = {
@@ -355,6 +357,15 @@ export const destinations: Destination[] = [
             priceMultiplier: 1.35,
             cc: "452cc",
             features: ["Maximum power", "Advanced suspension", "Best for experts", "Handles all terrains"],
+          },
+          {
+            id: "seat-in-backup",
+            name: "Seat in Backup",
+            description: "Travel comfortably in a backup support vehicle.",
+            image: "https://images.unsplash.com/photo-1748446055669-227277c94322?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            priceMultiplier: 1.0,
+            isBackupVehicle: true,
+            features: ["Comfortable seating", "Support vehicle", "Scenic viewing"],
           },
         ],
         availableDates: [
@@ -1825,6 +1836,19 @@ export const destinations: Destination[] = [
               solo: 73499,
               "dual-sharing": 50599,
               "seat-in-backup": 27999,
+            },
+          },
+          {
+            id: "seat-in-backup",
+            name: "Seat in Backup",
+            description: "Travel comfortably in a backup support vehicle.",
+            image: "https://images.unsplash.com/photo-1748446055669-227277c94322?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            isBackupVehicle: true,
+            features: ["Comfortable seating", "Support vehicle", "Scenic viewing"],
+            seatingPrices: {
+              solo: 27499,
+              "dual-sharing": 27499,
+              "seat-in-backup": 27499,
             },
           },
         ],
