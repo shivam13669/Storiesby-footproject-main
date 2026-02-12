@@ -25,9 +25,9 @@ const ConfirmationStep = ({
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Success Message */}
-      <div className="bg-green-50 border-2 border-green-200 rounded-lg p-8 text-center">
+      <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-8 text-center">
         <div className="flex justify-center mb-4">
           <CheckCircle2 className="w-16 h-16 text-green-600" />
         </div>
@@ -40,13 +40,13 @@ const ConfirmationStep = ({
       </div>
 
       {/* Booking Details Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Destination & Duration */}
         <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
           <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
             Trip Details
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-2">
             <div>
               <p className="text-xs text-gray-600 mb-1">Destination</p>
               <p className="text-lg font-bold text-gray-900">{destination.name}</p>
@@ -67,7 +67,7 @@ const ConfirmationStep = ({
           <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
             Travel Information
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-2">
             <div>
               <p className="text-xs text-gray-600 mb-1">Travel Date</p>
               <p className="text-lg font-bold text-gray-900">{formattedDate}</p>
@@ -83,10 +83,10 @@ const ConfirmationStep = ({
 
         {/* Primary Traveler */}
         <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all md:col-span-2">
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4">
+          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
             Primary Traveller
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <p className="text-xs text-gray-600 mb-1">Name</p>
               <p className="font-semibold text-gray-900">{formData.fullName}</p>
@@ -110,7 +110,7 @@ const ConfirmationStep = ({
             <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
               Bike Selected
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div>
                 <p className="text-xs text-gray-600 mb-1">Model</p>
                 <p className="text-lg font-bold text-gray-900">{selectedBike.name}</p>
@@ -127,10 +127,10 @@ const ConfirmationStep = ({
       {/* Co-Travellers */}
       {formData.guests.length > 0 && (
         <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4">
+          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
             Co-Travellers ({formData.guests.length})
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-2">
             {formData.guests.map((guest: GuestData, index: number) => (
               <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <div>
@@ -148,11 +148,11 @@ const ConfirmationStep = ({
 
       {/* Price Breakdown */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
-        <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-6">
+        <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-5">
           Fare Summary
         </h3>
-        
-        <div className="space-y-3">
+
+        <div className="space-y-2">
           <div className="flex justify-between items-center pb-3 border-b border-gray-200">
             <span className="text-gray-700">Base Price (per person)</span>
             <span className="font-semibold text-gray-900">
@@ -193,7 +193,7 @@ const ConfirmationStep = ({
       </div>
 
       {/* Important Info */}
-      <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 shadow-md">
+      <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all">
         <h4 className="font-bold text-yellow-900 mb-3">Important Information</h4>
         <ul className="text-sm text-yellow-800 space-y-2">
           <li className="flex items-start gap-2">
@@ -216,9 +216,9 @@ const ConfirmationStep = ({
       </div>
 
       {/* Confirmation */}
-      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center shadow-md">
-        <p className="text-sm text-gray-700 font-medium">
-          By confirming this booking, you agree to our <a href="#" className="text-blue-600 hover:underline">terms and conditions</a> and <a href="#" className="text-blue-600 hover:underline">privacy policy</a>.
+      <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-md hover:shadow-lg transition-all">
+        <p className="text-sm text-gray-700 font-medium leading-relaxed">
+          By confirming this booking, you agree to our <a href="#" className="text-blue-600 hover:underline font-semibold">terms and conditions</a> and <a href="#" className="text-blue-600 hover:underline font-semibold">privacy policy</a>.
         </p>
       </div>
     </div>

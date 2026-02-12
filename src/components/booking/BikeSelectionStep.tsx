@@ -29,7 +29,7 @@ const BikeSelectionStep = ({
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Title Section */}
       <div>
         <h2 className="text-3xl font-bold text-gray-900 mb-3">Select Your Bike</h2>
