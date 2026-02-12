@@ -103,6 +103,10 @@ const ConfirmationStep = ({
                   {formData.countryCode} {formData.phoneNumber}
                 </p>
               </div>
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Aadhaar</p>
+                <p className="font-semibold text-gray-900">{formData.aadhaarNumber}</p>
+              </div>
             </div>
           </div>
 
