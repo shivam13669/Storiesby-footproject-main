@@ -188,15 +188,6 @@ const ConfirmationStep = ({
                 </div>
               )}
 
-              {travelPackage.oldPrice && (
-                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-                  <span className="text-green-700 font-semibold">You Save</span>
-                  <span className="font-semibold text-green-700">
-                    -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) * (1 + formData.guests.length) - finalPrice).toLocaleString("en-IN")}
-                  </span>
-                </div>
-              )}
-
               <div className="flex justify-between items-center pt-3">
                 <span className="text-lg font-bold text-gray-900">Total Price</span>
                 <span className="text-3xl font-bold text-blue-600">
