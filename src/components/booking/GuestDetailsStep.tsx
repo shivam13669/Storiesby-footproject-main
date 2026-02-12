@@ -242,7 +242,7 @@ const GuestDetailsStep = ({
                   className="h-11 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                 />
                 <p className="text-xs text-gray-600 mt-2">
-                  Required for domestic travel. Your data is secure and encrypted.
+                  Required for innerline permit and hotel bookings. Your data is secure and encrypted.
                 </p>
               </div>
             </div>

@@ -386,21 +386,33 @@ const BikeSelectionStep = ({
               <span className="text-lg mt-1">👨‍🔧</span>
               <div>
                 <p className="font-semibold text-sm text-gray-900">Professional Support</p>
-                <p className="text-xs text-gray-600 mt-1">Mechanic, marshall & backup vehicles</p>
+                <p className="text-xs text-gray-600 mt-1">
+                  {isTransHimalayan
+                    ? "Mechanic, marshall, sweep rider & backup vehicles"
+                    : "Mechanic, marshall & backup vehicles"}
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-lg mt-1">🚗</span>
+              <span className="text-lg mt-1">{isTransHimalayan ? "🎫" : "🚗"}</span>
               <div>
-                <p className="font-semibold text-sm text-gray-900">Pickup & Drop</p>
-                <p className="text-xs text-gray-600 mt-1">Airport transfers included</p>
+                <p className="font-semibold text-sm text-gray-900">
+                  {isTransHimalayan ? "Permit and Bonfire" : "Pickup & Drop"}
+                </p>
+                <p className="text-xs text-gray-600 mt-1">
+                  {isTransHimalayan ? "ILP, Bonfire music" : "Airport transfers included"}
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-lg mt-1">⛽</span>
+              <span className="text-lg mt-1">{isTransHimalayan ? "🏥" : "⛽"}</span>
               <div>
-                <p className="font-semibold text-sm text-gray-900">Fuel & Oxygen</p>
-                <p className="text-xs text-gray-600 mt-1">Bike fuel and emergency oxygen</p>
+                <p className="font-semibold text-sm text-gray-900">
+                  {isTransHimalayan ? "First Aid & Oxygen" : "Fuel & Oxygen"}
+                </p>
+                <p className="text-xs text-gray-600 mt-1">
+                  {isTransHimalayan ? "First Aid and emergency oxygen" : "Bike fuel and emergency oxygen"}
+                </p>
               </div>
             </div>
           </div>
