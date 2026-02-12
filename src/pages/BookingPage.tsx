@@ -206,12 +206,13 @@ const BookingPage = () => {
       });
 
       // Prepare booking data for email
+      const totalTravelers = 1 + formData.guests.length;
       const bookingData = {
         packageName: travelPackage.name,
         destination: destination.name,
         duration: travelPackage.duration,
         travelDate: formattedTravelDate,
-        travelerCount: `${1 + formData.guests.length} ${1 + formData.guests.length === 1 ? 'person' : 'people'}`,
+        travelerCount: `${totalTravelers} ${totalTravelers === 1 ? 'person' : 'people'}`,
         primaryName: formData.fullName,
         primaryEmail: formData.email,
         primaryPhone: `${formData.countryCode} ${formData.phoneNumber}`,
@@ -220,10 +221,13 @@ const BookingPage = () => {
         engine: selectedBike?.cc || 'N/A',
         coTravelerName: coTravelersList || 'No co-travelers',
         coTravelerAadhaar: coTravelersList || 'No co-travelers',
+        coTravelerCount: formData.guests.length,
         basePrice: `₹${Math.round(basePrice).toLocaleString("en-IN")}`,
         coTravelerPrice: formData.guests.length > 0
           ? `+₹${Math.round(basePrice * formData.guests.length).toLocaleString("en-IN")}`
           : '₹0',
+        pricePerTraveler: `₹${Math.round(bikePrice).toLocaleString("en-IN")}`,
+        travelersPrice: `₹${Math.round(bikePrice).toLocaleString("en-IN")} × ${totalTravelers}`,
         totalPrice: `₹${finalPrice.toLocaleString("en-IN")}`,
       };
 
