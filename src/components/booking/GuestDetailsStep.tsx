@@ -93,6 +93,12 @@ const GuestDetailsStep = ({
     };
   };
 
+  const handleAadhaarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digitsOnly = e.target.value.replace(/\D/g, "");
+    const truncated = digitsOnly.slice(0, 12);
+    onFormDataChange({ aadhaarNumber: truncated });
+  };
+
   const handleAddGuest = (guest: GuestData) => {
     onFormDataChange({
       guests: [...formData.guests, guest],
@@ -231,8 +237,8 @@ const GuestDetailsStep = ({
                 <Input
                   placeholder="XXXX XXXX XXXX"
                   value={formData.aadhaarNumber}
-                  onChange={handleInputChange("aadhaarNumber")}
-                  maxLength={12}
+                  onChange={handleAadhaarChange}
+                  inputMode="numeric"
                   className="h-11 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                 />
                 <p className="text-xs text-gray-600 mt-2">
