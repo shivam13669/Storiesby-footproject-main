@@ -265,7 +265,8 @@ const BookingPage = () => {
 
                   {/* Details Section */}
                   <div className="space-y-3">
-                    {formData.travelDate && (
+                    {/* Travel Date - Always show (selected or not selected) */}
+                    {formData.travelDate ? (
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-gray-600">Travel Date</span>
                         <span className="text-sm font-semibold text-gray-900">
@@ -276,8 +277,14 @@ const BookingPage = () => {
                           })}
                         </span>
                       </div>
+                    ) : (
+                      <div className="flex justify-between items-center opacity-50">
+                        <span className="text-sm text-gray-600">Travel Date</span>
+                        <span className="text-sm text-gray-500">Not selected</span>
+                      </div>
                     )}
 
+                    {/* Your Bike */}
                     {selectedBike && (
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-gray-600">Your Bike</span>
@@ -287,19 +294,13 @@ const BookingPage = () => {
                       </div>
                     )}
 
+                    {/* Co-Travellers */}
                     {formData.guests.length > 0 && (
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-gray-600">Co-Travellers</span>
                         <span className="text-sm font-semibold text-gray-900">
                           {formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'}
                         </span>
-                      </div>
-                    )}
-
-                    {!formData.travelDate && (
-                      <div className="flex justify-between items-center opacity-50">
-                        <span className="text-sm text-gray-600">Travel Date</span>
-                        <span className="text-sm text-gray-500">Not selected</span>
                       </div>
                     )}
                   </div>
