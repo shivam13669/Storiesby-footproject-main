@@ -355,7 +355,7 @@ const DestinationsPage = () => {
                         className="flex-1"
                         onClick={(event) => event.stopPropagation()}
                       >
-                        Request callback
+                        Book Now
                       </Button>
                     </div>
                   </div>
