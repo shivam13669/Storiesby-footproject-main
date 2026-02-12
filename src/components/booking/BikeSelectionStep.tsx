@@ -429,8 +429,8 @@ const BikeSelectionStep = ({
           </div>
         </div>
 
-        {/* Seating Option - Show for trans-himalayan */}
-        {isTransHimalayan && (
+        {/* Seating Option - Show for all packages */}
+        {(
           <div>
             <h4 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
               Seating Preference
