@@ -39,19 +39,49 @@ type BookingStep = 1 | 2 | 3;
 
 const BookingPage = () => {
   const { packageSlug } = useParams<{ packageSlug: string }>();
-  const [currentStep, setCurrentStep] = useState<BookingStep>(1);
   const [validationError, setValidationError] = useState<string>("");
 
-  const [formData, setFormData] = useState<BookingFormData>({
-    fullName: "",
-    email: "",
-    countryCode: "+91",
-    phoneNumber: "",
-    travelDate: "",
-    aadhaarNumber: "",
-    guests: [],
-    selectedBikeId: "",
-    seatingPreference: "solo",
+  // Get storage key for this booking
+  const storageKey = `booking_${packageSlug}`;
+  const stepStorageKey = `booking_step_${packageSlug}`;
+
+  // Initialize form data from localStorage or use defaults
+  const [formData, setFormData] = useState<BookingFormData>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          console.error("Failed to parse saved form data");
+        }
+      }
+    }
+    return {
+      fullName: "",
+      email: "",
+      countryCode: "+91",
+      phoneNumber: "",
+      travelDate: "",
+      aadhaarNumber: "",
+      guests: [],
+      selectedBikeId: "",
+      seatingPreference: "solo",
+    };
+  });
+
+  // Initialize current step from localStorage or use default
+  const [currentStep, setCurrentStep] = useState<BookingStep>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(stepStorageKey);
+      if (saved) {
+        const step = parseInt(saved) as BookingStep;
+        if (step === 1 || step === 2 || step === 3) {
+          return step;
+        }
+      }
+    }
+    return 1;
   });
 
   // Find package data
@@ -125,6 +155,30 @@ const BookingPage = () => {
       setCurrentStep((currentStep - 1) as BookingStep);
     }
   };
+
+  const handleConfirmBooking = () => {
+    // Clear saved booking data after successful confirmation
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(storageKey);
+      localStorage.removeItem(stepStorageKey);
+    }
+    // TODO: Add actual booking confirmation logic here
+    alert("Booking confirmed!");
+  };
+
+  // Save formData to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(storageKey, JSON.stringify(formData));
+    }
+  }, [formData, storageKey]);
+
+  // Save currentStep to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(stepStorageKey, currentStep.toString());
+    }
+  }, [currentStep, stepStorageKey]);
 
   // Scroll to top when step changes
   useEffect(() => {
@@ -242,6 +296,7 @@ const BookingPage = () => {
               )}
               {currentStep === 3 && (
                 <button
+                  onClick={handleConfirmBooking}
                   className="flex-1 h-12 text-base font-semibold bg-green-600 text-white rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all"
                 >
                   Confirm Booking
@@ -375,7 +430,7 @@ const BookingPage = () => {
                   {/* Action Button */}
                   {currentStep === 3 && (
                     <div className="pt-2 space-y-3">
-                      <button className="w-full h-12 text-base font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-lg">
+                      <button onClick={handleConfirmBooking} className="w-full h-12 text-base font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-lg">
                         🔒 Confirm Booking
                       </button>
                       <p className="text-xs text-gray-600 text-center">
