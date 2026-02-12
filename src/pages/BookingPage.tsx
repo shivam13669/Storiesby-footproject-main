@@ -44,17 +44,26 @@ const BookingPage = () => {
   // Get storage key for this booking
   const storageKey = `booking_${packageSlug}`;
   const stepStorageKey = `booking_step_${packageSlug}`;
+  const packageStorageKey = `booking_package_${packageSlug}`;
 
   // Initialize form data from localStorage or use defaults
   const [formData, setFormData] = useState<BookingFormData>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch (e) {
-          console.error("Failed to parse saved form data");
+      // Check if this is the same booking package (not navigated away)
+      const savedPackage = localStorage.getItem(packageStorageKey);
+      if (savedPackage === packageSlug) {
+        const saved = localStorage.getItem(storageKey);
+        if (saved) {
+          try {
+            return JSON.parse(saved);
+          } catch (e) {
+            console.error("Failed to parse saved form data");
+          }
         }
+      } else {
+        // User navigated away and came back, or went to different package - clear all data
+        localStorage.removeItem(storageKey);
+        localStorage.removeItem(stepStorageKey);
       }
     }
     return {
@@ -73,11 +82,14 @@ const BookingPage = () => {
   // Initialize current step from localStorage or use default
   const [currentStep, setCurrentStep] = useState<BookingStep>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(stepStorageKey);
-      if (saved) {
-        const step = parseInt(saved) as BookingStep;
-        if (step === 1 || step === 2 || step === 3) {
-          return step;
+      const savedPackage = localStorage.getItem(packageStorageKey);
+      if (savedPackage === packageSlug) {
+        const saved = localStorage.getItem(stepStorageKey);
+        if (saved) {
+          const step = parseInt(saved) as BookingStep;
+          if (step === 1 || step === 2 || step === 3) {
+            return step;
+          }
         }
       }
     }
@@ -140,11 +152,21 @@ const BookingPage = () => {
         setValidationError("Please fill in all required fields");
         return;
       }
+      // Step 1 validated, save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(storageKey, JSON.stringify(formData));
+        localStorage.setItem(packageStorageKey, packageSlug || "");
+      }
       setCurrentStep(2);
     } else if (currentStep === 2) {
       if (!formData.selectedBikeId) {
         setValidationError("Please select a bike");
         return;
+      }
+      // Step 2 validated, save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(storageKey, JSON.stringify(formData));
+        localStorage.setItem(packageStorageKey, packageSlug || "");
       }
       setCurrentStep(3);
     }
@@ -161,21 +183,15 @@ const BookingPage = () => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem(storageKey);
       localStorage.removeItem(stepStorageKey);
+      localStorage.removeItem(packageStorageKey);
     }
     // TODO: Add actual booking confirmation logic here
     alert("Booking confirmed!");
   };
 
-  // Save formData to localStorage whenever it changes
+  // Save currentStep to localStorage whenever it changes (only steps 2 and 3 mean validated data)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(storageKey, JSON.stringify(formData));
-    }
-  }, [formData, storageKey]);
-
-  // Save currentStep to localStorage whenever it changes
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && currentStep > 1) {
       localStorage.setItem(stepStorageKey, currentStep.toString());
     }
   }, [currentStep, stepStorageKey]);
