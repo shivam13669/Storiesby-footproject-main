@@ -146,7 +146,7 @@ const BikeSelectionStep = ({
 
                     <div className="pt-2 border-t border-gray-200">
                       <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
-                        Price per rider
+                        Price per traveler
                       </p>
                       <div className="flex items-baseline gap-2">
                         <span className="text-2xl font-bold text-gray-900">
@@ -229,7 +229,7 @@ const BikeSelectionStep = ({
 
                         <div className="pt-2 border-t border-gray-200">
                           <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
-                            Price per rider
+                            Price per traveler
                           </p>
                           <div className="flex items-baseline gap-2">
                             <span className="text-2xl font-bold text-gray-900">
@@ -239,12 +239,11 @@ const BikeSelectionStep = ({
                               <span
                                 className={`text-sm font-semibold ${
                                   priceDifference > 0
-                                    ? "text-orange-600"
+                                    ? "text-green-600"
                                     : "text-green-600"
                                 }`}
                               >
-                                {priceDifference > 0 ? "+" : ""}₹
-                                {priceDifference.toLocaleString("en-IN")}
+                                {priceDifference > 0 ? "✓ EARLY BIRD OFFER!" : ""}
                               </span>
                             )}
                           </div>
@@ -341,7 +340,7 @@ const BikeSelectionStep = ({
                       {/* Price Section */}
                       <div className="pt-2 border-t border-gray-200">
                         <p className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-1">
-                          Price per rider
+                          Price per traveler
                         </p>
                         <div className="flex items-baseline gap-2">
                           <span className="text-2xl font-bold text-gray-900">
@@ -349,14 +348,9 @@ const BikeSelectionStep = ({
                           </span>
                           {priceDifference !== 0 && (
                             <span
-                              className={`text-sm font-semibold ${
-                                priceDifference > 0
-                                  ? "text-orange-600"
-                                  : "text-green-600"
-                              }`}
+                              className={`text-sm font-semibold text-green-600`}
                             >
-                              {priceDifference > 0 ? "+" : ""}₹
-                              {priceDifference.toLocaleString("en-IN")}
+                              {priceDifference > 0 ? "✓ EARLY BIRD OFFER!" : ""}
                             </span>
                           )}
                         </div>

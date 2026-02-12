@@ -333,20 +333,26 @@ const BookingPage = () => {
                   {/* Price Section */}
                   <div className="space-y-3">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-700">Base Price</span>
+                      <span className="text-gray-700">Price per Traveler</span>
                       <span className="font-semibold text-gray-900">
-                        ₹{Math.round(parseInt(travelPackage.price.replace(/\D/g, ""))).toLocaleString("en-IN")}
+                        ₹{Math.round(bikePrice).toLocaleString("en-IN")}
                       </span>
                     </div>
 
-                    {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
+                    {selectedBike && (isTransHimalayan && selectedBike.seatingPrices) || (!isTransHimalayan && selectedBike.priceMultiplier !== 1.0) ? (
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-700">{selectedBike.name}</span>
+                        <span className="font-semibold text-green-600 uppercase tracking-wide text-xs">EARLY BIRD OFFER!</span>
+                        <span className="font-semibold text-green-600">
+                          ✓ Best Price
+                        </span>
+                      </div>
+                    ) : null}
+
+                    {totalTravelers > 1 && (
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-gray-700">Travelers</span>
                         <span className="font-semibold text-gray-900">
-                          +₹{Math.round(
-                            parseInt(travelPackage.price.replace(/\D/g, "")) *
-                              (selectedBike.priceMultiplier - 1)
-                          ).toLocaleString("en-IN")}
+                          ₹{Math.round(bikePrice).toLocaleString("en-IN")} × {totalTravelers}
                         </span>
                       </div>
                     )}
