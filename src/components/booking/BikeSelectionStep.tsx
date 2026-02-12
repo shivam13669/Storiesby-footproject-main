@@ -420,7 +420,7 @@ const BikeSelectionStep = ({
               : "Select your preferred seating arrangement"}
           </p>
           <div className="space-y-3">
-            {/* Show DUAL SHARING only when co-travellers are added */}
+            {/* Show DUAL SHARING only when co-travelers are added */}
             {formData.guests && formData.guests.length > 0 && (
               <label className="flex items-center gap-3 p-3 border-2 rounded-lg hover:border-blue-400 cursor-pointer transition-all"
                 style={{borderColor: seatingPreference === "dual-sharing" ? "#2563eb" : "#d1d5db"}}>

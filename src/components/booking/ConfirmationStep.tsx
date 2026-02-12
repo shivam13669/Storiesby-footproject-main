@@ -75,7 +75,7 @@ const ConfirmationStep = ({
                 <p className="text-lg font-bold text-gray-900">{formattedDate}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-600 mb-1">Number of Travellers</p>
+                <p className="text-xs text-gray-600 mb-1">Number of Travelers</p>
                 <p className="text-lg font-bold text-gray-900">
                   {1 + formData.guests.length} {1 + formData.guests.length === 1 ? "person" : "people"}
                 </p>
@@ -86,7 +86,7 @@ const ConfirmationStep = ({
           {/* Primary Traveler Section */}
           <div>
             <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-              Primary Traveller
+              Primary Traveler
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -125,11 +125,11 @@ const ConfirmationStep = ({
             </div>
           )}
 
-          {/* Co-Travellers Section */}
+          {/* Co-Travelers Section */}
           {formData.guests.length > 0 && (
             <div>
               <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
-                Co-Travellers ({formData.guests.length})
+                Co-Travelers ({formData.guests.length})
               </h3>
               <div className="space-y-2">
                 {formData.guests.map((guest: GuestData, index: number) => (
@@ -164,7 +164,7 @@ const ConfirmationStep = ({
               {formData.guests.length > 0 && (
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
                   <span className="text-gray-700">
-                    Co-Travellers ({formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'})
+                    Co-Travelers ({formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'})
                   </span>
                   <span className="font-semibold text-gray-900">
                     +₹{Math.round(
@@ -228,7 +228,7 @@ const ConfirmationStep = ({
             </li>
             <li className="flex items-start gap-2">
               <span className="text-gray-600 font-bold mt-0.5">•</span>
-              <span>All travellers must carry valid government ID proof.</span>
+              <span>All travelers must carry valid government ID proof.</span>
             </li>
           </ul>
         </div>
