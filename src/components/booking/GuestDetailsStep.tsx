@@ -229,10 +229,10 @@ const GuestDetailsStep = ({
                   Aadhaar Number <span className="text-red-500">*</span>
                 </label>
                 <Input
-                  placeholder="XXXX XXXX XXXX XXXX"
+                  placeholder="XXXX XXXX XXXX"
                   value={formData.aadhaarNumber}
                   onChange={handleInputChange("aadhaarNumber")}
-                  maxLength={16}
+                  maxLength={12}
                   className="h-11 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
                 />
                 <p className="text-xs text-gray-600 mt-2">

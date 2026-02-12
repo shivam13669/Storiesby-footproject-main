@@ -67,10 +67,10 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
               Aadhaar Number <span className="text-red-500">*</span>
             </label>
             <Input
-              placeholder="XXXX XXXX XXXX XXXX"
+              placeholder="XXXX XXXX XXXX"
               value={guestAadhaar}
-              onChange={(e) => setGuestAadhaar(e.target.value.slice(0, 16))}
-              maxLength={16}
+              onChange={(e) => setGuestAadhaar(e.target.value.slice(0, 12))}
+              maxLength={12}
               className="h-12 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
