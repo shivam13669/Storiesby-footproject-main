@@ -76,14 +76,17 @@ const BookingPage = () => {
   const selectedBike = travelPackage.bikes?.find(b => b.id === formData.selectedBikeId);
   const isTransHimalayan = travelPackage.slug === "trans-himalayan-ride";
 
-  // Determine bike price based on seating preference for trans-himalayan or use multiplier for others
+  // Determine bike price based on seating preference for trans-himalayan or backup vehicles, or use multiplier for others
   let bikePrice = basePrice;
   if (selectedBike) {
-    if (isTransHimalayan && selectedBike.seatingPrices && formData.seatingPreference) {
+    // Use seating prices if available (for trans-himalayan or backup vehicles)
+    if (selectedBike.seatingPrices && formData.seatingPreference) {
       bikePrice = selectedBike.seatingPrices[formData.seatingPreference] || basePrice;
-    } else {
-      bikePrice = basePrice * (selectedBike.priceMultiplier || 1.0);
+    } else if (selectedBike.priceMultiplier) {
+      // Otherwise use price multiplier if available
+      bikePrice = basePrice * selectedBike.priceMultiplier;
     }
+    // If neither seatingPrices nor priceMultiplier exist, keep basePrice
   }
 
   const totalTravelers = 1 + formData.guests.length; // Primary traveler + co-travelers
