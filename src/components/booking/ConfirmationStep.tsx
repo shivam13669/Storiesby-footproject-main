@@ -39,14 +39,14 @@ const ConfirmationStep = ({
         </p>
       </div>
 
-      {/* Booking Details Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Destination & Duration */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
+      {/* Booking Details - All in One Card */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-md hover:shadow-lg transition-all space-y-6">
+        {/* Trip Details Section */}
+        <div>
+          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
             Trip Details
           </h3>
-          <div className="space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <p className="text-xs text-gray-600 mb-1">Destination</p>
               <p className="text-lg font-bold text-gray-900">{destination.name}</p>
@@ -62,12 +62,12 @@ const ConfirmationStep = ({
           </div>
         </div>
 
-        {/* Travel Date */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
+        {/* Travel Information Section */}
+        <div>
+          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
             Travel Information
           </h3>
-          <div className="space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className="text-xs text-gray-600 mb-1">Travel Date</p>
               <p className="text-lg font-bold text-gray-900">{formattedDate}</p>
@@ -81,12 +81,12 @@ const ConfirmationStep = ({
           </div>
         </div>
 
-        {/* Primary Traveler */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all md:col-span-2">
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
+        {/* Primary Traveler Section */}
+        <div>
+          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
             Primary Traveller
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <p className="text-xs text-gray-600 mb-1">Name</p>
               <p className="font-semibold text-gray-900">{formData.fullName}</p>
@@ -104,13 +104,13 @@ const ConfirmationStep = ({
           </div>
         </div>
 
-        {/* Bike Selection */}
+        {/* Bike Selection Section */}
         {selectedBike && (
-          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
-            <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
+          <div>
+            <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
               Bike Selected
             </h3>
-            <div className="space-y-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <p className="text-xs text-gray-600 mb-1">Model</p>
                 <p className="text-lg font-bold text-gray-900">{selectedBike.name}</p>
@@ -122,72 +122,72 @@ const ConfirmationStep = ({
             </div>
           </div>
         )}
-      </div>
 
-      {/* Co-Travellers */}
-      {formData.guests.length > 0 && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
-          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">
-            Co-Travellers ({formData.guests.length})
-          </h3>
-          <div className="space-y-2">
-            {formData.guests.map((guest: GuestData, index: number) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <div>
-                  <p className="font-semibold text-gray-900">{guest.name}</p>
-                  <p className="text-sm text-gray-600">Aadhaar: {guest.aadhaarNumber}</p>
+        {/* Co-Travellers Section */}
+        {formData.guests.length > 0 && (
+          <div>
+            <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+              Co-Travellers ({formData.guests.length})
+            </h3>
+            <div className="space-y-2">
+              {formData.guests.map((guest: GuestData, index: number) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <div>
+                    <p className="font-semibold text-gray-900">{guest.name}</p>
+                    <p className="text-sm text-gray-600">Aadhaar: {guest.aadhaarNumber}</p>
+                  </div>
+                  <span className="text-xs font-bold px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+                    Guest {index + 1}
+                  </span>
                 </div>
-                <span className="text-xs font-bold px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
-                  Guest {index + 1}
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Price Breakdown Section */}
+        <div>
+          <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4 pb-3 border-b border-gray-200">
+            Fare Summary
+          </h3>
+
+          <div className="space-y-2">
+            <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+              <span className="text-gray-700">Base Price (per person)</span>
+              <span className="font-semibold text-gray-900">
+                ₹{Math.round(parseInt(travelPackage.price.replace(/\D/g, ""))).toLocaleString("en-IN")}
+              </span>
+            </div>
+
+            {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
+              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                <span className="text-gray-700">
+                  {selectedBike.name} Upgrade ({Math.round((selectedBike.priceMultiplier - 1) * 100)}%)
+                </span>
+                <span className="font-semibold text-gray-900">
+                  +₹{Math.round(
+                    parseInt(travelPackage.price.replace(/\D/g, "")) *
+                      (selectedBike.priceMultiplier - 1)
+                  ).toLocaleString("en-IN")}
                 </span>
               </div>
-            ))}
-          </div>
-        </div>
-      )}
+            )}
 
-      {/* Price Breakdown */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg transition-all">
-        <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-5">
-          Fare Summary
-        </h3>
+            {travelPackage.oldPrice && (
+              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                <span className="text-green-700 font-semibold">You Save</span>
+                <span className="font-semibold text-green-700">
+                  -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
+                </span>
+              </div>
+            )}
 
-        <div className="space-y-2">
-          <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-            <span className="text-gray-700">Base Price (per person)</span>
-            <span className="font-semibold text-gray-900">
-              ₹{Math.round(parseInt(travelPackage.price.replace(/\D/g, ""))).toLocaleString("en-IN")}
-            </span>
-          </div>
-
-          {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
-            <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-              <span className="text-gray-700">
-                {selectedBike.name} Upgrade ({Math.round((selectedBike.priceMultiplier - 1) * 100)}%)
-              </span>
-              <span className="font-semibold text-gray-900">
-                +₹{Math.round(
-                  parseInt(travelPackage.price.replace(/\D/g, "")) *
-                    (selectedBike.priceMultiplier - 1)
-                ).toLocaleString("en-IN")}
+            <div className="flex justify-between items-center pt-3">
+              <span className="text-lg font-bold text-gray-900">Total Price</span>
+              <span className="text-3xl font-bold text-blue-600">
+                ₹{finalPrice.toLocaleString("en-IN")}
               </span>
             </div>
-          )}
-
-          {travelPackage.oldPrice && (
-            <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-              <span className="text-green-700 font-semibold">You Save</span>
-              <span className="font-semibold text-green-700">
-                -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
-              </span>
-            </div>
-          )}
-
-          <div className="flex justify-between items-center pt-3">
-            <span className="text-lg font-bold text-gray-900">Total Price</span>
-            <span className="text-3xl font-bold text-blue-600">
-              ₹{finalPrice.toLocaleString("en-IN")}
-            </span>
           </div>
         </div>
       </div>
