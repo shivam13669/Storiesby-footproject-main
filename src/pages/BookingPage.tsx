@@ -420,14 +420,12 @@ const BookingPage = () => {
                       </div>
                     ) : null}
 
-                    {totalTravelers > 1 && (
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-700">Travelers</span>
-                        <span className="font-semibold text-gray-900">
-                          ₹{Math.round(bikePrice).toLocaleString("en-IN")} × {totalTravelers}
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-700">Travelers</span>
+                      <span className="font-semibold text-gray-900">
+                        ₹{Math.round(bikePrice).toLocaleString("en-IN")} × {totalTravelers}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Divider */}
