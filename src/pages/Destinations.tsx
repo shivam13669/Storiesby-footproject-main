@@ -351,11 +351,17 @@ const DestinationsPage = () => {
                         </Link>
                       </Button>
                       <Button
+                        asChild
                         variant="outline"
                         className="flex-1"
                         onClick={(event) => event.stopPropagation()}
                       >
-                        Book Now
+                        <Link
+                          to={`/booking/${pkg.slug}`}
+                          onClick={(event) => event.stopPropagation()}
+                        >
+                          Book Now
+                        </Link>
                       </Button>
                     </div>
                   </div>
