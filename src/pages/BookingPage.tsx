@@ -391,14 +391,12 @@ const BookingPage = () => {
                     )}
 
                     {/* Co-Travelers */}
-                    {formData.guests.length > 0 && (
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Co-Travelers</span>
-                        <span className="text-sm font-semibold text-gray-900">
-                          {formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'}
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Co-Travelers</span>
+                      <span className="text-sm font-semibold text-gray-900">
+                        {formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Divider */}

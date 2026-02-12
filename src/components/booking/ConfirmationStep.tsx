@@ -165,18 +165,16 @@ const ConfirmationStep = ({
                 </span>
               </div>
 
-              {formData.guests.length > 0 && (
-                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-                  <span className="text-gray-700">
-                    Co-Travelers ({formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'})
-                  </span>
-                  <span className="font-semibold text-gray-900">
-                    +₹{Math.round(
-                      parseInt(travelPackage.price.replace(/\D/g, "")) * formData.guests.length
-                    ).toLocaleString("en-IN")}
-                  </span>
-                </div>
-              )}
+              <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                <span className="text-gray-700">
+                  Co-Travelers ({formData.guests.length} {formData.guests.length === 1 ? 'person' : 'people'})
+                </span>
+                <span className="font-semibold text-gray-900">
+                  {formData.guests.length > 0 ? `+₹${Math.round(
+                    parseInt(travelPackage.price.replace(/\D/g, "")) * formData.guests.length
+                  ).toLocaleString("en-IN")}` : '₹0'}
+                </span>
+              </div>
 
               {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
                 <div className="flex justify-between items-center pb-3 border-b border-gray-200">
