@@ -121,205 +121,216 @@ const GuestDetailsStep = ({
 
   return (
     <div className="space-y-6">
-      {/* Card: Personal Information */}
-      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          Traveller Details
-        </h2>
-        
-        <div className="space-y-4">
-          {/* Full Name */}
+      {/* Single Combined Card */}
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all overflow-hidden">
+        <div className="p-6 space-y-6">
+          {/* SECTION 1: Traveller Details */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <Input
-              placeholder="As per ID proof"
-              value={formData.fullName}
-              onChange={handleInputChange("fullName")}
-              className="h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
-            />
-          </div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Traveller Details
+            </h2>
+            
+            <div className="space-y-4">
+              {/* Full Name */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder="As per ID proof"
+                  value={formData.fullName}
+                  onChange={handleInputChange("fullName")}
+                  className="h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                />
+              </div>
 
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <Input
-              type="email"
-              placeholder="your.email@example.com"
-              value={formData.email}
-              onChange={handleInputChange("email")}
-              className="h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
-            />
-          </div>
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="email"
+                  placeholder="your.email@example.com"
+                  value={formData.email}
+                  onChange={handleInputChange("email")}
+                  className="h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                />
+              </div>
 
-          {/* Phone Number */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Mobile Number <span className="text-red-500">*</span>
-            </label>
-            <div className="flex gap-2">
-              <Popover open={openCountryPopover} onOpenChange={(open) => {
-                setOpenCountryPopover(open);
-                if (!open) setCountrySearch("");
-              }}>
-                <PopoverTrigger asChild>
-                  <button
-                    type="button"
-                    className="px-3 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center gap-2 min-w-fit h-11 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <span className="font-semibold text-gray-900">{selectedCountry.dial}</span>
-                    <ChevronDown className="h-4 w-4 text-gray-600" />
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64 p-0" align="start">
-                  <div className="flex flex-col max-h-96">
-                    <div className="sticky top-0 z-10 p-3 border-b border-gray-200 bg-white">
-                      <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                        <input
-                          type="text"
-                          placeholder="Search country..."
-                          value={countrySearch}
-                          onChange={(e) => setCountrySearch(e.target.value)}
-                          className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
-                          autoFocus
-                        />
+              {/* Phone Number */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Mobile Number <span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-2">
+                  <Popover open={openCountryPopover} onOpenChange={(open) => {
+                    setOpenCountryPopover(open);
+                    if (!open) setCountrySearch("");
+                  }}>
+                    <PopoverTrigger asChild>
+                      <button
+                        type="button"
+                        className="px-3 py-3 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center gap-2 min-w-fit h-11 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <span className="font-semibold text-gray-900">{selectedCountry.dial}</span>
+                        <ChevronDown className="h-4 w-4 text-gray-600" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-64 p-0" align="start">
+                      <div className="flex flex-col max-h-96">
+                        <div className="sticky top-0 z-10 p-3 border-b border-gray-200 bg-white">
+                          <div className="relative">
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                            <input
+                              type="text"
+                              placeholder="Search country..."
+                              value={countrySearch}
+                              onChange={(e) => setCountrySearch(e.target.value)}
+                              className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
+                              autoFocus
+                            />
+                          </div>
+                        </div>
+                        <div className="overflow-y-auto">
+                          {filteredCountries.map((country) => (
+                            <button
+                              key={country.code}
+                              type="button"
+                              onClick={() => handleCountrySelect(country)}
+                              className={`w-full text-left px-4 py-3 text-sm hover:bg-blue-50 transition-colors flex items-center justify-between border-b border-gray-100 last:border-0 ${
+                                selectedCountry.code === country.code
+                                  ? "bg-blue-50 font-semibold text-blue-600"
+                                  : "text-gray-700"
+                              }`}
+                            >
+                              <span>{country.name}</span>
+                              <span className="font-medium text-gray-600">{country.dial}</span>
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                    <div className="overflow-y-auto">
-                      {filteredCountries.map((country) => (
-                        <button
-                          key={country.code}
-                          type="button"
-                          onClick={() => handleCountrySelect(country)}
-                          className={`w-full text-left px-4 py-3 text-sm hover:bg-blue-50 transition-colors flex items-center justify-between border-b border-gray-100 last:border-0 ${
-                            selectedCountry.code === country.code
-                              ? "bg-blue-50 font-semibold text-blue-600"
-                              : "text-gray-700"
-                          }`}
-                        >
-                          <span>{country.name}</span>
-                          <span className="font-medium text-gray-600">{country.dial}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </PopoverContent>
-              </Popover>
+                    </PopoverContent>
+                  </Popover>
 
-              <Input
-                type="tel"
-                placeholder="9876543210"
-                value={formData.phoneNumber}
-                onChange={handlePhoneChange}
-                className="flex-1 h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
-              />
+                  <Input
+                    type="tel"
+                    placeholder="9876543210"
+                    value={formData.phoneNumber}
+                    onChange={handlePhoneChange}
+                    className="flex-1 h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                  />
+                </div>
+              </div>
+
+              {/* Aadhaar Number */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Aadhaar Number <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  placeholder="XXXX XXXX XXXX XXXX"
+                  value={formData.aadhaarNumber}
+                  onChange={handleInputChange("aadhaarNumber")}
+                  maxLength={16}
+                  className="h-11 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                />
+                <p className="text-xs text-gray-600 mt-2">
+                  Required for domestic travel. Your data is secure and encrypted.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Aadhaar Number */}
+          {/* Divider */}
+          <div className="border-t border-gray-200" />
+
+          {/* SECTION 2: Travel Date */}
           <div>
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Aadhaar Number <span className="text-red-500">*</span>
-            </label>
-            <Input
-              placeholder="XXXX XXXX XXXX XXXX"
-              value={formData.aadhaarNumber}
-              onChange={handleInputChange("aadhaarNumber")}
-              maxLength={16}
-              className="h-11 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
-            />
-            <p className="text-xs text-gray-600 mt-2">
-              Required for domestic travel. Your data is secure and encrypted.
-            </p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              When will you travel?
+            </h2>
+            
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Select Date <span className="text-red-500">*</span>
+              </label>
+              <Popover open={openDatePopover} onOpenChange={setOpenDatePopover}>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className="w-full h-11 px-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <span className={formData.travelDate ? "text-gray-900 font-medium" : "text-gray-500"}>
+                      {formData.travelDate
+                        ? new Date(formData.travelDate).toLocaleDateString("en-IN", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          })
+                        : "Select a date"}
+                    </span>
+                    <Calendar className="h-5 w-5 text-gray-600" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 bg-white" align="start">
+                  <AdvancedDatePicker
+                    selected={selectedDate}
+                    onSelect={handleDateSelect}
+                    disabled={isDateDisabled}
+                    availableDates={travelPackage.availableDates}
+                  />
+                </PopoverContent>
+              </Popover>
+              <p className="text-xs text-gray-600 mt-2">
+                {travelPackage.availableDates?.length || 0} available dates
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Card: Travel Date */}
-      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          When will you travel?
-        </h2>
-        
-        <div>
-          <label className="block text-sm font-semibold text-gray-900 mb-2">
-            Select Date <span className="text-red-500">*</span>
-          </label>
-          <Popover open={openDatePopover} onOpenChange={setOpenDatePopover}>
-            <PopoverTrigger asChild>
-              <button
-                type="button"
-                className="w-full h-11 px-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500"
+          {/* Divider */}
+          <div className="border-t border-gray-200" />
+
+          {/* SECTION 3: Additional Guests */}
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Add Co-Travellers</h2>
+              <Button
+                onClick={() => setShowAddGuestModal(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
               >
-                <span className={formData.travelDate ? "text-gray-900 font-medium" : "text-gray-500"}>
-                  {formData.travelDate
-                    ? new Date(formData.travelDate).toLocaleDateString("en-IN", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })
-                    : "Select a date"}
-                </span>
-                <Calendar className="h-5 w-5 text-gray-600" />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 bg-white" align="start">
-              <AdvancedDatePicker
-                selected={selectedDate}
-                onSelect={handleDateSelect}
-                disabled={isDateDisabled}
-                availableDates={travelPackage.availableDates}
-              />
-            </PopoverContent>
-          </Popover>
-          <p className="text-xs text-gray-600 mt-2">
-            {travelPackage.availableDates?.length || 0} available dates
-          </p>
-        </div>
-      </div>
+                + Add
+              </Button>
+            </div>
 
-      {/* Card: Additional Guests */}
-      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-md hover:shadow-lg transition-all">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Add Co-Travellers</h2>
-          <Button
-            onClick={() => setShowAddGuestModal(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
-          >
-            + Add
-          </Button>
-        </div>
-
-        {formData.guests.length === 0 ? (
-          <div className="py-10 text-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
-            <p className="text-gray-600 font-medium">No co-travellers added yet</p>
-            <p className="text-sm text-gray-500 mt-1">Add family members or friends traveling with you</p>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {formData.guests.map((guest, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-100 transition-all"
-              >
-                <div className="flex-1">
-                  <p className="font-semibold text-gray-900">{guest.name}</p>
-                  <p className="text-sm text-gray-600">Aadhaar: {guest.aadhaarNumber}</p>
-                </div>
-                <button
-                  onClick={() => handleRemoveGuest(index)}
-                  className="p-2 hover:bg-red-100 hover:text-red-600 rounded-lg transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+            {formData.guests.length === 0 ? (
+              <div className="py-10 text-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
+                <p className="text-gray-600 font-medium">No co-travellers added yet</p>
+                <p className="text-sm text-gray-500 mt-1">Add family members or friends traveling with you</p>
               </div>
-            ))}
+            ) : (
+              <div className="space-y-3">
+                {formData.guests.map((guest, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-100 transition-all"
+                  >
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900">{guest.name}</p>
+                      <p className="text-sm text-gray-600">Aadhaar: {guest.aadhaarNumber}</p>
+                    </div>
+                    <button
+                      onClick={() => handleRemoveGuest(index)}
+                      className="p-2 hover:bg-red-100 hover:text-red-600 rounded-lg transition-colors"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Add Guest Modal */}
