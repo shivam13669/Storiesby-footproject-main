@@ -110,63 +110,40 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#f5f7fa" }}>
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <div className="w-full py-8 mt-16" style={{ backgroundColor: "#ffffff" }}>
-        <div className="container mx-auto px-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => window.history.back()}
-            className="mb-0 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-          >
-            <ChevronLeft className="w-5 h-5 mr-2" />
-            Back
-          </Button>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Booking Details
-          </h1>
-          <p className="text-gray-600">
-            {travelPackage.name} • {travelPackage.duration}
-          </p>
+      <div className="container mx-auto px-4 py-8 mt-16">
+        {/* Title */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
         </div>
 
-        {/* Step Progress Bar */}
-        <div className="mb-12 bg-white rounded-lg p-6 border border-gray-200">
-          <div className="flex items-center justify-between">
-            {[
-              { num: 1, label: "Travel Info" },
-              { num: 2, label: "Select Bike" },
-              { num: 3, label: "Review Booking" },
-            ].map((item, idx) => (
-              <div key={item.num} className="flex items-center flex-1">
+        {/* Centered Step Indicator */}
+        <div className="mb-16 flex justify-center">
+          <div className="flex items-center gap-8">
+            {[1, 2, 3].map((step, idx) => (
+              <div key={step} className="flex items-center gap-8">
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all ${
-                      item.num === currentStep
-                        ? "bg-blue-600 text-white shadow-lg"
-                        : item.num < currentStep
+                    className={`w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg transition-all ${
+                      step === currentStep
+                        ? "bg-blue-600 text-white shadow-lg scale-110"
+                        : step < currentStep
                         ? "bg-green-600 text-white"
-                        : "bg-gray-200 text-gray-600"
+                        : "bg-gray-300 text-gray-600"
                     }`}
                   >
-                    {item.num < currentStep ? "✓" : item.num}
+                    {step < currentStep ? "✓" : step}
                   </div>
-                  <p className="text-xs font-semibold text-gray-700 mt-2 text-center whitespace-nowrap">
-                    {item.label}
+                  <p className="text-xs font-semibold text-gray-700 mt-3 text-center whitespace-nowrap">
+                    {step === 1 ? "Travel Info" : step === 2 ? "Select Bike" : "Review"}
                   </p>
                 </div>
                 {idx < 2 && (
                   <div
-                    className={`flex-1 h-1 mx-3 transition-all ${
-                      item.num < currentStep ? "bg-green-600" : "bg-gray-300"
+                    className={`w-12 h-1 transition-all ${
+                      step < currentStep ? "bg-green-600" : "bg-gray-300"
                     }`}
                   />
                 )}
@@ -176,9 +153,9 @@ const BookingPage = () => {
         </div>
 
         {/* Main Content - Checkout Style */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-4">
           {/* Left side - Form content */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-0">
             {currentStep === 1 && (
               <GuestDetailsStep
                 formData={formData}
@@ -244,14 +221,14 @@ const BookingPage = () => {
 
           {/* Right side - Booking Summary (Checkout Style) */}
           <div className="lg:col-span-1">
-            <div className="sticky top-20">
+            <div className="sticky top-24">
               {/* Booking Card */}
-              <div className="bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden">
-                {/* Package Header with Image */}
-                <div className="bg-gradient-to-br from-blue-600 to-blue-700 h-40 flex items-center justify-center text-white">
+              <div className="bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden">
+                {/* Package Header with Icon */}
+                <div className="bg-gradient-to-br from-blue-600 to-blue-700 h-32 flex items-center justify-center text-white">
                   <div className="text-center">
-                    <div className="text-5xl mb-2">🏍️</div>
-                    <p className="text-sm opacity-90">Bike Adventure Trip</p>
+                    <div className="text-6xl mb-2">📦</div>
+                    <p className="text-sm opacity-95">Booking Summary</p>
                   </div>
                 </div>
 
@@ -259,13 +236,10 @@ const BookingPage = () => {
                 <div className="p-6 space-y-6">
                   {/* Title Section */}
                   <div>
-                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">
-                      Trip Summary
-                    </h3>
-                    <h2 className="text-lg font-bold text-gray-900">
+                    <h2 className="text-lg font-bold text-gray-900 mb-1">
                       {travelPackage.name}
                     </h2>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-gray-600">
                       {travelPackage.duration}
                     </p>
                   </div>
@@ -318,18 +292,18 @@ const BookingPage = () => {
                   <div className="border-t border-gray-200" />
 
                   {/* Price Section */}
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-600">Subtotal</span>
-                      <span className="font-medium text-gray-900">
+                      <span className="text-gray-700">Base Price</span>
+                      <span className="font-semibold text-gray-900">
                         ₹{Math.round(parseInt(travelPackage.price.replace(/\D/g, ""))).toLocaleString("en-IN")}
                       </span>
                     </div>
 
                     {selectedBike && selectedBike.priceMultiplier !== 1.0 && (
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-600">Bike Upgrade</span>
-                        <span className="font-medium text-gray-900">
+                        <span className="text-gray-700">{selectedBike.name}</span>
+                        <span className="font-semibold text-gray-900">
                           +₹{Math.round(
                             parseInt(travelPackage.price.replace(/\D/g, "")) *
                               (selectedBike.priceMultiplier - 1)
@@ -340,8 +314,8 @@ const BookingPage = () => {
 
                     {travelPackage.oldPrice && (
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-green-600 font-medium">Discount</span>
-                        <span className="font-medium text-green-600">
+                        <span className="text-green-700 font-semibold">Discount</span>
+                        <span className="font-semibold text-green-600">
                           -₹{(parseInt(travelPackage.oldPrice.replace(/\D/g, "")) - finalPrice).toLocaleString("en-IN")}
                         </span>
                       </div>
@@ -352,43 +326,39 @@ const BookingPage = () => {
                   <div className="border-t border-gray-200" />
 
                   {/* Total Price */}
-                  <div className="flex justify-between items-end">
-                    <div>
-                      <p className="text-xs text-gray-600 font-semibold mb-1">TOTAL AMOUNT</p>
-                      <p className="text-3xl font-bold text-gray-900">
-                        ₹{finalPrice.toLocaleString("en-IN")}
-                      </p>
-                    </div>
+                  <div>
+                    <p className="text-xs text-gray-600 font-bold uppercase tracking-widest mb-2">Total Amount</p>
+                    <p className="text-4xl font-bold text-gray-900">
+                      ₹{finalPrice.toLocaleString("en-IN")}
+                    </p>
                   </div>
 
                   {/* Action Button */}
                   {currentStep === 3 && (
-                    <div className="pt-2">
-                      <button className="w-full h-12 text-base font-semibold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-md">
-                        Confirm Booking
+                    <div className="pt-2 space-y-3">
+                      <button className="w-full h-12 text-base font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-lg">
+                        🔒 Confirm Booking
                       </button>
-                      <p className="text-xs text-gray-600 text-center mt-3">
-                        Secure & encrypted payment
+                      <p className="text-xs text-gray-600 text-center">
+                        Secure checkout • Encrypted payments
                       </p>
                     </div>
                   )}
 
                   {currentStep < 3 && (
-                    <div className="pt-2">
-                      <div className="text-xs text-gray-500 text-center">
-                        <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full">
-                          {currentStep === 1 ? '2 more steps' : '1 more step'} to book
-                        </span>
-                      </div>
+                    <div className="pt-2 text-center">
+                      <p className="text-xs text-gray-600">
+                        {currentStep === 1 ? '✓ 2 more steps to book' : '✓ 1 more step to book'}
+                      </p>
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Info Banner */}
-              <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <p className="text-xs text-blue-800">
-                  <span className="font-semibold">Secure Booking:</span> Your information is protected with SSL encryption
+              <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <p className="text-xs text-gray-700 text-center font-medium">
+                  🔒 Secure checkout • Encrypted payments
                 </p>
               </div>
             </div>
