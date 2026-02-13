@@ -15,6 +15,7 @@ import CareersPage from "./pages/Careers";
 import TermsAndConditionPage from "./pages/TermsAndCondition";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 import CookiePolicyPage from "./pages/CookiePolicy";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/testimonials" element={<TestimonialsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/careers" element={<CareersPage />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/terms-and-condition" element={<TermsAndConditionPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/cookie-policy" element={<CookiePolicyPage />} />
