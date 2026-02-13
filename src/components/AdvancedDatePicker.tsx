@@ -96,7 +96,7 @@ export const AdvancedDatePicker = ({
     const availableMonthsForYear = availableMonthsByYear.get(currentYear) || new Set();
 
     const handlePrevMonth = () => {
-      if (availableDates && availableDates.length === 0) {
+      if (!availableDates || availableDates.length === 0) {
         // No available dates, use normal navigation
         const newDate = new Date(currentDate);
         newDate.setMonth(newDate.getMonth() - 1);
@@ -131,7 +131,7 @@ export const AdvancedDatePicker = ({
     };
 
     const handleNextMonth = () => {
-      if (availableDates && availableDates.length === 0) {
+      if (!availableDates || availableDates.length === 0) {
         // No available dates, use normal navigation
         const newDate = new Date(currentDate);
         newDate.setMonth(newDate.getMonth() + 1);
