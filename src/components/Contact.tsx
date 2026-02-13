@@ -384,7 +384,6 @@ const Contact = () => {
       <section className="py-24 bg-gradient-to-b from-slate-50 to-background">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-16 space-y-4">
-            <p className="text-secondary font-semibold text-sm tracking-widest uppercase">Questions?</p>
             <h2 className="text-4xl font-bold text-slate-900">Frequently Asked Questions</h2>
             <p className="text-slate-600 font-light text-lg">Find answers to common questions about our tours and booking process.</p>
           </div>
