@@ -247,6 +247,9 @@ const TestimonialsPage = () => {
           <div className="container mx-auto px-4">
             <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-center">
               <div className="space-y-6">
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+                  Traveler testimonials
+                </span>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                   Real voices from trails, passes, and river bends
                 </h1>
