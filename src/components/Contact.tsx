@@ -251,18 +251,18 @@ const Contact = () => {
                     <Button
                       type="submit"
                       variant="hero"
-                      className="w-full h-13 rounded-lg text-base font-semibold group transition-all duration-300 mt-2 bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-600 hover:to-orange-600 shadow-lg hover:shadow-xl"
+                      className="w-full h-14 rounded-lg text-base font-bold group transition-all duration-300 mt-4 bg-gradient-to-r from-secondary via-orange-500 to-orange-600 hover:from-orange-600 hover:via-orange-600 hover:to-orange-700 shadow-2xl hover:shadow-3xl hover:scale-[1.02] active:scale-95 text-white uppercase tracking-wide"
                       disabled={loading}
                     >
                       {loading ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-center gap-3">
                           <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          Sending...
+                          <span>Sending...</span>
                         </div>
                       ) : (
-                        <div className="flex items-center justify-center gap-2">
-                          Send Message
-                          <Send className="h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        <div className="flex items-center justify-center gap-3">
+                          <span>Send Message</span>
+                          <Send className="h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                         </div>
                       )}
                     </Button>
