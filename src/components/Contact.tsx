@@ -334,7 +334,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-900 text-sm">Available</h4>
-                    <p className="text-sm text-slate-600 font-light">9 AM - 9 PM IST</p>
+                    <p className="text-sm text-slate-600 font-light">24*7</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
