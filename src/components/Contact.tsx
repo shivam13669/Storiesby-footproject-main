@@ -154,7 +154,7 @@ const Contact = () => {
                 <div className="h-2 bg-gradient-adventure w-full"></div>
                 <CardContent className="p-8 md:p-10 space-y-8">
                   <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-foreground">Send a Message</h3>
+                    <h3 className="text-3xl font-bold text-foreground">Send a Message</h3>
                     <p className="text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours.</p>
                   </div>
 
