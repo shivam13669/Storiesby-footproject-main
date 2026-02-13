@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import { useToast } from "@/hooks/use-toast";
 import { FormEvent, useState, useEffect } from "react";
 
@@ -116,75 +117,73 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Header */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
+      {/* Luxury Hero Header */}
+      <section className="relative h-[35vh] md:h-[45vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{
             backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2Fad2d7d0632944f2a99e3df5568d6e82b%2F0a7a70bdabaa42b59defe24592c1de02?format=webp')`,
           }}
         >
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
         </div>
-        
-        <div className="relative z-10 text-center px-4 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-            Get in <span className="text-secondary">Touch</span>
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40"></div>
+
+        <div className="relative z-10 text-center px-4 animate-fade-in max-w-3xl">
+          <p className="text-secondary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">Get in Touch</p>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
+            Let's Plan Your <span className="text-secondary">Journey</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed">
-            Ready for your next adventure? Our team of explorers is here to help you plan the journey of a lifetime.
+          <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed max-w-2xl mx-auto">
+            Our team of travel experts is ready to craft your perfect adventure. Reach out with any questions.
           </p>
         </div>
 
-        {/* Decorative Wave */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-          <svg className="relative block w-full h-[50px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background"></path>
-          </svg>
-        </div>
+        {/* Subtle Decorative Line */}
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent"></div>
       </section>
 
-      {/* Main Content Area */}
-      <section className="py-20 bg-background relative px-4 md:px-0">
+      {/* Main Content Area - Luxury */}
+      <section className="py-24 bg-gradient-to-b from-background via-background to-slate-50 relative px-4 md:px-0">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-12 gap-12">
+          <div className="grid lg:grid-cols-12 gap-16">
             {/* Left Side: Form */}
             <div className="lg:col-span-7">
-              <Card className="border-none shadow-adventure bg-white/80 backdrop-blur-sm overflow-hidden rounded-3xl">
-                <div className="h-2 bg-gradient-adventure w-full"></div>
-                <CardContent className="px-8 md:px-10 pt-0 pb-8 md:pb-10 space-y-8">
-                  <div className="space-y-2">
-                    <h3 className="text-3xl font-bold text-foreground">Send a Message</h3>
-                    <p className="text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours.</p>
+              <Card className="border border-gray-200/50 shadow-2xl bg-white overflow-hidden rounded-2xl hover:shadow-3xl transition-shadow duration-300">
+                <div className="h-1 bg-gradient-to-r from-secondary via-secondary to-transparent w-full"></div>
+                <CardContent className="px-8 md:px-12 pt-10 md:pt-12 pb-10 md:pb-12 space-y-8">
+                  <div className="space-y-3">
+                    <h3 className="text-4xl font-bold text-slate-900 tracking-tight">Send a Message</h3>
+                    <p className="text-slate-600 font-light text-base">We'll respond within 24 hours with personalized recommendations for your journey.</p>
                   </div>
 
                   <form onSubmit={onSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="text-sm font-medium">Full Name</Label>
+                      <div className="space-y-3">
+                        <Label htmlFor="name" className="text-sm font-semibold text-slate-700">Full Name</Label>
                         <Input
                           id="name"
                           name="name"
                           placeholder="John Doe"
                           required
-                          className="bg-muted/30 border-none focus-visible:ring-primary h-12 rounded-xl"
+                          className="bg-slate-50 border border-slate-200 focus-visible:ring-secondary focus-visible:border-secondary h-12 rounded-lg text-slate-900 placeholder:text-slate-400"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
+                      <div className="space-y-3">
+                        <Label htmlFor="email" className="text-sm font-semibold text-slate-700">Email Address</Label>
                         <Input
                           id="email"
                           name="email"
                           type="email"
                           placeholder="john@example.com"
                           required
-                          className="bg-muted/30 border-none focus-visible:ring-primary h-12 rounded-xl"
+                          className="bg-slate-50 border border-slate-200 focus-visible:ring-secondary focus-visible:border-secondary h-12 rounded-lg text-slate-900 placeholder:text-slate-400"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
+                    <div className="space-y-3">
+                      <Label htmlFor="phone" className="text-sm font-semibold text-slate-700">Phone Number</Label>
                       <div className="flex gap-3">
                         <Popover open={openCountryPopover} onOpenChange={(open) => {
                           setOpenCountryPopover(open);
@@ -194,7 +193,7 @@ const Contact = () => {
                             <Button
                               type="button"
                               variant="outline"
-                              className="w-[100px] h-12 rounded-xl bg-muted/30 border-none hover:bg-muted/50 flex items-center justify-between"
+                              className="w-[100px] h-12 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 flex items-center justify-between text-slate-900"
                             >
                               <span className="font-medium">{selectedCountry.dial}</span>
                               <ChevronDown className="h-4 w-4 opacity-50" />
@@ -234,26 +233,26 @@ const Contact = () => {
                           name="phone"
                           type="tel"
                           placeholder="9876543210"
-                          className="flex-1 bg-muted/30 border-none focus-visible:ring-primary h-12 rounded-xl"
+                          className="flex-1 bg-slate-50 border border-slate-200 focus-visible:ring-secondary focus-visible:border-secondary h-12 rounded-lg text-slate-900 placeholder:text-slate-400"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-sm font-medium">Message</Label>
+                    <div className="space-y-3">
+                      <Label htmlFor="message" className="text-sm font-semibold text-slate-700">Message</Label>
                       <Textarea
                         id="message"
                         name="message"
                         placeholder="Tell us about the dream adventure you're planning..."
                         required
-                        className="bg-muted/30 border-none focus-visible:ring-primary min-h-[150px] rounded-2xl resize-none p-4"
+                        className="bg-slate-50 border border-slate-200 focus-visible:ring-secondary focus-visible:border-secondary min-h-[160px] rounded-lg resize-none p-4 text-slate-900 placeholder:text-slate-400"
                       />
                     </div>
 
                     <Button
                       type="submit"
                       variant="hero"
-                      className="w-full h-14 rounded-2xl text-lg font-semibold group transition-all duration-300"
+                      className="w-full h-13 rounded-lg text-base font-semibold group transition-all duration-300 mt-2 bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-600 hover:to-orange-600 shadow-lg hover:shadow-xl"
                       disabled={loading}
                     >
                       {loading ? (
@@ -276,71 +275,76 @@ const Contact = () => {
             {/* Right Side: Contact Info & Support */}
             <div className="lg:col-span-5 space-y-10">
               <div className="space-y-4">
-                <h2 className="text-3xl font-bold text-foreground">Talk to our Experts</h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Talk to our Experts</h2>
+                <p className="text-slate-600 leading-relaxed font-light text-base">
                   Whether you have questions about a specific destination or need help with a custom itinerary, we're here to provide expert guidance.
                 </p>
+                <div className="h-1 w-16 bg-gradient-to-r from-secondary to-orange-400 rounded mt-4"></div>
               </div>
 
-              {/* Contact Method Cards */}
-              <div className="grid gap-4">
-                <Card className="group border-none shadow-sm hover:shadow-md transition-all duration-300 bg-muted/30">
-                  <CardContent className="p-4 flex items-center gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                      <WhatsAppIcon className="h-6 w-6" />
+              {/* Contact Method Cards - Luxury */}
+              <div className="grid gap-5">
+                <Card className="group border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white rounded-lg hover:border-secondary/50">
+                  <CardContent className="p-6 flex items-center gap-5">
+                    <div className="w-14 h-14 rounded-lg bg-green-50 flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
+                      <WhatsAppIcon className="h-7 w-7" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-primary uppercase tracking-wider">WhatsApp</p>
-                      <a href="https://wa.me/916205129118" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline">Chat with us now</a>
+                      <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest">WhatsApp</p>
+                      <a href="https://wa.me/916205129118" target="_blank" rel="noopener noreferrer" className="text-base font-semibold text-slate-900 hover:text-secondary transition-colors">Chat with us now</a>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="group border-none shadow-sm hover:shadow-md transition-all duration-300 bg-muted/30">
-                  <CardContent className="p-4 flex items-center gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                      <PhoneIcon className="h-6 w-6" />
+                <Card className="group border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white rounded-lg hover:border-secondary/50">
+                  <CardContent className="p-6 flex items-center gap-5">
+                    <div className="w-14 h-14 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                      <PhoneIcon className="h-7 w-7" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-primary uppercase tracking-wider">Call Us</p>
-                      <div className="space-y-1">
-                        <a href="tel:+916205129118" className="block text-lg font-medium hover:underline">+91 62051 29118</a>
-                        <a href="tel:+916283620764" className="block text-lg font-medium hover:underline">+91 62836 20764</a>
+                      <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Call Us</p>
+                      <div className="space-y-0.5">
+                        <a href="tel:+916205129118" className="block text-base font-semibold text-slate-900 hover:text-secondary transition-colors">+91 62051 29118</a>
+                        <a href="tel:+916283620764" className="block text-base font-semibold text-slate-900 hover:text-secondary transition-colors">+91 62836 20764</a>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="group border-none shadow-sm hover:shadow-md transition-all duration-300 bg-muted/30">
-                  <CardContent className="p-4 flex items-center gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                      <MailIcon className="h-6 w-6" />
+                <Card className="group border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white rounded-lg hover:border-secondary/50">
+                  <CardContent className="p-6 flex items-center gap-5">
+                    <div className="w-14 h-14 rounded-lg bg-red-50 flex items-center justify-center text-red-600 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                      <MailIcon className="h-7 w-7" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-primary uppercase tracking-wider">Email</p>
-                      <div className="space-y-1">
-                        <a href="mailto:contact@storiesbyfoot.com" className="block text-lg font-medium hover:underline">contact@storiesbyfoot.com</a>
-                        <a href="mailto:storiesbyfoot@gmail.com" className="block text-lg font-medium hover:underline">storiesbyfoot@gmail.com</a>
+                      <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</p>
+                      <div className="space-y-0.5">
+                        <a href="mailto:contact@storiesbyfoot.com" className="block text-base font-semibold text-slate-900 hover:text-secondary transition-colors">contact@storiesbyfoot.com</a>
+                        <a href="mailto:storiesbyfoot@gmail.com" className="block text-base font-semibold text-slate-900 hover:text-secondary transition-colors">storiesbyfoot@gmail.com</a>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </div>
 
-              {/* Extra Info Icons */}
-              <div className="grid grid-cols-2 gap-6 pt-6 border-t border-border">
-                <div className="flex items-start gap-3">
-                  <Clock className="h-5 w-5 text-secondary mt-0.5" />
+              {/* Extra Info - Luxury */}
+              <div className="grid grid-cols-2 gap-6 pt-8 border-t border-gray-200/50">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary flex-shrink-0">
+                    <Clock className="h-5 w-5" />
+                  </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Available</h4>
-                    <p className="text-sm text-muted-foreground">9 AM - 9 PM IST</p>
+                    <h4 className="font-semibold text-slate-900 text-sm">Available</h4>
+                    <p className="text-sm text-slate-600 font-light">9 AM - 9 PM IST</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Globe className="h-5 w-5 text-secondary mt-0.5" />
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary flex-shrink-0">
+                    <Globe className="h-5 w-5" />
+                  </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Global Support</h4>
-                    <p className="text-sm text-muted-foreground">Multilingual help</p>
+                    <h4 className="font-semibold text-slate-900 text-sm">Global Support</h4>
+                    <p className="text-sm text-slate-600 font-light">Multilingual help</p>
                   </div>
                 </div>
               </div>
@@ -349,23 +353,24 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Office Locations */}
-      <section className="py-20 bg-muted/20 border-t border-border">
+      {/* Office Location - Luxury */}
+      <section className="py-24 bg-white border-t border-gray-200/50">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl font-bold">Our Base Camp</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Drop by for a coffee and let's talk about your next destination.</p>
+          <div className="text-center mb-16 space-y-4">
+            <p className="text-secondary font-semibold text-sm tracking-widest uppercase">Visit Us</p>
+            <h2 className="text-4xl font-bold text-slate-900">Our Base Camp</h2>
+            <p className="text-slate-600 max-w-xl mx-auto font-light">Drop by for a coffee and let's talk about your next destination.</p>
           </div>
-          
+
           <div className="flex justify-center">
-            <Card className="max-w-md w-full border-none shadow-sm hover:shadow-md transition-shadow bg-background rounded-3xl overflow-hidden">
-              <div className="p-8 flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
+            <Card className="max-w-md w-full border border-gray-200/50 shadow-2xl hover:shadow-3xl transition-shadow bg-white rounded-2xl overflow-hidden">
+              <div className="p-10 flex flex-col items-center text-center space-y-5">
+                <div className="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
                   <MapPin className="h-8 w-8" />
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">Main Office</h3>
-                  <p className="text-muted-foreground">
+                <div className="space-y-3">
+                  <h3 className="text-2xl font-bold text-slate-900">Main Office</h3>
+                  <p className="text-slate-600 font-light leading-relaxed">
                     91, GK Crystal Home, KL Highway,<br />
                     SAS Nagar, Punjab - 140307, India
                   </p>
@@ -376,25 +381,92 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Thank You Modal */}
+      {/* FAQ Section - Luxury */}
+      <section className="py-24 bg-gradient-to-b from-slate-50 to-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-16 space-y-4">
+            <p className="text-secondary font-semibold text-sm tracking-widest uppercase">Questions?</p>
+            <h2 className="text-4xl font-bold text-slate-900">Frequently Asked Questions</h2>
+            <p className="text-slate-600 font-light text-lg">Find answers to common questions about our tours and booking process.</p>
+          </div>
+
+          <Accordion type="single" collapsible className="space-y-4">
+            <AccordionItem value="faq-1" className="border border-gray-200/50 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
+              <AccordionTrigger className="px-6 py-5 hover:no-underline text-slate-900 font-semibold hover:text-secondary">
+                What destinations do you offer?
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-5 text-slate-600 font-light leading-relaxed">
+                We offer curated adventures across India and international destinations including Ladakh, Northeast India, Rajasthan, Kerala, and more. Each itinerary is customizable based on your preferences and interests.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-2" className="border border-gray-200/50 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
+              <AccordionTrigger className="px-6 py-5 hover:no-underline text-slate-900 font-semibold hover:text-secondary">
+                How do I book a tour?
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-5 text-slate-600 font-light leading-relaxed">
+                You can fill out our contact form, call us, or chat on WhatsApp. Our team will then provide personalized recommendations and assist with the entire booking process from start to finish.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-3" className="border border-gray-200/50 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
+              <AccordionTrigger className="px-6 py-5 hover:no-underline text-slate-900 font-semibold hover:text-secondary">
+                What's included in the tour package?
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-5 text-slate-600 font-light leading-relaxed">
+                Most packages include accommodation, meals, guided tours, and transportation within the destination. Specific inclusions vary by package. We'll provide a detailed breakdown when discussing your itinerary.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-4" className="border border-gray-200/50 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
+              <AccordionTrigger className="px-6 py-5 hover:no-underline text-slate-900 font-semibold hover:text-secondary">
+                Can I customize my itinerary?
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-5 text-slate-600 font-light leading-relaxed">
+                Absolutely! We specialize in custom itineraries. Whether you want to add activities, change destinations, or adjust dates, our experts will work with you to create your perfect journey.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-5" className="border border-gray-200/50 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
+              <AccordionTrigger className="px-6 py-5 hover:no-underline text-slate-900 font-semibold hover:text-secondary">
+                What is your cancellation policy?
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-5 text-slate-600 font-light leading-relaxed">
+                Our cancellation policy is flexible and depends on the specific package and booking timeframe. Please contact us for detailed information about cancellation terms and refund policies.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="faq-6" className="border border-gray-200/50 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
+              <AccordionTrigger className="px-6 py-5 hover:no-underline text-slate-900 font-semibold hover:text-secondary">
+                How far in advance should I book?
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-5 text-slate-600 font-light leading-relaxed">
+                We recommend booking at least 30-45 days in advance to ensure the best availability and pricing. However, we also accommodate last-minute bookings based on availability.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </section>
+
+      {/* Thank You Modal - Luxury */}
       <Dialog open={showThankYou} onOpenChange={setShowThankYou}>
-        <DialogContent className="max-w-md p-0 overflow-hidden border-none rounded-3xl">
+        <DialogContent className="max-w-md p-0 overflow-hidden border-none rounded-2xl shadow-2xl">
           <DialogTitle className="sr-only">Message Sent Successfully</DialogTitle>
-          <div className="relative h-32 bg-gradient-adventure flex items-center justify-center">
-            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg transform translate-y-8">
-              <Send className="h-10 w-10 text-secondary" />
+          <div className="relative h-40 bg-gradient-to-br from-secondary via-orange-400 to-secondary flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-2xl transform translate-y-10">
+              <Send className="h-12 w-12 text-secondary" />
             </div>
           </div>
-          <div className="pt-16 pb-10 px-8 text-center space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold text-foreground">Message Sent!</h2>
-              <p className="text-muted-foreground leading-relaxed">
+          <div className="pt-20 pb-12 px-8 text-center space-y-6">
+            <div className="space-y-3">
+              <h2 className="text-3xl font-bold text-slate-900">Message Sent!</h2>
+              <p className="text-slate-600 leading-relaxed font-light">
                 Thank you for reaching out. One of our adventure specialists will contact you shortly to help plan your journey.
               </p>
             </div>
             <Button
               onClick={() => setShowThankYou(false)}
-              className="w-full h-12 rounded-xl font-semibold"
+              className="w-full h-12 rounded-lg font-semibold bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-600 hover:to-orange-600 shadow-lg hover:shadow-xl"
               variant="default"
             >
               Excellent
