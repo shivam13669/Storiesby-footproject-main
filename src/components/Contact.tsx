@@ -274,7 +274,7 @@ const Contact = () => {
             </div>
 
             {/* Right Side: Contact Info & Support */}
-            <div className="lg:col-span-5 space-y-10">
+            <div className="lg:col-span-5 space-y-10 pt-8 md:pt-10">
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold text-foreground">Talk to our Experts</h2>
                 <p className="text-muted-foreground leading-relaxed">
