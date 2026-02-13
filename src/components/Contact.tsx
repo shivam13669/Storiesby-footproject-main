@@ -130,7 +130,6 @@ const Contact = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40"></div>
 
         <div className="relative z-10 text-center px-4 animate-fade-in max-w-3xl">
-          <p className="text-secondary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">Get in Touch</p>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
             Get in <span className="text-secondary">Touch</span>
           </h1>
