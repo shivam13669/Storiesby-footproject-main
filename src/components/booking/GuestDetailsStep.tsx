@@ -142,10 +142,10 @@ const GuestDetailsStep = ({
       {/* Single Combined Card */}
       <div className="bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all overflow-hidden">
         <div className="p-6 space-y-6">
-          {/* SECTION 1: Traveller Details */}
+          {/* SECTION 1: Traveler Details */}
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Traveller Details
+              Traveler Details
             </h2>
             
             <div className="space-y-4">
@@ -317,7 +317,7 @@ const GuestDetailsStep = ({
           {/* SECTION 3: Additional Guests */}
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Add Co-Travellers</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Add Co-Travelers</h2>
               <Button
                 onClick={() => setShowAddGuestModal(true)}
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
@@ -328,7 +328,7 @@ const GuestDetailsStep = ({
 
             {formData.guests.length === 0 ? (
               <div className="py-10 text-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
-                <p className="text-gray-600 font-medium">No co-travellers added yet</p>
+                <p className="text-gray-600 font-medium">No co-travelers added yet</p>
                 <p className="text-sm text-gray-500 mt-1">Add family members or friends traveling with you</p>
               </div>
             ) : (

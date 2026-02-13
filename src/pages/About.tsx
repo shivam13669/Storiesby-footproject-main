@@ -64,7 +64,7 @@ export default function AboutPage() {
                 <li>Speciality: Motorbike & 4x4 expeditions</li>
                 <li>Regions: Ladakh, Zanskar, Meghalaya, Tawang, Bhutan, Upper Mustang</li>
                 <li>Trips: 500+ completed expeditions</li>
-                <li>Travellers: 10,000+ served</li>
+                <li>Travelers: 10,000+ served</li>
               </ul>
             </aside>
           </section>

@@ -62,7 +62,7 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
-        <DialogTitle className="text-2xl font-bold text-gray-900">Add Co-Traveller</DialogTitle>
+        <DialogTitle className="text-2xl font-bold text-gray-900">Add Co-Traveler</DialogTitle>
         <DialogDescription className="text-gray-600">
           Enter details of another person traveling with you.
         </DialogDescription>
@@ -111,7 +111,7 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
             onClick={handleSubmit}
             className="flex-1 h-11 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all"
           >
-            Add Co-Traveller
+            Add Co-Traveler
           </button>
         </div>
       </DialogContent>
