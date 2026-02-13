@@ -25,6 +25,29 @@ export const AdvancedDatePicker = ({
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
 
+  // Get available years and months from availableDates
+  const getAvailableYearsAndMonths = () => {
+    if (!availableDates || availableDates.length === 0) {
+      return { years: new Set<number>(), monthsByYear: new Map<number, Set<number>>() };
+    }
+
+    const years = new Set<number>();
+    const monthsByYear = new Map<number, Set<number>>();
+
+    availableDates.forEach(dateStr => {
+      const [year, month] = dateStr.split('-').map(Number);
+      years.add(year);
+      if (!monthsByYear.has(year)) {
+        monthsByYear.set(year, new Set());
+      }
+      monthsByYear.get(year)!.add(month - 1); // Convert to 0-based month
+    });
+
+    return { years, monthsByYear };
+  };
+
+  const { years: availableYears, monthsByYear: availableMonthsByYear } = getAvailableYearsAndMonths();
+
   // Handle year selection
   const handleYearSelect = (year: number) => {
     const newDate = new Date(currentDate);
@@ -70,6 +93,77 @@ export const AdvancedDatePicker = ({
   const renderDayPicker = () => {
     const days = getDays();
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const availableMonthsForYear = availableMonthsByYear.get(currentYear) || new Set();
+
+    const handlePrevMonth = () => {
+      if (availableDates && availableDates.length === 0) {
+        // No available dates, use normal navigation
+        const newDate = new Date(currentDate);
+        newDate.setMonth(newDate.getMonth() - 1);
+        setCurrentDate(newDate);
+        return;
+      }
+
+      let newDate = new Date(currentDate);
+      let prevMonth = newDate.getMonth() - 1;
+      let prevYear = newDate.getFullYear();
+      const minYear = Math.min(...Array.from(availableYears));
+
+      // Skip months that don't have available dates
+      while (prevYear >= minYear) {
+        if (prevMonth < 0) {
+          prevMonth = 11;
+          prevYear--;
+          if (prevYear < minYear) break;
+        }
+        const monthMonthsAvailable = availableMonthsByYear.get(prevYear) || new Set();
+        if (monthMonthsAvailable.size === 0 || monthMonthsAvailable.has(prevMonth)) {
+          break;
+        }
+        prevMonth--;
+      }
+
+      if (prevYear >= minYear) {
+        newDate.setFullYear(prevYear);
+        newDate.setMonth(prevMonth);
+        setCurrentDate(newDate);
+      }
+    };
+
+    const handleNextMonth = () => {
+      if (availableDates && availableDates.length === 0) {
+        // No available dates, use normal navigation
+        const newDate = new Date(currentDate);
+        newDate.setMonth(newDate.getMonth() + 1);
+        setCurrentDate(newDate);
+        return;
+      }
+
+      let newDate = new Date(currentDate);
+      let nextMonth = newDate.getMonth() + 1;
+      let nextYear = newDate.getFullYear();
+      const maxYear = Math.max(...Array.from(availableYears));
+
+      // Skip months that don't have available dates
+      while (nextYear <= maxYear) {
+        if (nextMonth > 11) {
+          nextMonth = 0;
+          nextYear++;
+          if (nextYear > maxYear) break;
+        }
+        const monthMonthsAvailable = availableMonthsByYear.get(nextYear) || new Set();
+        if (monthMonthsAvailable.size === 0 || monthMonthsAvailable.has(nextMonth)) {
+          break;
+        }
+        nextMonth++;
+      }
+
+      if (nextYear <= maxYear) {
+        newDate.setFullYear(nextYear);
+        newDate.setMonth(nextMonth);
+        setCurrentDate(newDate);
+      }
+    };
 
     return (
       <div className="w-80 p-4 bg-card rounded-lg">
@@ -77,11 +171,7 @@ export const AdvancedDatePicker = ({
         <div className="flex items-center justify-between mb-4">
           <button
             type="button"
-            onClick={() => {
-              const newDate = new Date(currentDate);
-              newDate.setMonth(newDate.getMonth() - 1);
-              setCurrentDate(newDate);
-            }}
+            onClick={handlePrevMonth}
             className="p-1 hover:bg-primary/10 rounded-md transition-colors"
           >
             <ChevronLeft className="h-5 w-5 text-foreground" />
@@ -97,11 +187,7 @@ export const AdvancedDatePicker = ({
 
           <button
             type="button"
-            onClick={() => {
-              const newDate = new Date(currentDate);
-              newDate.setMonth(newDate.getMonth() + 1);
-              setCurrentDate(newDate);
-            }}
+            onClick={handleNextMonth}
             className="p-1 hover:bg-primary/10 rounded-md transition-colors"
           >
             <ChevronRight className="h-5 w-5 text-foreground" />
@@ -188,6 +274,8 @@ export const AdvancedDatePicker = ({
       "December",
     ];
 
+    const availableMonthsForYear = availableMonthsByYear.get(currentYear) || new Set();
+
     return (
       <div className="w-80 p-4 bg-card rounded-lg">
         {/* Header */}
@@ -203,21 +291,29 @@ export const AdvancedDatePicker = ({
 
         {/* Months grid */}
         <div className="grid grid-cols-3 gap-2">
-          {months.map((month, idx) => (
-            <button
-              key={month}
-              type="button"
-              onClick={() => handleMonthSelect(idx)}
-              className={cn(
-                "py-2 px-3 rounded-md text-sm font-medium transition-colors",
-                idx === currentMonth
-                  ? "bg-primary text-primary-foreground font-bold"
-                  : "hover:bg-primary/10 text-foreground"
-              )}
-            >
-              {month.slice(0, 3)}
-            </button>
-          ))}
+          {months.map((month, idx) => {
+            const isAvailable = availableMonthsForYear.size === 0 || availableMonthsForYear.has(idx);
+            const isDisabledMonth = availableDates && availableDates.length > 0 && !isAvailable;
+
+            return (
+              <button
+                key={month}
+                type="button"
+                onClick={() => !isDisabledMonth && handleMonthSelect(idx)}
+                disabled={isDisabledMonth}
+                className={cn(
+                  "py-2 px-3 rounded-md text-sm font-medium transition-colors",
+                  isDisabledMonth && "opacity-40 cursor-not-allowed text-muted-foreground",
+                  !isDisabledMonth && "cursor-pointer",
+                  idx === currentMonth && !isDisabledMonth
+                    ? "bg-primary text-primary-foreground font-bold"
+                    : !isDisabledMonth && "hover:bg-primary/10 text-foreground"
+                )}
+              >
+                {month.slice(0, 3)}
+              </button>
+            );
+          })}
         </div>
       </div>
     );
@@ -263,21 +359,29 @@ export const AdvancedDatePicker = ({
 
         {/* Years grid */}
         <div className="grid grid-cols-3 gap-2">
-          {years.map((year) => (
-            <button
-              key={year}
-              type="button"
-              onClick={() => handleYearSelect(year)}
-              className={cn(
-                "py-2 px-3 rounded-md text-sm font-medium transition-colors",
-                year === currentYear
-                  ? "bg-primary text-primary-foreground font-bold"
-                  : "hover:bg-primary/10 text-foreground"
-              )}
-            >
-              {year}
-            </button>
-          ))}
+          {years.map((year) => {
+            const isAvailable = availableYears.size === 0 || availableYears.has(year);
+            const isDisabledYear = availableDates && availableDates.length > 0 && !isAvailable;
+
+            return (
+              <button
+                key={year}
+                type="button"
+                onClick={() => !isDisabledYear && handleYearSelect(year)}
+                disabled={isDisabledYear}
+                className={cn(
+                  "py-2 px-3 rounded-md text-sm font-medium transition-colors",
+                  isDisabledYear && "opacity-40 cursor-not-allowed text-muted-foreground",
+                  !isDisabledYear && "cursor-pointer",
+                  year === currentYear && !isDisabledYear
+                    ? "bg-primary text-primary-foreground font-bold"
+                    : !isDisabledYear && "hover:bg-primary/10 text-foreground"
+                )}
+              >
+                {year}
+              </button>
+            );
+          })}
         </div>
       </div>
     );
