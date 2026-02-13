@@ -15,6 +15,11 @@ interface GuestDetailsStepProps {
   onFormDataChange: (data: Partial<BookingFormData>) => void;
 }
 
+const validateEmail = (email: string) => {
+  const emailRegex = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+};
+
 const COUNTRIES = [
   { code: "IN", name: "India", dial: "+91" },
   { code: "US", name: "United States", dial: "+1" },
@@ -58,6 +63,7 @@ const GuestDetailsStep = ({
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
     formData.travelDate ? new Date(formData.travelDate) : undefined
   );
+  const [emailError, setEmailError] = useState("");
 
   const filteredCountries = COUNTRIES.filter(country =>
     country.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
@@ -91,6 +97,12 @@ const GuestDetailsStep = ({
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       onFormDataChange({ [field]: e.target.value });
     };
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    onFormDataChange({ email: value });
+    setEmailError("");
   };
 
   const handleAadhaarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -157,11 +169,16 @@ const GuestDetailsStep = ({
                 </label>
                 <Input
                   type="email"
-                  placeholder="your.email@example.com"
+                  placeholder="you@example.com"
                   value={formData.email}
-                  onChange={handleInputChange("email")}
-                  className="h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
+                  onChange={handleEmailChange}
+                  className={`h-11 text-base border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg ${
+                    emailError ? 'border-red-400 focus:ring-red-500 focus:border-red-500' : ''
+                  }`}
                 />
+                {emailError && (
+                  <p className="text-xs text-red-500 font-medium mt-2">{emailError}</p>
+                )}
               </div>
 
               {/* Phone Number */}

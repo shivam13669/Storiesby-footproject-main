@@ -17,6 +17,12 @@ import { parsePrice } from "@/context/CurrencyContext";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 
+// Email validation function
+const validateEmail = (email: string) => {
+  const emailRegex = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+};
+
 // EmailJS Credentials for Booking Confirmation
 const EMAILJS_SERVICE_ID = 'sbf2nd';
 const EMAILJS_TEMPLATE_ID = 'template_edqs96c';
@@ -162,6 +168,12 @@ const BookingPage = () => {
       // Validate step 1
       if (!formData.fullName || !formData.email || !formData.phoneNumber || !formData.travelDate || !formData.aadhaarNumber) {
         setValidationError("Please fill in all required fields");
+        return;
+      }
+
+      // Validate email format
+      if (!validateEmail(formData.email)) {
+        setValidationError("Please enter a valid email address (e.g., you@example.com)");
         return;
       }
 
