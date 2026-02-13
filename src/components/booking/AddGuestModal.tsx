@@ -13,21 +13,28 @@ interface AddGuestModalProps {
 const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
   const [guestName, setGuestName] = useState("");
   const [guestAadhaar, setGuestAadhaar] = useState("");
+  const [validationError, setValidationError] = useState("");
 
   const handleAadhaarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const digitsOnly = e.target.value.replace(/\D/g, "");
     const truncated = digitsOnly.slice(0, 12);
     setGuestAadhaar(truncated);
+    if (validationError) setValidationError("");
   };
 
   const handleSubmit = () => {
-    if (!guestName.trim() || !guestAadhaar.trim()) {
-      alert("Please fill in all fields");
+    if (!guestName.trim()) {
+      setValidationError("Please enter guest name");
+      return;
+    }
+
+    if (!guestAadhaar.trim()) {
+      setValidationError("Please enter Aadhaar number");
       return;
     }
 
     if (guestAadhaar.length !== 12) {
-      alert("Aadhaar number must be exactly 12 digits");
+      setValidationError("Aadhaar number must be exactly 12 digits");
       return;
     }
 
@@ -39,6 +46,7 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
     // Reset form
     setGuestName("");
     setGuestAadhaar("");
+    setValidationError("");
     onClose();
   };
 
@@ -46,6 +54,7 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
     if (!open) {
       setGuestName("");
       setGuestAadhaar("");
+      setValidationError("");
       onClose();
     }
   };
@@ -84,6 +93,9 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
               inputMode="numeric"
               className="h-12 text-base tracking-widest border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             />
+            {validationError && (
+              <p className="text-red-500 text-sm mt-2">{validationError}</p>
+            )}
           </div>
         </div>
 
