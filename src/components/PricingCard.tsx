@@ -382,7 +382,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
               </div>
             </div>
 
-            {/* Travel Date & Traveller Count */}
+            {/* Travel Date & Traveler Count */}
             <div className="grid grid-cols-2 gap-3">
               {/* Travel Date with Calendar Picker */}
               <Popover open={openDatePopover} onOpenChange={setOpenDatePopover}>
@@ -407,7 +407,7 @@ const PricingCard = ({ showForm = false, title = "Scenic Iceland With Diamond Ci
                 </PopoverContent>
               </Popover>
 
-              {/* Traveller Count */}
+              {/* Traveler Count */}
               <div className="relative">
                 <Input
                   placeholder="Traveler Count"

@@ -416,7 +416,7 @@ const BikeSelectionStep = ({
           </h4>
           <p className="text-sm text-gray-600 mb-4">
             {formData.guests && formData.guests.length > 0
-              ? "Choose how your co-traveller will ride"
+              ? "Choose how your co-traveler will ride"
               : "Select your preferred seating arrangement"}
           </p>
           <div className="space-y-3">
@@ -437,7 +437,7 @@ const BikeSelectionStep = ({
                 />
                 <div>
                   <p className="font-semibold text-sm text-gray-900">Dual Sharing</p>
-                  <p className="text-xs text-gray-600">Your co-traveller rides with you</p>
+                  <p className="text-xs text-gray-600">Your co-traveler rides with you</p>
                 </div>
               </label>
             )}
@@ -458,7 +458,7 @@ const BikeSelectionStep = ({
                 <p className="font-semibold text-sm text-gray-900">Solo</p>
                 <p className="text-xs text-gray-600">
                   {formData.guests && formData.guests.length > 0
-                    ? "Your co-traveller gets their own bike"
+                    ? "Your co-traveler gets their own bike"
                     : "Get your own bike"}
                 </p>
               </div>
@@ -483,7 +483,7 @@ const BikeSelectionStep = ({
                 <p className="font-semibold text-sm text-gray-900">Seat in Backup</p>
                 <p className="text-xs text-gray-600">
                   {formData.guests && formData.guests.length > 0
-                    ? "Your co-traveller rides in backup vehicle"
+                    ? "Your co-traveler rides in backup vehicle"
                     : "Ride in backup vehicle"}
                 </p>
               </div>
