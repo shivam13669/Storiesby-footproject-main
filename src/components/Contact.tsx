@@ -152,7 +152,7 @@ const Contact = () => {
             <div className="lg:col-span-7">
               <Card className="border-none shadow-adventure bg-white/80 backdrop-blur-sm overflow-hidden rounded-3xl">
                 <div className="h-2 bg-gradient-adventure w-full"></div>
-                <CardContent className="p-8 md:p-10 space-y-8">
+                <CardContent className="px-8 md:px-10 py-6 md:py-8 space-y-8">
                   <div className="space-y-2">
                     <h3 className="text-3xl font-bold text-foreground">Send a Message</h3>
                     <p className="text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours.</p>
@@ -274,7 +274,7 @@ const Contact = () => {
             </div>
 
             {/* Right Side: Contact Info & Support */}
-            <div className="lg:col-span-5 space-y-10 pt-8 md:pt-10">
+            <div className="lg:col-span-5 space-y-10">
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold text-foreground">Talk to our Experts</h2>
                 <p className="text-muted-foreground leading-relaxed">
