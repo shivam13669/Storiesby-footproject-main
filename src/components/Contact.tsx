@@ -132,7 +132,7 @@ const Contact = () => {
         <div className="relative z-10 text-center px-4 animate-fade-in max-w-3xl">
           <p className="text-secondary font-semibold text-sm md:text-base tracking-widest uppercase mb-4">Get in Touch</p>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
-            Let's Plan Your <span className="text-secondary">Journey</span>
+            Get in <span className="text-secondary">Touch</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed max-w-2xl mx-auto">
             Our team of travel experts is ready to craft your perfect adventure. Reach out with any questions.
