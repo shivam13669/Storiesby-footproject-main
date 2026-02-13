@@ -26,6 +26,11 @@ const AddGuestModal = ({ isOpen, onClose, onAddGuest }: AddGuestModalProps) => {
       return;
     }
 
+    if (guestAadhaar.length !== 12) {
+      alert("Aadhaar number must be exactly 12 digits");
+      return;
+    }
+
     onAddGuest({
       name: guestName,
       aadhaarNumber: guestAadhaar,
