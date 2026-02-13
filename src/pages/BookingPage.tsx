@@ -164,6 +164,19 @@ const BookingPage = () => {
         setValidationError("Please fill in all required fields");
         return;
       }
+
+      // Validate mobile number is exactly 10 digits
+      if (formData.phoneNumber.length !== 10) {
+        setValidationError("Mobile number must be exactly 10 digits");
+        return;
+      }
+
+      // Validate Aadhaar number is exactly 12 digits
+      if (formData.aadhaarNumber.length !== 12) {
+        setValidationError("Aadhaar number must be exactly 12 digits");
+        return;
+      }
+
       // Step 1 validated, save to localStorage
       if (typeof window !== 'undefined') {
         localStorage.setItem(storageKey, JSON.stringify(formData));
